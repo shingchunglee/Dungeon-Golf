@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerActionStateController : MonoBehaviour
 {
+    public Rigidbody2D rb;
     private IPlayerActionState currentState;
     public IPlayerActionState aimState = new AimState();
+    public IPlayerActionState moveState = new MoveState();
     public IPlayerActionState powerState = new PowerState();
 
     void Start()
     {
-        SetState(aimState);
+        SetState(powerState);
     }
 
     void Update()
@@ -18,6 +20,14 @@ public class PlayerActionStateController : MonoBehaviour
         if (currentState != null)
         {
             currentState.OnUpdate();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.OnFixedUpdate();
         }
     }
 

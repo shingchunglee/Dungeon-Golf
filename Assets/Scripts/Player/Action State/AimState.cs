@@ -16,6 +16,10 @@ public class AimState : IPlayerActionState
     Debug.Log("Player Exited Aim State");
   }
 
+  public void OnFixedUpdate()
+  {
+  }
+
   public void OnUpdate()
   {
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PowerState : IPlayerActionState
@@ -8,8 +9,7 @@ public class PowerState : IPlayerActionState
   {
     this.controller = controller;
     Debug.Log("Player Entered Power State");
-    // TODO
-    // PlayerManager.Instance.powerLevelController.ShowPowerBar();
+    PlayerManager.Instance.powerLevelController.ShowPowerBar();
   }
 
   public void OnExit()
@@ -17,8 +17,21 @@ public class PowerState : IPlayerActionState
     Debug.Log("Player Exited Power State");
   }
 
+  public void OnFixedUpdate()
+  {
+  }
+
   public void OnUpdate()
   {
+    if (Input.GetMouseButtonDown(0))
+    {
+      OnMouseClick();
+    }
+  }
 
+  private void OnMouseClick()
+  {
+    PlayerManager.Instance.powerLevelController.SelectPowerLevel();
+    controller.SetState(controller.moveState);
   }
 }
