@@ -8,7 +8,7 @@ public class PowerLevelController : MonoBehaviour
   public int minPower;
   public int maxPower;
   public float duration;
-  public Func<float, float> easingFunction;
+  public EasingFunction easingFunction;
   public float? selectedPower = null;
   [SerializeField]
   private GameObject powerBarCanvas;
@@ -36,14 +36,14 @@ public class PowerLevelController : MonoBehaviour
     powerBarSlider.minValue = 0f;
     powerBarSlider.maxValue = 1f;
     // TODO update values based on club
-    duration = 1f;
-    easingFunction = Easing.EaseOutBounce;
+    // duration = 1f;
+    easingFunction = EasingFunction.EaseOutCubic;
 
     selectedPower = null;
-    StartCoroutine(Slide(duration, easingFunction));
+    StartCoroutine(Slide());
   }
 
-  IEnumerator Slide(float duration, Func<float, float> easingFunction)
+  IEnumerator Slide()
   {
     powerBarSlider.value = 0;
     float time = 0;
@@ -52,7 +52,7 @@ public class PowerLevelController : MonoBehaviour
     {
       time += Time.deltaTime;
       float delta = Mathf.Clamp01(time / duration);
-      float t = easingFunction(delta);
+      float t = Easing.Factory(easingFunction)(delta);
 
       float value = Mathf.Lerp(0f, 1f, t);
       powerBarSlider.value = value;
