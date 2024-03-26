@@ -7,6 +7,8 @@ public class PowerLevelController : MonoBehaviour
 {
   public int minPower;
   public int maxPower;
+  public float duration;
+  public Func<float, float> easingFunction;
   public float? selectedPower = null;
   [SerializeField]
   private GameObject powerBarCanvas;
@@ -31,30 +33,43 @@ public class PowerLevelController : MonoBehaviour
 
   private void InitPowerSlider()
   {
-    powerBarSlider.maxValue = maxPower;
-    powerBarSlider.minValue = minPower;
+    powerBarSlider.minValue = 0f;
+    powerBarSlider.maxValue = 1f;
+    // TODO update values based on club
+    duration = 1f;
+    easingFunction = Easing.EaseOutBounce;
+
     selectedPower = null;
-    StartCoroutine(Slide());
+    StartCoroutine(Slide(duration, easingFunction));
   }
 
-  IEnumerator Slide()
+  IEnumerator Slide(float duration, Func<float, float> easingFunction)
   {
-    powerBarSlider.value = minPower;
+    powerBarSlider.value = 0;
+    float time = 0;
+
     while (selectedPower == null)
     {
-      powerBarSlider.value += 1;
-      powerBarSlider.value = Mathf.Clamp(powerBarSlider.value, minPower, maxPower);
-      if (powerBarSlider.value >= maxPower)
+      time += Time.deltaTime;
+      float delta = Mathf.Clamp01(time / duration);
+      float t = easingFunction(delta);
+
+      float value = Mathf.Lerp(0f, 1f, t);
+      powerBarSlider.value = value;
+
+      if (delta >= 0.99f)
       {
-        powerBarSlider.value = minPower;
+        powerBarSlider.value = 0;
+        time = 0;
       }
-      yield return new WaitForSeconds(0.005f);
+
+      yield return null;
     }
   }
 
   internal void SelectPowerLevel()
   {
-    selectedPower = powerBarSlider.value;
+    selectedPower = powerBarSlider.value * (maxPower - minPower) + minPower;
     DisablePowerBar();
   }
 }
