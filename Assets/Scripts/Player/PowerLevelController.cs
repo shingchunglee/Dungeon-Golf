@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Common;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine.UI;
 
 public class PowerLevelController : MonoBehaviour
 {
-  public int minPower;
-  public int maxPower;
+  public float minPower;
+  public float maxPower;
   public float duration;
   public EasingFunction easingFunction;
   public float? selectedPower = null;
@@ -18,6 +19,15 @@ public class PowerLevelController : MonoBehaviour
   internal void Awake()
   {
     DisablePowerBar();
+    InventoryController.OnClubChanged += OnClubChanged;
+  }
+
+  private void OnClubChanged(Club club)
+  {
+    minPower = club.minPower;
+    maxPower = club.maxPower;
+    duration = club.powerLevelDuration;
+    easingFunction = club.powerEasingFunction;
   }
 
   internal void ShowPowerBar()
@@ -37,7 +47,7 @@ public class PowerLevelController : MonoBehaviour
     powerBarSlider.maxValue = 1f;
     // TODO update values based on club
     // duration = 1f;
-    easingFunction = EasingFunction.EaseOutCubic;
+    // easingFunction = EasingFunction.EaseOutCubic;
 
     selectedPower = null;
     StartCoroutine(Slide());
