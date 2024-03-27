@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PowerState : IPlayerActionState
 {
@@ -25,7 +26,10 @@ public class PowerState : IPlayerActionState
   {
     if (Input.GetMouseButtonDown(0))
     {
-      OnMouseClick();
+      if (!EventSystem.current.IsPointerOverGameObject())
+      {
+        OnMouseClick();
+      }
     }
   }
 
