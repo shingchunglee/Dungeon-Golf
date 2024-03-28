@@ -6,22 +6,18 @@ public class AimingIndicatorController : MonoBehaviour
 
     void Start()
     {
-        // Cache the SpriteRenderer component for efficiency
         spriteRenderer = GetComponent<SpriteRenderer>();
         
-        // Optional: Hide the aiming indicator at the start
         HideIndicator();
     }
 
     void Update()
     {
-        // Check if the left mouse button is pressed
-        if (Input.GetMouseButtonDown(0)) // 0 is the left mouse button
+        if (Input.GetMouseButtonDown(0)) 
         {
             ShowIndicator();
         }
-
-        // Check if the left mouse button is released
+        
         if (Input.GetMouseButtonUp(0))
         {
             HideIndicator();
@@ -30,7 +26,6 @@ public class AimingIndicatorController : MonoBehaviour
 
     public void ShowIndicator()
     {
-        // Make the aiming indicator visible
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
@@ -39,7 +34,6 @@ public class AimingIndicatorController : MonoBehaviour
 
     public void HideIndicator()
     {
-        // Hide the aiming indicator
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = false;
