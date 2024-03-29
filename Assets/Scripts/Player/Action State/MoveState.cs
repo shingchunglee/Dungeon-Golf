@@ -12,7 +12,8 @@ public class MoveState : IPlayerActionState
   {
     this.controller = controller;
     Debug.Log("Player Entered Moving State");
-    controller.rb.AddForce(controller.rb.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
+    // controller.rb.AddForce(controller.rb.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
+    controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
   }
 
   public void OnExit()
@@ -26,11 +27,11 @@ public class MoveState : IPlayerActionState
     {
       isMoving = true;
     }
-    if (isMoving && controller.rb.velocity.magnitude <= 0.01f)
+    if (isMoving && controller.rb.velocity.magnitude <= 0.1f)
     {
       controller.rb.velocity = new Vector2(0f, 0f);
       isMoving = false;
-      controller.SetState(controller.powerState);
+      controller.SetState(controller.aimState);
     }
   }
 
