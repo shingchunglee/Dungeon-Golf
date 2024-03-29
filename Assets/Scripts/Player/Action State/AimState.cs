@@ -27,7 +27,7 @@ public class AimState : IPlayerActionState
   {
     if (Input.GetMouseButtonDown(0))
     {
-      if (!EventSystem.current.IsPointerOverGameObject())
+      if (!GameManager.Instance.isCursorOverHUDElement)
       {
         OnMouseClick();
       }
