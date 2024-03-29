@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
 {
   private static PlayerManager _instance;
   public PowerLevelController powerLevelController;
+  // public PlayerActionStateController playerActionStateController;
+  public GolfAim golfAim;
   public static PlayerManager Instance
   {
     get
