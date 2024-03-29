@@ -5,11 +5,12 @@ public class AimState : IPlayerActionState
 {
   PlayerActionStateController controller;
 
-
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
+    PlayerManager.Instance.golfAim.enabled = true;
     Debug.Log("Player Entered Action State");
+
   }
   public void OnExit()
   {
@@ -22,6 +23,10 @@ public class AimState : IPlayerActionState
 
   public void OnUpdate()
   {
-
+    if (Input.GetMouseButtonDown(0))
+    {
+      PlayerManager.Instance.golfAim.SelectAimDirection();
+      controller.SetState(controller.powerState);
+    }
   }
 }

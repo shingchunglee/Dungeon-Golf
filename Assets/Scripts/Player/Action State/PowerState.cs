@@ -33,5 +33,6 @@ public class PowerState : IPlayerActionState
   {
     PlayerManager.Instance.powerLevelController.SelectPowerLevel();
     controller.SetState(controller.moveState);
+    PlayerManager.Instance.golfAim.enabled = false;
   }
 }
