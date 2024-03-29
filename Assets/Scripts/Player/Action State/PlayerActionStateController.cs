@@ -12,7 +12,7 @@ public class PlayerActionStateController : MonoBehaviour
 
     void Start()
     {
-        SetState(powerState);
+        SetState(aimState);
     }
 
     void Update()
