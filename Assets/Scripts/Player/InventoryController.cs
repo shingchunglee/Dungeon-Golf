@@ -12,8 +12,8 @@ public class InventoryController : MonoBehaviour
 
   private void Start()
   {
-    clubs.Add(ClubFactory.Instance.Factory(ClubType.Iron7));
-    clubs.Add(ClubFactory.Instance.Factory(ClubType.LegendaryClub));
+    clubs.Add(ClubFactory.Factory(ClubType.Iron7));
+    clubs.Add(ClubFactory.Factory(ClubType.LegendaryClub));
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 
