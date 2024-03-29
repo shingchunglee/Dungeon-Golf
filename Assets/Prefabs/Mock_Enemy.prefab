@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817aed7e172767846b083c9ef0e3d877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnemyHP: 3
+  MaxEnemyHP: 1
   CurrentEnemyHP: 0
