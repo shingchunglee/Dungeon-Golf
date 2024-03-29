@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AimState : IPlayerActionState
 {
@@ -25,8 +27,16 @@ public class AimState : IPlayerActionState
   {
     if (Input.GetMouseButtonDown(0))
     {
-      PlayerManager.Instance.golfAim.SelectAimDirection();
-      controller.SetState(controller.powerState);
+      if (!EventSystem.current.IsPointerOverGameObject())
+      {
+        OnMouseClick();
+      }
     }
+  }
+
+  private void OnMouseClick()
+  {
+    PlayerManager.Instance.golfAim.SelectAimDirection();
+    controller.SetState(controller.powerState);
   }
 }
