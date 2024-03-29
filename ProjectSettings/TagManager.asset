@@ -39,9 +39,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background_1
     uniqueID: 2889503287
     locked: 0
@@ -56,4 +53,7 @@ TagManager:
     locked: 0
   - name: Collide_Objects
     uniqueID: 1210364565
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
