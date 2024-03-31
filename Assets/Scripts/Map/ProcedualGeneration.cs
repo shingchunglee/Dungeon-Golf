@@ -2,14 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ProcedualGeneration : MonoBehaviour
 {
+    // [SerializeField]
+    // GameObject wallPrefab;
+    // [SerializeField]
+    // GameObject floorPrefab;
+
     [SerializeField]
-    GameObject wallPrefab;
+    Tilemap walls;
     [SerializeField]
-    GameObject floorPrefab;
+    Tilemap floor;
+    [SerializeField]
+    RuleTile floorTile;
+    [SerializeField]
+    TileBase voidTile;
 
     public void Main()
     {
@@ -17,7 +28,43 @@ public class ProcedualGeneration : MonoBehaviour
         // DrawGrid(grid, caverns);
         List<List<bool>> grid = Automata(100, 100, 0.45f, 5, 4, 10);
 
-        DrawGrid(grid);
+        // DrawGrid(grid);
+
+        RenderTiles(grid);
+    }
+
+    private void RenderTiles(List<List<bool>> grid)
+    {
+        // RenderWalls(grid);
+        RenderFloors(grid);
+    }
+
+    private void RenderWalls(List<List<bool>> grid)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void RenderFloors(List<List<bool>> grid)
+    {
+        floor.ClearAllTiles();
+
+        int height = grid.Count;
+        int width = grid[0].Count;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (grid[y][x] == false)
+                {
+                    floor.SetTile(new Vector3Int(x, y, 0), floorTile);
+                }
+                else
+                {
+                    floor.SetTile(new Vector3Int(x, y, 0), voidTile);
+                }
+            }
+        }
     }
 
     private List<List<bool>> AutomataIteration(List<List<bool>> grid, int birthThreshold, int survivalThreshold)
@@ -206,19 +253,19 @@ public class ProcedualGeneration : MonoBehaviour
         // }
         // Debug.Log(b);
 
-        for (int y = 0; y < grid.Count; y++)
-        {
-            for (int x = 0; x < grid[y].Count; x++)
-            {
-                GameObject prefabToUse = grid[y][x] == true ? wallPrefab : floorPrefab;
-                GameObject gameObject = GameObject.Instantiate(prefabToUse);
-                gameObject.transform.position = new Vector3(x, y, 0);
-                // if (caverns[y][x] > 0)
-                // {
-                //     gameObject.GetComponent<SpriteRenderer>().color = new Color((float)(0.1 * caverns[y][x]), (float)(0.1 * caverns[y][x]), (float)(0.1 * caverns[y][x]), 1f);
-                // }
-            }
-        }
+        // for (int y = 0; y < grid.Count; y++)
+        // {
+        //     for (int x = 0; x < grid[y].Count; x++)
+        //     {
+        //         GameObject prefabToUse = grid[y][x] == true ? wallPrefab : floorPrefab;
+        //         GameObject gameObject = GameObject.Instantiate(prefabToUse);
+        //         gameObject.transform.position = new Vector3(x, y, 0);
+        //         // if (caverns[y][x] > 0)
+        //         // {
+        //         //     gameObject.GetComponent<SpriteRenderer>().color = new Color((float)(0.1 * caverns[y][x]), (float)(0.1 * caverns[y][x]), (float)(0.1 * caverns[y][x]), 1f);
+        //         // }
+        //     }
+        // }
     }
 
     private void FloodCaverns(ref List<List<int>> cave, List<List<bool>> grid, int x, int y, int fillNumber)
