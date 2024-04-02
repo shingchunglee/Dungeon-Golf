@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clubName: 7-Iron
   maxPower: 1000
-  minPower: 500
+  minPower: 100
   powerLevelDuration: 1
   powerEasingFunction: 6

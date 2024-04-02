@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryClub
   m_EditorClassIdentifier: 
   clubName: LEGENDARY CLUB
-  maxPower: 2000
+  maxPower: 5000
   minPower: 1000
   powerLevelDuration: 0.5
   powerEasingFunction: 23
