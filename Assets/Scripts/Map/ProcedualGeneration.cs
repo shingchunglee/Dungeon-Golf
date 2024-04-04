@@ -18,7 +18,7 @@ public class ProcedualGeneration : MonoBehaviour
     [SerializeField]
     Tilemap floor;
     [SerializeField]
-    RuleTile floorTile;
+    TileBase floorTile;
     [SerializeField]
     TileBase voidTile;
 
