@@ -15,7 +15,7 @@ class ConvolutionRules : ScriptableObject
     [Serializable]
     public class Row
     {
-        public int[] row;
+        public TileType[] row;
     }
 
     [Serializable]
@@ -29,11 +29,5 @@ class ConvolutionRules : ScriptableObject
     {
         public TileBase Tile;
         public TileType Type;
-    }
-
-    public enum TileType
-    {
-        Trap,
-        Obstacle
     }
 }

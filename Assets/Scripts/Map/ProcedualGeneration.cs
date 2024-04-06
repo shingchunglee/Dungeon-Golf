@@ -407,22 +407,22 @@ public class ProcedualGeneration : MonoBehaviour
         int height = grid.Count;
         int width = grid[0].Count;
 
-        List<List<int>> structures = new List<List<int>>();
+        List<List<TileType>> structures = new List<List<TileType>>();
 
         for (int y = 0; y < height; y++)
         {
-            List<int> row = new List<int>();
+            List<TileType> row = new List<TileType>();
 
             for (int x = 0; x < width; x++)
             {
                 if (grid[y][x] == false)
                 {
-                    row.Add(0);
+                    row.Add(TileType.FLOOR);
 
                 }
                 else
                 {
-                    row.Add(-1);
+                    row.Add(TileType.WALL);
                 }
             }
 
@@ -437,7 +437,7 @@ public class ProcedualGeneration : MonoBehaviour
         GetPlayerGoalPositions(ref structures);
     }
 
-    private void GetPlayerGoalPositions(ref List<List<int>> structures)
+    private void GetPlayerGoalPositions(ref List<List<TileType>> structures)
     {
         int height = structures.Count;
         int width = structures[0].Count;
@@ -448,7 +448,7 @@ public class ProcedualGeneration : MonoBehaviour
         GoalSpawn = FindNearestEmpty(structures, opposite);
     }
 
-    private Vector2 FindNearestEmpty(List<List<int>> structures, Vector2 corner)
+    private Vector2 FindNearestEmpty(List<List<TileType>> structures, Vector2 corner)
     {
         int height = structures.Count;
         int width = structures[0].Count;
@@ -462,22 +462,22 @@ public class ProcedualGeneration : MonoBehaviour
         while (!foundEmptyPlayerSpace)
         {
             Vector2 current = queue.Dequeue();
-            if (structures[(int)current.y][(int)current.x] != 0)
+            if (structures[(int)current.y][(int)current.x] != TileType.FLOOR)
             {
                 checkedTiles.Add(current);
                 if ((int)current.y > 0 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y - 1)))
                 {
                     queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
                 }
-                if ((int)current.x < width - 1)
+                if ((int)current.x < width - 1 && !checkedTiles.Contains(new Vector2((int)current.x + 1, (int)current.y)))
                 {
                     queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
                 }
-                if ((int)current.y < height - 1)
+                if ((int)current.y < height - 1 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y + 1)))
                 {
                     queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
                 }
-                if ((int)current.x > 0)
+                if ((int)current.x > 0 && !checkedTiles.Contains(new Vector2((int)current.x - 1, (int)current.y)))
                 {
                     queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
                 }
@@ -487,6 +487,7 @@ public class ProcedualGeneration : MonoBehaviour
                 foundEmptyPlayerSpace = true;
                 return current;
             }
+            // return Vector2.zero;
         }
         return Vector2.zero;
     }
@@ -501,7 +502,7 @@ public class ProcedualGeneration : MonoBehaviour
         return new Vector2(Random.Range(0, 2) == 1 ? 0 : width - 1, Random.Range(0, 2) == 1 ? 0 : height - 1);
     }
 
-    private void FillStructures(ref List<List<int>> structures, ConvolutionRules rule)
+    private void FillStructures(ref List<List<TileType>> structures, ConvolutionRules rule)
     {
         int height = structures.Count;
         int width = structures[0].Count;
@@ -522,26 +523,34 @@ public class ProcedualGeneration : MonoBehaviour
         }
     }
 
-    private void FillStructure(List<List<int>> structures, ConvolutionRules rule, int x, int y)
+    private void FillStructure(List<List<TileType>> structures, ConvolutionRules rule, int x, int y)
     {
         for (int y1 = 0; y1 < rule.Matrix.Count(); y1++)
         {
             for (int x1 = 0; x1 < rule.Matrix[y1].row.Count(); x1++)
             {
+                if (rule.Output[y1].row[x1].Type == TileType.EMPTY)
+                {
+                    continue;
+                }
                 Tilemap tilemap = rule.Output[y1].row[x1].Type switch
                 {
-                    ConvolutionRules.TileType.Obstacle => obstacles,
-                    ConvolutionRules.TileType.Trap => traps,
+                    TileType.FLOOR => floor,
+                    TileType.WALL => walls,
+                    TileType.OBSTACLE => obstacles,
+                    TileType.TRAP_VOID => traps,
+                    TileType.TRAP_DAMAGE => traps,
+                    TileType.TRAP_FLOOR => traps,
                     _ => traps
                 };
 
                 tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.Output[y1].row[x1].Tile);
-                structures[y + y1][x + x1] = rule.Output[y1].row[x1].Tile?.GetHashCode() ?? 0;
+                structures[y + y1][x + x1] = rule.Output[y1].row[x1].Type;
             }
         }
     }
 
-    private bool checkMatrix(ref List<List<int>> structures, ConvolutionRules rule, int x, int y)
+    private bool checkMatrix(ref List<List<TileType>> structures, ConvolutionRules rule, int x, int y)
     {
         if (rule.Matrix.Count() + y >= structures.Count || rule.Matrix[0].row.Count() + x >= structures[0].Count)
         {
@@ -559,4 +568,15 @@ public class ProcedualGeneration : MonoBehaviour
         }
         return true;
     }
+}
+
+public enum TileType
+{
+    EMPTY,
+    WALL,
+    FLOOR,
+    OBSTACLE,
+    TRAP_DAMAGE,
+    TRAP_VOID,
+    TRAP_FLOOR
 }
