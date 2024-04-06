@@ -16,7 +16,7 @@ MonoBehaviour:
   - row: 020000000200000002000000
   - row: 020000000200000002000000
   - row: 020000000200000002000000
-  Output:
+  TileOutput:
   - row:
     - Tile: {fileID: 0}
       Type: 0
@@ -38,4 +38,5 @@ MonoBehaviour:
       Type: 0
     - Tile: {fileID: 0}
       Type: 0
+  GameObjectOutput: []
   chance: 0.01

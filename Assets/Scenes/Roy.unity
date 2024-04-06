@@ -934,6 +934,9 @@ MonoBehaviour:
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
   - {fileID: 11400000, guid: 7627e1ada2ba198449da246a7e6b8f7b, type: 2}
+  - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
+  Width: 50
+  Height: 50
 --- !u!114 &1839921163
 MonoBehaviour:
   m_ObjectHideFlags: 0

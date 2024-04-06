@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -39,11 +40,16 @@ public class ProcedualGeneration : MonoBehaviour
     ConvolutionRules[] convolutionRules;
     public List<List<bool>> wallFloorGrid { private set; get; }
 
+    [SerializeField]
+    public int Width = 50;
+    [SerializeField]
+    public int Height = 50;
+
     public void Main()
     {
         // (List<List<bool>> grid, List<List<int>> caverns) = Automata(100, 100, 0.45f, 5, 4, 10);
         // DrawGrid(grid, caverns);
-        List<List<bool>> grid = Automata(50, 50, 0.45f, 5, 4, 10);
+        List<List<bool>> grid = Automata(Width, Height, 0.45f, 5, 4, 10);
 
         wallFloorGrid = grid;
 
@@ -525,15 +531,15 @@ public class ProcedualGeneration : MonoBehaviour
 
     private void FillStructure(List<List<TileType>> structures, ConvolutionRules rule, int x, int y)
     {
-        for (int y1 = 0; y1 < rule.Matrix.Count(); y1++)
+        for (int y1 = 0; y1 < rule.TileOutput.Count(); y1++)
         {
-            for (int x1 = 0; x1 < rule.Matrix[y1].row.Count(); x1++)
+            for (int x1 = 0; x1 < rule.TileOutput[y1].row.Count(); x1++)
             {
-                if (rule.Output[y1].row[x1].Type == TileType.EMPTY)
+                if (rule.TileOutput[y1].row[x1].Type == TileType.EMPTY)
                 {
                     continue;
                 }
-                Tilemap tilemap = rule.Output[y1].row[x1].Type switch
+                Tilemap tilemap = rule.TileOutput[y1].row[x1].Type switch
                 {
                     TileType.FLOOR => floor,
                     TileType.WALL => walls,
@@ -541,11 +547,24 @@ public class ProcedualGeneration : MonoBehaviour
                     TileType.TRAP_VOID => traps,
                     TileType.TRAP_DAMAGE => traps,
                     TileType.TRAP_FLOOR => traps,
+                    TileType.TRAP_CHEST => traps,
+                    TileType.CHEST => traps,
                     _ => traps
                 };
 
-                tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.Output[y1].row[x1].Tile);
-                structures[y + y1][x + x1] = rule.Output[y1].row[x1].Type;
+                tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.TileOutput[y1].row[x1].Tile);
+                structures[y + y1][x + x1] = rule.TileOutput[y1].row[x1].Type;
+            }
+        }
+
+        for (int y1 = 0; y1 < rule.GameObjectOutput.Count(); y1++)
+        {
+            for (int x1 = 0; x1 < rule.GameObjectOutput[y1].row.Count(); x1++)
+            {
+                if (rule.GameObjectOutput[y1].row[x1].gameObject != null)
+                {
+                    Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new UnityEngine.Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
+                }
             }
         }
     }
@@ -578,5 +597,7 @@ public enum TileType
     OBSTACLE,
     TRAP_DAMAGE,
     TRAP_VOID,
-    TRAP_FLOOR
+    TRAP_FLOOR,
+    TRAP_CHEST,
+    CHEST,
 }

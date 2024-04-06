@@ -8,7 +8,9 @@ class ConvolutionRules : ScriptableObject
 {
     public Row[] Matrix;
 
-    public OutputRow[] Output;
+    public TileOutputRow[] TileOutput;
+
+    public GameObjectOutputRow[] GameObjectOutput;
 
     public float chance;
 
@@ -19,7 +21,7 @@ class ConvolutionRules : ScriptableObject
     }
 
     [Serializable]
-    public class OutputRow
+    public class TileOutputRow
     {
         public TileBaseRow[] row;
     }
@@ -29,5 +31,17 @@ class ConvolutionRules : ScriptableObject
     {
         public TileBase Tile;
         public TileType Type;
+    }
+
+    [Serializable]
+    public class GameObjectOutputRow
+    {
+        public GameObjectRow[] row;
+    }
+
+    [Serializable]
+    public class GameObjectRow
+    {
+        public GameObject gameObject;
     }
 }
