@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
+using System.Numerics;
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
 
 public class ProcedualGeneration : MonoBehaviour
 {
@@ -12,6 +16,10 @@ public class ProcedualGeneration : MonoBehaviour
     // GameObject wallPrefab;
     // [SerializeField]
     // GameObject floorPrefab;
+    [SerializeField]
+    Tilemap traps;
+    [SerializeField]
+    Tilemap obstacles;
 
     [SerializeField]
     Tilemap walls;
@@ -21,32 +29,43 @@ public class ProcedualGeneration : MonoBehaviour
     TileBase floorTile;
     [SerializeField]
     TileBase voidTile;
+    [SerializeField]
+    MapTileRules tileRules;
+
+    public Vector2 PlayerSpawn;
+    public Vector2 GoalSpawn;
+
+    [SerializeField]
+    ConvolutionRules[] convolutionRules;
+    public List<List<bool>> wallFloorGrid { private set; get; }
 
     public void Main()
     {
         // (List<List<bool>> grid, List<List<int>> caverns) = Automata(100, 100, 0.45f, 5, 4, 10);
         // DrawGrid(grid, caverns);
-        List<List<bool>> grid = Automata(100, 100, 0.45f, 5, 4, 10);
+        List<List<bool>> grid = Automata(50, 50, 0.45f, 5, 4, 10);
+
+        wallFloorGrid = grid;
 
         // DrawGrid(grid);
+
+        FillDungeon(grid);
+        Convolution(grid);
 
         RenderTiles(grid);
     }
 
+    // == RENDER == //
+
     private void RenderTiles(List<List<bool>> grid)
     {
         // RenderWalls(grid);
-        RenderFloors(grid);
+        RenderWalls(grid);
     }
 
     private void RenderWalls(List<List<bool>> grid)
     {
-        throw new System.NotImplementedException();
-    }
-
-    private void RenderFloors(List<List<bool>> grid)
-    {
-        floor.ClearAllTiles();
+        walls.ClearAllTiles();
 
         int height = grid.Count;
         int width = grid[0].Count;
@@ -55,17 +74,15 @@ public class ProcedualGeneration : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if (grid[y][x] == false)
+                if (grid[y][x] == true)
                 {
-                    floor.SetTile(new Vector3Int(x, y, 0), floorTile);
-                }
-                else
-                {
-                    floor.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    walls.SetTile(new Vector3Int(x, y, 0), voidTile);
                 }
             }
         }
     }
+
+    // == CELLULAR AUTOMATA == //
 
     private List<List<bool>> AutomataIteration(List<List<bool>> grid, int birthThreshold, int survivalThreshold)
     {
@@ -106,6 +123,7 @@ public class ProcedualGeneration : MonoBehaviour
         {
             grid = AutomataIteration(grid, birthThreshold, survivalThreshold);
         }
+        FillBorders(ref grid);
 
         List<List<int>> caverns = IdentifyCaverns(grid);
 
@@ -114,6 +132,23 @@ public class ProcedualGeneration : MonoBehaviour
 
         // return (grid, caverns);
         return grid;
+    }
+
+    private void FillBorders(ref List<List<bool>> grid)
+    {
+        int height = grid.Count;
+        int width = grid[0].Count;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                {
+                    grid[y][x] = true;
+                }
+            }
+        }
     }
 
     private void FillLoneCaverns(ref List<List<bool>> grid, List<List<int>> caverns, int fillNumber)
@@ -327,5 +362,201 @@ public class ProcedualGeneration : MonoBehaviour
 
         return cave;
     }
-}
 
+    // == WAVE FUNCTION COLLAPSE == //
+    private void FillDungeon(List<List<bool>> grid)
+    {
+        WaveFunctionCollapseMap waveFunctionCollapseMap = new(grid, tileRules);
+
+        var done = false;
+        while (!done)
+        {
+            if (waveFunctionCollapseMap.WaveFunctionCollapse() == false)
+            {
+                done = true;
+            }
+        }
+        for (int y = 0; y < waveFunctionCollapseMap.tiles.Count; y++)
+        {
+            for (int x = 0; x < waveFunctionCollapseMap.tiles[y].Count; x++)
+            {
+                floor.SetTile(new Vector3Int(x, y, 1), tileRules.Rules[waveFunctionCollapseMap.GetType(x, y)].Tile);
+            }
+        }
+        // List<List<int>> map;
+        // FillObstacles(grid);
+        // FillHazards(grid);
+        // FillChests(grid);
+        // GetPlayerSpawn(grid);
+        // GetGoalSpawn(grid);
+    }
+
+    private void FillHazards(List<List<bool>> grid)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void FillObstacles(List<List<bool>> grid)
+    {
+        // CheckEntropy(grid, map)
+    }
+
+    // == CONVOLUTION == //
+    private void Convolution(List<List<bool>> grid)
+    {
+        int height = grid.Count;
+        int width = grid[0].Count;
+
+        List<List<int>> structures = new List<List<int>>();
+
+        for (int y = 0; y < height; y++)
+        {
+            List<int> row = new List<int>();
+
+            for (int x = 0; x < width; x++)
+            {
+                if (grid[y][x] == false)
+                {
+                    row.Add(0);
+
+                }
+                else
+                {
+                    row.Add(-1);
+                }
+            }
+
+            structures.Add(row);
+        }
+
+        foreach (ConvolutionRules rule in convolutionRules)
+        {
+            FillStructures(ref structures, rule);
+        }
+
+        GetPlayerGoalPositions(ref structures);
+    }
+
+    private void GetPlayerGoalPositions(ref List<List<int>> structures)
+    {
+        int height = structures.Count;
+        int width = structures[0].Count;
+        Vector2 corner = GetRandomCorner(width, height);
+        Vector2 opposite = GetOppositeCorner(corner, width, height);
+
+        PlayerSpawn = FindNearestEmpty(structures, corner);
+        GoalSpawn = FindNearestEmpty(structures, opposite);
+    }
+
+    private Vector2 FindNearestEmpty(List<List<int>> structures, Vector2 corner)
+    {
+        int height = structures.Count;
+        int width = structures[0].Count;
+        bool foundEmptyPlayerSpace = false;
+
+        Queue<Vector2> queue = new();
+        queue.Enqueue(corner);
+
+        List<Vector2> checkedTiles = new();
+
+        while (!foundEmptyPlayerSpace)
+        {
+            Vector2 current = queue.Dequeue();
+            if (structures[(int)current.y][(int)current.x] != 0)
+            {
+                checkedTiles.Add(current);
+                if ((int)current.y > 0 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y - 1)))
+                {
+                    queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
+                }
+                if ((int)current.x < width - 1)
+                {
+                    queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
+                }
+                if ((int)current.y < height - 1)
+                {
+                    queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
+                }
+                if ((int)current.x > 0)
+                {
+                    queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
+                }
+            }
+            else
+            {
+                foundEmptyPlayerSpace = true;
+                return current;
+            }
+        }
+        return Vector2.zero;
+    }
+
+    private Vector2 GetOppositeCorner(Vector2 corner, int width, int height)
+    {
+        return new Vector2(corner.x == 0 ? width - 1 : 0, corner.y == 0 ? height - 1 : 0);
+    }
+
+    private Vector2 GetRandomCorner(int width, int height)
+    {
+        return new Vector2(Random.Range(0, 2) == 1 ? 0 : width - 1, Random.Range(0, 2) == 1 ? 0 : height - 1);
+    }
+
+    private void FillStructures(ref List<List<int>> structures, ConvolutionRules rule)
+    {
+        int height = structures.Count;
+        int width = structures[0].Count;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (checkMatrix(ref structures, rule, x, y))
+                {
+                    float randomFloat = Random.Range(0f, 1f);
+                    if (randomFloat <= rule.chance)
+                    {
+                        FillStructure(structures, rule, x, y);
+                    }
+                }
+            }
+        }
+    }
+
+    private void FillStructure(List<List<int>> structures, ConvolutionRules rule, int x, int y)
+    {
+        for (int y1 = 0; y1 < rule.Matrix.Count(); y1++)
+        {
+            for (int x1 = 0; x1 < rule.Matrix[y1].row.Count(); x1++)
+            {
+                Tilemap tilemap = rule.Output[y1].row[x1].Type switch
+                {
+                    ConvolutionRules.TileType.Obstacle => obstacles,
+                    ConvolutionRules.TileType.Trap => traps,
+                    _ => traps
+                };
+
+                tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.Output[y1].row[x1].Tile);
+                structures[y + y1][x + x1] = rule.Output[y1].row[x1].Tile?.GetHashCode() ?? 0;
+            }
+        }
+    }
+
+    private bool checkMatrix(ref List<List<int>> structures, ConvolutionRules rule, int x, int y)
+    {
+        if (rule.Matrix.Count() + y >= structures.Count || rule.Matrix[0].row.Count() + x >= structures[0].Count)
+        {
+            return false;
+        }
+        for (int y1 = 0; y1 < rule.Matrix.Count(); y1++)
+        {
+            for (int x1 = 0; x1 < rule.Matrix[y1].row.Count(); x1++)
+            {
+                if (rule.Matrix[y1].row[x1] != structures[y + y1][x + x1])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
