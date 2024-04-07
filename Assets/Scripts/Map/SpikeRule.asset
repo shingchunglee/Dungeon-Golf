@@ -9,34 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SpikeRules
-  m_EditorClassIdentifier: Assembly-CSharp::ConvolutionRules
+  m_Script: {fileID: 11500000, guid: 6a3930811a85f12459099873f79d7e41, type: 3}
+  m_Name: SpikeRule
+  m_EditorClassIdentifier: 
   Matrix:
   - row: 020000000200000002000000
   - row: 020000000200000002000000
   - row: 020000000200000002000000
   TileOutput:
-  - row:
-    - Tile: {fileID: 0}
-      Type: 0
-    - Tile: {fileID: 0}
-      Type: 0
-    - Tile: {fileID: 0}
-      Type: 0
+  - row: []
   - row:
     - Tile: {fileID: 0}
       Type: 0
     - Tile: {fileID: 11400000, guid: 853f6b10ffd43b44e98508a8aeba221c, type: 2}
       Type: 4
-    - Tile: {fileID: 0}
-      Type: 0
-  - row:
-    - Tile: {fileID: 0}
-      Type: 0
-    - Tile: {fileID: 0}
-      Type: 0
-    - Tile: {fileID: 0}
-      Type: 0
   GameObjectOutput: []
   chance: 0.01
