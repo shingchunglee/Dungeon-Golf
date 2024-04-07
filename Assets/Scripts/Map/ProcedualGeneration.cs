@@ -38,7 +38,7 @@ public class ProcedualGeneration : MonoBehaviour
 
     [SerializeField]
     ConvolutionRules[] convolutionRules;
-    public List<List<bool>> wallFloorGrid { private set; get; }
+    public List<List<TileType>> Grid { private set; get; }
 
     [SerializeField]
     public int Width = 50;
@@ -50,8 +50,6 @@ public class ProcedualGeneration : MonoBehaviour
         // (List<List<bool>> grid, List<List<int>> caverns) = Automata(100, 100, 0.45f, 5, 4, 10);
         // DrawGrid(grid, caverns);
         List<List<bool>> grid = Automata(Width, Height, 0.45f, 5, 4, 10);
-
-        wallFloorGrid = grid;
 
         // DrawGrid(grid);
 
@@ -441,6 +439,8 @@ public class ProcedualGeneration : MonoBehaviour
         }
 
         GetPlayerGoalPositions(ref structures);
+
+        Grid = structures;
     }
 
     private void GetPlayerGoalPositions(ref List<List<TileType>> structures)
