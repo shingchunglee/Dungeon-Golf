@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7510fea893bff43856ff6c0f62bdc6, type: 3}
+  m_Name: DungeonRules
+  m_EditorClassIdentifier: 
+  Rules:
+  - Tile: {fileID: 0}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 0
+      - Direction: 1
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 0
+      - Direction: 2
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 0
+      - Direction: 3
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 0
+    Weight: 0
+  - Tile: {fileID: 11400000, guid: cb588069c7b779449bb5463cacd48c6a, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 2000
+  - Tile: {fileID: 11400000, guid: a9817ea5f9cbc41170b51a64ed12f938, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 3
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 5
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 1
+  - Tile: {fileID: 11400000, guid: 36045957a276b7450cc5bb26db982554, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 3
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 3
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: 3e847084972c352d74f5522483e26b0e, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 7
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 3
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: 3d908d9984c7a01c8e5c1b05eb966c74, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 5
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 5
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: 3112ab33ce2cc374281a9013d4c158a0, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 1
+  - Tile: {fileID: 11400000, guid: 2020a6c4dcf84b16bd6e6c402a154879, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 7
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 7
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: 521b71294ba6c22e45bde7948bdae9dd, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 5
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 9
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: 98531dbaeac04913cfa62219a0066953, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 6
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 9
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 9
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5
+  - Tile: {fileID: 11400000, guid: b43c7b3457ada00fbb8e7e50a8e050d9, type: 2}
+    DirectionRules:
+      Rules:
+      - Direction: 0
+        Tile: 7
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 1
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 2
+        Tile: 1
+        sprite: {fileID: 0}
+        Weight: 10
+      - Direction: 3
+        Tile: 9
+        sprite: {fileID: 0}
+        Weight: 10
+    Weight: 5

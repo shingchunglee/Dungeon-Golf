@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  public ProcedualGeneration procedualGeneration;
+
   private void Awake()
   {
     if (_instance != null && _instance != this)
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
     {
       _instance = this;
     }
+
+    procedualGeneration.Main();
   }
 }
 
