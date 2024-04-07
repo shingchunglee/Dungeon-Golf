@@ -27,6 +27,8 @@ public class ProcedualGeneration : MonoBehaviour
     [SerializeField]
     Tilemap floor;
     [SerializeField]
+    Tilemap enemies;
+    [SerializeField]
     TileBase floorTile;
     [SerializeField]
     TileBase voidTile;
@@ -560,6 +562,7 @@ public class ProcedualGeneration : MonoBehaviour
                     TileType.TRAP_FLOOR => traps,
                     TileType.TRAP_CHEST => traps,
                     TileType.CHEST => traps,
+                    TileType.ENEMY_SPAWN => enemies,
                     _ => traps
                 };
 
@@ -584,6 +587,7 @@ public class ProcedualGeneration : MonoBehaviour
                         TileType.TRAP_FLOOR => traps,
                         TileType.TRAP_CHEST => traps,
                         TileType.CHEST => traps,
+                        TileType.ENEMY_SPAWN => enemies,
                         _ => traps
                     };
                     var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new UnityEngine.Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
@@ -630,4 +634,5 @@ public enum TileType
     TRAP_FLOOR,
     TRAP_CHEST,
     CHEST,
+    ENEMY_SPAWN,
 }
