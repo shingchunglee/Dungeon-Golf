@@ -441,6 +441,17 @@ public class ProcedualGeneration : MonoBehaviour
         GetPlayerGoalPositions(ref structures);
 
         Grid = structures;
+
+        string str = "";
+        for (int y = height - 1; y >= 0; y--)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                str += (int)structures[y][x] + " ";
+            }
+            str += "\n";
+        }
+        Debug.Log(str);
     }
 
     private void GetPlayerGoalPositions(ref List<List<TileType>> structures)
@@ -563,7 +574,26 @@ public class ProcedualGeneration : MonoBehaviour
             {
                 if (rule.GameObjectOutput[y1].row[x1].gameObject != null)
                 {
-                    Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new UnityEngine.Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
+                    Tilemap tilemap = rule.GameObjectOutput[y1].row[x1].Type switch
+                    {
+                        TileType.FLOOR => floor,
+                        TileType.WALL => walls,
+                        TileType.OBSTACLE => obstacles,
+                        TileType.TRAP_VOID => traps,
+                        TileType.TRAP_DAMAGE => traps,
+                        TileType.TRAP_FLOOR => traps,
+                        TileType.TRAP_CHEST => traps,
+                        TileType.CHEST => traps,
+                        _ => traps
+                    };
+                    var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new UnityEngine.Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
+
+                    if (rule.GameObjectOutput[y1].row[x1].Type == TileType.EMPTY)
+                    {
+                        continue;
+                    }
+                    obj.transform.parent = tilemap.transform;
+                    structures[y + y1][x + x1] = rule.GameObjectOutput[y1].row[x1].Type;
                 }
             }
         }

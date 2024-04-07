@@ -43,5 +43,6 @@ class ConvolutionRules : ScriptableObject
     public class GameObjectRow
     {
         public GameObject gameObject;
+        public TileType Type;
     }
 }
