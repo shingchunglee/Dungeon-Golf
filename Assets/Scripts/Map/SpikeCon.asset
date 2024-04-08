@@ -24,4 +24,4 @@ MonoBehaviour:
       Type: 0
     - gameObject: {fileID: 2955708434234425795, guid: 7f2d1c6a11a11444fa811db43afc3d60, type: 3}
       Type: 4
-  chance: 0
+  chance: 0.01
