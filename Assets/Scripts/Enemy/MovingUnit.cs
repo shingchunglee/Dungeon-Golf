@@ -18,7 +18,7 @@ public abstract class MovingUnit : MonoBehaviour
     protected virtual void Start()
     {
         //Get a component reference to this object's BoxCollider2D
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponentInChildren<BoxCollider2D>();
 
         //Get a component reference to this object's Rigidbody2D
         rb2D = GetComponent<Rigidbody2D>();
@@ -26,7 +26,6 @@ public abstract class MovingUnit : MonoBehaviour
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
     }
-
 
     //Move returns true if it is able to move and false if not. 
     //Move takes parameters for x direction, y direction and a RaycastHit2D to check collision.

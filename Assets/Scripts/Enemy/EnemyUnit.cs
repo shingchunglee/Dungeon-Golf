@@ -35,6 +35,7 @@ public class EnemyUnit : MovingUnit
     public void TakeTurn()
     {
         Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
+        MoveEnemy();
     }
 
     //MoveEnemy is called by the GameManger each turn to tell each Enemy to try to move towards the player.

@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.1
+  moveTime: 0.033
   blockingLayer:
     serializedVersion: 2
     m_Bits: 0
   enemyName: Vampire
-  MaxHP: 0
+  MaxHP: 1
   CurrentHP: 0
   damage: 1
 --- !u!50 &2627644008798396188
