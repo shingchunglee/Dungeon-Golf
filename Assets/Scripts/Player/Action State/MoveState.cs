@@ -31,7 +31,7 @@ public class MoveState : IPlayerActionState
     {
       controller.rb.velocity = new Vector2(0f, 0f);
       isMoving = false;
-      controller.SetState(controller.aimState);
+      controller.SetState(controller.enemyTurnState);
     }
   }
 
