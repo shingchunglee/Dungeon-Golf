@@ -12,28 +12,36 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-         lifeText.text = Lives.ToString();
+        lifeText.text = Lives.ToString(); 
     }
 
-    
     public void AddLife()
     {
-    Lives++;
-    UpdateLifeText();
-
-    
+        Lives++;
+        UpdateLifeText();
     }
 
     public void LoseLife()
     {
         Lives--;
         UpdateLifeText();
+
+        if (Lives <= 0) 
+        {
+            GameOver(); 
+        }
     }
 
     public void UpdateLifeText() 
     {
-        lifeText.text = Lives.ToString();
+        lifeText.text = Lives.ToString(); 
     }
 
-    
+    void GameOver()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
 }
+
