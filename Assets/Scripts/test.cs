@@ -15,7 +15,7 @@ public class test : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            playerHealth?.LoseLife(); 
+            playerHealth?.TakeDamage(30); 
         }
     }
 }
