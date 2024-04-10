@@ -15,7 +15,7 @@ public class Traps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
-            playerHealth?.LoseLife(); 
+            playerHealth?.TakeDamage(30); 
         }
     }
 }

@@ -7,33 +7,32 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int Lives;
-    public TextMeshProUGUI lifeText;
+    public float health = 100f; 
+    public TextMeshProUGUI healthText;
 
     void Update()
     {
-         lifeText.text = Lives.ToString();
+        healthText.text = "HP: " + health.ToString("F0"); 
     }
 
-    
-    public void AddLife()
+    public void TakeDamage(float amount)
     {
-    Lives++;
-    UpdateLifeText();
+        health -= amount;
+        UpdateHealthText();
 
-    
+        if (health <= 0)
+        {
+            GameOver(); 
+        }
     }
 
-    public void LoseLife()
+    public void UpdateHealthText()
     {
-        Lives--;
-        UpdateLifeText();
+        healthText.text = "Health: " + health.ToString("F0");
     }
 
-    public void UpdateLifeText() 
+    void GameOver()
     {
-        lifeText.text = Lives.ToString();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    
 }

@@ -7,22 +7,30 @@ using TMPro;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public int Par;
+    public int Par = 6; 
+    private int strokesTaken = 0; 
     public TextMeshProUGUI parText;
+    public PlayerHealth playerHealth;
+    public float damagePerStrokeOverPar = 5f; 
 
-    void Update()
+    void Start()
     {
-         parText.text = Par.ToString()+"/6";
+        updateParText();
     }
 
     public void oneStroke()
     {
-        Par--;
+        strokesTaken++;
         updateParText();
+
+        if (strokesTaken > Par)
+        {
+            playerHealth.TakeDamage(damagePerStrokeOverPar);
+        }
     }
 
     void updateParText()
     {
-         parText.text = Par.ToString()+"/6";
+        parText.text = strokesTaken.ToString() + "/" + Par.ToString();
     }
 }
