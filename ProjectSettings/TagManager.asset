@@ -15,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
-  - 
+  - Ball
+  - PlayerModel
   - 
   - 
   - 
@@ -58,4 +58,13 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3582021517
+    locked: 0
+  - name: Ball
+    uniqueID: 1254620755
+    locked: 0
+  - name: BallUI
+    uniqueID: 3201136831
     locked: 0

@@ -2727,14 +2727,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1046373769327167890, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
-      propertyPath: m_TagString
-      value: ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1200106416848657105, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: f7b1efd350b19ed4bb70d7ad062c3d1f, type: 2}
     - target: {fileID: 2416897794108495814, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2746,10 +2738,6 @@ PrefabInstance:
     - target: {fileID: 7871588473403893424, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8493048582520405486, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8827872068645020479, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16724,10 +16712,6 @@ PrefabInstance:
     - target: {fileID: 3527782672828158995, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850257779219638344, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
-      propertyPath: moveTime
-      value: 0.033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
