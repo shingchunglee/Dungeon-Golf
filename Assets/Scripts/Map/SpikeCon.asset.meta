@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Map/SpikeRule.asset.meta
+guid: ad176478a496f49208732c3d87ccc7d0
+========
+guid: 2d0f09251d94f06469eec552fa9c7247
+>>>>>>>> feat/13:Assets/Scripts/Map/SpikeCon.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

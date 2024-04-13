@@ -134,6 +134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &212731798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4108253783325210875, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
+  m_PrefabInstance: {fileID: 2144182931018751349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358845185
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,8 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87413217db295424b8af39ba1f405e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lives: 3
-  lifeText: {fileID: 1342624481}
+  health: 100
+  healthText: {fileID: 212731798}
 --- !u!114 &690342467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Par: 6
   parText: {fileID: 67925850}
+  playerHealth: {fileID: 690342466}
+  damagePerStrokeOverPar: 5
 --- !u!114 &690342469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,17 +547,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f547f4943794ab4d95982469c26a1d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1342624481 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9048944258698581504, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
-  m_PrefabInstance: {fileID: 2144182931018751349}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1403118924
@@ -860,6 +862,18 @@ PrefabInstance:
     - target: {fileID: 1748906638282773658, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108253783325210875, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
+      propertyPath: m_text
+      value: 'HP:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108253783325210875, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108253783325210875, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 5555576222052357077, guid: a685a2a2a48ca4c4eb469a1e76ade19a, type: 3}
       propertyPath: m_Camera

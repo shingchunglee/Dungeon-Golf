@@ -2,7 +2,6 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -42,6 +41,12 @@ public class PlayerManager : MonoBehaviour
       _instance = this;
     }
     Init();
+  }
+
+  private void Start()
+  {
+    Vector2 playerSpawn = GameManager.Instance.procedualGeneration.PlayerSpawn;
+    transform.position = new Vector3(playerSpawn.x, playerSpawn.y, transform.position.z);
   }
 
   private void Init()
