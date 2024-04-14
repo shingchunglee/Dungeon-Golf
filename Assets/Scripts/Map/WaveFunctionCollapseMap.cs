@@ -127,7 +127,8 @@ public class WaveFunctionCollapseMap
             return false;
         }
 
-        WaveFunctionCollapseTile tileToCollapse = tilesLowestEntropy[Random.Range(0, tilesLowestEntropy.Count)];
+        WaveFunctionCollapseTile tileToCollapse = tilesLowestEntropy[SeededRandom.Range(SeededRandom.Instance.MapRandom, 0, tilesLowestEntropy.Count)];
+        // WaveFunctionCollapseTile tileToCollapse = tilesLowestEntropy[Random.Range(0, tilesLowestEntropy.Count)];
         tileToCollapse.Collapse();
 
         Stack<WaveFunctionCollapseTile> stack = new();

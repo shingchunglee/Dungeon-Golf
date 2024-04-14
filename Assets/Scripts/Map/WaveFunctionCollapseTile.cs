@@ -51,7 +51,8 @@ public class WaveFunctionCollapseTile
             weights.Add(tileRules.Rules[i].Weight);
         }
         int totalWeight = weights.Sum();
-        int randomInt = Random.Range(0, totalWeight);
+        int randomInt = SeededRandom.Range(SeededRandom.Instance.MapRandom, 0, totalWeight);
+        // int randomInt = Random.Range(0, totalWeight);
         foreach (var i in Possibilities)
         {
             if (randomInt < tileRules.Rules[i].Weight)

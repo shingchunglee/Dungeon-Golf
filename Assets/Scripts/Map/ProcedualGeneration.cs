@@ -49,9 +49,15 @@ public class ProcedualGeneration : MonoBehaviour
 
     public void Main()
     {
+        // * HAVE A PUBLIC BOOLEAN CALLED ReadFromGrid,
+        // * IF TRUE, READ FROM GRID
+        // * ELSE DO THE GENERATION BELOW
+
+        List<List<bool>> grid = Automata(Width, Height, 0.45f, 5, 4, 10);
+
+
         // (List<List<bool>> grid, List<List<int>> caverns) = Automata(100, 100, 0.45f, 5, 4, 10);
         // DrawGrid(grid, caverns);
-        List<List<bool>> grid = Automata(Width, Height, 0.45f, 5, 4, 10);
 
         // DrawGrid(grid);
 
@@ -59,6 +65,16 @@ public class ProcedualGeneration : MonoBehaviour
         Convolution(grid);
 
         RenderTiles(grid);
+    }
+
+    private void ReadFromGridMethod()
+    {
+        // * LOOP THROUGH TileMaps wall, floor, obstacles, trap_damage, trap_void, trap_floor, trap_chest, chest, enemy_spawn
+        // * FIND THE LARGEST X, Y COORDINATE IN THESE TILEMAPS, THIS INDICATES THE SIZE OF THE MAP
+        // * CREATE A List<List<TileType>> matrix THE SIZE OF X AND Y (SEE METHODS BELOW FOR EXAMPLE)
+        // * LOOP THROUGH THE TILEMAPS AGAIN, FOR EVERY TILE THAT EXISTS, SET THAT matrix[Y][X] = TileType ACCORDING TO WHICH TILEMAP IS BEING LOOPED
+        // ! START WITH FLOOR THEN WALL, THEN OTHERS SINCE FLOOR IS ALWAYS AT THE BOTTOM, AND OTHER THINGS CAN STACK ON TOP OF IT
+        // * SET PUBLIC VARIABLE Grid = matrix
     }
 
     // == RENDER == //
@@ -259,7 +275,8 @@ public class ProcedualGeneration : MonoBehaviour
 
             for (int x = 0; x < width; x++)
             {
-                bool value = (Random.Range(0.0f, 1.0f) < initialProbability) ? true : false;
+                bool value = (SeededRandom.Range(SeededRandom.Instance.MapRandom, 0.0f, 1.0f) < initialProbability) ? true : false;
+                // bool value = (Random.Range(0.0f, 1.0f) < initialProbability) ? true : false;
                 row.Add(value);
             }
 
@@ -518,7 +535,8 @@ public class ProcedualGeneration : MonoBehaviour
 
     private Vector2 GetRandomCorner(int width, int height)
     {
-        return new Vector2(Random.Range(0, 2) == 1 ? 0 : width - 1, Random.Range(0, 2) == 1 ? 0 : height - 1);
+        return new Vector2(SeededRandom.Range(SeededRandom.Instance.MapRandom, 0, 2) == 1 ? 0 : width - 1, SeededRandom.Range(SeededRandom.Instance.MapRandom, 0, 2) == 1 ? 0 : height - 1);
+        // return new Vector2(Random.Range(0, 2) == 1 ? 0 : width - 1, Random.Range(0, 2) == 1 ? 0 : height - 1);
     }
 
     private void FillStructures(ref List<List<TileType>> structures, ConvolutionRules rule)
@@ -532,7 +550,8 @@ public class ProcedualGeneration : MonoBehaviour
             {
                 if (checkMatrix(ref structures, rule, x, y))
                 {
-                    float randomFloat = Random.Range(0f, 1f);
+                    float randomFloat = SeededRandom.Range(SeededRandom.Instance.MapRandom, 0f, 1f);
+                    // float randomFloat = Random.Range(0f, 1f);
                     if (randomFloat <= rule.chance)
                     {
                         FillStructure(structures, rule, x, y);
