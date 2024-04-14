@@ -33,7 +33,8 @@ public class SeededRandom : MonoBehaviour
 
     private void Awake()
     {
-        System.Random rand = new(seed >= 0 ? seed : Environment.TickCount);
+        seed = seed >= 0 ? seed : Environment.TickCount;
+        System.Random rand = new(seed);
 
         MapRandom = new System.Random(rand.Next());
 
