@@ -1,62 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ScanPremadeMap : MonoBehaviour
+public class ScanPremadeTilemap : MonoBehaviour
 {
-    public bool ReadFromGrid = true;
+    public bool ReadFromTilemap = true;
 
     public List<Tilemap> tilemaps;
-    public TileType[,] tileTypesGrid;
+
+    public Tilemap map_wall;
+    public Tilemap map_floor;
+    public Tilemap map_obstacles;
+    public Tilemap map_trap_damamge;
+    public Tilemap map_trap_void;
+    public Tilemap map_trap_floor;
+    public Tilemap map_trap_chest;
+    public Tilemap map_chest;
+    public Tilemap map_enemy_spawn;
+
+    public TileType[,] grid;
+
+    public Vector2Int gridSize = Vector2Int.zero;
+
+    // Note that a tilemap is always at least measured from [0,0], even if the first tile is at [1000,1000].
+    // The origin can go below this if the tile map has tiles below [0,0].
+    public Vector2Int gridOrigin = Vector2Int.zero;
+
 
     private void Start()
     {
-        if (ReadFromGrid)
+        if (ReadFromTilemap)
         {
-            int sizeX = 0;
-            int sizeY = 0;
-
-            // Note that a tilemap is always at least measured from [0,0], even if the first tile is at [1000,1000].
-            // The origin can go below this if the tile map has tiles below [0,0].
-            int originX = 0;
-            int originY = 0;
-
             foreach (var tilemap in tilemaps)
             {
                 BoundsInt gridBounds = tilemap.cellBounds;
 
-                if (gridBounds.size.x > sizeX)
+                if (gridBounds.size.x > gridSize.x)
                 {
-                    sizeX = gridBounds.size.x;
+                    gridSize.x = gridBounds.size.x;
                 }
-                if (gridBounds.size.y > sizeY)
+                if (gridBounds.size.y > gridSize.y)
                 {
-                    sizeY = gridBounds.size.y;
+                    gridSize.y = gridBounds.size.y;
                 }
 
-                if (gridBounds.x < originX)
+                if (gridBounds.x < gridOrigin.x)
                 {
-                    originX = gridBounds.x;
+                    gridOrigin.x = gridBounds.x;
                 }
-                if (gridBounds.y < originY)
+                if (gridBounds.y < gridOrigin.y)
                 {
-                    originY = gridBounds.y;
+                    gridOrigin.y = gridBounds.y;
                 }
             }
 
-            tileTypesGrid = new TileType[sizeX, sizeY];
+            grid = new TileType[gridSize.x, gridSize.y];
 
-            Debug.Log($"Largest size tilemap is [{sizeX},{sizeY}].");
+            Debug.Log($"Largest size tilemap is [{gridSize}].");
 
             foreach (var tilemap in tilemaps)
             {
                 BoundsInt bounds = tilemap.cellBounds;
                 TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
 
-                Debug.Log($"Map: {tilemap.gameObject.name} =====================================================================");
-                Debug.Log($"Map: {tilemap.gameObject.name} | Origin: [{bounds.x},{bounds.y}], Size: [{bounds.size.x}, {bounds.size.y}]");
-                Debug.Log($"==============================================================================");
+                Debug.Log($"Map: {tilemap.gameObject.name} | Origin: [{bounds.x},{bounds.y}], Size: [{bounds.size.x}, {bounds.size.y}] ==================================================================");
 
                 for (int x = 0; x < bounds.size.x; x++)
                 {
@@ -67,9 +76,14 @@ public class ScanPremadeMap : MonoBehaviour
                         int offsetX = 0;
                         int offsetY = 0;
 
-                        if (bounds.x != originX)
+                        if (bounds.x != gridOrigin.x)
                         {
+                            offsetX = Mathf.Abs(gridOrigin.x) - Mathf.Abs(bounds.x);
+                        }
 
+                        if (bounds.y != gridOrigin.y)
+                        {
+                            offsetY = Mathf.Abs(gridOrigin.y) - Mathf.Abs(bounds.y);
                         }
 
                         if (tile != null)
