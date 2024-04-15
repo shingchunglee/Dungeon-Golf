@@ -8,7 +8,6 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 
 public class ProcedualGeneration : MonoBehaviour
@@ -40,7 +39,7 @@ public class ProcedualGeneration : MonoBehaviour
 
     [SerializeField]
     ConvolutionRules[] convolutionRules;
-    public List<List<TileType>> Grid { private set; get; }
+    public TileType[,] Grid { private set; get; }
 
     [SerializeField]
     public int Width = 50;
@@ -53,13 +52,8 @@ public class ProcedualGeneration : MonoBehaviour
         // * IF TRUE, READ FROM GRID
         // * ELSE DO THE GENERATION BELOW
 
-        List<List<bool>> grid = Automata(Width, Height, 0.45f, 5, 4, 10);
+        bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);
 
-
-        // (List<List<bool>> grid, List<List<int>> caverns) = Automata(100, 100, 0.45f, 5, 4, 10);
-        // DrawGrid(grid, caverns);
-
-        // DrawGrid(grid);
 
         FillDungeon(grid);
         Convolution(grid);
@@ -79,24 +73,24 @@ public class ProcedualGeneration : MonoBehaviour
 
     // == RENDER == //
 
-    private void RenderTiles(List<List<bool>> grid)
+    private void RenderTiles(bool[,] grid)
     {
         // RenderWalls(grid);
         RenderWalls(grid);
     }
 
-    private void RenderWalls(List<List<bool>> grid)
+    private void RenderWalls(bool[,] grid)
     {
         walls.ClearAllTiles();
 
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (grid[y][x] == true)
+                if (grid[y, x] == true)
                 {
                     walls.SetTile(new Vector3Int(x, y, 0), voidTile);
                 }
@@ -106,22 +100,18 @@ public class ProcedualGeneration : MonoBehaviour
 
     // == CELLULAR AUTOMATA == //
 
-    private List<List<bool>> AutomataIteration(List<List<bool>> grid, int birthThreshold, int survivalThreshold)
+    private bool[,] AutomataIteration(bool[,] grid, int birthThreshold, int survivalThreshold)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
-        List<List<bool>> newGrid = new List<List<bool>>();
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
+        bool[,] newGrid = new bool[height, width];
 
         for (int y = 0; y < height; y++)
         {
-            List<bool> row = new List<bool>();
-
             for (int x = 0; x < width; x++)
             {
-                row.Add(false);
+                newGrid[y, x] = false;
             }
-
-            newGrid.Add(row);
         }
 
         for (int y = 0; y < height; y++)
@@ -129,17 +119,16 @@ public class ProcedualGeneration : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 bool newValue = NewValueAtPosition(grid, x, y, birthThreshold, survivalThreshold);
-                newGrid[y][x] = newValue;
+                newGrid[y, x] = newValue;
             }
         }
 
         return newGrid;
     }
 
-    // private (List<List<bool>>, List<List<int>>) Automata(int width, int height, float initialProbability, int birthThreshold, int survivalThreshold, int iterations)
-    private List<List<bool>> Automata(int width, int height, float initialProbability, int birthThreshold, int survivalThreshold, int iterations)
+    private bool[,] Automata(int width, int height, float initialProbability, int birthThreshold, int survivalThreshold, int iterations)
     {
-        List<List<bool>> grid = GenerateGrid(width, height, initialProbability);
+        bool[,] grid = GenerateGrid(width, height, initialProbability);
 
         for (int i = 0; i < iterations; i++)
         {
@@ -147,7 +136,7 @@ public class ProcedualGeneration : MonoBehaviour
         }
         FillBorders(ref grid);
 
-        List<List<int>> caverns = IdentifyCaverns(grid);
+        int[,] caverns = IdentifyCaverns(grid);
 
         int fillNumber = GetLargestCavern(caverns);
         FillLoneCaverns(ref grid, caverns, fillNumber);
@@ -156,10 +145,10 @@ public class ProcedualGeneration : MonoBehaviour
         return grid;
     }
 
-    private void FillBorders(ref List<List<bool>> grid)
+    private void FillBorders(ref bool[,] grid)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
         for (int y = 0; y < height; y++)
         {
@@ -167,36 +156,41 @@ public class ProcedualGeneration : MonoBehaviour
             {
                 if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
                 {
-                    grid[y][x] = true;
+                    grid[y, x] = true;
                 }
             }
         }
     }
 
-    private void FillLoneCaverns(ref List<List<bool>> grid, List<List<int>> caverns, int fillNumber)
+    private void FillLoneCaverns(ref bool[,] grid, int[,] caverns, int fillNumber)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (caverns[y][x] != fillNumber)
+                if (caverns[y, x] != fillNumber)
                 {
-                    grid[y][x] = true;
+                    grid[y, x] = true;
                 }
             }
         }
     }
 
-    private int GetLargestCavern(List<List<int>> caverns)
+    private int GetLargestCavern(int[,] caverns)
     {
         var dict = new Dictionary<int, int>();
-        foreach (List<int> cavern in caverns)
+        int height = caverns.GetLength(0);
+        int width = caverns.GetLength(1);
+
+
+        for (int y = 0; y < height; y++)
         {
-            foreach (int fillNumber in cavern)
+            for (int x = 0; x < width; x++)
             {
+                int fillNumber = caverns[y, x];
                 if (dict.ContainsKey(fillNumber))
                 {
                     dict[fillNumber]++;
@@ -211,9 +205,9 @@ public class ProcedualGeneration : MonoBehaviour
         return dict.FirstOrDefault(x => x.Value == dict.Values.Max()).Key;
     }
 
-    private bool NewValueAtPosition(List<List<bool>> grid, int x, int y, int birthThreshold, int survivalThreshold)
+    private bool NewValueAtPosition(bool[,] grid, int x, int y, int birthThreshold, int survivalThreshold)
     {
-        bool cellIsAlive = grid[y][x] == true;
+        bool cellIsAlive = grid[y, x] == true;
         int aliveNeighbors = CountAliveNeighbors(grid, x, y);
 
         if (cellIsAlive && aliveNeighbors >= survivalThreshold)
@@ -230,7 +224,7 @@ public class ProcedualGeneration : MonoBehaviour
         }
     }
 
-    private int CountAliveNeighbors(List<List<bool>> grid, int x, int y)
+    private int CountAliveNeighbors(bool[,] grid, int x, int y)
     {
         int count = 0;
 
@@ -247,7 +241,7 @@ public class ProcedualGeneration : MonoBehaviour
                 {
                     count++;
                 }
-                else if (grid[j][i] == true)
+                else if (grid[j, i] == true)
                 {
                     count++;
                 }
@@ -257,30 +251,27 @@ public class ProcedualGeneration : MonoBehaviour
         return count;
     }
 
-    private bool SpotIsOffGrid(List<List<bool>> grid, int x, int y)
+    private bool SpotIsOffGrid(bool[,] grid, int x, int y)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
         return x < 0 || x >= width || y < 0 || y >= height;
     }
 
-    private List<List<bool>> GenerateGrid(int width, int height, float initialProbability)
+    private bool[,] GenerateGrid(int width, int height, float initialProbability)
     {
-        List<List<bool>> grid = new List<List<bool>>();
+        bool[,] grid = new bool[height, width];
 
         for (int y = 0; y < height; y++)
         {
-            List<bool> row = new List<bool>();
 
             for (int x = 0; x < width; x++)
             {
                 bool value = (SeededRandom.Range(SeededRandom.Instance.MapRandom, 0.0f, 1.0f) < initialProbability) ? true : false;
                 // bool value = (Random.Range(0.0f, 1.0f) < initialProbability) ? true : false;
-                row.Add(value);
+                grid[y, x] = value;
             }
-
-            grid.Add(row);
         }
 
         return grid;
@@ -326,17 +317,17 @@ public class ProcedualGeneration : MonoBehaviour
         // }
     }
 
-    private void FloodCaverns(ref List<List<int>> cave, List<List<bool>> grid, int x, int y, int fillNumber)
+    private void FloodCaverns(ref int[,] cave, bool[,] grid, int x, int y, int fillNumber)
     {
-        if (grid[y][x] == true || cave[y][x] != 0) { return; }
+        if (grid[y, x] == true || cave[y, x] != 0) { return; }
 
-        cave[y][x] = fillNumber;
+        cave[y, x] = fillNumber;
 
         if (x > 0)
         {
             FloodCaverns(ref cave, grid, x - 1, y, fillNumber);
         }
-        if (x < grid[0].Count - 1)
+        if (x < grid.GetLength(1) - 1)
         {
             FloodCaverns(ref cave, grid, x + 1, y, fillNumber);
         }
@@ -344,29 +335,26 @@ public class ProcedualGeneration : MonoBehaviour
         {
             FloodCaverns(ref cave, grid, x, y - 1, fillNumber);
         }
-        if (y < grid.Count - 1)
+        if (y < grid.GetLength(0) - 1)
         {
             FloodCaverns(ref cave, grid, x, y + 1, fillNumber);
         }
     }
 
-    private List<List<int>> IdentifyCaverns(List<List<bool>> grid)
+    private int[,] IdentifyCaverns(bool[,] grid)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
-        List<List<int>> cave = new List<List<int>>();
+        int[,] cave = new int[height, width];
 
         for (int y = 0; y < height; y++)
         {
-            List<int> row = new List<int>();
 
             for (int x = 0; x < width; x++)
             {
-                row.Add(0);
+                cave[y, x] = 0;
             }
-
-            cave.Add(row);
         }
 
         int fillNumber = 1;
@@ -375,7 +363,7 @@ public class ProcedualGeneration : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if (cave[y][x] == 0 && grid[y][x] == false)
+                if (cave[y, x] == 0 && grid[y, x] == false)
                 {
                     FloodCaverns(ref cave, grid, x, y, fillNumber);
                     fillNumber++;
@@ -387,7 +375,7 @@ public class ProcedualGeneration : MonoBehaviour
     }
 
     // == WAVE FUNCTION COLLAPSE == //
-    private void FillDungeon(List<List<bool>> grid)
+    private void FillDungeon(bool[,] grid)
     {
         WaveFunctionCollapseMap waveFunctionCollapseMap = new(grid, tileRules);
 
@@ -399,57 +387,39 @@ public class ProcedualGeneration : MonoBehaviour
                 done = true;
             }
         }
-        for (int y = 0; y < waveFunctionCollapseMap.tiles.Count; y++)
+        for (int y = 0; y < waveFunctionCollapseMap.tiles.GetLength(0); y++)
         {
-            for (int x = 0; x < waveFunctionCollapseMap.tiles[y].Count; x++)
+            for (int x = 0; x < waveFunctionCollapseMap.tiles.GetLength(1); x++)
             {
                 floor.SetTile(new Vector3Int(x, y, 1), tileRules.Rules[waveFunctionCollapseMap.GetType(x, y)].Tile);
             }
         }
-        // List<List<int>> map;
-        // FillObstacles(grid);
-        // FillHazards(grid);
-        // FillChests(grid);
-        // GetPlayerSpawn(grid);
-        // GetGoalSpawn(grid);
-    }
-
-    private void FillHazards(List<List<bool>> grid)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void FillObstacles(List<List<bool>> grid)
-    {
-        // CheckEntropy(grid, map)
     }
 
     // == CONVOLUTION == //
-    private void Convolution(List<List<bool>> grid)
+    private void Convolution(bool[,] grid)
     {
-        int height = grid.Count;
-        int width = grid[0].Count;
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
 
-        List<List<TileType>> structures = new List<List<TileType>>();
+        TileType[,] structures = new TileType[height, width];
 
         for (int y = 0; y < height; y++)
         {
-            List<TileType> row = new List<TileType>();
 
             for (int x = 0; x < width; x++)
             {
-                if (grid[y][x] == false)
+                if (grid[y, x] == false)
                 {
-                    row.Add(TileType.FLOOR);
-
+                    structures[y, x] = TileType.FLOOR;
                 }
                 else
                 {
-                    row.Add(TileType.WALL);
+                    structures[y, x] = TileType.WALL;
                 }
             }
 
-            structures.Add(row);
+            // structures.Add(row);
         }
 
         foreach (ConvolutionRules rule in convolutionRules)
@@ -466,17 +436,17 @@ public class ProcedualGeneration : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                str += (int)structures[y][x] + " ";
+                str += (int)structures[y, x] + " ";
             }
             str += "\n";
         }
         Debug.Log(str);
     }
 
-    private void GetPlayerGoalPositions(ref List<List<TileType>> structures)
+    private void GetPlayerGoalPositions(ref TileType[,] structures)
     {
-        int height = structures.Count;
-        int width = structures[0].Count;
+        int height = structures.GetLength(0);
+        int width = structures.GetLength(1);
         Vector2 corner = GetRandomCorner(width, height);
         Vector2 opposite = GetOppositeCorner(corner, width, height);
 
@@ -484,10 +454,10 @@ public class ProcedualGeneration : MonoBehaviour
         GoalSpawn = FindNearestEmpty(structures, opposite);
     }
 
-    private Vector2 FindNearestEmpty(List<List<TileType>> structures, Vector2 corner)
+    private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
     {
-        int height = structures.Count;
-        int width = structures[0].Count;
+        int height = structures.GetLength(0);
+        int width = structures.GetLength(1);
         bool foundEmptyPlayerSpace = false;
 
         Queue<Vector2> queue = new();
@@ -498,7 +468,7 @@ public class ProcedualGeneration : MonoBehaviour
         while (!foundEmptyPlayerSpace)
         {
             Vector2 current = queue.Dequeue();
-            if (structures[(int)current.y][(int)current.x] != TileType.FLOOR)
+            if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
             {
                 checkedTiles.Add(current);
                 if ((int)current.y > 0 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y - 1)))
@@ -539,10 +509,10 @@ public class ProcedualGeneration : MonoBehaviour
         // return new Vector2(Random.Range(0, 2) == 1 ? 0 : width - 1, Random.Range(0, 2) == 1 ? 0 : height - 1);
     }
 
-    private void FillStructures(ref List<List<TileType>> structures, ConvolutionRules rule)
+    private void FillStructures(ref TileType[,] structures, ConvolutionRules rule)
     {
-        int height = structures.Count;
-        int width = structures[0].Count;
+        int height = structures.GetLength(0);
+        int width = structures.GetLength(1);
 
         for (int y = 0; y < height; y++)
         {
@@ -554,14 +524,14 @@ public class ProcedualGeneration : MonoBehaviour
                     // float randomFloat = Random.Range(0f, 1f);
                     if (randomFloat <= rule.chance)
                     {
-                        FillStructure(structures, rule, x, y);
+                        FillStructure(ref structures, rule, x, y);
                     }
                 }
             }
         }
     }
 
-    private void FillStructure(List<List<TileType>> structures, ConvolutionRules rule, int x, int y)
+    private void FillStructure(ref TileType[,] structures, ConvolutionRules rule, int x, int y)
     {
         for (int y1 = 0; y1 < rule.TileOutput.Count(); y1++)
         {
@@ -586,7 +556,7 @@ public class ProcedualGeneration : MonoBehaviour
                 };
 
                 tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.TileOutput[y1].row[x1].Tile);
-                structures[y + y1][x + x1] = rule.TileOutput[y1].row[x1].Type;
+                structures[y + y1, x + x1] = rule.TileOutput[y1].row[x1].Type;
             }
         }
 
@@ -616,15 +586,15 @@ public class ProcedualGeneration : MonoBehaviour
                         continue;
                     }
                     obj.transform.parent = tilemap.transform;
-                    structures[y + y1][x + x1] = rule.GameObjectOutput[y1].row[x1].Type;
+                    structures[y + y1, x + x1] = rule.GameObjectOutput[y1].row[x1].Type;
                 }
             }
         }
     }
 
-    private bool checkMatrix(ref List<List<TileType>> structures, ConvolutionRules rule, int x, int y)
+    private bool checkMatrix(ref TileType[,] structures, ConvolutionRules rule, int x, int y)
     {
-        if (rule.Matrix.Count() + y >= structures.Count || rule.Matrix[0].row.Count() + x >= structures[0].Count)
+        if (rule.Matrix.Count() + y >= structures.GetLength(0) || rule.Matrix[0].row.Count() + x >= structures.GetLength(1))
         {
             return false;
         }
@@ -632,7 +602,7 @@ public class ProcedualGeneration : MonoBehaviour
         {
             for (int x1 = 0; x1 < rule.Matrix[y1].row.Count(); x1++)
             {
-                if (rule.Matrix[y1].row[x1] != structures[y + y1][x + x1])
+                if (rule.Matrix[y1].row[x1] != structures[y + y1, x + x1])
                 {
                     return false;
                 }

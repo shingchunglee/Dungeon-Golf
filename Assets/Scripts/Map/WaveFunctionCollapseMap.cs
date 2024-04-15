@@ -3,26 +3,25 @@ using UnityEngine;
 
 public class WaveFunctionCollapseMap
 {
-    public List<List<bool>> grid;
-    public List<List<WaveFunctionCollapseTile>> tiles;
+    public bool[,] grid;
+    public WaveFunctionCollapseTile[,] tiles;
     public MapTileRules tileRules;
-    public WaveFunctionCollapseMap(List<List<bool>> grid, MapTileRules tileRules)
+    public WaveFunctionCollapseMap(bool[,] grid, MapTileRules tileRules)
     {
         this.tileRules = tileRules;
         this.grid = grid;
-        tiles = new();
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
+        tiles = new WaveFunctionCollapseTile[height, width];
 
-        int height = grid.Count;
-        int width = grid[0].Count;
 
         for (int y = 0; y < height; y++)
         {
-            List<WaveFunctionCollapseTile> row = new();
             for (int x = 0; x < width; x++)
             {
-                if (grid[y][x] == false)
+                if (grid[y, x] == false)
                 {
-                    row.Add(new WaveFunctionCollapseTile(tileRules));
+                    tiles[y, x] = new WaveFunctionCollapseTile(tileRules);
                 }
                 else
                 {
@@ -33,34 +32,32 @@ public class WaveFunctionCollapseMap
                         },
                         Entropy = 0
                     };
-                    row.Add(wallTile);
+                    tiles[y, x] = wallTile;
                 }
             }
-
-            tiles.Add(row);
         }
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                var tile = tiles[y][x];
+                var tile = tiles[y, x];
 
                 if (y > 0)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.SOUTH, tiles[y - 1][x]);
+                    tile.AddNeighbour(DirectionRules.Direction.SOUTH, tiles[y - 1, x]);
                 }
                 if (x < width - 1)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.EAST, tiles[y][x + 1]);
+                    tile.AddNeighbour(DirectionRules.Direction.EAST, tiles[y, x + 1]);
                 }
                 if (y < height - 1)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.NORTH, tiles[y + 1][x]);
+                    tile.AddNeighbour(DirectionRules.Direction.NORTH, tiles[y + 1, x]);
                 }
                 if (x > 0)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.WEST, tiles[y][x - 1]);
+                    tile.AddNeighbour(DirectionRules.Direction.WEST, tiles[y, x - 1]);
                 }
             }
         }
@@ -68,23 +65,23 @@ public class WaveFunctionCollapseMap
 
     public int GetEntropy(int x, int y)
     {
-        return tiles[y][x].Entropy;
+        return tiles[y, x].Entropy;
     }
 
     public int GetType(int x, int y)
     {
-        return tiles[y][x].Possibilities[0];
+        return tiles[y, x].Possibilities[0];
     }
 
     public int GetLowestEntropy()
     {
         int lowestEntropy = tileRules.Rules.Length;
 
-        for (int y = 0; y < grid.Count; y++)
+        for (int y = 0; y < grid.GetLength(0); y++)
         {
-            for (int x = 0; x < grid[0].Count; x++)
+            for (int x = 0; x < grid.GetLength(1); x++)
             {
-                int tileEntropy = tiles[y][x].Entropy;
+                int tileEntropy = tiles[y, x].Entropy;
                 if (tileEntropy > 0 && tileEntropy < lowestEntropy)
                 {
                     lowestEntropy = tileEntropy;
@@ -99,11 +96,11 @@ public class WaveFunctionCollapseMap
         int lowestEntropy = tileRules.Rules.Length;
         List<WaveFunctionCollapseTile> tileList = new();
 
-        for (int y = 0; y < grid.Count; y++)
+        for (int y = 0; y < grid.GetLength(0); y++)
         {
-            for (int x = 0; x < grid[0].Count; x++)
+            for (int x = 0; x < grid.GetLength(1); x++)
             {
-                int tileEntropy = tiles[y][x].Entropy;
+                int tileEntropy = tiles[y, x].Entropy;
                 if (tileEntropy > 0 && tileEntropy < lowestEntropy)
                 {
                     tileList.Clear();
@@ -111,7 +108,7 @@ public class WaveFunctionCollapseMap
                 }
                 if (tileEntropy == lowestEntropy)
                 {
-                    tileList.Add(tiles[y][x]);
+                    tileList.Add(tiles[y, x]);
                 }
             }
         }
