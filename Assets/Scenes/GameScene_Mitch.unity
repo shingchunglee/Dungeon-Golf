@@ -2972,6 +2972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCursorOverHUDElement: 0
   enemyManager: {fileID: 0}
+  procedualGeneration: {fileID: 0}
 --- !u!1 &1369306713
 GameObject:
   m_ObjectHideFlags: 0

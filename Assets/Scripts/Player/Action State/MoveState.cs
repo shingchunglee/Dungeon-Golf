@@ -19,8 +19,6 @@ public class MoveState : IPlayerActionState
   public void OnExit()
   {
     PlayerManager.Instance.TeleportPlayerToBall();
-    Debug.Log($"Player x: {PlayerManager.Instance.playerWizard.transform.position.x}" +
-    $"Player y: {PlayerManager.Instance.playerWizard.transform.position.y}");
     Debug.Log("Player Exited Moving State");
   }
 

@@ -2864,6 +2864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCursorOverHUDElement: 0
+  enemyManager: {fileID: 0}
   procedualGeneration: {fileID: 1265529957}
 --- !u!114 &1265529957
 MonoBehaviour:
@@ -5854,11 +5855,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1114541228609796913, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1114541228609796913, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1114541228609796913, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_LocalPosition.z
