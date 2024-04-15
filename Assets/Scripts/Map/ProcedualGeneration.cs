@@ -59,6 +59,8 @@ public class ProcedualGeneration : MonoBehaviour
         Convolution(grid);
 
         RenderTiles(grid);
+
+        GetPlayerGoalPositions(Grid);
     }
 
     private void ReadFromGridMethod()
@@ -427,23 +429,11 @@ public class ProcedualGeneration : MonoBehaviour
             FillStructures(ref structures, rule);
         }
 
-        GetPlayerGoalPositions(ref structures);
 
         Grid = structures;
-
-        string str = "";
-        for (int y = height - 1; y >= 0; y--)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                str += (int)structures[y, x] + " ";
-            }
-            str += "\n";
-        }
-        Debug.Log(str);
     }
 
-    private void GetPlayerGoalPositions(ref TileType[,] structures)
+    private void GetPlayerGoalPositions(TileType[,] structures)
     {
         int height = structures.GetLength(0);
         int width = structures.GetLength(1);
