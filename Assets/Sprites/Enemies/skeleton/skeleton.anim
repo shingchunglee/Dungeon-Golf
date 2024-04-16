@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: vampire
+  m_Name: skeleton
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2c62d2513a3f2994ab009e147d291f91, type: 3}
+      value: {fileID: 21300000, guid: 6881e2d2ab38eb74b989654833741b6d, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: e844dd9fb1fc6b74ab2f66df165f644b, type: 3}
+      value: {fileID: 21300000, guid: 501e12abd5aba5f42ae080f3eeaba747, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 1adea5b1395373c4d89882ce0218f082, type: 3}
+      value: {fileID: 21300000, guid: 6c555de3486836b4a93bd8c31eb25394, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: e2938abd107a95640ad2f061cac31bd6, type: 3}
+      value: {fileID: 21300000, guid: 079c80bc0651aa245a12e5210a063a28, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2c62d2513a3f2994ab009e147d291f91, type: 3}
-    - {fileID: 21300000, guid: e844dd9fb1fc6b74ab2f66df165f644b, type: 3}
-    - {fileID: 21300000, guid: 1adea5b1395373c4d89882ce0218f082, type: 3}
-    - {fileID: 21300000, guid: e2938abd107a95640ad2f061cac31bd6, type: 3}
+    - {fileID: 21300000, guid: 6881e2d2ab38eb74b989654833741b6d, type: 3}
+    - {fileID: 21300000, guid: 501e12abd5aba5f42ae080f3eeaba747, type: 3}
+    - {fileID: 21300000, guid: 6c555de3486836b4a93bd8c31eb25394, type: 3}
+    - {fileID: 21300000, guid: 079c80bc0651aa245a12e5210a063a28, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
