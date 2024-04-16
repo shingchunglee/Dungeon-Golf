@@ -23,6 +23,10 @@ public class AimState : IPlayerActionState
   {
   }
 
+  public void OnTriggerEnter2D(Collider2D collision)
+  {
+  }
+
   public void OnUpdate()
   {
     if (Input.GetMouseButtonDown(0))

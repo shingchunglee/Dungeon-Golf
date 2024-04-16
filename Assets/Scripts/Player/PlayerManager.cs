@@ -4,6 +4,9 @@ public class PlayerManager : MonoBehaviour
 {
   private static PlayerManager _instance;
   public PowerLevelController powerLevelController;
+  public InventoryController inventoryController;
+
+  public PlayerActionStateController actionStateController;
   // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
   public static PlayerManager Instance
@@ -44,5 +47,10 @@ public class PlayerManager : MonoBehaviour
 
   private void Init()
   {
+  }
+
+  private void OnTriggerEnter2D(Collider2D other)
+  {
+    actionStateController.OnTriggerEnter2D(other);
   }
 }

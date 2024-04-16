@@ -42,4 +42,13 @@ public class PlayerActionStateController : MonoBehaviour
 
         currentState.OnEnter(this);
     }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.name);
+        if (currentState != null)
+        {
+            currentState.OnTriggerEnter2D(other);
+        }
+    }
 }

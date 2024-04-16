@@ -17,3 +17,4 @@ MonoBehaviour:
   minPower: 100
   powerLevelDuration: 1
   powerEasingFunction: 6
+  weight: 5

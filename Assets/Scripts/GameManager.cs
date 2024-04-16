@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
   }
 
   public ProcedualGeneration procedualGeneration;
+  public ItemRandomiser itemRandomiser;
 
   private void Awake()
   {

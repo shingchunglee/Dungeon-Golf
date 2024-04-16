@@ -2,7 +2,6 @@ using System;
 using Common;
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "Club", menuName = "Club", order = 0)]
 public class Club : ScriptableObject
 {
@@ -13,4 +12,6 @@ public class Club : ScriptableObject
     public float minPower;
     public float powerLevelDuration;
     public EasingFunction powerEasingFunction;
+
+    public int weight;
 }

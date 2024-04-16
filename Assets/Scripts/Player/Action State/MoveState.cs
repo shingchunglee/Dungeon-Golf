@@ -35,6 +35,14 @@ public class MoveState : IPlayerActionState
     }
   }
 
+  public void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.TryGetComponent(out PlayerMovingOnTrigger playerMovingOnTrigger))
+    {
+      playerMovingOnTrigger.OnTrigger();
+    }
+  }
+
   public void OnUpdate()
   {
 

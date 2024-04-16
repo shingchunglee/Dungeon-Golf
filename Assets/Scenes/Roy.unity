@@ -296,6 +296,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6309917362390614476, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+      propertyPath: inventoryController
+      value: 
+      objectReference: {fileID: 1857398826}
+    - target: {fileID: 6309917362390614476, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+      propertyPath: actionStateController
+      value: 
+      objectReference: {fileID: 170586068}
     - target: {fileID: 7871588473403893424, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -345,6 +353,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+--- !u!114 &170586068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1615442038972375194, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+  m_PrefabInstance: {fileID: 170586067}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9691948dc76354387ba2358d6f81f652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &926333622
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +494,7 @@ GameObject:
   - component: {fileID: 1839921161}
   - component: {fileID: 1839921163}
   - component: {fileID: 1839921162}
+  - component: {fileID: 1839921164}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -523,6 +543,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ad176478a496f49208732c3d87ccc7d0, type: 2}
   - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
   - {fileID: 11400000, guid: a496c92f177435d43a768fa8470fa20f, type: 2}
+  - {fileID: 11400000, guid: 0dfc43142c1fe8e4bb76fb5773f228f7, type: 2}
   Width: 50
   Height: 50
 --- !u!114 &1839921163
@@ -539,6 +560,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCursorOverHUDElement: 0
   procedualGeneration: {fileID: 1839921162}
+  itemRandomiser: {fileID: 1839921164}
+--- !u!114 &1839921164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839921159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc76bbdddacd81438c6eafa7a0f4c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1857398826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2802830656079597965, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
