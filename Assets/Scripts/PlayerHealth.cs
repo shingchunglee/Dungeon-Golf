@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;
     public TextMeshProUGUI healthText;
+    public string gameOverSceneName = "GameOverScene";
 
     void Update()
     {
@@ -33,6 +34,6 @@ public class PlayerHealth : MonoBehaviour
 
     void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
