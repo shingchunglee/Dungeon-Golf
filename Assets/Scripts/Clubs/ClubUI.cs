@@ -7,6 +7,13 @@ public class ClubUI : MonoBehaviour
 {
     public TextMeshProUGUI ClubNameText;
     public GameObject ClubClaimPanel;
+    SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
+    }
+
 
     private void Start() {
         ChestController.OnClubAdded += ClubCollectUI;
@@ -18,9 +25,10 @@ public class ClubUI : MonoBehaviour
         
         if (ClubNameText != null && ClubClaimPanel != null)
         {
-            ClubNameText.text = club.clubName;
-            ClubClaimPanel.SetActive(true);  // Show the panel
-            StartCoroutine(HidePanel());    // Start the coroutine to hide the panel
+            ClubNameText.text = (club.clubName + "!");
+            ClubClaimPanel.SetActive(true); 
+            soundManager.PlaySFX(soundManager.clubCollect);
+            StartCoroutine(HidePanel());   
             Debug.Log("Updated ClubNameText to: " + club.clubName);
         }
     }
@@ -29,7 +37,7 @@ public class ClubUI : MonoBehaviour
 
 private IEnumerator HidePanel()
     {
-        yield return new WaitForSeconds(1.15f);  // Wait for 1 second
-        ClubClaimPanel.SetActive(false);      // Then hide the panel
+        yield return new WaitForSeconds(1.15f);  
+        ClubClaimPanel.SetActive(false);      
     }
 }
