@@ -457,6 +457,7 @@ public class ProcedualGeneration : MonoBehaviour
 
         while (!foundEmptyPlayerSpace)
         {
+            if (queue.Count > structures.Length * 2) return Vector2.zero;
             Vector2 current = queue.Dequeue();
             if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
             {

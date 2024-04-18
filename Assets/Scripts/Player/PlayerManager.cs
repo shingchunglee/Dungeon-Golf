@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
   public PlayerActionStateController actionStateController;
   // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
+  public GolfAimDrag golfAimDrag;
   public static PlayerManager Instance
   {
     get

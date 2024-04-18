@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
   public ProcedualGeneration procedualGeneration;
   public ItemRandomiser itemRandomiser;
+  public GolfAimType golfAimType = GolfAimType.Click;
 
   private void Awake()
   {

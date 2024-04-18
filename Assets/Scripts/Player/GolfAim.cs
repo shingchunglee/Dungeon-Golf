@@ -1,4 +1,11 @@
+using System;
 using UnityEngine;
+
+public enum GolfAimType
+{
+    Drag,
+    Click
+}
 
 public class GolfAim : MonoBehaviour
 {

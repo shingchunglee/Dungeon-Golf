@@ -13,7 +13,15 @@ public class MoveState : IPlayerActionState
     this.controller = controller;
     Debug.Log("Player Entered Moving State");
     // controller.rb.AddForce(controller.rb.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
-    controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+    if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+    {
+      controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+    }
+    else
+    {
+      controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+    }
+
   }
 
   public void OnExit()
