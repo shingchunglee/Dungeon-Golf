@@ -1,21 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ClubUI : MonoBehaviour
 {
-    [SerializeField] private Text ClubNameText;
-   private void Start() {
+    public TextMeshProUGUI ClubNameText;
+    public GameObject ClubClaimPanel;
 
-    ChestController.OnClubAdded += ClubCollectUI;
+    private void Start() {
+        ChestController.OnClubAdded += ClubCollectUI;
     }
 
-    private void ClubCollectUI(Club club)
-    
+
+
+    private void ClubCollectUI(Club club) {
+        
+        if (ClubNameText != null && ClubClaimPanel != null)
+        {
+            ClubNameText.text = club.clubName;
+            ClubClaimPanel.SetActive(true);  // Show the panel
+            StartCoroutine(HidePanel());    // Start the coroutine to hide the panel
+            Debug.Log("Updated ClubNameText to: " + club.clubName);
+        }
+    }
+
+
+
+private IEnumerator HidePanel()
     {
-    ClubNameText.text = club.clubName;
+        yield return new WaitForSeconds(1.15f);  // Wait for 1 second
+        ClubClaimPanel.SetActive(false);      // Then hide the panel
     }
-
-
 }
