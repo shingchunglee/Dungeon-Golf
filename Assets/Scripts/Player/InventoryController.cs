@@ -23,10 +23,12 @@ public class InventoryController : MonoBehaviour
     return clubs.ToArray();
   }
 
-  public void AddClub(ClubType type)
+  public InventoryClub AddClub(ClubType type)
   {
-    clubs.Add(new InventoryClub(type, ClubFactory.Factory(type)));
+    InventoryClub inventoryClub = new(type, ClubFactory.Factory(type));
+    clubs.Add(inventoryClub);
     OnClubChanged?.Invoke(GetSelectedClub());
+    return inventoryClub;
   }
 
   public Club GetSelectedClub()
