@@ -14,8 +14,6 @@ public class EnemyDamage : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = (CurrentEnemyHP == 1);
     }
 
-    
-
    void dealDamage(int amount)
    {
     CurrentEnemyHP -= amount;

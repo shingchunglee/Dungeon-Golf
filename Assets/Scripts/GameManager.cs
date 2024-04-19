@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-  public bool isCursorOverHUDElement = false;
 
+  public GameObject enemyParentObj;
+  public bool isCursorOverHUDElement = false;
+  public EnemyManager enemyManager;
   private static GameManager _instance;
   public static GameManager Instance
   {
@@ -38,9 +40,23 @@ public class GameManager : MonoBehaviour
     else
     {
       _instance = this;
+      Init();
     }
 
     procedualGeneration.Main();
+  }
+
+  private void Init()
+  {
+    enemyManager = gameObject.AddComponent<EnemyManager>();
+  }
+
+  /// <summary>
+  /// Called from PlayerManager when player health <= 0
+  /// </summary>
+  public void GameOver()
+  {
+    Debug.Log("Game over called!");
   }
 }
 

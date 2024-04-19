@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerActionStateController : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D ballRB;
     private IPlayerActionState currentState;
     public IPlayerActionState aimState = new AimState();
     public IPlayerActionState moveState = new MoveState();
     public IPlayerActionState powerState = new PowerState();
+    public IPlayerActionState enemyTurnState = new EnemyTurnState();
 
     void Start()
     {
