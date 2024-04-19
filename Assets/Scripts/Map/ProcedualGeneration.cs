@@ -526,19 +526,31 @@ public class ProcedualGeneration : MonoBehaviour
                 checkedTiles[(int)current.y, (int)current.x] = true;
                 if ((int)current.y > 0 && !checkedTiles[(int)current.y - 1, (int)current.x])
                 {
-                    queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
+                    if (!queue.Contains(new Vector2((int)current.x, (int)current.y - 1)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
+                    }
                 }
                 if ((int)current.x < width - 1 && !checkedTiles[(int)current.y, (int)current.x + 1])
                 {
-                    queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
+                    if (!queue.Contains(new Vector2((int)current.x + 1, (int)current.y)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
+                    }
                 }
                 if ((int)current.y < height - 1 && !checkedTiles[(int)current.y + 1, (int)current.x])
                 {
-                    queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
+                    if (!queue.Contains(new Vector2((int)current.x, (int)current.y + 1)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
+                    }
                 }
                 if ((int)current.x > 0 && !checkedTiles[(int)current.y, (int)current.x - 1])
                 {
-                    queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
+                    if (!queue.Contains(new Vector2((int)current.x - 1, (int)current.y)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
+                    }
                 }
             }
             else
