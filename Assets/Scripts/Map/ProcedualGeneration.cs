@@ -473,6 +473,8 @@ public class ProcedualGeneration : MonoBehaviour
             Main();
             return;
         }
+        PlayerSpawn = new Vector2(PlayerSpawn.x + 0.5f, PlayerSpawn.y + 0.5f);
+        GoalSpawn = new Vector2(GoalSpawn.x + 0.5f, GoalSpawn.y + 0.5f);
     }
 
     private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
@@ -633,7 +635,7 @@ public class ProcedualGeneration : MonoBehaviour
                         TileType.ENEMY_SPAWN => enemies,
                         _ => traps
                     };
-                    var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new UnityEngine.Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
+                    var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1 + 0.5f, y + y1 + 0.5f, 0), UnityEngine.Quaternion.identity);
 
                     if (rule.GameObjectOutput[y1].row[x1].Type == TileType.EMPTY)
                     {

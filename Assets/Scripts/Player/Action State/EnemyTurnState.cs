@@ -30,8 +30,11 @@ public class EnemyTurnState : IPlayerActionState
 
   }
 
-  public void Start(){
-    
+  public void Start()
+  {
+
   }
+
+  public void OnTriggerEnter2D(Collider2D collision) { }
 
 }
