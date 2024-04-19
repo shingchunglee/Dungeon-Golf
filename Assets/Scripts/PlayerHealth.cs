@@ -9,8 +9,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;
     public TextMeshProUGUI healthText;
-    public Transform playerTransform; 
+    public Transform playerTransform;
     private Vector3 lastShotPosition;
+    public string gameOverSceneName = "GameOverScene";
 
     void Update()
     {
@@ -32,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     {
         healthText.text = "Health: " + health.ToString("F0");
     }
-    
+
     public void SetLastShotPosition(Vector3 position)
     {
         lastShotPosition = position;
@@ -40,13 +41,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void Respawn()
     {
-        playerTransform.position = lastShotPosition; 
-        health = 100f; 
-        UpdateHealthText(); 
+        playerTransform.position = lastShotPosition;
+        health = 100f;
+        UpdateHealthText();
     }
 
     void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
