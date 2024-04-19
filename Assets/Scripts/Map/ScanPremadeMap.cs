@@ -3,13 +3,36 @@ using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Tilemaps;
 
 public class ScanPremadeTilemap : MonoBehaviour
 {
     public bool ReadFromTilemap = true;
 
-    public List<Tilemap> tilemaps;
+    private List<Tilemap> _tilemaps;
+    public List<Tilemap> tilemaps
+    {
+        get
+        {
+            if (_tilemaps == null)
+            {
+                _tilemaps = new List<Tilemap>();
+                _tilemaps.Add(map_wall);
+                _tilemaps.Add(map_floor);
+                _tilemaps.Add(map_obstacles);
+                _tilemaps.Add(map_trap_damamge);
+                _tilemaps.Add(map_trap_void);
+                _tilemaps.Add(map_trap_floor);
+                _tilemaps.Add(map_trap_chest);
+                _tilemaps.Add(map_chest);
+                _tilemaps.Add(map_enemy_spawn);
+            }
+
+            return _tilemaps;
+        }
+        private set { }
+    }
 
     public Tilemap map_wall;
     public Tilemap map_floor;
@@ -21,7 +44,8 @@ public class ScanPremadeTilemap : MonoBehaviour
     public Tilemap map_chest;
     public Tilemap map_enemy_spawn;
 
-    public TileType[,] grid;
+    public TileType[,] gridDungeon;
+    public EntityType[,] gridEntities;
 
     public Vector2Int gridSize = Vector2Int.zero;
 
@@ -31,8 +55,14 @@ public class ScanPremadeTilemap : MonoBehaviour
 
     private void Start()
     {
-        ScanTilemaps();
+        ScanMap();
         LogGrid();
+    }
+
+    private void ScanMap()
+    {
+        ScanTilemaps();
+        ScanEntityMap();
     }
 
     private void ScanTilemaps()
@@ -62,7 +92,9 @@ public class ScanPremadeTilemap : MonoBehaviour
                 }
             }
 
-            grid = new TileType[gridSize.x, gridSize.y];
+            gridDungeon = new TileType[gridSize.x, gridSize.y];
+
+
 
             ScanTilemapByLayer(map_floor, TileType.FLOOR);
             ScanTilemapByLayer(map_wall, TileType.WALL);
@@ -109,7 +141,7 @@ public class ScanPremadeTilemap : MonoBehaviour
                     // Debug.Log($"Map: {tilemap.gameObject.name}, Relative: [{x},{y}], "
                     // + $"Grid: [{x + offsetX},{y + offsetY}] tile: {tile.name}");
 
-                    grid[x + offsetX, y + offsetY] = tileType;
+                    gridDungeon[x + offsetX, y + offsetY] = tileType;
                 }
                 else
                 {
@@ -120,19 +152,58 @@ public class ScanPremadeTilemap : MonoBehaviour
         }
     }
 
+    private void ScanEntityMap()
+    {
+        gridEntities = new EntityType[gridSize.x, gridSize.y];
+
+        // Record Player position on EntityMap
+        int playerX = Mathf.FloorToInt(PlayerManager.Instance.playerWizard.transform.position.x);
+        int playerY = Mathf.FloorToInt(PlayerManager.Instance.playerWizard.transform.position.y);
+
+        Vector2Int playerPos = new Vector2Int(playerX, playerY);
+
+        AddEntityByWorldPosition(EntityType.Player, playerPos);
+
+        //Recorder EnemyPositions on EntityMap
+        foreach (var enemy in GameManager.Instance.enemyManager.enemyUnitsOnLevel)
+        { 
+            int enemyX = Mathf.FloorToInt(enemy.transform.position.x);
+            int enemyY = Mathf.FloorToInt(enemy.transform.position.y);
+
+            Vector2Int enemyPos = new Vector2Int(playerX, playerY);
+
+            AddEntityByWorldPosition(EntityType.Enemy, enemyPos);
+        }
+
+    }
+
+    public void AddEntityByWorldPosition(EntityType type, Vector2Int position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        gridEntities[position.x + offsetX, position.y + offsetY] = type;
+    }
+
     private void LogGrid()
     {
         Debug.Log($"Largest size tilemap is [{gridSize}].");
 
+        LogGridDungeon();
+        LogGridEntities();
+    }
+
+    private void LogGridDungeon()
+    {
         string mapString = "";
 
         //GetLength(1) gets the number of elements on the y axis.
-        for (int y = grid.GetLength(1) - 1; y > -1; y--)
+        for (int y = gridDungeon.GetLength(1) - 1; y > -1; y--)
         {
             string mapLine = "";
-            for (int x = 0; x < grid.GetLength(0); x++)
+            for (int x = 0; x < gridDungeon.GetLength(0); x++)
             {
-                switch (grid[x, y])
+                switch (gridDungeon[x, y])
                 {
                     case TileType.EMPTY:
                         mapLine += " X";
@@ -163,6 +234,43 @@ public class ScanPremadeTilemap : MonoBehaviour
                         break;
                     case TileType.CHEST:
                         mapLine += " C";
+                        break;
+                    default:
+                        mapLine += " ?";
+                        break;
+                }
+            }
+
+            mapString += mapLine + "\n";
+
+        }
+        Debug.Log("Map scan results: \n" +
+            mapString);
+    }
+
+    private void LogGridEntities()
+    {
+        string mapString = "";
+
+        //GetLength(1) gets the number of elements on the y axis.
+        for (int y = gridEntities.GetLength(1) - 1; y > -1; y--)
+        {
+            string mapLine = "";
+            for (int x = 0; x < gridEntities.GetLength(0); x++)
+            {
+                switch (gridEntities[x, y])
+                {
+                    case EntityType.Empty:
+                        mapLine += " 0";
+                        break;
+                    case EntityType.Player:
+                        mapLine += " P";
+                        break;
+                    case EntityType.Enemy:
+                        mapLine += " X";
+                        break;
+                    case EntityType.Neutral:
+                        mapLine += " N";
                         break;
                     default:
                         mapLine += " ?";

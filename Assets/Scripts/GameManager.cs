@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+  public GameObject enemyParentObj;
   public bool isCursorOverHUDElement = false;
   public EnemyManager enemyManager;
   private static GameManager _instance;

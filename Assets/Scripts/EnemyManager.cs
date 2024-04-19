@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<EnemyUnit> enemyUnitsOnLevel { get; private set; } = new List<EnemyUnit>();
+    public List<EnemyUnit> enemyUnitsOnLevel = new List<EnemyUnit>();
+
+    private void Start()
+    {
+
+    }
+
 
     public void AddEnemyToList(EnemyUnit enemy)
     {
