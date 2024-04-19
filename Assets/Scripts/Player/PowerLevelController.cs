@@ -79,7 +79,11 @@ public class PowerLevelController : MonoBehaviour
 
   internal void SelectPowerLevel()
   {
-    selectedPower = powerBarSlider.value * (maxPower - minPower) + minPower;
-    DisablePowerBar();
+    SetPower(powerBarSlider.value * (maxPower - minPower) + minPower);
+  }
+
+  public void SetPower(float power)
+  {
+    selectedPower = power;
   }
 }

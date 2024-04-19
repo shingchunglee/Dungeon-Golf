@@ -1,11 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Vector2 = UnityEngine.Vector2;
@@ -48,9 +42,7 @@ public class ProcedualGeneration : MonoBehaviour
 
     public void Main()
     {
-        // * HAVE A PUBLIC BOOLEAN CALLED ReadFromGrid,
-        // * IF TRUE, READ FROM GRID
-        // * ELSE DO THE GENERATION BELOW
+        ClearGrids();
 
         bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);
 
@@ -61,6 +53,35 @@ public class ProcedualGeneration : MonoBehaviour
         RenderTiles(grid);
 
         GetPlayerGoalPositions(Grid);
+    }
+
+    private void ClearGrids()
+    {
+        traps.ClearAllTiles();
+        obstacles.ClearAllTiles();
+        walls.ClearAllTiles();
+        floor.ClearAllTiles();
+        enemies.ClearAllTiles();
+        foreach (Transform child in traps.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in obstacles.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in walls.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in floor.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in enemies.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private void ReadFromGridMethod()
@@ -441,7 +462,17 @@ public class ProcedualGeneration : MonoBehaviour
         Vector2 opposite = GetOppositeCorner(corner, width, height);
 
         PlayerSpawn = FindNearestEmpty(structures, corner);
+        if (PlayerSpawn == Vector2.zero)
+        {
+            Main();
+            return;
+        }
         GoalSpawn = FindNearestEmpty(structures, opposite);
+        if (GoalSpawn == Vector2.zero)
+        {
+            Main();
+            return;
+        }
     }
 
     private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
@@ -453,29 +484,63 @@ public class ProcedualGeneration : MonoBehaviour
         Queue<Vector2> queue = new();
         queue.Enqueue(corner);
 
-        List<Vector2> checkedTiles = new();
+        bool[,] checkedTiles = new bool[height, width];
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                checkedTiles[y, x] = false;
+            }
+        }
 
         while (!foundEmptyPlayerSpace)
         {
-            Vector2 current = queue.Dequeue();
+            if (queue.Count > checkedTiles.Length)
+            {
+                foundEmptyPlayerSpace = true;
+                return Vector2.zero;
+            }
+            Vector2 current = Vector2.zero;
+            try
+            {
+                current = queue.Dequeue();
+            }
+            catch
+            {
+                foundEmptyPlayerSpace = true;
+                return Vector2.zero;
+            }
+
             if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
             {
-                checkedTiles.Add(current);
-                if ((int)current.y > 0 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y - 1)))
+                checkedTiles[(int)current.y, (int)current.x] = true;
+                if ((int)current.y > 0 && !checkedTiles[(int)current.y - 1, (int)current.x])
                 {
-                    queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
+                    if (!queue.Contains(new Vector2((int)current.x, (int)current.y - 1)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
+                    }
                 }
-                if ((int)current.x < width - 1 && !checkedTiles.Contains(new Vector2((int)current.x + 1, (int)current.y)))
+                if ((int)current.x < width - 1 && !checkedTiles[(int)current.y, (int)current.x + 1])
                 {
-                    queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
+                    if (!queue.Contains(new Vector2((int)current.x + 1, (int)current.y)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
+                    }
                 }
-                if ((int)current.y < height - 1 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y + 1)))
+                if ((int)current.y < height - 1 && !checkedTiles[(int)current.y + 1, (int)current.x])
                 {
-                    queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
+                    if (!queue.Contains(new Vector2((int)current.x, (int)current.y + 1)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
+                    }
                 }
-                if ((int)current.x > 0 && !checkedTiles.Contains(new Vector2((int)current.x - 1, (int)current.y)))
+                if ((int)current.x > 0 && !checkedTiles[(int)current.y, (int)current.x - 1])
                 {
-                    queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
+                    if (!queue.Contains(new Vector2((int)current.x - 1, (int)current.y)))
+                    {
+                        queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
+                    }
                 }
             }
             else
@@ -483,7 +548,6 @@ public class ProcedualGeneration : MonoBehaviour
                 foundEmptyPlayerSpace = true;
                 return current;
             }
-            // return Vector2.zero;
         }
         return Vector2.zero;
     }

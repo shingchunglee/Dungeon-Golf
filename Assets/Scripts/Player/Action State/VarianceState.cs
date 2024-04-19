@@ -2,20 +2,20 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PowerState : IPlayerActionState
+public class VarianceState : IPlayerActionState
 {
   PlayerActionStateController controller;
 
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
-    Debug.Log("Player Entered Power State");
-    PlayerManager.Instance.powerLevelController.ShowPowerBar();
+    Debug.Log("Player Entered Variance State");
+    PlayerManager.Instance.varianceLevelController.ShowVarianceBar();
   }
 
   public void OnExit()
   {
-    Debug.Log("Player Exited Power State");
+    Debug.Log("Player Exited Variance State");
   }
 
   public void OnFixedUpdate()
@@ -39,7 +39,9 @@ public class PowerState : IPlayerActionState
 
   private void OnMouseClick()
   {
-    PlayerManager.Instance.powerLevelController.SelectPowerLevel();
-    controller.SetState(controller.varianceState);
+    PlayerManager.Instance.varianceLevelController.SelectVarianceLevel();
+    controller.SetState(controller.moveState);
+    PlayerManager.Instance.golfAim.enabled = false;
+    PlayerManager.Instance.powerLevelController.DisablePowerBar();
   }
 }

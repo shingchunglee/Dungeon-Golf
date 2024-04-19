@@ -13,5 +13,11 @@ public class Club : ScriptableObject
     public float powerLevelDuration;
     public EasingFunction powerEasingFunction;
 
+    // === POWER LEVEL ===
+    public float maxVariance;
+    public float minVariance;
+    public float varianceLevelDuration;
+    public EasingFunction varianceEasingFunction;
+
     public int weight;
 }

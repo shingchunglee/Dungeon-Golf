@@ -11,11 +11,13 @@ public class PlayerManager : MonoBehaviour
   public int maxHP;
   public int currentHP;
   public PowerLevelController powerLevelController;
+  public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
 
   public PlayerActionStateController actionStateController;
   // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
+  public GolfAimDrag golfAimDrag;
   public static PlayerManager Instance
   {
     get

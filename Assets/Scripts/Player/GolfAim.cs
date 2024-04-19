@@ -1,9 +1,18 @@
+using System;
 using UnityEngine;
+
+public enum GolfAimType
+{
+    Drag,
+    Click
+}
 
 public class GolfAim : MonoBehaviour
 {
     // public Transform golfBall;
     public Transform aimingIndicator;
+    public Transform powerCanvas;
+    public Transform vairanceCanvas;
     public Vector3? aimDirection;
     // public float aimingDistance = 5.0f;
     // public float shootForce = 5.0f;
@@ -78,6 +87,8 @@ public class GolfAim : MonoBehaviour
 
         // aimingIndicator.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         aimingIndicator.rotation = lookRotation;
+        powerCanvas.rotation = Quaternion.LookRotation(Vector3.back, directionVector);
+        vairanceCanvas.rotation = lookRotation;
     }
 
     public void SelectAimDirection()

@@ -5,6 +5,7 @@ namespace Common
 {
   public enum EasingFunction
   {
+    Linear, LinearInverse,
     EaseInSine, EaseOutSine, EaseInOutSine,
     EaseInCubic, EaseOutCubic, EaseInOutCubic,
     EaseInQuint, EaseOutQuint, EaseInOutQuint,
@@ -22,6 +23,10 @@ namespace Common
     {
       switch (easingFunction)
       {
+        case EasingFunction.Linear:
+          return Linear;
+        case EasingFunction.LinearInverse:
+          return LinearInverse;
         case EasingFunction.EaseInSine:
           return EaseInSine;
         case EasingFunction.EaseOutSine:
@@ -72,6 +77,25 @@ namespace Common
           return EaseInOutBounce;
         default:
           return EaseInSine;
+      }
+    }
+    private static float Linear(float x)
+    {
+      CheckArguments(x);
+
+      return x;
+    }
+    private static float LinearInverse(float x)
+    {
+      CheckArguments(x);
+
+      if (x < 0.5f)
+      {
+        return 2 * x;
+      }
+      else
+      {
+        return 1 - (2 * (x - 0.5f));
       }
     }
     private static float EaseInSine(float x)
