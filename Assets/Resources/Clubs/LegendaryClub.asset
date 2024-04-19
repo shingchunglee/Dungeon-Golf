@@ -17,8 +17,8 @@ MonoBehaviour:
   minPower: 1000
   powerLevelDuration: 0.5
   powerEasingFunction: 23
-  maxVariance: -45
-  minVariance: 45
+  maxVariance: -3
+  minVariance: 3
   varianceLevelDuration: 0.5
   varianceEasingFunction: 1
   weight: 1

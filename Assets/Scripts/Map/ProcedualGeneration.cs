@@ -1,11 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Vector2 = UnityEngine.Vector2;
@@ -48,10 +42,6 @@ public class ProcedualGeneration : MonoBehaviour
 
     public void Main()
     {
-        // * HAVE A PUBLIC BOOLEAN CALLED ReadFromGrid,
-        // * IF TRUE, READ FROM GRID
-        // * ELSE DO THE GENERATION BELOW
-
         ClearGrids();
 
         bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);

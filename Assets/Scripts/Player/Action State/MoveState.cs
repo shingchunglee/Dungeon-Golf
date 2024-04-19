@@ -19,8 +19,8 @@ public class MoveState : IPlayerActionState
     }
     else
     {
-      Debug.Log(PlayerManager.Instance.golfAim.aimDirection);
-      controller.rb.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+      // controller.rb.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+      controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
 
   }
@@ -34,6 +34,14 @@ public class MoveState : IPlayerActionState
   {
     if (controller.rb.velocity.magnitude > 0.01f)
     {
+      if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+      {
+        controller.rb.velocity = RotateVector2(controller.rb.velocity, -PlayerManager.Instance.golfAimDrag.variance);
+      }
+      else
+      {
+        controller.rb.velocity = RotateVector2(controller.rb.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+      }
       isMoving = true;
     }
     if (isMoving && controller.rb.velocity.magnitude <= 0.1f)
@@ -42,6 +50,18 @@ public class MoveState : IPlayerActionState
       isMoving = false;
       controller.SetState(controller.aimState);
     }
+  }
+
+  Vector2 RotateVector2(Vector2 v, float degrees)
+  {
+    float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+    float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+    float tx = v.x;
+    float ty = v.y;
+    v.x = (cos * tx) - (sin * ty);
+    v.y = (sin * tx) + (cos * ty);
+    return v;
   }
 
   public void OnTriggerEnter2D(Collider2D collision)

@@ -56,7 +56,7 @@ public class GolfAimDrag : MonoBehaviour
 
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
-        float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance);
+        float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance * 0.5f);
 
         float value = Mathf.Lerp(-dragAmount, dragAmount, t);
         variance = value;
@@ -115,7 +115,7 @@ public class GolfAimDrag : MonoBehaviour
     public void OnMouseUp()
     {
         UpdateDirection();
-        UpdateDirectionByVariance();
+        // UpdateDirectionByVariance();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("aimingIndicator");
         foreach (GameObject go in gos)
             Destroy(go);
