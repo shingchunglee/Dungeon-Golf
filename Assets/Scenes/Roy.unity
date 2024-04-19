@@ -403,7 +403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &886197913
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.17713499, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -610,6 +610,7 @@ MonoBehaviour:
   aimingIndicator: {fileID: 886197913}
   interpolateIndicator: {fileID: 1645852728001545448, guid: 0294ab9f5b5da6a4796e503ecf385745, type: 3}
   variance: 0
+  variancePosition: {x: 0, y: 0, z: 0}
   time: 0
   maxDistance: 3
   dragStartPos: {x: 0, y: 0, z: 0}
@@ -627,6 +628,7 @@ GameObject:
   - component: {fileID: 1839921163}
   - component: {fileID: 1839921162}
   - component: {fileID: 1839921164}
+  - component: {fileID: 1839921165}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -706,6 +708,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc76bbdddacd81438c6eafa7a0f4c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1839921165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839921159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0817e275e7aba2245ad9c1fb07dd1fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: -1
 --- !u!114 &1857398826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2802830656079597965, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}

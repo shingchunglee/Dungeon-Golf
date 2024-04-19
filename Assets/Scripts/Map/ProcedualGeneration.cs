@@ -441,7 +441,17 @@ public class ProcedualGeneration : MonoBehaviour
         Vector2 opposite = GetOppositeCorner(corner, width, height);
 
         PlayerSpawn = FindNearestEmpty(structures, corner);
+        if (PlayerSpawn == Vector2.zero)
+        {
+            Main();
+            return;
+        }
         GoalSpawn = FindNearestEmpty(structures, opposite);
+        if (GoalSpawn == Vector2.zero)
+        {
+            Main();
+            return;
+        }
     }
 
     private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
@@ -453,28 +463,43 @@ public class ProcedualGeneration : MonoBehaviour
         Queue<Vector2> queue = new();
         queue.Enqueue(corner);
 
-        List<Vector2> checkedTiles = new();
+        bool[,] checkedTiles = new bool[height, width];
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                checkedTiles[y, x] = false;
+            }
+        }
 
         while (!foundEmptyPlayerSpace)
         {
-            if (queue.Count > structures.Length * 2) return Vector2.zero;
-            Vector2 current = queue.Dequeue();
+            Vector2 current;
+            try
+            {
+                current = queue.Dequeue();
+            }
+            catch
+            {
+                foundEmptyPlayerSpace = true;
+                return Vector2.zero;
+            }
             if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
             {
-                checkedTiles.Add(current);
-                if ((int)current.y > 0 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y - 1)))
+                checkedTiles[(int)current.y, (int)current.x] = true;
+                if ((int)current.y > 0 && !checkedTiles[(int)current.y - 1, (int)current.x])
                 {
                     queue.Enqueue(new Vector2((int)current.x, (int)current.y - 1));
                 }
-                if ((int)current.x < width - 1 && !checkedTiles.Contains(new Vector2((int)current.x + 1, (int)current.y)))
+                if ((int)current.x < width - 1 && !checkedTiles[(int)current.y, (int)current.x + 1])
                 {
                     queue.Enqueue(new Vector2((int)current.x + 1, (int)current.y));
                 }
-                if ((int)current.y < height - 1 && !checkedTiles.Contains(new Vector2((int)current.x, (int)current.y + 1)))
+                if ((int)current.y < height - 1 && !checkedTiles[(int)current.y + 1, (int)current.x])
                 {
                     queue.Enqueue(new Vector2((int)current.x, (int)current.y + 1));
                 }
-                if ((int)current.x > 0 && !checkedTiles.Contains(new Vector2((int)current.x - 1, (int)current.y)))
+                if ((int)current.x > 0 && !checkedTiles[(int)current.y, (int)current.x - 1])
                 {
                     queue.Enqueue(new Vector2((int)current.x - 1, (int)current.y));
                 }
@@ -484,7 +509,6 @@ public class ProcedualGeneration : MonoBehaviour
                 foundEmptyPlayerSpace = true;
                 return current;
             }
-            // return Vector2.zero;
         }
         return Vector2.zero;
     }

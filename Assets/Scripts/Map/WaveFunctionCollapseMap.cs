@@ -45,19 +45,19 @@ public class WaveFunctionCollapseMap
 
                 if (y > 0)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.SOUTH, tiles[y - 1, x]);
+                    tile.AddNeighbour(DirectionRules.Direction.SOUTH, ref tiles[y - 1, x]);
                 }
                 if (x < width - 1)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.EAST, tiles[y, x + 1]);
+                    tile.AddNeighbour(DirectionRules.Direction.EAST, ref tiles[y, x + 1]);
                 }
                 if (y < height - 1)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.NORTH, tiles[y + 1, x]);
+                    tile.AddNeighbour(DirectionRules.Direction.NORTH, ref tiles[y + 1, x]);
                 }
                 if (x > 0)
                 {
-                    tile.AddNeighbour(DirectionRules.Direction.WEST, tiles[y, x - 1]);
+                    tile.AddNeighbour(DirectionRules.Direction.WEST, ref tiles[y, x - 1]);
                 }
             }
         }

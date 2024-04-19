@@ -21,7 +21,7 @@ public class WaveFunctionCollapseTile
         this.tileRules = tileRules;
     }
 
-    public void AddNeighbour(DirectionRules.Direction direction, WaveFunctionCollapseTile tile)
+    public void AddNeighbour(DirectionRules.Direction direction, ref WaveFunctionCollapseTile tile)
     {
         Neighbours[direction] = tile;
     }
