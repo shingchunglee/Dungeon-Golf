@@ -2029,7 +2029,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711903345939444439, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_Name
-      value: Enemy_Mitch
+      value: Enemy Zombie 1
       objectReference: {fileID: 0}
     - target: {fileID: 3527782672828158995, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2391,15 +2391,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711903345939444439, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_Name
-      value: Enemy_Mitch (1)
+      value: Enemy Zombie 2
       objectReference: {fileID: 0}
     - target: {fileID: 3527782672828158995, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3527782672828158995, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3527782672828158995, guid: c2962d3cf61f9462a81293198547d27c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3265,6 +3265,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1114541228609796913, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024443755095060271, guid: 8e92679b9977d409b98604a44648961e, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8070073912548293235, guid: 8e92679b9977d409b98604a44648961e, type: 3}
