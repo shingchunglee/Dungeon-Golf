@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;
     public TextMeshProUGUI healthText;
+    public Transform playerTransform; 
+    private Vector3 lastShotPosition;
 
     void Update()
     {
@@ -29,6 +31,18 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthText()
     {
         healthText.text = "Health: " + health.ToString("F0");
+    }
+    
+    public void SetLastShotPosition(Vector3 position)
+    {
+        lastShotPosition = position;
+    }
+
+    public void Respawn()
+    {
+        playerTransform.position = lastShotPosition; 
+        health = 100f; 
+        UpdateHealthText(); 
     }
 
     void GameOver()
