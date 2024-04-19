@@ -52,6 +52,8 @@ public class ProcedualGeneration : MonoBehaviour
         // * IF TRUE, READ FROM GRID
         // * ELSE DO THE GENERATION BELOW
 
+        ClearGrids();
+
         bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);
 
 
@@ -61,6 +63,35 @@ public class ProcedualGeneration : MonoBehaviour
         RenderTiles(grid);
 
         GetPlayerGoalPositions(Grid);
+    }
+
+    private void ClearGrids()
+    {
+        traps.ClearAllTiles();
+        obstacles.ClearAllTiles();
+        walls.ClearAllTiles();
+        floor.ClearAllTiles();
+        enemies.ClearAllTiles();
+        foreach (Transform child in traps.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in obstacles.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in walls.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in floor.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in enemies.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private void ReadFromGridMethod()
@@ -474,7 +505,12 @@ public class ProcedualGeneration : MonoBehaviour
 
         while (!foundEmptyPlayerSpace)
         {
-            Vector2 current;
+            if (queue.Count > checkedTiles.Length)
+            {
+                foundEmptyPlayerSpace = true;
+                return Vector2.zero;
+            }
+            Vector2 current = Vector2.zero;
             try
             {
                 current = queue.Dequeue();
@@ -484,6 +520,7 @@ public class ProcedualGeneration : MonoBehaviour
                 foundEmptyPlayerSpace = true;
                 return Vector2.zero;
             }
+
             if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
             {
                 checkedTiles[(int)current.y, (int)current.x] = true;

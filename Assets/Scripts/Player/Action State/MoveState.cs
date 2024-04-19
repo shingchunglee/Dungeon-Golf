@@ -19,7 +19,8 @@ public class MoveState : IPlayerActionState
     }
     else
     {
-      controller.rb.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+      Debug.Log(PlayerManager.Instance.golfAim.aimDirection);
+      controller.rb.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
 
   }

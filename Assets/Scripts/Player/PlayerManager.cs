@@ -4,6 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
   private static PlayerManager _instance;
   public PowerLevelController powerLevelController;
+  public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
 
   public PlayerActionStateController actionStateController;
