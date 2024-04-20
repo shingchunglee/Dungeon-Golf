@@ -53,4 +53,13 @@ public class PlayerActionStateController : MonoBehaviour
             currentState.OnTriggerEnter2D(other);
         }
     }
+
+    public bool CanBallCauseDamage()
+    {
+        if (currentState == moveState)
+        {
+            return true;
+        }
+        else return false;
+    }
 }

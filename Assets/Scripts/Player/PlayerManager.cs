@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
   private static PlayerManager _instance;
   public int maxHP;
   public int currentHP;
+  public int attackDamage = 5;
   public PowerLevelController powerLevelController;
   public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
