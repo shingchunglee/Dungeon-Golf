@@ -7,23 +7,37 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health = 100f;
+    public float maxhealth = 100f;
+    public float currentHealth;
     public TextMeshProUGUI healthText;
     public Transform playerTransform;
     private Vector3 lastShotPosition;
     public string gameOverSceneName = "GameOverScene";
 
+    public healthBar healthBar;
+
+    void Start()
+    {
+        currentHealth = maxhealth;
+        healthBar.SetMaxHealth(maxhealth);
+
+    }
+
     void Update()
     {
-        healthText.text = "HP: " + health.ToString("F0");
+        healthText.text = "HP: " + currentHealth.ToString("F0");
     }
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
+        currentHealth -= amount;
+        healthBar.SetHealth(currentHealth);
+
         UpdateHealthText();
 
-        if (health <= 0)
+
+
+        if (currentHealth <= 0)
         {
             GameOver();
         }
@@ -31,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void UpdateHealthText()
     {
-        healthText.text = "Health: " + health.ToString("F0");
+        healthText.text = "Health: " + currentHealth.ToString("F0");
     }
 
     public void SetLastShotPosition(Vector3 position)
@@ -42,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
     public void Respawn()
     {
         playerTransform.position = lastShotPosition;
-        health = 100f;
+        currentHealth = 100f;
         UpdateHealthText();
     }
 

@@ -44,7 +44,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (other.CompareTag("Player")) // Make sure the player has a tag "Player"
         {
             playerHealth.TakeDamage(20); 
-            if (playerHealth.health <= 0)
+            if (playerHealth.currentHealth <= 0)
             {
                 playerHealth.Respawn(); 
             }

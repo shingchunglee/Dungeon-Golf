@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Traps : MonoBehaviour
 {
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
 
     private void Start()
     {
