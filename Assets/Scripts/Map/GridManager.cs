@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.Tilemaps;
 
-public class ScanPremadeTilemap : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
+
     public bool ReadFromTilemap = true;
 
     private List<Tilemap> _tilemaps;
@@ -28,7 +29,6 @@ public class ScanPremadeTilemap : MonoBehaviour
                 _tilemaps.Add(map_chest);
                 _tilemaps.Add(map_enemy_spawn);
             }
-
             return _tilemaps;
         }
         private set { }
@@ -162,17 +162,17 @@ public class ScanPremadeTilemap : MonoBehaviour
 
         Vector2Int playerPos = new Vector2Int(playerX, playerY);
 
-        AddEntityByWorldPosition(EntityType.Player, playerPos);
+        AddEntityByWorldPosition(EntityType.PLAYER, playerPos);
 
         //Recorder EnemyPositions on EntityMap
         foreach (var enemy in GameManager.Instance.enemyManager.enemyUnitsOnLevel)
-        { 
+        {
             int enemyX = Mathf.FloorToInt(enemy.transform.position.x);
             int enemyY = Mathf.FloorToInt(enemy.transform.position.y);
 
-            Vector2Int enemyPos = new Vector2Int(playerX, playerY);
+            Vector2Int enemyPos = new Vector2Int(enemyX, enemyY);
 
-            AddEntityByWorldPosition(EntityType.Enemy, enemyPos);
+            AddEntityByWorldPosition(EntityType.ENEMY, enemyPos);
         }
 
     }
@@ -206,7 +206,7 @@ public class ScanPremadeTilemap : MonoBehaviour
                 switch (gridDungeon[x, y])
                 {
                     case TileType.EMPTY:
-                        mapLine += " X";
+                        mapLine += " -";
                         break;
                     case TileType.FLOOR:
                         mapLine += " _ ";
@@ -260,17 +260,14 @@ public class ScanPremadeTilemap : MonoBehaviour
             {
                 switch (gridEntities[x, y])
                 {
-                    case EntityType.Empty:
-                        mapLine += " 0";
+                    case EntityType.EMPTY:
+                        mapLine += " -";
                         break;
-                    case EntityType.Player:
-                        mapLine += " P";
+                    case EntityType.PLAYER:
+                        mapLine += " @";
                         break;
-                    case EntityType.Enemy:
+                    case EntityType.ENEMY:
                         mapLine += " X";
-                        break;
-                    case EntityType.Neutral:
-                        mapLine += " N";
                         break;
                     default:
                         mapLine += " ?";
@@ -281,7 +278,7 @@ public class ScanPremadeTilemap : MonoBehaviour
             mapString += mapLine + "\n";
 
         }
-        Debug.Log("Map scan results: \n" +
+        Debug.Log("Entity scan results: \n" +
             mapString);
     }
 }

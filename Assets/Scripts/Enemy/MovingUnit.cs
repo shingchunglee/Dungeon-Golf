@@ -29,7 +29,7 @@ public abstract class MovingUnit : MonoBehaviour
 
     //Move returns true if it is able to move and false if not. 
     //Move takes parameters for x direction, y direction and a RaycastHit2D to check collision.
-    protected bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    protected void Move(int xDir, int yDir) //, out RaycastHit2D hit)
     {
         //Store start position to move from, based on objects current transform position.
         Vector2 start = transform.position;
@@ -41,23 +41,23 @@ public abstract class MovingUnit : MonoBehaviour
         boxCollider.enabled = false;
 
         //Cast a line from start point to end point checking collision on blockingLayer.
-        hit = Physics2D.Linecast(start, end, blockingLayer);
+        // hit = Physics2D.Linecast(start, end, blockingLayer);
 
         //Re-enable boxCollider after linecast
         boxCollider.enabled = true;
 
         //Check if anything was hit
-        if (hit.transform == null)
-        {
-            //If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
-            StartCoroutine(SmoothMovement(end));
+        // if (hit.transform == null)
+        // {
+        //If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
+        StartCoroutine(SmoothMovement(end));
 
-            //Return true to say that Move was successful
-            return true;
-        }
+        //Return true to say that Move was successful
+        // return true;
+        // }
 
         //If something was hit, return false, Move was unsuccesful.
-        return false;
+        // return false;
     }
 
 
