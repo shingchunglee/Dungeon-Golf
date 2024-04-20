@@ -63,7 +63,7 @@ public class EnemyUnit : MovingUnit
             xDir = targetRB.position.x > transform.position.x ? 1 : -1;
 
         //Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
-        AttemptMove<PlayerManager>(xDir, yDir);
+        // AttemptMove<PlayerManager>(xDir, yDir);
     }
 
     //OnCantMove is called if Enemy attempts to move into a space occupied by a Player, it overrides the OnCantMove function of MovingObject 

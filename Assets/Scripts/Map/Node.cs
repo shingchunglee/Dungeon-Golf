@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class Node
+public class Node
 {
     public FloorType floorType = FloorType.EMPTY;
     public List<EntityType> entitiesOnTile = new List<EntityType>();

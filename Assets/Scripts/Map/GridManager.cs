@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
+    public Grid grid;
 
     public bool ReadFromTilemap = true;
 
@@ -61,11 +62,12 @@ public class GridManager : MonoBehaviour
 
     private void ScanMap()
     {
+        CreateGrid();
         ScanTilemaps();
-        ScanEntityMap();
+        ScanGameobjects();
     }
 
-    private void ScanTilemaps()
+    private void CreateGrid()
     {
         if (ReadFromTilemap)
         {
@@ -92,25 +94,31 @@ public class GridManager : MonoBehaviour
                 }
             }
 
-            gridDungeon = new TileType[gridSize.x, gridSize.y];
-
-
-
-            ScanTilemapByLayer(map_floor, TileType.FLOOR);
-            ScanTilemapByLayer(map_wall, TileType.WALL);
-            ScanTilemapByLayer(map_obstacles, TileType.OBSTACLE);
-            ScanTilemapByLayer(map_trap_damamge, TileType.TRAP_DAMAGE);
-            ScanTilemapByLayer(map_trap_void, TileType.TRAP_VOID);
-            ScanTilemapByLayer(map_trap_floor, TileType.TRAP_FLOOR);
-            ScanTilemapByLayer(map_trap_chest, TileType.TRAP_CHEST);
-            ScanTilemapByLayer(map_chest, TileType.CHEST);
-            ScanTilemapByLayer(map_enemy_spawn, TileType.ENEMY_SPAWN);
-
-
+            grid = new Grid(gridSize);
         }
     }
 
-    private void ScanTilemapByLayer(Tilemap tilemap, TileType tileType)
+    private void ScanTilemaps()
+    {
+        ScanTilemapByLayer(map_floor, FloorType.FLOOR);
+        ScanTilemapByLayer(map_wall, FloorType.WALL);
+        ScanTilemapByLayer(map_obstacles, FloorType.OBSTACLE);
+        ScanTilemapByLayer(map_trap_damamge, entityType: EntityType.TRAP_DAMAGE);
+        ScanTilemapByLayer(map_trap_void, FloorType.VOID);
+        ScanTilemapByLayer(map_trap_floor, FloorType.TRAP_FLOOR);
+        ScanTilemapByLayer(map_trap_chest, entityType: EntityType.TRAP_CHEST);
+        ScanTilemapByLayer(map_chest, entityType: EntityType.CHEST);
+        ScanTilemapByLayer(map_enemy_spawn, entityType: EntityType.ENEMY_SPAWN);
+    }
+
+
+    /// <summary>
+    /// Scans a tilemap and adds a FloorType or an EntityType to the Node at the corresponding location for each
+    /// tile on the tilemap.
+    /// </summary>
+    /// <param name="tilemap"></param>
+    /// <param name="floorType"></param>
+    private void ScanTilemapByLayer(Tilemap tilemap, FloorType? floorType = null, EntityType? entityType = null)
     {
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
@@ -141,7 +149,16 @@ public class GridManager : MonoBehaviour
                     // Debug.Log($"Map: {tilemap.gameObject.name}, Relative: [{x},{y}], "
                     // + $"Grid: [{x + offsetX},{y + offsetY}] tile: {tile.name}");
 
-                    gridDungeon[x + offsetX, y + offsetY] = tileType;
+                    if (floorType != null)
+                    {
+                        grid.nodes[x + offsetX, y + offsetY].floorType = (FloorType)floorType;
+                    }
+
+                    if (entityType != null)
+                    {
+                        grid.nodes[x + offsetX, y + offsetY].entitiesOnTile.Add((EntityType)entityType);
+                    }
+
                 }
                 else
                 {
@@ -152,9 +169,8 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void ScanEntityMap()
+    private void ScanGameobjects()
     {
-        gridEntities = new EntityType[gridSize.x, gridSize.y];
 
         // Record Player position on EntityMap
         int playerX = Mathf.FloorToInt(PlayerManager.Instance.playerWizard.transform.position.x);
@@ -182,7 +198,7 @@ public class GridManager : MonoBehaviour
         int offsetX = Mathf.Abs(gridOrigin.x);
         int offsetY = Mathf.Abs(gridOrigin.y);
 
-        gridEntities[position.x + offsetX, position.y + offsetY] = type;
+        grid.nodes[position.x + offsetX, position.y + offsetY].entitiesOnTile.Add(type);
     }
 
     private void LogGrid()
@@ -198,42 +214,30 @@ public class GridManager : MonoBehaviour
         string mapString = "";
 
         //GetLength(1) gets the number of elements on the y axis.
-        for (int y = gridDungeon.GetLength(1) - 1; y > -1; y--)
+        for (int y = grid.gridSize.y - 1; y > -1; y--)
         {
             string mapLine = "";
-            for (int x = 0; x < gridDungeon.GetLength(0); x++)
+            for (int x = 0; x < grid.gridSize.x; x++)
             {
-                switch (gridDungeon[x, y])
+                switch (grid.nodes[x, y].floorType)
                 {
-                    case TileType.EMPTY:
+                    case FloorType.EMPTY:
                         mapLine += " -";
                         break;
-                    case TileType.FLOOR:
+                    case FloorType.FLOOR:
                         mapLine += " _ ";
                         break;
-                    case TileType.WALL:
+                    case FloorType.WALL:
                         mapLine += " #";
                         break;
-                    case TileType.OBSTACLE:
+                    case FloorType.OBSTACLE:
                         mapLine += " O";
                         break;
-                    case TileType.TRAP_CHEST:
-                        mapLine += " C";
+                    case FloorType.TRAP_FLOOR:
+                        mapLine += " T";
                         break;
-                    case TileType.TRAP_DAMAGE:
-                        mapLine += " D";
-                        break;
-                    case TileType.TRAP_FLOOR:
-                        mapLine += " D";
-                        break;
-                    case TileType.TRAP_VOID:
+                    case FloorType.VOID:
                         mapLine += " V";
-                        break;
-                    case TileType.ENEMY_SPAWN:
-                        mapLine += " S";
-                        break;
-                    case TileType.CHEST:
-                        mapLine += " C";
                         break;
                     default:
                         mapLine += " ?";
@@ -253,25 +257,46 @@ public class GridManager : MonoBehaviour
         string mapString = "";
 
         //GetLength(1) gets the number of elements on the y axis.
-        for (int y = gridEntities.GetLength(1) - 1; y > -1; y--)
+        for (int y = grid.gridSize.y - 1; y > -1; y--)
         {
             string mapLine = "";
-            for (int x = 0; x < gridEntities.GetLength(0); x++)
+            for (int x = 0; x < grid.gridSize.x; x++)
             {
-                switch (gridEntities[x, y])
+                if (grid.nodes[x, y].entitiesOnTile.Count == 0)
                 {
-                    case EntityType.EMPTY:
-                        mapLine += " -";
-                        break;
-                    case EntityType.PLAYER:
-                        mapLine += " @";
-                        break;
-                    case EntityType.ENEMY:
-                        mapLine += " X";
-                        break;
-                    default:
-                        mapLine += " ?";
-                        break;
+                    mapLine += " -";
+                    continue;
+                }
+
+                foreach (EntityType entity in grid.nodes[x, y].entitiesOnTile)
+                {
+                    switch (entity)
+                    {
+                        case EntityType.EMPTY:
+                            mapLine += " -";
+                            break;
+                        case EntityType.PLAYER:
+                            mapLine += " @";
+                            break;
+                        case EntityType.ENEMY:
+                            mapLine += " X";
+                            break;
+                        case EntityType.TRAP_DAMAGE:
+                            mapLine += " T";
+                            break;
+                        case EntityType.TRAP_CHEST:
+                            mapLine += " H";
+                            break;
+                        case EntityType.CHEST:
+                            mapLine += " C";
+                            break;
+                        case EntityType.ENEMY_SPAWN:
+                            mapLine += " !";
+                            break;
+                        default:
+                            mapLine += " ?";
+                            break;
+                    }
                 }
             }
 

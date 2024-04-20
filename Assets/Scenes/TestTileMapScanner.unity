@@ -4115,6 +4115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d250746b228e14f40bd841519719755f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 0}
   ReadFromTilemap: 1
   map_wall: {fileID: 1713892493}
   map_floor: {fileID: 485490134}
