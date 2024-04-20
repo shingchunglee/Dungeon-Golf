@@ -54,8 +54,12 @@ MonoBehaviour:
   enemyName: 
   MaxHP: 1
   CurrentHP: 0
+  moveAttacksPerTurn: 3
   attackDamage: 5
   isNonSolid: 1
+  SpriteObj: {fileID: 6269775176681695175}
+  attackMoveDistance: 0.4
+  attackMoveTime: 0.1
 --- !u!50 &6685963591427696749
 Rigidbody2D:
   serializedVersion: 4
