@@ -17,7 +17,7 @@ public class Grid : MonoBehaviour
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                nodes[x, y] = new Node();
+                nodes[x, y] = new Node(new Vector2Int(x, y));
             }
         }
     }

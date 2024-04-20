@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -306,4 +307,80 @@ public class GridManager : MonoBehaviour
         Debug.Log("Entity scan results: \n" +
             mapString);
     }
+
+    public List<Node> GetWalkableNeighbourNodes(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
+
+        // This could be made more efficient
+        var node1 = CheckDirectionForNode(node, 1, 1);
+        if (node1 != null) neighbours.Add(node1);
+
+        var node2 = CheckDirectionForNode(node, 0, 1);
+        if (node2 != null) neighbours.Add(node2);
+
+        var node3 = CheckDirectionForNode(node, -1, 1);
+        if (node3 != null) neighbours.Add(node3);
+
+        var node4 = CheckDirectionForNode(node, 1, 0);
+        if (node4 != null) neighbours.Add(node4);
+
+        var node5 = CheckDirectionForNode(node, -1, 0);
+        if (node5 != null) neighbours.Add(node4);
+
+        var node6 = CheckDirectionForNode(node, 1, -1);
+        if (node6 != null) neighbours.Add(node6);
+
+        var node7 = CheckDirectionForNode(node, 0, -1);
+        if (node7 != null) neighbours.Add(node7);
+
+        var node8 = CheckDirectionForNode(node, -1, -1);
+        if (node8 != null) neighbours.Add(node8);
+
+        return neighbours;
+    }
+
+# nullable enable
+
+    private Node? CheckDirectionForNode(Node node, int xDir, int yDir)
+    {
+        try
+        {
+            var nodeNeighbour = grid.nodes[node.position.x + xDir, node.position.y + yDir];
+
+            if (nodeNeighbour.IsWalkable())
+            {
+                return nodeNeighbour;
+            }
+            else return null;
+        }
+        catch
+        {
+            Debug.Log("Direction couldn't be found. Maybe it's outside of grid limit.");
+            return null;
+        }
+    }
+
+
+    // /// <summary>
+    // /// 
+    // ///  From Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
+    // /// </summary>
+    // /// <param name="startNode"></param>
+    // /// <param name="targetNode"></param>
+    // /// <returns></returns>
+    // public List<Node> FindPath(Node startNode, Node targetNode)
+    // {
+    //     var toSearch = new List<Node>() { startNode };
+    //     var processed = new List<Node>();
+
+    //     while (toSearch.Any())
+    //     {
+    //         var current = toSearch[0];
+    //         foreach (var t in toSearch)
+    //         {
+    //             if ()
+    //         }
+    //     }
+    // }
 }
