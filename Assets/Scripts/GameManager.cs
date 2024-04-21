@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
+  public GameObject settingsCanvas;
 
   public TextMeshProUGUI HPText;
   private bool isSettingsOpen = false;
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Escape) && !isSettingsOpen)
     {
-      SceneManager.LoadSceneAsync("Settings", LoadSceneMode.Additive);
+      settingsCanvas.SetActive(true);
       isSettingsOpen = true;
       isCursorOverHUDElement = true;
     }
@@ -100,7 +101,8 @@ public class GameManager : MonoBehaviour
 
   public void CloseSettings()
   {
-    SceneManager.UnloadSceneAsync("Settings");
+    // SceneManager.UnloadSceneAsync("Settings");
+    settingsCanvas.SetActive(false);
     isSettingsOpen = false;
     isCursorOverHUDElement = false;
   }
