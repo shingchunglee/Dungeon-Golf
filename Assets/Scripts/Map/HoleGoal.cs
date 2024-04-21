@@ -11,4 +11,10 @@ public class HoleGoal : MonoBehaviour
             GameManager.Instance.AdvanceLevel();
         }
     }
+
+    public void GoalSpawnInit()
+    {
+        Vector2 goalSpawn = GameManager.Instance.proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].GoalSpawn;
+        transform.position = new Vector3(goalSpawn.x, goalSpawn.y, transform.position.z);
+    }
 }

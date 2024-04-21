@@ -78,6 +78,9 @@ public class GameManager : MonoBehaviour
 
     PlayerManager.Instance.PlayerSpawnInit();
 
+    HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
+    holeGoal.GoalSpawnInit();
+
   }
 
   /// <summary>
