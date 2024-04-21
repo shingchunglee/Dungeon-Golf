@@ -14,6 +14,10 @@ public class PlayerManager : MonoBehaviour
   public PowerLevelController powerLevelController;
   public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
+  public Transform playerTransform;
+  private Vector3 lastShotPosition;
+
+  public int voidDamage = 15;
 
   public PlayerActionStateController actionStateController;
   // public PlayerActionStateController playerActionStateController;
@@ -61,7 +65,7 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP = maxHP;
 
-    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    if (GameManager.Instance.HealthText != null) GameManager.Instance.HealthText.text = $"HP: {currentHP}/{maxHP}";
 
     playerWizard = GameObject.Find("Wizard Parent");
     playerBall = GameObject.Find("Ball Parent");
@@ -79,10 +83,19 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP -= damage;
 
-    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    UpdateHealthText();
     if (currentHP <= 0)
     {
       PlayerDies();
+    }
+  }
+
+  public void UpdateHealthText()
+  {
+    if (GameManager.Instance.HealthText != null)
+    {
+      GameManager.Instance.HealthText.text = "HP: " + currentHP.ToString("F0");
+
     }
   }
 
@@ -109,6 +122,18 @@ public class PlayerManager : MonoBehaviour
     // playerRB.MovePosition(new Vector2(x, y));
     playerRB.position = new Vector2(x, y);
 
+  }
+
+  public void SetLastShotPosition(Vector3 position)
+  {
+    lastShotPosition = position;
+  }
+
+  public void Respawn()
+  {
+    playerTransform.position = lastShotPosition;
+    currentHP = maxHP;
+    UpdateHealthText();
   }
 
   private void PlayerDies()
