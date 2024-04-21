@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
   {
   }
 
-  public void PlayerSpawnInit()
+  public void PlayerSpawnInit() 
   {
     Vector2 playerSpawn = GameManager.Instance
         .proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].PlayerSpawn;
