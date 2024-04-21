@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -24,7 +25,14 @@ public class MoveState : IPlayerActionState
       // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
+    // ! HACK SOLUTION: ME BRAIN NO WORK NO KNOW BETTER SOLUTION PLZ HELP
+    controller.StartCoroutine(SetMoving(1f));
+  }
 
+  IEnumerator SetMoving(float delay)
+  {
+    yield return new WaitForSeconds(delay);
+    isMoving = true;
   }
 
   public void OnExit()
@@ -35,7 +43,7 @@ public class MoveState : IPlayerActionState
 
   public void OnFixedUpdate()
   {
-    if (controller.ballRB.velocity.magnitude > 0.01f)
+    if (controller.ballRB.velocity.magnitude > 0.1f)
     {
       // if (GameManager.Instance.golfAimType == GolfAimType.Drag)
       // {
@@ -48,7 +56,7 @@ public class MoveState : IPlayerActionState
       // }
       isMoving = true;
     }
-    if (isMoving && controller.ballRB.velocity.magnitude <= 0.1f)
+    if (isMoving && controller.ballRB.velocity.magnitude <= 0.01f)
     {
       controller.ballRB.velocity = new Vector2(0f, 0f);
       isMoving = false;
