@@ -50,15 +50,18 @@ public class PlayerManager : MonoBehaviour
     {
       _instance = this;
     }
-    DontDestroyOnLoad(gameObject);
+
+    GameStartProcessing();
     Init();
   }
 
-  private void Start()
+  private void GameStartProcessing()
   {
+    DontDestroyOnLoad(gameObject);
+    currentHP = maxHP;
   }
 
-  public void PlayerSpawnInit() 
+  public void PlayerSpawnInit()
   {
     Vector2 playerSpawn = GameManager.Instance
         .proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].PlayerSpawn;
@@ -70,7 +73,8 @@ public class PlayerManager : MonoBehaviour
 
   public void Init()
   {
-    currentHP = maxHP;
+
+    UpdateHPText();
 
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
@@ -91,24 +95,23 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP -= damage;
 
-    UpdateHealthText();
+    UpdateHPText();
     if (currentHP <= 0)
     {
       PlayerDies();
     }
   }
 
-  public void UpdateHealthText()
+  public void UpdateHPText()
   {
-    if (GameManager.Instance.HPText != null)
-    {
-      GameManager.Instance.HPText.text = "HP: " + currentHP.ToString("F0");
-
-    }
+    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
   }
 
   public void TeleportPlayerToBall()
   {
+    //TODO this shouldn't be here but it works.
+    UpdateHPText();
+
     var playerRB = playerWizard.GetComponent<Rigidbody2D>();
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
 
@@ -141,7 +144,7 @@ public class PlayerManager : MonoBehaviour
   {
     playerTransform.position = lastShotPosition;
     currentHP = maxHP;
-    UpdateHealthText();
+    UpdateHPText();
   }
 
   private void PlayerDies()
