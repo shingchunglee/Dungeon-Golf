@@ -2,8 +2,6 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.Animations;
-using System;
 
 public class GameManager : MonoBehaviour
 {

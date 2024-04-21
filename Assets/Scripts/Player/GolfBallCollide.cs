@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class GolfBallCollide : MonoBehaviour
 {
@@ -7,12 +6,12 @@ public class GolfBallCollide : MonoBehaviour
     private Rigidbody2D rb;
     private bool onLava = false;
 
-    public float stopSpeedThreshold = 1.25f; 
+    public float stopSpeedThreshold = 1.25f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position; 
+        startPosition = transform.position;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +19,7 @@ public class GolfBallCollide : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Lava"))
         {
             onLava = true;
-            
+
         }
     }
 
@@ -28,7 +27,7 @@ public class GolfBallCollide : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Lava") && rb.velocity.sqrMagnitude <= stopSpeedThreshold * stopSpeedThreshold)
         {
-            
+
             ResetShot();
         }
     }

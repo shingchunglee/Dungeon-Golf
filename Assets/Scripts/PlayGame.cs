@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayGame : MonoBehaviour
 {
     // Start is called before the first frame update
-   public void PlayGameB()
-   {
-    SceneManager.LoadScene("GameScene");
-   }
+    public void PlayGameB()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
 }

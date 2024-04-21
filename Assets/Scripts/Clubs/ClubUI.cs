@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -15,29 +14,31 @@ public class ClubUI : MonoBehaviour
     }
 
 
-    private void Start() {
+    private void Start()
+    {
         ChestController.OnClubAdded += ClubCollectUI;
     }
 
 
 
-    private void ClubCollectUI(Club club) {
-        
+    private void ClubCollectUI(Club club)
+    {
+
         if (ClubNameText != null && ClubClaimPanel != null)
         {
             ClubNameText.text = (club.clubName + "!");
-            ClubClaimPanel.SetActive(true); 
+            ClubClaimPanel.SetActive(true);
             soundManager.PlaySFX(soundManager.clubCollect);
-            StartCoroutine(HidePanel());   
+            StartCoroutine(HidePanel());
             Debug.Log("Updated ClubNameText to: " + club.clubName);
         }
     }
 
 
 
-private IEnumerator HidePanel()
+    private IEnumerator HidePanel()
     {
-        yield return new WaitForSeconds(1.15f);  
-        ClubClaimPanel.SetActive(false);      
+        yield return new WaitForSeconds(1.15f);
+        ClubClaimPanel.SetActive(false);
     }
 }
