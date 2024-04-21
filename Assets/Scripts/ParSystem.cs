@@ -5,32 +5,31 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class ParSystem : MonoBehaviour
 {
-    public int Par = 6; 
-    private int strokesTaken = 0; 
+    public int Par = 6;
+    private int strokesTaken = 0;
     public TextMeshProUGUI parText;
-    public PlayerHealth playerHealth;
-    public float damagePerStrokeOverPar = 5f;
+    public int damagePerStrokeOverPar = 5;
     public Transform playerTransform;
     private Vector3 lastShotPosition;
 
     void Start()
     {
         updateParText();
-        lastShotPosition = playerTransform.position; 
+        lastShotPosition = playerTransform.position;
     }
 
     public void oneStroke()
     {
         strokesTaken++;
-        lastShotPosition = playerTransform.position; 
+        lastShotPosition = playerTransform.position;
         updateParText();
-        playerHealth.SetLastShotPosition(playerTransform.position);
+        PlayerManager.Instance.SetLastShotPosition(playerTransform.position);
 
         if (strokesTaken > Par)
         {
-            playerHealth.TakeDamage(damagePerStrokeOverPar);
+            PlayerManager.Instance.TakeDamage(damagePerStrokeOverPar);
         }
     }
 
@@ -38,17 +37,18 @@ public class NewBehaviourScript : MonoBehaviour
     {
         parText.text = strokesTaken.ToString() + "/" + Par.ToString();
     }
-    
+
     void OnTriggerExit(Collider other) // Trigger is to check if player leaves an invisible boundary
     {
         if (other.CompareTag("Player")) // Make sure the player has a tag "Player"
         {
-            playerHealth.TakeDamage(20); 
-            if (playerHealth.health <= 0)
+            PlayerManager.Instance.TakeDamage(20);
+
+            if (PlayerManager.Instance.currentHP <= 0)
             {
-                playerHealth.Respawn(); 
+                PlayerManager.Instance.Respawn();
             }
-            
+
         }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,11 +28,13 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  public string gameOverSceneName = "GameOverScene";
+
   public ProcedualGeneration procedualGeneration;
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
 
-  public TextMeshProUGUI HPText;
+  public TextMeshProUGUI HealthText;
 
   private void Awake()
   {
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour
   public void GameOver()
   {
     Debug.Log("Game over called!");
+    SceneManager.LoadScene(gameOverSceneName);
   }
 }
 
