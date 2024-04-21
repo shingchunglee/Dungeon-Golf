@@ -11,6 +11,25 @@ public class SoundManager : MonoBehaviour
   public AudioClip stroke;
   public AudioClip clubCollect;
 
+  
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject); 
+        PlayBackgroundMusic(); 
+    }
+
+    public void PlayBackgroundMusic()
+    {
+        if(musicSource != null && background != null)
+        {
+            musicSource.clip = background; 
+            musicSource.loop = true; 
+            musicSource.Play(); 
+        }
+    }
+
+
+
   public void PlaySFX(AudioClip clip)
   {
     SFXSource.PlayOneShot(clip);
@@ -18,8 +37,7 @@ public class SoundManager : MonoBehaviour
 
 
 
-
-
+    
 
 
 }
