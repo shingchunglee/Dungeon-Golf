@@ -28,6 +28,8 @@ public class AimState : IPlayerActionState
   }
   public void OnExit()
   {
+    PlayerManager.Instance.golfAim.enabled = false;
+    PlayerManager.Instance.golfAimDrag.enabled = false;
     Debug.Log("Player Exited Aim State");
   }
 

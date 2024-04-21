@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GolfAimDrag : MonoBehaviour
 {
-    // public Transform aimingIndicator;
+    public Transform aimingIndicator;
     public GameObject interpolateIndicator;
     // public float variance = 0;
     public Vector3 variancePosition;
@@ -17,13 +17,13 @@ public class GolfAimDrag : MonoBehaviour
 
     void OnEnable()
     {
-        // aimingIndicator.gameObject.SetActive(true);
+        aimingIndicator.gameObject.SetActive(true);
         aimDirection = null;
     }
 
     void OnDisable()
     {
-        // aimingIndicator.gameObject.SetActive(false);
+        aimingIndicator.gameObject.SetActive(false);
     }
 
     void Update()

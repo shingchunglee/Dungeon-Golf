@@ -246,13 +246,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1421393577638389766}
   - component: {fileID: 3033839485721927619}
+  - component: {fileID: 836267950371979772}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1421393577638389766
 Transform:
   m_ObjectHideFlags: 0
@@ -261,13 +262,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970191453433204960}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.04, y: 2.55, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481556490761989806}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
 --- !u!212 &3033839485721927619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -306,11 +307,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.17713499, b: 1, a: 1}
+  m_SortingLayerID: -712945779
+  m_SortingLayer: 1
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -320,6 +321,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &836267950371979772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970191453433204960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ea42d23376aed4e86ece2bb4a985e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995493040157056453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,8 +1502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b4d4aa8fb3fc45aa7a04ede92787c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimingIndicator: {fileID: 1421393577638389766}
   interpolateIndicator: {fileID: 1645852728001545448, guid: 0294ab9f5b5da6a4796e503ecf385745, type: 3}
-  variance: 0
   variancePosition: {x: 0, y: 0, z: 0}
   time: 0
   maxDistance: 3

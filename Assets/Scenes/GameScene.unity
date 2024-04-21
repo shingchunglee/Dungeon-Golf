@@ -2666,6 +2666,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4336436814823847216, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7871588473403893424, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2893,6 +2897,7 @@ MonoBehaviour:
   enemyParentObj: {fileID: 0}
   isCursorOverHUDElement: 0
   enemyManager: {fileID: 0}
+  gameOverSceneName: GameOverScene
   procedualGeneration: {fileID: 1265529957}
   itemRandomiser: {fileID: 0}
   golfAimType: 0
@@ -6107,6 +6112,8 @@ MonoBehaviour:
   powerLevelController: {fileID: 163488239}
   varianceLevelController: {fileID: 1576904805}
   inventoryController: {fileID: 1120656419}
+  playerTransform: {fileID: 0}
+  voidDamage: 15
   actionStateController: {fileID: 434849349}
   golfAim: {fileID: 1327372570}
   golfAimDrag: {fileID: 1327372568}
