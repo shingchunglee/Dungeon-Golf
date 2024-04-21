@@ -60,7 +60,8 @@ public class PlayerManager : MonoBehaviour
   private void Init()
   {
     currentHP = maxHP;
-    GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+
+    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
     playerWizard = GameObject.Find("Wizard Parent");
     playerBall = GameObject.Find("Ball Parent");
@@ -77,7 +78,7 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP -= damage;
 
-    GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
     if (currentHP <= 0)
     {
       PlayerDies();
