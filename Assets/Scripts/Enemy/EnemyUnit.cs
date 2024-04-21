@@ -29,6 +29,7 @@ public class EnemyUnit : MonoBehaviour//: MovingUnit
     private EnemyManager enemyManager;
     private Rigidbody2D targetRB;
     public GameObject SpriteObj;
+    public healthBar healthBar; //ruvini
 
     private float closeEnough = 0.1f;
 
@@ -40,6 +41,7 @@ public class EnemyUnit : MonoBehaviour//: MovingUnit
     protected void Start()
     {
         CurrentHP = MaxHP;
+        healthBar.SetMaxHealth(MaxHP);
         GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
 
         enemyManager = GameManager.Instance.enemyManager;
@@ -230,6 +232,7 @@ public class EnemyUnit : MonoBehaviour//: MovingUnit
     void TakeDamageFromPlayer()
     {
         CurrentHP -= PlayerManager.Instance.attackDamage;
+        healthBar.SetHealth(CurrentHP);
         CheckIfDead();
     }
 

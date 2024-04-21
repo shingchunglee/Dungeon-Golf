@@ -2,6 +2,9 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -16,6 +19,9 @@ public class PlayerManager : MonoBehaviour
   public InventoryController inventoryController;
   public Transform playerTransform;
   private Vector3 lastShotPosition;
+  public healthBar healthBar;
+  public TextMeshProUGUI healthText;
+
 
   public int voidDamage = 15;
 
@@ -64,6 +70,7 @@ public class PlayerManager : MonoBehaviour
   private void Init()
   {
     currentHP = maxHP;
+     healthBar.SetMaxHealth(maxHP);
 
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
@@ -82,6 +89,7 @@ public class PlayerManager : MonoBehaviour
   public void TakeDamage(int damage)
   {
     currentHP -= damage;
+    healthBar.SetHealth(currentHP);
 
     UpdateHealthText();
     if (currentHP <= 0)
