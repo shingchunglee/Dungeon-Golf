@@ -46,18 +46,20 @@ public class PlayerManager : MonoBehaviour
     {
       _instance = this;
     }
+    DontDestroyOnLoad(gameObject);
     Init();
   }
 
   private void Start()
   {
-    Vector2 playerSpawn = GameManager.Instance.procedualGeneration.PlayerSpawn;
+    Vector2 playerSpawn = GameManager.Instance
+        .proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].PlayerSpawn;
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
     ballRB.position = new Vector3(playerSpawn.x, playerSpawn.y, playerBall.transform.position.z);
     TeleportPlayerToBall();
   }
 
-  private void Init()
+  public void Init()
   {
     currentHP = maxHP;
 
@@ -72,6 +74,7 @@ public class PlayerManager : MonoBehaviour
     actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
+    golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
   }
 

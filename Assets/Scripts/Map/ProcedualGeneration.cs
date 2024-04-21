@@ -45,6 +45,7 @@ public class ProcedualGeneration : MonoBehaviour
         ClearGrids();
 
         bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);
+        Debug.Log($"Grid created w:{Width}, h:{Height}");
 
 
         FillDungeon(grid);

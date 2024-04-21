@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEditor.Animations;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,7 +30,10 @@ public class GameManager : MonoBehaviour
     }
   }
 
-  public ProcedualGeneration procedualGeneration;
+  private GameObject ProcGenLevelsParent;
+  public List<ProcedualGeneration> proceduralGenerationPresets;
+  public int procGenLevelIndex = 0;
+
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
 
@@ -44,15 +50,32 @@ public class GameManager : MonoBehaviour
     else
     {
       _instance = this;
+      DontDestroyOnLoad(gameObject);
       Init();
     }
 
-    procedualGeneration.Main();
   }
 
   private void Init()
   {
     enemyManager = gameObject.AddComponent<EnemyManager>();
+
+    
+
+    proceduralGenerationPresets = new List<ProcedualGeneration>();
+
+    ProcGenLevelsParent = GameObject.Find("Procedural Generation Levels");
+    foreach (Transform child in ProcGenLevelsParent.transform)
+    {
+      var procGen = child.gameObject.GetComponent<ProcedualGeneration>();
+
+      if (procGen != null)
+      {
+        proceduralGenerationPresets.Add(procGen);
+      }
+    }
+    proceduralGenerationPresets[procGenLevelIndex].Main();
+
   }
 
   /// <summary>
@@ -61,6 +84,33 @@ public class GameManager : MonoBehaviour
   public void GameOver()
   {
     Debug.Log("Game over called!");
+  }
+
+  public void AdvanceLevel()
+  {
+    if (procGenLevelIndex < proceduralGenerationPresets.Count)
+    {
+      procGenLevelIndex++;
+    }
+
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+  }
+
+  private void OnEnable()
+  {
+    SceneManager.sceneLoaded += OnSceneLoaded;
+  }
+
+  private void OnDisable()
+  {
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+  }
+
+  private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+  {
+    PlayerManager.Instance.Init();
+    this.Init();
   }
 }
 
