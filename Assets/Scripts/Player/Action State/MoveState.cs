@@ -56,7 +56,7 @@ public class MoveState : IPlayerActionState
       // }
       isMoving = true;
     }
-    if (isMoving && controller.ballRB.velocity.magnitude <= 0.01f)
+    if (isMoving && controller.ballRB.velocity.magnitude <= 0.5f)
     {
       controller.ballRB.velocity = new Vector2(0f, 0f);
       isMoving = false;
