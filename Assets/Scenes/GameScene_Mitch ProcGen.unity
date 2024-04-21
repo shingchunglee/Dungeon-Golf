@@ -3302,8 +3302,8 @@ MonoBehaviour:
   convolutionRules:
   - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
-  Width: 20
-  Height: 20
+  Width: 25
+  Height: 25
 --- !u!1001 &1302327018
 PrefabInstance:
   m_ObjectHideFlags: 0
