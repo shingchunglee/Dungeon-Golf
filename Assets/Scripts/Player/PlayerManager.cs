@@ -105,6 +105,9 @@ public class PlayerManager : MonoBehaviour
 
   public void TeleportPlayerToBall()
   {
+    //TODO this shouldn't be here but it works.
+    UpdateHPText();
+
     var playerRB = playerWizard.GetComponent<Rigidbody2D>();
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
 

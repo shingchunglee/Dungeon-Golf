@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     enemyManager = gameObject.AddComponent<EnemyManager>();
 
     HPText = GameObject.Find("HP Text").GetComponent<TextMeshProUGUI>();
-    
+
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
 
@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
 
   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
   {
+
     PlayerManager.Instance.Init();
     this.Init();
   }
