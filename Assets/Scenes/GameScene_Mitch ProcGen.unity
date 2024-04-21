@@ -1280,6 +1280,8 @@ MonoBehaviour:
   powerLevelController: {fileID: 0}
   varianceLevelController: {fileID: 0}
   inventoryController: {fileID: 0}
+  playerTransform: {fileID: 0}
+  voidDamage: 15
   actionStateController: {fileID: 0}
   golfAim: {fileID: 0}
   golfAimDrag: {fileID: 0}
@@ -3161,6 +3163,7 @@ MonoBehaviour:
   enemyParentObj: {fileID: 0}
   isCursorOverHUDElement: 0
   enemyManager: {fileID: 0}
+  gameOverSceneName: GameOverScene
   proceduralGenerationPresets: []
   procGenLevelIndex: 0
   itemRandomiser: {fileID: 0}
@@ -5909,7 +5912,6 @@ MonoBehaviour:
   convolutionRules:
   - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
-  - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
   Width: 25
   Height: 25
 --- !u!1001 &1590591167
@@ -17004,7 +17006,7 @@ MonoBehaviour:
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
   - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
-  - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
+  - {fileID: 11400000, guid: 1e335e2b2a6e5443894eab5f4b17ee24, type: 2}
   - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
   - {fileID: 11400000, guid: beede2a2cc8cd4a3187eb60c1db838f8, type: 2}
   Width: 30
