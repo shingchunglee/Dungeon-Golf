@@ -65,10 +65,11 @@ public class PlayerManager : MonoBehaviour
 
     playerWizard = GameObject.Find("Wizard Parent");
     playerBall = GameObject.Find("Ball Parent");
-    powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
-    varianceLevelController = playerBall.GetComponentInChildren<VarianceLevelController>();
-    inventoryController = playerBall.GetComponentInChildren<InventoryController>();
-    actionStateController = playerBall.GetComponentInChildren<PlayerActionStateController>();
+    var player = GameObject.Find("Player");
+    powerLevelController = player.GetComponentInChildren<PowerLevelController>();
+    varianceLevelController = player.GetComponentInChildren<VarianceLevelController>();
+    inventoryController = player.GetComponentInChildren<InventoryController>();
+    actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
