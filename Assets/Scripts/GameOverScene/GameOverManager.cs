@@ -3,13 +3,34 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    public void LoadMainMenu()
+    // public void LoadMainMenu()
+    // {
+    //     SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with your main menu scene name
+    // }
+
+    private void Start()
     {
-        SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with your main menu scene name
+        var GameManagerGO = GameObject.Find("GameManager");
+        var PlayerManagerGO = GameObject.Find("PlayerManager");
+
+        if (GameManagerGO != null)
+        {
+            SceneManager.MoveGameObjectToScene(GameManagerGO, SceneManager.GetActiveScene());
+        }
+
+        if (PlayerManagerGO != null)
+        {
+            SceneManager.MoveGameObjectToScene(PlayerManagerGO, SceneManager.GetActiveScene());
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void RetryGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reloads the current scene
+        SceneManager.LoadScene("Main Menu"); // Reloads the current scene
     }
 }

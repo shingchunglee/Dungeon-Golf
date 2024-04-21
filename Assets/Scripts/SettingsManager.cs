@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -75,5 +76,28 @@ public class SettingsManager : MonoBehaviour
         settingsPage.SetActive(false);
         isSettingsOpen = false;
         GameManager.Instance.isCursorOverHUDElement = false;
+    }
+
+    public void ButtonQuit()
+    {
+        Application.Quit();
+    }
+
+    public void ButtonMainMenu()
+    {
+        var GameManagerGO = GameObject.Find("GameManager");
+        var PlayerManagerGO = GameObject.Find("PlayerManager");
+
+        if (GameManagerGO != null)
+        {
+            SceneManager.MoveGameObjectToScene(GameManagerGO, SceneManager.GetActiveScene());
+        }
+
+        if (PlayerManagerGO != null)
+        {
+            SceneManager.MoveGameObjectToScene(PlayerManagerGO, SceneManager.GetActiveScene());
+        }
+
+        SceneManager.LoadScene("Main Menu");
     }
 }
