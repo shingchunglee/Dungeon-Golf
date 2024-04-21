@@ -52,8 +52,13 @@ public class PlayerManager : MonoBehaviour
 
   private void Start()
   {
+  }
+
+  public void PlayerSpawnInit()
+  {
     Vector2 playerSpawn = GameManager.Instance
         .proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].PlayerSpawn;
+
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
     ballRB.position = new Vector3(playerSpawn.x, playerSpawn.y, playerBall.transform.position.z);
     TeleportPlayerToBall();
