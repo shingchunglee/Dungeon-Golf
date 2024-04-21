@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class AimState : IPlayerActionState
 {
   PlayerActionStateController controller;
+  private bool validClick = false;
 
   public void OnEnter(PlayerActionStateController controller)
   {
@@ -13,11 +15,14 @@ public class AimState : IPlayerActionState
     if (GameManager.Instance.golfAimType == GolfAimType.Drag)
     {
       PlayerManager.Instance.golfAimDrag.enabled = true;
+      PlayerManager.Instance.golfAim.enabled = false;
     }
     else
     {
       PlayerManager.Instance.golfAim.enabled = true;
+      PlayerManager.Instance.golfAimDrag.enabled = false;
     }
+    validClick = false;
     Debug.Log("Player Entered Action State");
 
   }
@@ -41,11 +46,15 @@ public class AimState : IPlayerActionState
       if (!GameManager.Instance.isCursorOverHUDElement)
       {
         OnMouseClick();
+        validClick = true;
       }
     }
     if (Input.GetMouseButtonUp(0))
     {
-      OnMouseUp();
+      if (validClick)
+      {
+        OnMouseUp();
+      }
     }
 
     if (Input.GetKeyDown(KeyCode.Period))

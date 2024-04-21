@@ -15,10 +15,12 @@ public class MoveState : IPlayerActionState
     // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
     if (GameManager.Instance.golfAimType == GolfAimType.Drag)
     {
+      Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
     else
     {
+      Debug.Log("aimdirection: " + PlayerManager.Instance.golfAim.aimDirection);
       // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
@@ -35,14 +37,15 @@ public class MoveState : IPlayerActionState
   {
     if (controller.ballRB.velocity.magnitude > 0.01f)
     {
-      if (GameManager.Instance.golfAimType == GolfAimType.Drag)
-      {
-        controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, -PlayerManager.Instance.golfAimDrag.variance);
-      }
-      else
-      {
-        controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
-      }
+      // if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+      // {
+      //   controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, -PlayerManager.Instance.golfAimDrag.variance);
+      // }
+      // else
+      // {
+      Debug.Log("Variance: " + (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+      controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+      // }
       isMoving = true;
     }
     if (isMoving && controller.ballRB.velocity.magnitude <= 0.1f)

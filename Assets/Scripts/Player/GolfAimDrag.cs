@@ -6,10 +6,9 @@ public class GolfAimDrag : MonoBehaviour
 {
     // public Transform aimingIndicator;
     public GameObject interpolateIndicator;
-    public float variance = 0;
+    // public float variance = 0;
     public Vector3 variancePosition;
     public float time = 0;
-    private float interpolateAmount;
     public Vector3? aimDirection;
     public float maxDistance = 3f;
     public Vector3 dragStartPos;
@@ -59,7 +58,7 @@ public class GolfAimDrag : MonoBehaviour
         float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance * 0.5f);
 
         float value = Mathf.Lerp(-dragAmount, dragAmount, t);
-        variance = value;
+        PlayerManager.Instance.varianceLevelController.SetVariance(value);
 
         if (delta >= 0.99f)
         {
@@ -95,7 +94,7 @@ public class GolfAimDrag : MonoBehaviour
         float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance);
         Vector3 aimingPosition = transform.position - (Vector3)(-aimDirection * dragAmount);
         Vector3 perpendicular = Vector3.Cross(aimingPosition - transform.position, Vector3.forward).normalized;
-        variancePosition = aimingPosition + (perpendicular * variance);
+        variancePosition = (Vector3)(aimingPosition + (perpendicular * PlayerManager.Instance.varianceLevelController.selectedVariance));
 
         for (float i = 0f; i < 1f; i += 0.2f)
         {
@@ -115,6 +114,7 @@ public class GolfAimDrag : MonoBehaviour
     public void OnMouseUp()
     {
         UpdateDirection();
+        PlayerManager.Instance.varianceLevelController.SetVariance((float)-PlayerManager.Instance.varianceLevelController.selectedVariance);
         // UpdateDirectionByVariance();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("aimingIndicator");
         foreach (GameObject go in gos)

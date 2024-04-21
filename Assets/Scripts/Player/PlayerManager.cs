@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP = maxHP;
 
-    if (GameManager.Instance.HealthText != null) GameManager.Instance.HealthText.text = $"HP: {currentHP}/{maxHP}";
+    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
     playerWizard = GameObject.Find("Wizard Parent");
     playerBall = GameObject.Find("Ball Parent");
@@ -92,9 +92,9 @@ public class PlayerManager : MonoBehaviour
 
   public void UpdateHealthText()
   {
-    if (GameManager.Instance.HealthText != null)
+    if (GameManager.Instance.HPText != null)
     {
-      GameManager.Instance.HealthText.text = "HP: " + currentHP.ToString("F0");
+      GameManager.Instance.HPText.text = "HP: " + currentHP.ToString("F0");
 
     }
   }

@@ -31,6 +31,8 @@ public class GolfAim : MonoBehaviour
     void OnDisable()
     {
         aimingIndicator.gameObject.SetActive(false);
+        powerCanvas.gameObject.SetActive(false);
+        vairanceCanvas.gameObject.SetActive(false);
     }
 
     void Update()

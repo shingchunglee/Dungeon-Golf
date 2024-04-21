@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +35,8 @@ public class GameManager : MonoBehaviour
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
 
-  public TextMeshProUGUI HealthText;
+  public TextMeshProUGUI HPText;
+  private bool isSettingsOpen = false;
 
   private void Awake()
   {
@@ -56,6 +58,23 @@ public class GameManager : MonoBehaviour
   private void Init()
   {
     enemyManager = gameObject.AddComponent<EnemyManager>();
+  }
+
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.Escape) && !isSettingsOpen)
+    {
+      SceneManager.LoadSceneAsync("Settings", LoadSceneMode.Additive);
+      isSettingsOpen = true;
+      isCursorOverHUDElement = true;
+    }
+  }
+
+  public void CloseSettings()
+  {
+    SceneManager.UnloadSceneAsync("Settings");
+    isSettingsOpen = false;
+    isCursorOverHUDElement = false;
   }
 
   /// <summary>

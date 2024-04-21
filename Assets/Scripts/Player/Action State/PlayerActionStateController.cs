@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerActionStateController : MonoBehaviour
 {
     public Rigidbody2D ballRB;
-    private IPlayerActionState currentState;
+    public IPlayerActionState currentState;
     public IPlayerActionState aimState = new AimState();
     public IPlayerActionState moveState = new MoveState();
     public IPlayerActionState powerState = new PowerState();
