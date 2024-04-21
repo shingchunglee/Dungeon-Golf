@@ -5887,8 +5887,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
   - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
-  Width: 30
-  Height: 30
+  Width: 25
+  Height: 25
 --- !u!1001 &1590591167
 PrefabInstance:
   m_ObjectHideFlags: 0
