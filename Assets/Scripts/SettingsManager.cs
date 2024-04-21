@@ -6,10 +6,23 @@ public class SettingsManager : MonoBehaviour
     // public ToggleGroup aimGroup;
     public Toggle Drag;
     public Toggle Click;
+    public GameObject settingsPage;
+
+    private bool isSettingsOpen = false;
 
     private void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isSettingsOpen)
+        {
+            settingsPage.SetActive(true);
+            isSettingsOpen = true;
+            GameManager.Instance.isCursorOverHUDElement = true;
+        }
     }
 
     private void OnEnable()
@@ -58,6 +71,9 @@ public class SettingsManager : MonoBehaviour
 
     public void CloseSettings()
     {
-        GameManager.Instance.CloseSettings();
+        // SceneManager.UnloadSceneAsync("Settings");
+        settingsPage.SetActive(false);
+        isSettingsOpen = false;
+        GameManager.Instance.isCursorOverHUDElement = false;
     }
 }

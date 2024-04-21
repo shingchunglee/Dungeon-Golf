@@ -13,6 +13,7 @@ public class InventoryController : MonoBehaviour
   private void Start()
   {
     AddClub(ClubType.Iron7);
+    AddClub(ClubType.LegendaryClub);
     // clubs.Add(ClubFactory.Factory(ClubType.Iron7));
     // clubs.Add(ClubFactory.Factory(ClubType.LegendaryClub));
     OnClubChanged?.Invoke(GetSelectedClub());

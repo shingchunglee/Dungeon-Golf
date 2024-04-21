@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     }
   }
 
-  public string gameOverSceneName = "GameOverScene";
+  public string gameOverSceneName = "GameOver";
 
   private GameObject ProcGenLevelsParent;
   public List<ProcedualGeneration> proceduralGenerationPresets;
