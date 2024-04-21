@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
   {
     enemyManager = gameObject.AddComponent<EnemyManager>();
 
-    
+
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
 
@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
       }
     }
     proceduralGenerationPresets[procGenLevelIndex].Main();
+
+    PlayerManager.Instance.PlayerSpawnInit();
 
   }
 
