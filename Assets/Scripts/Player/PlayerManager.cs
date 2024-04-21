@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
   private static PlayerManager _instance;
   public int maxHP;
   public int currentHP;
+  public int attackDamage = 5;
   public PowerLevelController powerLevelController;
   public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
   private void Init()
   {
     currentHP = maxHP;
+    GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
     playerWizard = GameObject.Find("Wizard Parent");
     playerBall = GameObject.Find("Ball Parent");
@@ -70,6 +72,8 @@ public class PlayerManager : MonoBehaviour
   public void TakeDamage(int damage)
   {
     currentHP -= damage;
+
+    GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
     if (currentHP <= 0)
     {
       PlayerDies();

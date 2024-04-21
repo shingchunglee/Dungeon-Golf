@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
   public ProcedualGeneration procedualGeneration;
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
+
+  public TextMeshProUGUI HPText;
 
   private void Awake()
   {

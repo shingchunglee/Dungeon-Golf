@@ -75,6 +75,10 @@ public class MoveState : IPlayerActionState
 
   public void OnUpdate()
   {
-
+    if (Input.GetKeyDown(KeyCode.Period))
+    {
+      Debug.Log("Force End Move State.");
+      controller.SetState(controller.enemyTurnState);
+    }
   }
 }

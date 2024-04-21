@@ -635,7 +635,8 @@ public class ProcedualGeneration : MonoBehaviour
                         TileType.ENEMY_SPAWN => enemies,
                         _ => traps
                     };
-                    var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1 + 0.5f, y + y1 + 0.5f, 0), UnityEngine.Quaternion.identity);
+                    // var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1 + 0.5f, y + y1 + 0.5f, 0), UnityEngine.Quaternion.identity);
+                    var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
 
                     if (rule.GameObjectOutput[y1].row[x1].Type == TileType.EMPTY)
                     {

@@ -47,6 +47,12 @@ public class AimState : IPlayerActionState
     {
       OnMouseUp();
     }
+
+    if (Input.GetKeyDown(KeyCode.Period))
+    {
+      Debug.Log("Turn skipped.");
+      controller.SetState(controller.enemyTurnState);
+    }
   }
 
   private void OnMouseUp()

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Trap
   - Audio
+  - aimingIndicator
+  - Wizard
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,6 @@ TagManager:
   - Ball
   - PlayerModel
   - Lava
-  - 
-  - 
-  - 
   - 
   - 
   - 
