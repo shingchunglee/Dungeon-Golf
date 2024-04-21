@@ -40,7 +40,7 @@ public class EnemyUnit : MonoBehaviour//: MovingUnit
     protected void Start()
     {
         CurrentHP = MaxHP;
-        GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
+        // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
 
         enemyManager = GameManager.Instance.enemyManager;
         enemyManager.AddEnemyToList(this);

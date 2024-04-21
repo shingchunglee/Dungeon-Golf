@@ -178,8 +178,11 @@ MonoBehaviour:
   PlayerSpawn: {x: 0, y: 0}
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
-  - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
+  - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
+  - {fileID: 11400000, guid: 8d147e15520074065b2bba00534d9410, type: 2}
+  - {fileID: 11400000, guid: 5e47d587ce68c415799ee4e485c355b6, type: 2}
+  - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 45
   Height: 45
 --- !u!1 &91607097
@@ -5743,8 +5746,10 @@ MonoBehaviour:
   PlayerSpawn: {x: 0, y: 0}
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
-  - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
+  - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
+  - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
+  - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
   Width: 35
   Height: 35
 --- !u!1 &1438048597
@@ -5882,11 +5887,9 @@ MonoBehaviour:
   PlayerSpawn: {x: 0, y: 0}
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
-  - {fileID: 11400000, guid: cd58d83f090fe4ea7bbba838a6283aaf, type: 2}
+  - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
   - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
-  - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
-  - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 25
   Height: 25
 --- !u!1001 &1590591167
@@ -6014,8 +6017,11 @@ MonoBehaviour:
   PlayerSpawn: {x: 0, y: 0}
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
-  - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
+  - {fileID: 11400000, guid: cd58d83f090fe4ea7bbba838a6283aaf, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
+  - {fileID: 11400000, guid: 8d147e15520074065b2bba00534d9410, type: 2}
+  - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
+  - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 40
   Height: 40
 --- !u!1 &1926283877
@@ -16973,8 +16979,10 @@ MonoBehaviour:
   PlayerSpawn: {x: 0, y: 0}
   GoalSpawn: {x: 0, y: 0}
   convolutionRules:
-  - {fileID: 11400000, guid: ca16d152a87401a4faf98a0c910b5d9d, type: 2}
+  - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 0a62000de9b39420299fca6d49a80a4e, type: 2}
+  - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
+  - {fileID: 11400000, guid: beede2a2cc8cd4a3187eb60c1db838f8, type: 2}
   Width: 30
   Height: 30
 --- !u!1001 &4178338547437784878

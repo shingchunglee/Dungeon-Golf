@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a3930811a85f12459099873f79d7e41, type: 3}
-  m_Name: SlimeRule
+  m_Name: SlimeRule_Low
   m_EditorClassIdentifier: 
   Matrix:
   - row: 020000000200000002000000
@@ -25,4 +25,4 @@ MonoBehaviour:
     - gameObject: {fileID: 4109176297280435648, guid: 548f4c6cdc89946299038b208399c81e, type: 3}
       Type: 9
   - row: []
-  chance: 0.01
+  chance: 0.005

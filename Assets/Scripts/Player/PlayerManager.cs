@@ -52,9 +52,10 @@ public class PlayerManager : MonoBehaviour
 
   private void Start()
   {
+    currentHP = maxHP;
   }
 
-  public void PlayerSpawnInit() 
+  public void PlayerSpawnInit()
   {
     Vector2 playerSpawn = GameManager.Instance
         .proceduralGenerationPresets[GameManager.Instance.procGenLevelIndex].PlayerSpawn;
@@ -66,7 +67,8 @@ public class PlayerManager : MonoBehaviour
 
   public void Init()
   {
-    currentHP = maxHP;
+
+    UpdateHPText();
 
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
 
@@ -87,11 +89,16 @@ public class PlayerManager : MonoBehaviour
   {
     currentHP -= damage;
 
-    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    UpdateHPText();
     if (currentHP <= 0)
     {
       PlayerDies();
     }
+  }
+
+  public void UpdateHPText()
+  {
+    if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
   }
 
   public void TeleportPlayerToBall()
