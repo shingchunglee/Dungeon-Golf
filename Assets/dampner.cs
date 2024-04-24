@@ -2,32 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dampner : EnemyBehaviour
+public class dampner : MonoBehaviour
 {
-
-    public PhysicsMaterial2D dampenerMaterial;
-    private Collider2D collider;
-
+    // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider2D>();
         
-        collider.sharedMaterial = null;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    // Update is called once per frame
+    void Update()
     {
-        if (other.CompareTag("ball"))
-        {
-            
-            collider.sharedMaterial = dampenerMaterial;
-            collider.enabled = false; 
-            collider.enabled = true;
-        }
+        
     }
-
-    
-    
 }
-
-
