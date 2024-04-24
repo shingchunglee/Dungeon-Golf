@@ -249,6 +249,7 @@ public class EnemyUnit : MonoBehaviour
     {
         CurrentHP -= PlayerManager.Instance.attackDamage;
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
         if (particleEffect != null)
         {
        //  particleEffect.Stop(); // Stop to clear any ongoing effects

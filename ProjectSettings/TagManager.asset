@@ -10,6 +10,7 @@ TagManager:
   - Audio
   - aimingIndicator
   - Wizard
+  - Music
   layers:
   - Default
   - TransparentFX
