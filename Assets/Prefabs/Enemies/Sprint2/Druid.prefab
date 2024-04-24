@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6547848980124582070}
   - component: {fileID: 6143366565199149580}
   - component: {fileID: 6685963591427696749}
-  - component: {fileID: 8900181681819359959}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Druid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,14 +52,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   enemyName: 
-  MaxHP: 10
+  MaxHP: 15
   CurrentHP: 0
-  moveAttacksPerTurn: 3
-  attackDamage: 5
+  moveAttacksPerTurn: 4
+  attackDamage: 4
   isNonSolid: 1
   SpriteObj: {fileID: 6269775176681695175}
-  enemyBehaviours:
-  - {fileID: 8900181681819359959}
   attackMoveDistance: 0.4
   attackMoveTime: 0.1
 --- !u!50 &6685963591427696749
@@ -90,19 +87,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8900181681819359959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4109176297280435648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c039abcd082d94ba8993ec9a2c263b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowDownMultiplier: 0.6
 --- !u!1 &4805226250129201447
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06043914, y: -0.0026504397}
+  m_Offset: {x: -0.025148481, y: -0.0065716505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -178,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87351376, y: 0.8673278}
+  m_Size: {x: 0.9440951, y: 0.9928057}
   m_EdgeRadius: 0
 --- !u!1 &6269775176681695175
 GameObject:
@@ -190,7 +174,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4288969133451909433}
   - component: {fileID: 3962710460485761964}
-  - component: {fileID: 9057430262386805797}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -254,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2074199456, guid: 7536c8527f2398a4ab575c97cd0e846a, type: 3}
+  m_Sprite: {fileID: -39384373, guid: 920f977f8fce7494f8b0794c48fc7ec0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,24 +248,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &9057430262386805797
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269775176681695175}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f23e614718556d42bf5f55b846d6b5f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
 
-public class EnemyUnit : MonoBehaviour//: MovingUnit
+public class EnemyUnit : MonoBehaviour
 {
 
     public float moveTime = 0.1f;       //Time it will take object to move, in seconds.
@@ -171,9 +171,14 @@ public class EnemyUnit : MonoBehaviour//: MovingUnit
         if (hit.collider.tag == "Wizard" &&
             !canMove)
         {
-            PlayerManager.Instance.TakeDamage(attackDamage);
-            StartCoroutine(AttackAnimation(xDir, yDir));
+            AttackPlayer(xDir, yDir);
         }
+    }
+
+    protected virtual void AttackPlayer(int xDir, int yDir)
+    {
+        PlayerManager.Instance.TakeDamage(attackDamage);
+        StartCoroutine(AttackAnimation(xDir, yDir));
     }
 
     public float attackMoveDistance = 0.4f;
