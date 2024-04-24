@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 302351273}
   - component: {fileID: 302351272}
   - component: {fileID: 302351271}
+  - component: {fileID: 302351274}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -233,6 +234,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &302351274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302351270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af11bea5aa47545b38e5674f3904a8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSpeed: 10
 --- !u!1 &340978535
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimingIndicator: {fileID: 340978537}
+  powerCanvas: {fileID: 0}
+  vairanceCanvas: {fileID: 0}
 --- !u!114 &951902021 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1615442038972375194, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -561,6 +577,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2416897794108495814, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336436814823847216, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -714,9 +734,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5217a7c316995471386325e49bf4987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyParentObj: {fileID: 0}
   isCursorOverHUDElement: 0
-  procedualGeneration: {fileID: 1459231822}
+  enemyManager: {fileID: 0}
+  proceduralGenerationPresets: []
+  procGenLevelIndex: 0
   itemRandomiser: {fileID: 1459231821}
+  golfAimType: 1
+  settingsCanvas: {fileID: 0}
+  HPText: {fileID: 0}
 --- !u!4 &1459231824
 Transform:
   m_ObjectHideFlags: 0
