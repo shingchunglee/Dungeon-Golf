@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -50,10 +52,48 @@ public class GridManager : MonoBehaviour
     // The origin can go below this if the tile map has tiles below [0,0].
     public Vector2Int gridOrigin = Vector2Int.zero;
 
+    public GameObject marker;
+
+    public GameObject objectToCalculatePathFrom;
+    public GameObject objectToCalculatePathTo;
+
     private void Start()
     {
         ScanMap();
         LogGrid();
+
+        TestPathfinding();
+
+
+    }
+
+    public void TestPathfinding()
+    {
+        var worldPosObjFrom = new Vector2Int(
+                    Mathf.FloorToInt(objectToCalculatePathFrom.transform.position.x),
+                    Mathf.FloorToInt(objectToCalculatePathFrom.transform.position.y)
+                );
+
+        var worldPosObjTo = new Vector2Int(
+            Mathf.FloorToInt(objectToCalculatePathTo.transform.position.x),
+            Mathf.FloorToInt(objectToCalculatePathTo.transform.position.y)
+        );
+
+        var node1 = GetNodeByWorldPosition(worldPosObjFrom);
+        var node2 = GetNodeByWorldPosition(worldPosObjTo);
+
+        var pathToPrint = FindPath(node1, node2);
+
+        foreach (var node in pathToPrint)
+        {
+            var worldPos = GetWorldPositionByNode(node);
+
+            Debug.Log($"Path node: {worldPos}");
+
+            Instantiate(marker, new Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation);
+
+
+        }
     }
 
     private void ScanMap()
@@ -90,7 +130,7 @@ public class GridManager : MonoBehaviour
                 }
             }
 
-            grid = new Grid(gridSize);
+            grid = new Grid(gridSize, gridOrigin);
         }
     }
 
@@ -189,6 +229,46 @@ public class GridManager : MonoBehaviour
 
     }
 
+    public Node GetNodeByWorldPosition(Vector2Int position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return grid.nodes[position.x + offsetX, position.y + offsetY];
+    }
+
+    public Node GetNodeByWorldPosition(int xPos, int yPos)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return grid.nodes[xPos + offsetX, yPos + offsetY];
+    }
+
+    public Vector2Int GetWorldPositionByNode(Node node)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(node.position.x - offsetX, node.position.y - offsetY);
+    }
+
+    public Vector2Int GetWorldPositionByGridPosition(int xPos, int yPos)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(xPos - offsetX, yPos - offsetY);
+    }
+
+    public Vector2Int GetWorldPositionByGridPosition(Vector2Int position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(position.x - offsetX, position.y - offsetY);
+    }
+
     public void AddEntityByWorldPosition(EntityType type, Vector2Int position)
     {
         int offsetX = Mathf.Abs(gridOrigin.x);
@@ -199,7 +279,7 @@ public class GridManager : MonoBehaviour
 
     private void LogGrid()
     {
-        Debug.Log($"Largest size tilemap is [{gridSize}].");
+        Debug.Log($"Largest size tilemap is [{gridSize}]. Grid origin is: {gridOrigin}");
 
         LogGridDungeon();
         LogGridEntities();
@@ -303,79 +383,66 @@ public class GridManager : MonoBehaviour
             mapString);
     }
 
-    public List<Node> GetWalkableNeighbourNodes(Node node)
+
+    /// <summary>
+    /// 
+    ///  From Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
+    /// </summary>
+    /// <param name="startNode"></param>
+    /// <param name="targetNode"></param>
+    /// <returns></returns>
+    public static List<Node> FindPath(Node startNode, Node targetNode)
     {
-        List<Node> neighbours = new List<Node>();
+        var toSearch = new List<Node>() { startNode };
+        var processed = new List<Node>();
 
-        // This could be made more efficient
-        var node1 = CheckDirectionForNode(node, 1, 1);
-        if (node1 != null) neighbours.Add(node1);
-
-        var node2 = CheckDirectionForNode(node, 0, 1);
-        if (node2 != null) neighbours.Add(node2);
-
-        var node3 = CheckDirectionForNode(node, -1, 1);
-        if (node3 != null) neighbours.Add(node3);
-
-        var node4 = CheckDirectionForNode(node, 1, 0);
-        if (node4 != null) neighbours.Add(node4);
-
-        var node5 = CheckDirectionForNode(node, -1, 0);
-        if (node5 != null) neighbours.Add(node4);
-
-        var node6 = CheckDirectionForNode(node, 1, -1);
-        if (node6 != null) neighbours.Add(node6);
-
-        var node7 = CheckDirectionForNode(node, 0, -1);
-        if (node7 != null) neighbours.Add(node7);
-
-        var node8 = CheckDirectionForNode(node, -1, -1);
-        if (node8 != null) neighbours.Add(node8);
-
-        return neighbours;
-    }
-
-# nullable enable
-
-    private Node? CheckDirectionForNode(Node node, int xDir, int yDir)
-    {
-        try
+        while (toSearch.Any())
         {
-            var nodeNeighbour = grid.nodes[node.position.x + xDir, node.position.y + yDir];
-
-            if (nodeNeighbour.IsWalkable())
+            var current = toSearch[0];
+            foreach (var t in toSearch)
             {
-                return nodeNeighbour;
+                if (t.F < current.F || t.F == current.F && t.H < current.H)
+                {
+                    current = t;
+                }
             }
-            else return null;
+
+            processed.Add(current);
+            toSearch.Remove(current);
+
+            if (current == targetNode)
+            {
+                var currentPathTile = targetNode;
+                var path = new List<Node>();
+                while (currentPathTile != startNode)
+                {
+                    path.Add(currentPathTile);
+                    currentPathTile = currentPathTile.Connection;
+                }
+
+                return path;
+            }
+
+            foreach (var neighbor in current.Neighbors
+                        .Where(t => t.IsWalkable() && !processed.Contains(t)))
+            {
+                bool inSearch = toSearch.Contains(neighbor);
+
+                var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
+
+                if (!inSearch || costToNeighbor < neighbor.G)
+                {
+                    neighbor.SetG(costToNeighbor);
+                    neighbor.SetConnection(current);
+
+                    if (!inSearch)
+                    {
+                        neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
+                        toSearch.Add(neighbor);
+                    }
+                }
+            }
         }
-        catch
-        {
-            Debug.Log("Direction couldn't be found. Maybe it's outside of grid limit.");
-            return null;
-        }
+        return null;
     }
-
-
-    // /// <summary>
-    // /// 
-    // ///  From Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
-    // /// </summary>
-    // /// <param name="startNode"></param>
-    // /// <param name="targetNode"></param>
-    // /// <returns></returns>
-    // public List<Node> FindPath(Node startNode, Node targetNode)
-    // {
-    //     var toSearch = new List<Node>() { startNode };
-    //     var processed = new List<Node>();
-
-    //     while (toSearch.Any())
-    //     {
-    //         var current = toSearch[0];
-    //         foreach (var t in toSearch)
-    //         {
-    //             if ()
-    //         }
-    //     }
-    // }
 }

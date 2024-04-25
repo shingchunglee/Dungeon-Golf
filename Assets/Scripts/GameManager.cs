@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+  public bool isProceduralGen = true;
   public GameObject enemyParentObj;
   public bool isCursorOverHUDElement = false;
   public EnemyManager enemyManager;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
       return _instance;
     }
   }
+
+  public GridManager gridManager;
 
   private string gameOverSceneName = "GameOver";
 
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     HPText = GameObject.Find("HP Text").GetComponent<TextMeshProUGUI>();
 
+    gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
 
@@ -78,13 +82,15 @@ public class GameManager : MonoBehaviour
         proceduralGenerationPresets.Add(procGen);
       }
     }
-    proceduralGenerationPresets[procGenLevelIndex].Main();
+    if (isProceduralGen)
+    {
+      proceduralGenerationPresets[procGenLevelIndex].Main();
 
-    PlayerManager.Instance.PlayerSpawnInit();
+      PlayerManager.Instance.PlayerSpawnInit();
 
-    HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
-    holeGoal.GoalSpawnInit();
-
+      HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
+      holeGoal.GoalSpawnInit();
+    }
   }
 
   private void Update()
