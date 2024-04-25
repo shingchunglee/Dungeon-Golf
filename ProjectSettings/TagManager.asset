@@ -45,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background_1
     uniqueID: 2889503287
     locked: 0
@@ -60,8 +63,11 @@ TagManager:
   - name: Collide_Objects
     uniqueID: 1210364565
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Water tile
+    uniqueID: 3550410219
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 3529237947
     locked: 0
   - name: Player
     uniqueID: 3582021517
