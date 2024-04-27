@@ -31,6 +31,7 @@ public class EnemyUnit : MonoBehaviour
     [SerializeField] HealthBar healthBar;
    // [SerializeField] ParticleSystem particleEffect;
    [SerializeField] Animator enemyHurt;
+   [SerializeField] Animator enemyDie;
 
     protected void Awake()
     {
@@ -284,8 +285,7 @@ public class EnemyUnit : MonoBehaviour
 
     void EnemyDies()
     {
-        enemyManager.RemoveEnemyFromList(this);
-        Destroy(gameObject);
+         StartCoroutine(enemyDeathAnim());
     }
 
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
@@ -317,9 +317,19 @@ public class EnemyUnit : MonoBehaviour
 
     private IEnumerator ShowEnemyHurt()
 {
-    enemyHurt.gameObject.SetActive(true); // Activate the damage animation GameObject
-    yield return new WaitForSeconds(0.4f);   // Wait for 2 seconds
-    enemyHurt.gameObject.SetActive(false); // Deactivate the damage animation GameObject
+    enemyHurt.gameObject.SetActive(true); 
+    yield return new WaitForSeconds(0.4f);  
+    enemyHurt.gameObject.SetActive(false); 
+}
+
+ private IEnumerator enemyDeathAnim()
+{
+    enemyDie.gameObject.SetActive(true); 
+    yield return new WaitForSeconds(0.5f);  
+    enemyDie.gameObject.SetActive(false); 
+
+    enemyManager.RemoveEnemyFromList(this);
+    Destroy(gameObject);
 }
 
 
