@@ -91,6 +91,7 @@ public class PlayerManager : MonoBehaviour
   public void TakeDamage(int damage)
   {
     currentHP -= damage;
+     SoundManager.Instance.PlaySFX(SoundManager.Instance.playerDamage);
 
     UpdateHPText();
     if (currentHP <= 0)
