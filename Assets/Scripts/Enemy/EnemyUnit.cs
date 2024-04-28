@@ -28,16 +28,33 @@ public class EnemyUnit : MonoBehaviour
 
     private float closeEnough = 0.1f;
 
+    [SerializeField] HealthBar healthBar;
+    [SerializeField] ParticleSystem particleEffect;
+
     protected void Awake()
     {
         ID = gameObject.GetInstanceID();
+
+        //healthbar
+        healthBar = GetComponentInChildren<HealthBar>();
+         if (healthBar == null)
+    {
+        Debug.LogError("HealthBar component not found on " + gameObject.name);
+    }
+
+        //particle system
+         particleEffect = GetComponentInChildren<ParticleSystem>();
+        if (particleEffect == null)
+        {
+            Debug.LogError("No Particle System found on " + gameObject.name);
+        }
     }
 
     protected void Start()
     {
         CurrentHP = MaxHP;
         // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
-
+        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         enemyManager = GameManager.Instance.enemyManager;
         enemyManager.AddEnemyToList(this);
 
@@ -231,6 +248,13 @@ public class EnemyUnit : MonoBehaviour
     void TakeDamageFromPlayer()
     {
         CurrentHP -= PlayerManager.Instance.attackDamage;
+        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
+        if (particleEffect != null)
+        {
+       //  particleEffect.Stop(); // Stop to clear any ongoing effects
+            particleEffect.Play();
+        }
         CheckIfDead();
     }
 

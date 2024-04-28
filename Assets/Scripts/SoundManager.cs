@@ -2,12 +2,43 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-  [SerializeField] AudioSource musicSource;
-  [SerializeField] AudioSource SFXSource;
 
   public AudioClip background;
   public AudioClip stroke;
   public AudioClip clubCollect;
+
+  public AudioClip enemyDamage;
+
+
+  [SerializeField] AudioSource musicSource;
+  [SerializeField] AudioSource SFXSource;
+
+  public static SoundManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+            PlayBackgroundMusic();
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); 
+        }
+    }
+  
+  
+  public void PlayBackgroundMusic()
+    {
+        if (musicSource.clip != background) 
+        {
+            musicSource.clip = background; 
+            musicSource.loop = true; 
+            musicSource.Play(); 
+        }
+    }
 
   public void PlaySFX(AudioClip clip)
   {
