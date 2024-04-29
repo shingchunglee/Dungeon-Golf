@@ -19,12 +19,12 @@ public class AimState : IPlayerActionState
       PlayerManager.Instance.golfAimDrag.enabled = false;
     }
     validClick = false;
-    Debug.Log("Player Entered Action State");
+    // Debug.Log("Player Entered Action State");
 
   }
   public void OnExit()
   {
-    Debug.Log("Player Exited Aim State");
+    // Debug.Log("Player Exited Aim State");
   }
 
   public void OnFixedUpdate()

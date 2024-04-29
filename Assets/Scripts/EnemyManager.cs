@@ -23,7 +23,12 @@ public class EnemyManager : MonoBehaviour
         //Index is -1 if the FindIndex call above didn't find anything
         if (index != -1)
         {
+            var enemyLocation = enemyUnitsOnLevel[index].PositionOnWorldGrid;
+            var nodeAtLocation = GameManager.Instance.gridManager.GetNodeByWorldPosition(enemyLocation);
+            nodeAtLocation.RemoveEntityType(EntityType.ENEMY);
+
             enemyUnitsOnLevel.RemoveAt(index);
+
         }
         else
         {

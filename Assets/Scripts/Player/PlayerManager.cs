@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
   public GameObject playerWizard;
+  public Rigidbody2D wizardRB;
   public GameObject playerBall;
+  public Rigidbody2D ballRB;
   private static PlayerManager _instance;
   public int maxHP;
   public int currentHP;
@@ -12,6 +15,18 @@ public class PlayerManager : MonoBehaviour
   public VarianceLevelController varianceLevelController;
   public InventoryController inventoryController;
   public Transform playerTransform;
+
+  public Vector2Int WizardWorldPositionOnGrid
+  {
+    get
+    {
+      var position = new Vector2Int(
+          Mathf.FloorToInt(wizardRB.position.x),
+          Mathf.FloorToInt(wizardRB.position.y)
+      );
+      return position;
+    }
+  }
   private Vector3 lastShotPosition;
 
   public int voidDamage = 15;
@@ -34,6 +49,16 @@ public class PlayerManager : MonoBehaviour
         }
       }
       return _instance;
+    }
+  }
+
+  public bool IsBallMoving
+  {
+    get
+    {
+      if (ballRB.velocity.magnitude > 0.5f)
+        return true;
+      else return false;
     }
   }
 
@@ -82,6 +107,9 @@ public class PlayerManager : MonoBehaviour
     varianceLevelController = player.GetComponentInChildren<VarianceLevelController>();
     inventoryController = player.GetComponentInChildren<InventoryController>();
     actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
+
+    ballRB = playerBall.GetComponent<Rigidbody2D>();
+    wizardRB = playerWizard.GetComponent<Rigidbody2D>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();

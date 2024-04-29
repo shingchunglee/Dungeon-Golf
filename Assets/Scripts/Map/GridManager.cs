@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -54,47 +55,18 @@ public class GridManager : MonoBehaviour
 
     public GameObject marker;
 
-    public GameObject objectToCalculatePathFrom;
-    public GameObject objectToCalculatePathTo;
+    public GameObject startObjectToCalculatePath;
+    public GameObject TargetObjectToCalculatePathTo;
 
     private void Start()
     {
         ScanMap();
-        LogGrid();
 
-        TestPathfinding();
-
-
+        // TestLogGrid();
+        // TestPathfinding();
     }
 
-    public void TestPathfinding()
-    {
-        var worldPosObjFrom = new Vector2Int(
-                    Mathf.FloorToInt(objectToCalculatePathFrom.transform.position.x),
-                    Mathf.FloorToInt(objectToCalculatePathFrom.transform.position.y)
-                );
 
-        var worldPosObjTo = new Vector2Int(
-            Mathf.FloorToInt(objectToCalculatePathTo.transform.position.x),
-            Mathf.FloorToInt(objectToCalculatePathTo.transform.position.y)
-        );
-
-        var node1 = GetNodeByWorldPosition(worldPosObjFrom);
-        var node2 = GetNodeByWorldPosition(worldPosObjTo);
-
-        var pathToPrint = FindPath(node1, node2);
-
-        foreach (var node in pathToPrint)
-        {
-            var worldPos = GetWorldPositionByNode(node);
-
-            Debug.Log($"Path node: {worldPos}");
-
-            Instantiate(marker, new Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation);
-
-
-        }
-    }
 
     private void ScanMap()
     {
@@ -146,7 +118,6 @@ public class GridManager : MonoBehaviour
         ScanTilemapByLayer(map_chest, entityType: EntityType.CHEST);
         ScanTilemapByLayer(map_enemy_spawn, entityType: EntityType.ENEMY_SPAWN);
     }
-
 
     /// <summary>
     /// Scans a tilemap and adds a FloorType or an EntityType to the Node at the corresponding location for each
@@ -277,7 +248,7 @@ public class GridManager : MonoBehaviour
         grid.nodes[position.x + offsetX, position.y + offsetY].entitiesOnTile.Add(type);
     }
 
-    private void LogGrid()
+    private void TestLogGrid()
     {
         Debug.Log($"Largest size tilemap is [{gridSize}]. Grid origin is: {gridOrigin}");
 
@@ -385,13 +356,15 @@ public class GridManager : MonoBehaviour
 
 
     /// <summary>
+    /// This generates a list of Nodes that represents the path from a starting node to a target node.
+    /// The first Node on the list is the starting node, the last is the target node, and the rest are path.
     /// 
-    ///  From Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
+    ///  Adapted from Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
     /// </summary>
     /// <param name="startNode"></param>
     /// <param name="targetNode"></param>
     /// <returns></returns>
-    public static List<Node> FindPath(Node startNode, Node targetNode)
+    public static List<Node> FindPath(Node startNode, Node targetNode, bool doEnemiesBlock)
     {
         var toSearch = new List<Node>() { startNode };
         var processed = new List<Node>();
@@ -410,6 +383,8 @@ public class GridManager : MonoBehaviour
             processed.Add(current);
             toSearch.Remove(current);
 
+
+            // This is section assigns a list of Nodes to a list that defines the path.
             if (current == targetNode)
             {
                 var currentPathTile = targetNode;
@@ -420,29 +395,112 @@ public class GridManager : MonoBehaviour
                     currentPathTile = currentPathTile.Connection;
                 }
 
+                // Calculation doesn't add start node to list, so it is manually added here.
+                path.Add(startNode);
+
+                // Reverse path so it starts with startNode
+                path.Reverse();
+
+                // Add target node so list ends with targetNode.
+                // path.Add(targetNode);
+
                 return path;
             }
 
-            foreach (var neighbor in current.Neighbors
-                        .Where(t => t.IsWalkable() && !processed.Contains(t)))
+            if (doEnemiesBlock)
             {
-                bool inSearch = toSearch.Contains(neighbor);
-
-                var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
-
-                if (!inSearch || costToNeighbor < neighbor.G)
+                foreach (var neighbor in current.Neighbors
+                                        .Where(t => t.IsWalkableForEnemyAtLocation(startNode.position) &&
+                                        !processed.Contains(t)))
                 {
-                    neighbor.SetG(costToNeighbor);
-                    neighbor.SetConnection(current);
+                    bool inSearch = toSearch.Contains(neighbor);
 
-                    if (!inSearch)
+                    var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
+
+                    if (!inSearch || costToNeighbor < neighbor.G)
                     {
-                        neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
-                        toSearch.Add(neighbor);
+                        neighbor.SetG(costToNeighbor);
+                        neighbor.SetConnection(current);
+
+                        if (!inSearch)
+                        {
+                            neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
+                            toSearch.Add(neighbor);
+                        }
                     }
                 }
             }
+            else
+            {
+                foreach (var neighbor in current.Neighbors
+                                        .Where(t => t.IsWalkableIgnoringEnemies() &&
+                                        !processed.Contains(t)))
+                {
+                    bool inSearch = toSearch.Contains(neighbor);
+
+                    var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
+
+                    if (!inSearch || costToNeighbor < neighbor.G)
+                    {
+                        neighbor.SetG(costToNeighbor);
+                        neighbor.SetConnection(current);
+
+                        if (!inSearch)
+                        {
+                            neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
+                            toSearch.Add(neighbor);
+                        }
+                    }
+                }
+            }
+
+
         }
         return null;
+    }
+
+    public void TestPathfinding()
+    {
+        var worldPosStartObj = new Vector2Int(
+                    Mathf.FloorToInt(startObjectToCalculatePath.transform.position.x),
+                    Mathf.FloorToInt(startObjectToCalculatePath.transform.position.y)
+                );
+
+        var worldPosTargetObj = new Vector2Int(
+            Mathf.FloorToInt(TargetObjectToCalculatePathTo.transform.position.x),
+            Mathf.FloorToInt(TargetObjectToCalculatePathTo.transform.position.y)
+        );
+
+        var node2 = GetNodeByWorldPosition(worldPosTargetObj);
+        var node1 = GetNodeByWorldPosition(worldPosStartObj);
+
+        var pathToPrint = FindPath(node1, node2, true);
+
+        DrawPathIndicators(pathToPrint);
+    }
+
+    private List<GameObject> pathMarkers = new List<GameObject>();
+
+    public void DrawPathIndicators(List<Node> pathToPrint)
+    {
+        foreach (var obj in pathMarkers)
+        {
+            Destroy(obj);
+        }
+
+        if (pathToPrint == null)
+        {
+            Debug.Log("Can't draw path because path doesn't exist.");
+            return;
+        }
+
+        foreach (var node in pathToPrint)
+        {
+            var worldPos = GetWorldPositionByNode(node);
+
+            // Debug.Log($"Path node: {worldPos}");
+
+            pathMarkers.Add(Instantiate(marker, new Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation));
+        }
     }
 }

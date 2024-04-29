@@ -70,6 +70,55 @@ public class Node
 
     }
 
+    public bool IsWalkableIgnoringEnemies()
+    {
+        if (floorType == FloorType.WALL ||
+            floorType == FloorType.OBSTACLE ||
+            floorType == FloorType.VOID)
+        {
+            return false;
+        }
+
+        if (entitiesOnTile.Contains(EntityType.CHEST) ||
+            entitiesOnTile.Contains(EntityType.TRAP_CHEST))
+        {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public bool IsWalkableForEnemyAtLocation(Vector2Int enemyWorldPosition)
+    {
+        if (floorType == FloorType.WALL ||
+            floorType == FloorType.OBSTACLE ||
+            floorType == FloorType.VOID)
+        {
+            return false;
+        }
+
+        var nodeWorldPosition = GameManager.Instance.gridManager.GetWorldPositionByNode(this);
+        bool isEnemyOnNode;
+
+        if (nodeWorldPosition == enemyWorldPosition) isEnemyOnNode = true;
+        else isEnemyOnNode = false;
+
+        if (entitiesOnTile.Contains(EntityType.ENEMY) &&
+                !isEnemyOnNode)
+        {
+            return false;
+        }
+
+        if (entitiesOnTile.Contains(EntityType.CHEST) ||
+            entitiesOnTile.Contains(EntityType.TRAP_CHEST))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public int GetDistanceToOtherNode(Node other)
     {
         var thisNodeValue = this.position.x + this.position.y;
@@ -149,5 +198,15 @@ public class Node
             Debug.Log("Direction couldn't be found. Maybe it's outside of grid limit.");
             return null;
         }
+    }
+
+    public void ResetEntities()
+    {
+        entitiesOnTile = new List<EntityType>();
+    }
+
+    public void RemoveEntityType(EntityType entityType)
+    {
+        entitiesOnTile.Remove(entityType);
     }
 }
