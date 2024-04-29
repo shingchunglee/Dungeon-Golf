@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     public float moveSpeed = 5.0f; 
-    public Transform golfBall; 
+    public Transform golfBall;
+    private bool isFreeCamera = false;
 
     void Update()
     {
@@ -11,18 +12,22 @@ public class CameraMove : MonoBehaviour
         
         if (Input.GetKey(KeyCode.W))
         {
+            isFreeCamera = true;
             move.y += 1;
         }
         if (Input.GetKey(KeyCode.S))
         {
+            isFreeCamera = true;
             move.y -= 1;
         }
         if (Input.GetKey(KeyCode.A))
         {
+            isFreeCamera = true;
             move.x -= 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
+            isFreeCamera = true;
             move.x += 1;
         }
 
@@ -30,7 +35,14 @@ public class CameraMove : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            isFreeCamera = false;
             ResetCameraPosition();
+        }
+
+        if (!isFreeCamera)
+        {
+            transform.position = new Vector3(PlayerManager.Instance.playerBall.transform.position.x,
+                PlayerManager.Instance.playerBall.transform.position.y, transform.position.z);
         }
     }
 
