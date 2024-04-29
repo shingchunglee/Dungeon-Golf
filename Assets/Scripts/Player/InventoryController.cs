@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
   [SerializeField]
   private List<InventoryClub> clubs = new();
+  [SerializeField]
+  public InventoryConsumables consumables = new();
   private int selectedClubIndex = 0;
   public static event Action<Club> OnClubChanged;
 
   private void Start()
   {
     AddClub(ClubType.Iron7);
-    AddClub(ClubType.LegendaryClub);
-    // clubs.Add(ClubFactory.Factory(ClubType.Iron7));
-    // clubs.Add(ClubFactory.Factory(ClubType.LegendaryClub));
+    // AddClub(ClubType.LegendaryClub);
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 
@@ -44,6 +45,7 @@ public class InventoryController : MonoBehaviour
   }
 }
 
+[Serializable]
 public struct InventoryClub
 {
   public ClubType Type;
@@ -55,3 +57,33 @@ public struct InventoryClub
     Club = club;
   }
 }
+
+[Serializable]
+public class InventoryConsumables
+{
+  private readonly Dictionary<Consumables, int> consumables = new();
+
+  public InventoryConsumables()
+  {
+    foreach (Consumables consumable in Enum.GetValues(typeof(Consumables)))
+    {
+      consumables.Add(consumable, 0);
+    }
+  }
+
+  public void AddConsumable(Consumables consumableType, int amount)
+  {
+    consumables[consumableType] += amount;
+  }
+
+  public void ConsumeConsumable(Consumables consumableType, int amount)
+  {
+    consumables[consumableType] -= amount;
+  }
+
+  public int GetConsumable(Consumables consumableType)
+  {
+    return consumables[consumableType];
+  }
+}
+

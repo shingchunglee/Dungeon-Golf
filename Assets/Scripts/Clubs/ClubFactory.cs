@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+// [Serializable]
 public enum ClubType
 {
   Iron7,

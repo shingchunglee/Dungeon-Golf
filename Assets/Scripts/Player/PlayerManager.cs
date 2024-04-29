@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
   public int voidDamage = 15;
 
   public PlayerActionStateController actionStateController;
-  // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
   public GolfAimDrag golfAimDrag;
   public static PlayerManager Instance
@@ -149,8 +148,4 @@ public class PlayerManager : MonoBehaviour
     GameManager.Instance.GameOver();
   }
 
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    actionStateController.OnTriggerEnter2D(other);
-  }
 }
