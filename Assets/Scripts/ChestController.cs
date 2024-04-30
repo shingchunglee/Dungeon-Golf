@@ -22,6 +22,7 @@ public class ChestController : MonoBehaviour
         {
             PlayerManager.Instance.inventoryController.consumables.AddConsumable(consumable.Key, consumable.Value);
             OnConsumableAdded?.Invoke(consumable.Key);
+            PlayerManager.Instance.inventoryController.UpdateConsumable();
         }
 
         if (clubType == null) return;

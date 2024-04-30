@@ -51,6 +51,11 @@ public class PlayerManager : MonoBehaviour
     Init();
   }
 
+  private void Start()
+  {
+    HealthPotion.OnConsume += RestoreHealth;
+  }
+
   private void GameStartProcessing()
   {
     DontDestroyOnLoad(gameObject);
@@ -96,6 +101,12 @@ public class PlayerManager : MonoBehaviour
     {
       PlayerDies();
     }
+  }
+
+  public void RestoreHealth()
+  {
+    currentHP += 5;
+    UpdateHPText();
   }
 
   public void UpdateHPText()
