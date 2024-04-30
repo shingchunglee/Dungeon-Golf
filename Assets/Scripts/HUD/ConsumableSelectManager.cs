@@ -14,4 +14,9 @@ public class ConsumableSelectManager : MonoBehaviour
   {
     consumableNameText.text = consumable.Type.ToString() + ":" + consumable.Amount.ToString();
   }
+
+  public void NextConsumable()
+  {
+    PlayerManager.Instance.inventoryController.GetNextConsumable();
+  }
 }

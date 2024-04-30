@@ -84,12 +84,13 @@ public class PlayerManager : MonoBehaviour
     var player = GameObject.Find("Player");
     powerLevelController = player.GetComponentInChildren<PowerLevelController>();
     varianceLevelController = player.GetComponentInChildren<VarianceLevelController>();
-    inventoryController = player.GetComponentInChildren<InventoryController>();
+    inventoryController = GetComponentInChildren<InventoryController>();
     actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
+    inventoryController.UpdateUI();
   }
 
   public void TakeDamage(int damage)

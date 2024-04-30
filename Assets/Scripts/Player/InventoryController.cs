@@ -21,9 +21,15 @@ public class InventoryController : MonoBehaviour
   {
     AddClub(ClubType.Iron7);
     // AddClub(ClubType.LegendaryClub);
+    UpdateUI();
+  }
+
+  public void UpdateUI()
+  {
     OnClubChanged?.Invoke(GetSelectedClub());
 
-    selectedConsumable = new(0, consumables.GetConsumable(0));
+    int selected = selectedConsumable?.Type == null ? 0 : (int)selectedConsumable.Type;
+    selectedConsumable = new((Consumables)selected, consumables.GetConsumable((Consumables)selected));
     OnConsumableChanged?.Invoke(selectedConsumable);
   }
 
