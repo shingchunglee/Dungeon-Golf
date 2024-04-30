@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 public class EnemyUnit : MonoBehaviour
 {
-
     private float moveTime = 0.01f;           //Time it will take object to move, in seconds.
 
     private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
