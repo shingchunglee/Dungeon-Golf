@@ -19,8 +19,16 @@ public class InventoryController : MonoBehaviour
 
   private void Awake()
   {
-    AddClub(ClubType.Iron7);
+    Init();
     // AddClub(ClubType.LegendaryClub);
+  }
+
+  public void Init()
+  {
+    if (clubs.Count == 0)
+    {
+      AddClub(ClubType.Iron7);
+    }
     UpdateUI();
   }
 

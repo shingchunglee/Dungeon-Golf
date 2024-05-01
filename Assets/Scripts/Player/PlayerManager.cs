@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviour
   public PlayerActionStateController actionStateController;
   public GolfAim golfAim;
   public GolfAimDrag golfAimDrag;
+
+  [SerializeField] HealthBar healthBar;
+
   public static PlayerManager Instance
   {
     get
@@ -49,6 +52,12 @@ public class PlayerManager : MonoBehaviour
 
     GameStartProcessing();
     Init();
+
+    // healthBar = GetComponentInChildren<HealthBar>();
+    //      if (healthBar == null)
+    // {
+    //     Debug.LogError("HealthBar component not found on " + gameObject.name);
+    // }
   }
 
   private void Start()
@@ -60,6 +69,7 @@ public class PlayerManager : MonoBehaviour
   {
     DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void PlayerSpawnInit()
@@ -90,13 +100,15 @@ public class PlayerManager : MonoBehaviour
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
+
+    inventoryController.Init();
     inventoryController.UpdateUI();
   }
 
   public void TakeDamage(int damage)
   {
     currentHP -= damage;
-     SoundManager.Instance.PlaySFX(SoundManager.Instance.playerDamage);
+    SoundManager.Instance.PlaySFX(SoundManager.Instance.playerDamage);
 
     UpdateHPText();
     if (currentHP <= 0)
@@ -114,12 +126,14 @@ public class PlayerManager : MonoBehaviour
   public void UpdateHPText()
   {
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void TeleportPlayerToBall()
   {
     //TODO this shouldn't be here but it works.
     UpdateHPText();
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
 
     var playerRB = playerWizard.GetComponent<Rigidbody2D>();
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
