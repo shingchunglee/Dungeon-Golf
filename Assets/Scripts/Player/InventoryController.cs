@@ -17,7 +17,7 @@ public class InventoryController : MonoBehaviour
   public static event Action<Club> OnClubChanged;
   public static event Action<SelectedConsumable> OnConsumableChanged;
 
-  private void Start()
+  private void Awake()
   {
     AddClub(ClubType.Iron7);
     // AddClub(ClubType.LegendaryClub);
