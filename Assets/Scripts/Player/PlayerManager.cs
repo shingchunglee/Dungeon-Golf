@@ -20,6 +20,9 @@ public class PlayerManager : MonoBehaviour
   // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
   public GolfAimDrag golfAimDrag;
+
+  [SerializeField] HealthBar healthBar;
+
   public static PlayerManager Instance
   {
     get
@@ -50,12 +53,19 @@ public class PlayerManager : MonoBehaviour
 
     GameStartProcessing();
     Init();
+
+    // healthBar = GetComponentInChildren<HealthBar>();
+    //      if (healthBar == null)
+    // {
+    //     Debug.LogError("HealthBar component not found on " + gameObject.name);
+    // }
   }
 
   private void GameStartProcessing()
   {
     DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
+     healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void PlayerSpawnInit()
@@ -103,12 +113,14 @@ public class PlayerManager : MonoBehaviour
   public void UpdateHPText()
   {
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void TeleportPlayerToBall()
   {
     //TODO this shouldn't be here but it works.
     UpdateHPText();
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
 
     var playerRB = playerWizard.GetComponent<Rigidbody2D>();
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
