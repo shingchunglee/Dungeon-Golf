@@ -3760,6 +3760,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7565354017237832245, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a8eadb08dfc8c0342841332065f0ca81, type: 2}
+    - target: {fileID: 7565354017237832245, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 359997790273870037, guid: a8eadb08dfc8c0342841332065f0ca81, type: 2}
+    - target: {fileID: 7565354017237832245, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

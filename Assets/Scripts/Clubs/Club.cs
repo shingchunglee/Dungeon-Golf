@@ -5,6 +5,8 @@ using UnityEngine;
 public class Club : ScriptableObject
 {
     public string clubName;
+    //club sprite?
+    //club description?
 
     // === POWER LEVEL ===
     public float maxPower;
