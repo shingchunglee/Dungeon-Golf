@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
   public int voidDamage = 15;
 
   public PlayerActionStateController actionStateController;
-  // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
   public GolfAimDrag golfAimDrag;
   public static PlayerManager Instance
@@ -52,6 +51,11 @@ public class PlayerManager : MonoBehaviour
     Init();
   }
 
+  private void Start()
+  {
+    HealthPotion.OnConsume += RestoreHealth;
+  }
+
   private void GameStartProcessing()
   {
     DontDestroyOnLoad(gameObject);
@@ -80,12 +84,13 @@ public class PlayerManager : MonoBehaviour
     var player = GameObject.Find("Player");
     powerLevelController = player.GetComponentInChildren<PowerLevelController>();
     varianceLevelController = player.GetComponentInChildren<VarianceLevelController>();
-    inventoryController = player.GetComponentInChildren<InventoryController>();
+    inventoryController = GetComponentInChildren<InventoryController>();
     actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
+    inventoryController.UpdateUI();
   }
 
   public void TakeDamage(int damage)
@@ -98,6 +103,12 @@ public class PlayerManager : MonoBehaviour
     {
       PlayerDies();
     }
+  }
+
+  public void RestoreHealth()
+  {
+    currentHP += 5;
+    UpdateHPText();
   }
 
   public void UpdateHPText()
@@ -150,8 +161,4 @@ public class PlayerManager : MonoBehaviour
     GameManager.Instance.GameOver();
   }
 
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    actionStateController.OnTriggerEnter2D(other);
-  }
 }

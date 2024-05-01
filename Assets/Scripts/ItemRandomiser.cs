@@ -5,7 +5,38 @@ using UnityEngine;
 
 public class ItemRandomiser : MonoBehaviour
 {
-    public ClubType GetRandomisedClub()
+    private static ItemRandomiser instance;
+
+    public static ItemRandomiser Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<ItemRandomiser>();
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject("ItemRandomiser");
+                    instance = obj.AddComponent<ItemRandomiser>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
+    public ClubType? GetRandomisedClub()
     {
         ClubType[] clubTypes = Enum.GetValues(typeof(ClubType)).Cast<ClubType>().ToArray();
         ClubType[] clubsInInventory = PlayerManager.Instance.inventoryController.GetInventoryClubs().Select(x => x.Type).ToArray();
@@ -34,6 +65,16 @@ public class ItemRandomiser : MonoBehaviour
             randomInt -= club.Club.weight;
         }
 
-        return ClubType.Iron7;
+        return null;
+    }
+
+    public Dictionary<Consumables, int> GetRandomConsumables()
+    {
+        int random = SeededRandom.Range(SeededRandom.Instance.ItemRandom, 0, Enum.GetValues(typeof(Consumables)).Length); // get 0 to 2 potions
+        var randomConsumables = new Dictionary<Consumables, int>
+        {
+            { (Consumables)random, SeededRandom.Range(SeededRandom.Instance.ItemRandom, 0, 3) }
+        };
+        return randomConsumables;
     }
 }

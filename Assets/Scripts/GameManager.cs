@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
   {
     enemyManager = gameObject.AddComponent<EnemyManager>();
 
-    HPText = GameObject.Find("HP Text").GetComponent<TextMeshProUGUI>();
+    HPText = GameObject.Find("HP Text")?.GetComponent<TextMeshProUGUI>();
 
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
