@@ -15,30 +15,32 @@ public class SoundManager : MonoBehaviour
 
   public static SoundManager Instance;
 
-    void Awake()
+  void Awake()
+  {
+    if (Instance == null)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); 
-            PlayBackgroundMusic();
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject); 
-        }
+      Instance = this;
+      DontDestroyOnLoad(gameObject);
+      PlayBackgroundMusic();
     }
-  
-  
+    else if (Instance != this)
+    {
+      Destroy(gameObject);
+    }
+  }
+
+
   public void PlayBackgroundMusic()
+  {
+    if (musicSource == null) return;
+
+    if (musicSource.clip != background)
     {
-        if (musicSource.clip != background) 
-        {
-            musicSource.clip = background; 
-            musicSource.loop = true; 
-            musicSource.Play(); 
-        }
+      musicSource.clip = background;
+      musicSource.loop = true;
+      musicSource.Play();
     }
+  }
 
   public void PlaySFX(AudioClip clip)
   {
