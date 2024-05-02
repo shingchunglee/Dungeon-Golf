@@ -23,6 +23,7 @@ public class MoveState : IPlayerActionState
       // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
+    SoundManager.Instance.PlaySFX(SoundManager.Instance.stroke);
     // ! HACK SOLUTION: ME BRAIN NO WORK NO KNOW BETTER SOLUTION PLZ HELP
     controller.StartCoroutine(SetMoving(1f));
   }

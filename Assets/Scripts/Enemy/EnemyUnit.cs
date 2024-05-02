@@ -31,7 +31,9 @@ public class EnemyUnit : MonoBehaviour
     private float closeEnough = 0.1f;
 
     [SerializeField] HealthBar healthBar;
-    [SerializeField] ParticleSystem particleEffect;
+   // [SerializeField] ParticleSystem particleEffect;
+   [SerializeField] Animator enemyHurt;
+   [SerializeField] Animator enemyDie;
 
     private float attackMoveDistance = 0.4f;
     private float attackMoveTime = 0.07f;
@@ -72,11 +74,19 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //particle system
-        particleEffect = GetComponentInChildren<ParticleSystem>();
-        if (particleEffect == null)
-        {
-            Debug.LogError("No Particle System found on " + gameObject.name);
-        }
+        //  particleEffect = GetComponentInChildren<ParticleSystem>();
+        // if (particleEffect == null)
+        // {
+        //     Debug.LogError("No Particle System found on " + gameObject.name);
+        // }
+
+         if (enemyHurt == null)
+    {
+        enemyHurt = GetComponentInChildren<Animator>(); 
+    }
+
+
+
     }
 
     protected void Start()
@@ -402,11 +412,18 @@ public class EnemyUnit : MonoBehaviour
         CurrentHP -= PlayerManager.Instance.attackDamage;
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
-        if (particleEffect != null)
-        {
-            //  particleEffect.Stop(); // Stop to clear any ongoing effects
-            particleEffect.Play();
-        }
+    //     if (particleEffect != null)
+    //     {
+    //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
+    //         particleEffect.Play();
+    //     }
+
+    if (enemyHurt != null)
+    {
+        StopCoroutine(ShowEnemyHurt()); 
+        StartCoroutine(ShowEnemyHurt()); 
+    }
+
         CheckIfDead();
     }
 
@@ -420,8 +437,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
-        enemyManager.RemoveEnemyFromList(this);
-        Destroy(gameObject);
+         StartCoroutine(enemyDeathAnim());
     }
 
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
@@ -450,4 +466,24 @@ public class EnemyUnit : MonoBehaviour
         //Loops movement so that for enemies with multiple move/attack turns.
         MoveEnemyAStar();
     }
+
+    private IEnumerator ShowEnemyHurt()
+{
+    enemyHurt.gameObject.SetActive(true); 
+    yield return new WaitForSeconds(0.4f);  
+    enemyHurt.gameObject.SetActive(false); 
+}
+
+ private IEnumerator enemyDeathAnim()
+{
+    enemyDie.gameObject.SetActive(true); 
+    yield return new WaitForSeconds(0.5f);  
+    enemyDie.gameObject.SetActive(false); 
+
+    enemyManager.RemoveEnemyFromList(this);
+    Destroy(gameObject);
+}
+
+
+
 }

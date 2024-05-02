@@ -46,10 +46,7 @@ public class PlayerActionStateController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.name);
-        if (currentState != null)
-        {
-            currentState.OnTriggerEnter2D(other);
-        }
+        currentState?.OnTriggerEnter2D(other);
     }
 
     public bool CanBallCauseDamage()
