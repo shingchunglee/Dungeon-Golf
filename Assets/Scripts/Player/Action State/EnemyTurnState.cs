@@ -10,7 +10,7 @@ public class EnemyTurnState : IPlayerActionState
     // Debug.Log("Player Entered Enemy Turn State");
 
     GameManager.Instance.enemyManager.EnemyTurn();
-    controller.SetState(controller.aimState);
+
 
   }
   public void OnExit()
@@ -20,6 +20,10 @@ public class EnemyTurnState : IPlayerActionState
 
   public void OnFixedUpdate()
   {
+    if (!GameManager.Instance.enemyManager.areEnemiesTakingTheirTurns)
+    {
+      controller.SetState(controller.aimState);
+    }
   }
 
   public void OnUpdate()

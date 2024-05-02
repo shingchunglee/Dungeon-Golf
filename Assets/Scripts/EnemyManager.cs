@@ -5,6 +5,21 @@ public class EnemyManager : MonoBehaviour
 {
     public List<EnemyUnit> enemyUnitsOnLevel = new List<EnemyUnit>();
 
+    public bool areEnemiesTakingTheirTurns
+    {
+        get
+        {
+            foreach (var enemy in enemyUnitsOnLevel)
+            {
+                if (enemy.isTakingTurn)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     private void Start()
     {
 

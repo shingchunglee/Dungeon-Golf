@@ -20,7 +20,7 @@ public class EnemyUnit : MonoBehaviour
     public int moveAttacksPerTurn = 1;      //This is how many times the unit will move AND attack the player if it is next to it.
     private int moveAttacksPerTurnLeft;
     public int maxAttacksPerTurn = 1;
-    private int attacksPerTurnLeft;
+    private int attacksLeft;
     public int attackDamage = 5;
     public bool willBallCollide = true;
 
@@ -37,6 +37,8 @@ public class EnemyUnit : MonoBehaviour
     private float attackMoveTime = 0.07f;
 
     protected List<Vector2Int> pathDirections;
+    [HideInInspector]
+    public bool isTakingTurn = false;
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -108,6 +110,7 @@ public class EnemyUnit : MonoBehaviour
     // This is called by Enemy Manager for each enemy on the scene.
     public void TakeTurn()
     {
+        isTakingTurn = true;
         // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
     }
@@ -155,7 +158,7 @@ public class EnemyUnit : MonoBehaviour
         if (pathDirections == null) return;
 
         moveAttacksPerTurnLeft = moveAttacksPerTurn;
-        attacksPerTurnLeft = maxAttacksPerTurn;
+        attacksLeft = maxAttacksPerTurn;
 
         MoveEnemyAStar();
     }
@@ -192,9 +195,11 @@ public class EnemyUnit : MonoBehaviour
     protected void MoveEnemyAStar()
     {
 
-        if (moveAttacksPerTurnLeft <= 0)
+        if (moveAttacksPerTurnLeft <= 0 ||
+            attacksLeft <= 0)
         {
             PostMove();
+            EndTurn();
             return;
         }
         else
@@ -208,7 +213,8 @@ public class EnemyUnit : MonoBehaviour
 
         AttemptMove(direction.x, direction.y);
 
-        pathDirections.RemoveAt(0);
+        if (pathDirections.Count > 1)
+            pathDirections.RemoveAt(0);
 
     }
 
@@ -295,14 +301,14 @@ public class EnemyUnit : MonoBehaviour
             !canMove)
         {
 
-            if (attacksPerTurnLeft > 0)
+            if (attacksLeft > 0)
             {
 
                 PreAttack();
                 AttackPlayer(xDir, yDir);
                 PostAttack();
 
-                attacksPerTurnLeft--;
+                attacksLeft--;
             }
         }
     }
@@ -370,6 +376,11 @@ public class EnemyUnit : MonoBehaviour
 
         //Loops movement so that for enemies with multiple move/attack turns.
         MoveEnemyAStar();
+    }
+
+    private void EndTurn()
+    {
+        isTakingTurn = false;
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
