@@ -355,27 +355,4 @@ public class GridManager : MonoBehaviour
             return null;
         }
     }
-
-
-    // /// <summary>
-    // /// 
-    // ///  From Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
-    // /// </summary>
-    // /// <param name="startNode"></param>
-    // /// <param name="targetNode"></param>
-    // /// <returns></returns>
-    // public List<Node> FindPath(Node startNode, Node targetNode)
-    // {
-    //     var toSearch = new List<Node>() { startNode };
-    //     var processed = new List<Node>();
-
-    //     while (toSearch.Any())
-    //     {
-    //         var current = toSearch[0];
-    //         foreach (var t in toSearch)
-    //         {
-    //             if ()
-    //         }
-    //     }
-    // }
 }
