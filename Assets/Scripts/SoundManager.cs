@@ -6,8 +6,8 @@ public class SoundManager : MonoBehaviour
   public AudioClip background;
   public AudioClip stroke;
   public AudioClip clubCollect;
-
   public AudioClip enemyDamage;
+  public AudioClip playerDamage;
 
 
   [SerializeField] AudioSource musicSource;

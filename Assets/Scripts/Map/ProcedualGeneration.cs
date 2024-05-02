@@ -21,8 +21,8 @@ public class ProcedualGeneration : MonoBehaviour
     Tilemap floor;
     [SerializeField]
     Tilemap enemies;
-    [SerializeField]
-    TileBase floorTile;
+    // [SerializeField]
+    // TileBase floorTile;
     [SerializeField]
     TileBase voidTile;
     [SerializeField]

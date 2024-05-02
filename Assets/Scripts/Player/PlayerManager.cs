@@ -17,9 +17,11 @@ public class PlayerManager : MonoBehaviour
   public int voidDamage = 15;
 
   public PlayerActionStateController actionStateController;
-  // public PlayerActionStateController playerActionStateController;
   public GolfAim golfAim;
   public GolfAimDrag golfAimDrag;
+
+  [SerializeField] HealthBar healthBar;
+
   public static PlayerManager Instance
   {
     get
@@ -50,12 +52,24 @@ public class PlayerManager : MonoBehaviour
 
     GameStartProcessing();
     Init();
+
+    // healthBar = GetComponentInChildren<HealthBar>();
+    //      if (healthBar == null)
+    // {
+    //     Debug.LogError("HealthBar component not found on " + gameObject.name);
+    // }
+  }
+
+  private void Start()
+  {
+    HealthPotion.OnConsume += RestoreHealth;
   }
 
   private void GameStartProcessing()
   {
     DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void PlayerSpawnInit()
@@ -80,17 +94,21 @@ public class PlayerManager : MonoBehaviour
     var player = GameObject.Find("Player");
     powerLevelController = player.GetComponentInChildren<PowerLevelController>();
     varianceLevelController = player.GetComponentInChildren<VarianceLevelController>();
-    inventoryController = player.GetComponentInChildren<InventoryController>();
+    inventoryController = GetComponentInChildren<InventoryController>();
     actionStateController = player.GetComponentInChildren<PlayerActionStateController>();
 
     golfAim = playerBall.GetComponentInChildren<GolfAim>();
     golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
     powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
+
+    inventoryController.Init();
+    inventoryController.UpdateUI();
   }
 
   public void TakeDamage(int damage)
   {
     currentHP -= damage;
+    SoundManager.Instance.PlaySFX(SoundManager.Instance.playerDamage);
 
     UpdateHPText();
     if (currentHP <= 0)
@@ -99,15 +117,23 @@ public class PlayerManager : MonoBehaviour
     }
   }
 
+  public void RestoreHealth()
+  {
+    currentHP += 5;
+    UpdateHPText();
+  }
+
   public void UpdateHPText()
   {
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void TeleportPlayerToBall()
   {
     //TODO this shouldn't be here but it works.
     UpdateHPText();
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
 
     var playerRB = playerWizard.GetComponent<Rigidbody2D>();
     var ballRB = playerBall.GetComponent<Rigidbody2D>();
@@ -149,8 +175,4 @@ public class PlayerManager : MonoBehaviour
     GameManager.Instance.GameOver();
   }
 
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    actionStateController.OnTriggerEnter2D(other);
-  }
 }

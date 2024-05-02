@@ -14,4 +14,9 @@ public class ClubSelectManager : MonoBehaviour
   {
     clubNameText.text = club.clubName;
   }
+
+  public void NextClub()
+  {
+    PlayerManager.Instance.inventoryController.GetNextClub();
+  }
 }

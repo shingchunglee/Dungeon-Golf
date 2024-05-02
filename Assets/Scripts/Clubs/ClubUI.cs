@@ -10,7 +10,8 @@ public class ClubUI : MonoBehaviour
 
     private void Awake()
     {
-        soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
+        GameObject audioGameObject = GameObject.FindWithTag("Audio");
+        soundManager = audioGameObject?.GetComponent<SoundManager>();
     }
 
 
@@ -28,7 +29,7 @@ public class ClubUI : MonoBehaviour
         {
             ClubNameText.text = (club.clubName + "!");
             ClubClaimPanel.SetActive(true);
-            soundManager.PlaySFX(soundManager.clubCollect);
+            soundManager?.PlaySFX(soundManager.clubCollect);
             StartCoroutine(HidePanel());
             Debug.Log("Updated ClubNameText to: " + club.clubName);
         }
