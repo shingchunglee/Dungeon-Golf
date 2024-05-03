@@ -10,6 +10,7 @@ public class GolfAimDrag : MonoBehaviour
     public Vector3 variancePosition;
     public float time = 0;
     public Vector3? aimDirection;
+    public float minDragDistance = 0.5f;
     public float maxDistance = 3f;
     public Vector3 dragStartPos;
     public Vector3 dragEndPos;
@@ -18,12 +19,21 @@ public class GolfAimDrag : MonoBehaviour
     void OnEnable()
     {
         aimingIndicator.gameObject.SetActive(true);
-        aimDirection = null;
     }
 
     void OnDisable()
     {
         aimingIndicator.gameObject.SetActive(false);
+    }
+
+    void Reset()
+    {
+        isDragging = false;
+        aimDirection = null;
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("aimingIndicator");
+
+        foreach (GameObject go in gos)
+            Destroy(go);
     }
 
     void Update()
@@ -92,6 +102,7 @@ public class GolfAimDrag : MonoBehaviour
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance);
+        if (dragAmount < minDragDistance) return;
         Vector3 aimingPosition = transform.position - (Vector3)(-aimDirection * dragAmount);
         Vector3 perpendicular = Vector3.Cross(aimingPosition - transform.position, Vector3.forward).normalized;
         variancePosition = (Vector3)(aimingPosition + (perpendicular * PlayerManager.Instance.varianceLevelController.selectedVariance));
@@ -111,8 +122,17 @@ public class GolfAimDrag : MonoBehaviour
         isDragging = true;
     }
 
-    public void OnMouseUp()
+    public bool OnMouseUp()
     {
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        float mouseDistance = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance);
+        if (!isDragging || mouseDistance < minDragDistance)
+        {
+            Reset();
+            return false;
+        }
+
         UpdateDirection();
         PlayerManager.Instance.varianceLevelController.SetVariance((float)-PlayerManager.Instance.varianceLevelController.selectedVariance);
         // UpdateDirectionByVariance();
@@ -122,5 +142,6 @@ public class GolfAimDrag : MonoBehaviour
         dragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragEndPos.z = 0;
         isDragging = false;
+        return true;
     }
 }
