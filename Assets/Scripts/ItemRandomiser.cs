@@ -49,8 +49,11 @@ public class ItemRandomiser : MonoBehaviour
         foreach (ClubType clubType in clubTypes)
         {
             Club club = ClubFactory.Factory(clubType);
-            clubs.Add(new InventoryClub(clubType, club));
-            weights += club.weight;
+            if (club.appearsAfter >= GameManager.Instance.procGenLevelIndex)
+            {
+                clubs.Add(new InventoryClub(clubType, club));
+                weights += club.weight;
+            }
         }
 
         int randomInt = SeededRandom.Range(SeededRandom.Instance.ItemRandom, 0, weights);

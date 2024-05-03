@@ -20,8 +20,10 @@ public class EnemyTurnState : IPlayerActionState
 
   public void OnFixedUpdate()
   {
+    Debug.Log("Enemy Turn Check" + !GameManager.Instance.enemyManager.areEnemiesTakingTheirTurns);
     if (!GameManager.Instance.enemyManager.areEnemiesTakingTheirTurns)
     {
+      //   Debug.Log("Enemy Turn Complete");
       controller.SetState(controller.aimState);
     }
   }

@@ -428,9 +428,10 @@ public class EnemyUnit : MonoBehaviour
     {
         enemyDie.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        enemyDie.gameObject.SetActive(false);
-
         enemyManager.RemoveEnemyFromList(this);
+        EndTurn();
+        // enemyDie.gameObject.SetActive(false);
+
         Destroy(gameObject);
     }
 }
