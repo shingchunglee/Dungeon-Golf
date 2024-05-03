@@ -1700,6 +1700,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 336057586913178067, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 479440637491513744, guid: cf6053067650742469d9465310ce23b8, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -1707,6 +1711,26 @@ PrefabInstance:
     - target: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314893243277873712, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282387189438327656, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707091956323685638, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679063698479132709, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5880264792886829085, guid: cf6053067650742469d9465310ce23b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1723,6 +1747,14 @@ PrefabInstance:
     - target: {fileID: 6898696127649461333, guid: cf6053067650742469d9465310ce23b8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7409991529671711818, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992867028854770460, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
