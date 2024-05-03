@@ -37,12 +37,13 @@ public class MoveState : IPlayerActionState
   public void OnExit()
   {
     PlayerManager.Instance.TeleportPlayerToBall();
-    Debug.Log("Player Exited Moving State");
+    // Debug.Log("Player Exited Moving State");
   }
 
   public void OnFixedUpdate()
   {
-    if (controller.ballRB.velocity.magnitude > 0.1f)
+    // This uses the player manager to check that the ball is moving.
+    if (PlayerManager.Instance.IsBallMoving)
     {
       // if (GameManager.Instance.golfAimType == GolfAimType.Drag)
       // {
@@ -55,7 +56,7 @@ public class MoveState : IPlayerActionState
       // }
       isMoving = true;
     }
-    if (isMoving && controller.ballRB.velocity.magnitude <= 0.5f)
+    if (isMoving && !PlayerManager.Instance.IsBallMoving)
     {
       controller.ballRB.velocity = new Vector2(0f, 0f);
       isMoving = false;
@@ -87,7 +88,7 @@ public class MoveState : IPlayerActionState
   {
     if (Input.GetKeyDown(KeyCode.Period))
     {
-      Debug.Log("Force End Move State.");
+      // Debug.Log("Force End Move State.");
       controller.SetState(controller.enemyTurnState);
     }
   }

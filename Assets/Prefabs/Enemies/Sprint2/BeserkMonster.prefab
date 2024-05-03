@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6547848980124582070}
-  - component: {fileID: 8047377213209676114}
   - component: {fileID: 6685963591427696749}
+  - component: {fileID: 2477335224813515836}
   m_Layer: 0
-  m_Name: Druid
+  m_Name: BeserkMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,30 +36,6 @@ Transform:
   - {fileID: 185948592727923496}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8047377213209676114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4109176297280435648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyName: 
-  MaxHP: 5
-  CurrentHP: 0
-  moveAttacksPerTurn: 1
-  maxAttacksPerTurn: 1
-  attackDamage: 5
-  willBallCollide: 1
-  healthBar: {fileID: 0}
-  particleEffect: {fileID: 0}
 --- !u!50 &6685963591427696749
 Rigidbody2D:
   serializedVersion: 4
@@ -87,6 +63,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2477335224813515836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109176297280435648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f050204a040b41e58fe91f44218c853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: 
+  MaxHP: 5
+  CurrentHP: 0
+  moveAttacksPerTurn: 4
+  maxAttacksPerTurn: 3
+  attackDamage: 1
+  willBallCollide: 1
+  healthBar: {fileID: 0}
+  enemyHurt: {fileID: 0}
+  enemyDie: {fileID: 0}
+  isTakingTurn: 0
 --- !u!1 &4805226250129201447
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,8 +237,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -39384373, guid: 920f977f8fce7494f8b0794c48fc7ec0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: eead54fb8b31e484685c32d33c5a7fab, type: 3}
+  m_Color: {r: 0.5754717, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -257,6 +256,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4288969133451909433}
     m_Modifications:
+    - target: {fileID: 290286235179216839, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1473113287220418527, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
       propertyPath: m_Name
       value: Canvas 1
@@ -346,7 +349,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5673563951304568312, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673563951304568312, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
       propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750571519682427943, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8267217602136040540, guid: cc95d2e903d55044cae399c5f9088906, type: 3}

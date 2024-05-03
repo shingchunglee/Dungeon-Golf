@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Grid
 {
     public Vector2Int gridSize;
-    public Node[,] nodes;
+    public Vector2Int gridOrigin;
+    public Node[,] nodes; 
 
-    public Grid(Vector2Int _gridSize)
+    public Grid(Vector2Int _gridSize, Vector2Int _gridOrigin)
     {
+        gridOrigin = _gridOrigin;
         gridSize = _gridSize;
 
         nodes = new Node[gridSize.x, gridSize.y];

@@ -8,13 +8,13 @@ public class PowerState : IPlayerActionState
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
-    Debug.Log("Player Entered Power State");
+    // Debug.Log("Player Entered Power State");
     PlayerManager.Instance.powerLevelController.ShowPowerBar();
   }
 
   public void OnExit()
   {
-    Debug.Log("Player Exited Power State");
+    // Debug.Log("Player Exited Power State");
   }
 
   public void OnFixedUpdate()

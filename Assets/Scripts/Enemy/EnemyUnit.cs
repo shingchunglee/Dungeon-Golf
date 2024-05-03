@@ -2,29 +2,31 @@ using System.Collections;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
+using System.Collections.Generic;
 
 public class EnemyUnit : MonoBehaviour
 {
+    private float moveTime = 0.01f;           //Time it will take object to move, in seconds.
 
-    public float moveTime = 0.1f;       //Time it will take object to move, in seconds.
-    public LayerMask blockingLayer;     //Layer on which collision will be checked.
-
-    private BoxCollider2D boxCollider;  //The BoxCollider2D component attached to this object.
-    private Rigidbody2D rb2D;           //The Rigidbody2D component attached to this object.
-    private float inverseMoveTime;      //Used to make movement more efficient.
+    private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
+    private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
+    private float inverseMoveTime;          //Used to make movement more efficient.
 
     public int ID { get; private set; }
     public string enemyName = "";
     public int MaxHP = 5;
-    [HideInInspector] public int CurrentHP;
-    public int moveAttacksPerTurn = 1;
+    [HideInInspector]
+    public int CurrentHP;
+    public int moveAttacksPerTurn = 1;      //This is how many times the unit will move AND attack the player if it is next to it.
     private int moveAttacksPerTurnLeft;
+    public int maxAttacksPerTurn = 1;
+    private int attacksLeft;
     public int attackDamage = 5;
-    public bool isNonSolid = true;
+    public bool willBallCollide = true;
 
     private EnemyManager enemyManager;
     private Rigidbody2D targetRB;
-    public GameObject SpriteObj;
+    private GameObject SpriteObj;
 
     private float closeEnough = 0.1f;
 
@@ -33,7 +35,34 @@ public class EnemyUnit : MonoBehaviour
     [SerializeField] Animator enemyHurt;
     [SerializeField] Animator enemyDie;
 
-    protected void Awake()
+    private float attackMoveDistance = 0.4f;
+    private float attackMoveTime = 0.07f;
+
+    protected List<Vector2Int> pathDirections;
+    [HideInInspector]
+    public bool isTakingTurn = false;
+
+    public Vector2Int PositionOnWorldGrid
+    {
+        get
+        {
+            var position = new Vector2Int(
+                Mathf.FloorToInt(rb2D.position.x),
+                Mathf.FloorToInt(rb2D.position.y)
+            );
+            return position;
+        }
+    }
+
+    public Node nodeAtLocation
+    {
+        get
+        {
+            return GameManager.Instance.gridManager.GetNodeByWorldPosition(PositionOnWorldGrid);
+        }
+    }
+
+    protected virtual void Awake()
     {
         ID = gameObject.GetInstanceID();
 
@@ -55,12 +84,9 @@ public class EnemyUnit : MonoBehaviour
         {
             enemyHurt = GetComponentInChildren<Animator>();
         }
-
-
-
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         CurrentHP = MaxHP;
         // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
@@ -70,7 +96,7 @@ public class EnemyUnit : MonoBehaviour
 
         targetRB = PlayerManager.Instance.playerWizard.GetComponent<Rigidbody2D>();
 
-        if (isNonSolid)
+        if (willBallCollide)
         {
             GetComponentInChildren<Collider2D>().isTrigger = true;
         }
@@ -79,26 +105,118 @@ public class EnemyUnit : MonoBehaviour
             GetComponentInChildren<Collider2D>().isTrigger = false;
         }
 
-        //Get a component reference to this object's BoxCollider2D
+        //Set the variables
         boxCollider = GetComponentInChildren<BoxCollider2D>();
-
-        //Get a component reference to this object's Rigidbody2D
         rb2D = GetComponent<Rigidbody2D>();
+        SpriteObj = this.transform.Find("Sprite").gameObject;
 
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
     }
 
     // This is called by Enemy Manager for each enemy on the scene.
-    public void TakeTurn()
+    public virtual void TakeTurn()
     {
-        Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
+        isTakingTurn = true;
+        // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
     }
 
-    protected bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    //PreMove is called by TakeTurn. This sets up the variables for a move/attack.
+    protected void PreMove()
     {
-        //Store start position to move from, based on objects current transform position.
+        pathDirections = CalculatePathAStar();
+
+        if (pathDirections == null) return;
+
+        moveAttacksPerTurnLeft = moveAttacksPerTurn;
+        attacksLeft = maxAttacksPerTurn;
+
+        MoveLoop();
+    }
+
+    protected List<Vector2Int> CalculatePathAStar()
+    {
+        var thisEnemyNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PositionOnWorldGrid);
+        var playerNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PlayerManager.Instance.WizardWorldPositionOnGrid);
+
+        List<Node> nodePath = GridManager.FindPath(thisEnemyNode, playerNode, true);
+
+        if (nodePath == null)
+        {
+            nodePath = GridManager.FindPath(thisEnemyNode, playerNode, false);
+
+            if (nodePath == null)
+            {
+                return null;
+            }
+        }
+
+        // Show the node path with markers
+        // GameManager.Instance.gridManager.DrawPathIndicators(nodePath);
+
+        List<Vector2Int> pathDirs = GetPathDirections(nodePath);
+
+        return pathDirs;
+    }
+
+    protected void MoveLoop()
+    {
+        if (moveAttacksPerTurnLeft <= 0 ||
+            attacksLeft <= 0)
+        {
+            PostMove();
+            EndTurn();
+            return;
+        }
+        else
+        {
+            moveAttacksPerTurnLeft--;
+        }
+
+        if (pathDirections.Count <= 0) return;
+
+        var direction = pathDirections[0];
+
+        MoveOrAttack(direction.x, direction.y);
+
+        if (pathDirections.Count > 1)
+            pathDirections.RemoveAt(0);
+    }
+
+    //AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
+    protected void MoveOrAttack(int xDir, int yDir)
+    {
+        //Hit will store whatever our linecast hits when Move is called.
+        RaycastHit2D hit;
+
+        //Set canMove to true if Move was successful, false if failed.
+        bool canMove = AttemptMove(xDir, yDir, out hit);
+
+        //Check if nothing was hit by linecast
+        if (hit.transform == null)
+            //If nothing was hit, return and don't execute further code.
+            return;
+
+        if (hit.collider.tag == "Wizard" &&
+            !canMove)
+        {
+
+            if (attacksLeft > 0)
+            {
+
+                PreAttack();
+                AttackPlayer(xDir, yDir);
+                PostAttack();
+
+                attacksLeft--;
+            }
+        }
+    }
+
+    protected bool AttemptMove(int xDir, int yDir, out RaycastHit2D hit)
+    {
+
         Vector2 start = transform.position; //+0.5f to make it start in the middle of the square.
 
         //+0.5f to make the Linecast start in the middle of the square.
@@ -113,9 +231,8 @@ public class EnemyUnit : MonoBehaviour
         boxCollider.enabled = false;
 
         //Cast a line from start point to end point checking collision on blockingLayer.
-        hit = Physics2D.Linecast(startLine, endLine, blockingLayer);
+        hit = Physics2D.Linecast(startLine, endLine, LayerMask.GetMask("Default", "PlayerModel"));
 
-        //Re-enable boxCollider after linecast
         boxCollider.enabled = true;
 
         //Check if anything was hit
@@ -132,86 +249,65 @@ public class EnemyUnit : MonoBehaviour
         return false;
     }
 
-    //PreMove is called by TakeTurn
-    public void PreMove()
+    protected List<Vector2Int> GetPathDirections(List<Node> nodes)
     {
-        moveAttacksPerTurnLeft = moveAttacksPerTurn;
-        MoveEnemy();
+        var directions = new List<Vector2Int>();
+
+        if (nodes.Count < 2)
+        {
+            Debug.LogError("Node list is less than 2. Aborting pathfind.");
+            return directions;
+        }
+
+        for (int i = 0; i < nodes.Count - 1; i++)
+        {
+            var node1 = nodes[i];
+            var node2 = nodes[i + 1];
+
+            var stepDirection = node2.position - node1.position;
+
+            directions.Add(stepDirection);
+        }
+
+        return directions;
     }
 
-
-    public void MoveEnemy()
-    {
-        if (moveAttacksPerTurnLeft <= 0)
-        {
-            return;
-        }
-        else
-        {
-            moveAttacksPerTurnLeft--;
-        }
-
-        int xDir = 0;
-        int yDir = 0;
-
-        // This makes the enemy choose randomly wether to travel in a X direction or a y direction first.
-        if (UnityEngine.Random.value < 0.5f)
-        {
-            //If the difference in positions is approximately zero
-            if (Mathf.Abs(targetRB.position.x - transform.position.x) < closeEnough)
-
-                //If the y coordinate of the target's (player) position is greater than the y coordinate of this enemy's position set y direction 1 (to move up). If not, set it to -1 (to move down).
-                yDir = targetRB.position.y > transform.position.y ? 1 : -1;
-
-            //If the difference in positions is not approximately zero
-            else
-                //Check if target x position is greater than enemy's x position, if so set x direction to 1 (move right), if not set to -1 (move left).
-                xDir = targetRB.position.x > transform.position.x ? 1 : -1;
-        }
-        else
-        {
-            if (Mathf.Abs(targetRB.position.y - transform.position.y) < closeEnough)
-                xDir = targetRB.position.x > transform.position.x ? 1 : -1;
-            else
-                yDir = targetRB.position.y > transform.position.y ? 1 : -1;
-        }
-
-        //Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
-        AttemptMove(xDir, yDir);
-
-    }
-
-    //AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
-    protected void AttemptMove(int xDir, int yDir)
-    {
-        //Hit will store whatever our linecast hits when Move is called.
-        RaycastHit2D hit;
-
-        //Set canMove to true if Move was successful, false if failed.
-        bool canMove = Move(xDir, yDir, out hit);
-
-        //Check if nothing was hit by linecast
-        if (hit.transform == null)
-            //If nothing was hit, return and don't execute further code.
-            return;
-
-        if (hit.collider.tag == "Wizard" &&
-            !canMove)
-        {
-            AttackPlayer(xDir, yDir);
-        }
-    }
-
+    /// <summary>
+    /// This can be overridden when creating a custom enemy class inhereting EnemyUnit.
+    /// This allows you to program your own enemy attacks.
+    /// </summary>
+    /// <param name="xDir">This is needed for the attack animation. </param>
+    /// <param name="yDir">This is needed for the attack animation. </param>
     protected virtual void AttackPlayer(int xDir, int yDir)
     {
         PlayerManager.Instance.TakeDamage(attackDamage);
         StartCoroutine(AttackAnimation(xDir, yDir));
     }
 
-    public float attackMoveDistance = 0.4f;
-    public float attackMoveTime = 0.07f;
+    /// <summary>
+    /// Attack player without animation.
+    /// </summary>
+    protected virtual void AttackPlayer()
+    {
+        PlayerManager.Instance.TakeDamage(attackDamage);
+    }
 
-    private IEnumerator AttackAnimation(int xDir, int yDir)
+    protected virtual void PreAttack()
+    {
+
+    }
+
+    protected virtual void PostAttack()
+    {
+
+    }
+
+    protected virtual void PostMove()
+    {
+        nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
+    }
+
+    protected virtual IEnumerator AttackAnimation(int xDir, int yDir)
     {
         var initialPos = SpriteObj.transform.position;
         var targetPos = new Vector3(
@@ -238,24 +334,29 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //Loops movement so that for enemies with multiple move/attack turns.
-        MoveEnemy();
+        MoveLoop();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void EndTurn()
+    {
+        isTakingTurn = false;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
     }
 
-    void TakeDamageFromPlayer()
+    protected virtual void TakeDamageFromPlayer()
     {
         CurrentHP -= PlayerManager.Instance.attackDamage;
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
@@ -275,7 +376,7 @@ public class EnemyUnit : MonoBehaviour
         CheckIfDead();
     }
 
-    void CheckIfDead()
+    protected void CheckIfDead()
     {
         if (CurrentHP <= 0)
         {
@@ -283,7 +384,7 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
-    void EnemyDies()
+    protected void EnemyDies()
     {
         GameManager.Instance.statsController.IncrementEnemiesKilled();
         StartCoroutine(enemyDeathAnim());
@@ -313,7 +414,7 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //Loops movement so that for enemies with multiple move/attack turns.
-        MoveEnemy();
+        MoveLoop();
     }
 
     private IEnumerator ShowEnemyHurt()
@@ -332,7 +433,4 @@ public class EnemyUnit : MonoBehaviour
         enemyManager.RemoveEnemyFromList(this);
         Destroy(gameObject);
     }
-
-
-
 }

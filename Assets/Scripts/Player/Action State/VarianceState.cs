@@ -7,13 +7,13 @@ public class VarianceState : IPlayerActionState
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
-    Debug.Log("Player Entered Variance State");
+    // Debug.Log("Player Entered Variance State");
     PlayerManager.Instance.varianceLevelController.ShowVarianceBar();
   }
 
   public void OnExit()
   {
-    Debug.Log("Player Exited Variance State");
+    // Debug.Log("Player Exited Variance State");
   }
 
   public void OnFixedUpdate()

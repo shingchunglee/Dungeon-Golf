@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -50,11 +53,20 @@ public class GridManager : MonoBehaviour
     // The origin can go below this if the tile map has tiles below [0,0].
     public Vector2Int gridOrigin = Vector2Int.zero;
 
+    public GameObject marker;
+
+    public GameObject startObjectToCalculatePath;
+    public GameObject TargetObjectToCalculatePathTo;
+
     private void Start()
     {
         ScanMap();
-        LogGrid();
+
+        // TestLogGrid();
+        // TestPathfinding();
     }
+
+
 
     private void ScanMap()
     {
@@ -80,7 +92,8 @@ public class GridManager : MonoBehaviour
                     gridSize.y = gridBounds.size.y;
                 }
 
-                if (gridBounds.x < gridOrigin.x)
+                //Set the grid origin
+                if (gridBounds.x < gridOrigin.x) //BoundsInt.x is X value of the minimal point of the box.
                 {
                     gridOrigin.x = gridBounds.x;
                 }
@@ -90,7 +103,7 @@ public class GridManager : MonoBehaviour
                 }
             }
 
-            grid = new Grid(gridSize);
+            grid = new Grid(gridSize, gridOrigin);
         }
     }
 
@@ -106,7 +119,6 @@ public class GridManager : MonoBehaviour
         ScanTilemapByLayer(map_chest, entityType: EntityType.CHEST);
         ScanTilemapByLayer(map_enemy_spawn, entityType: EntityType.ENEMY_SPAWN);
     }
-
 
     /// <summary>
     /// Scans a tilemap and adds a FloorType or an EntityType to the Node at the corresponding location for each
@@ -189,6 +201,46 @@ public class GridManager : MonoBehaviour
 
     }
 
+    public Node GetNodeByWorldPosition(Vector2Int position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return grid.nodes[position.x + offsetX, position.y + offsetY];
+    }
+
+    public Node GetNodeByWorldPosition(int xPos, int yPos)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return grid.nodes[xPos + offsetX, yPos + offsetY];
+    }
+
+    public Vector2Int GetWorldPositionByNode(Node node)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(node.position.x - offsetX, node.position.y - offsetY);
+    }
+
+    public Vector2Int GetWorldPositionByGridPosition(int xPos, int yPos)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(xPos - offsetX, yPos - offsetY);
+    }
+
+    public Vector2Int GetWorldPositionByGridPosition(Vector2Int position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        return new Vector2Int(position.x - offsetX, position.y - offsetY);
+    }
+
     public void AddEntityByWorldPosition(EntityType type, Vector2Int position)
     {
         int offsetX = Mathf.Abs(gridOrigin.x);
@@ -197,9 +249,9 @@ public class GridManager : MonoBehaviour
         grid.nodes[position.x + offsetX, position.y + offsetY].entitiesOnTile.Add(type);
     }
 
-    private void LogGrid()
+    private void TestLogGrid()
     {
-        Debug.Log($"Largest size tilemap is [{gridSize}].");
+        Debug.Log($"Largest size tilemap is [{gridSize}]. Grid origin is: {gridOrigin}");
 
         LogGridDungeon();
         LogGridEntities();
@@ -303,56 +355,153 @@ public class GridManager : MonoBehaviour
             mapString);
     }
 
-    public List<Node> GetWalkableNeighbourNodes(Node node)
+
+    /// <summary>
+    /// This generates a list of Nodes that represents the path from a starting node to a target node.
+    /// The first Node on the list is the starting node, the last is the target node, and the rest are path.
+    /// 
+    ///  Adapted from Tarodev Pathfinding - Understanding A* https://youtu.be/i0x5fj4PqP4?si=7GlfcaXwQ5OXd64d
+    /// </summary>
+    /// <param name="startNode"></param>
+    /// <param name="targetNode"></param>
+    /// <returns></returns>
+    public static List<Node> FindPath(Node startNode, Node targetNode, bool doEnemiesBlock)
     {
-        List<Node> neighbours = new List<Node>();
+        var toSearch = new List<Node>() { startNode };
+        var processed = new List<Node>();
 
-        // This could be made more efficient
-        var node1 = CheckDirectionForNode(node, 1, 1);
-        if (node1 != null) neighbours.Add(node1);
+        while (toSearch.Any())
+        {
+            var current = toSearch[0];
+            foreach (var t in toSearch)
+            {
+                if (t.F < current.F || t.F == current.F && t.H < current.H)
+                {
+                    current = t;
+                }
+            }
 
-        var node2 = CheckDirectionForNode(node, 0, 1);
-        if (node2 != null) neighbours.Add(node2);
+            processed.Add(current);
+            toSearch.Remove(current);
 
-        var node3 = CheckDirectionForNode(node, -1, 1);
-        if (node3 != null) neighbours.Add(node3);
 
-        var node4 = CheckDirectionForNode(node, 1, 0);
-        if (node4 != null) neighbours.Add(node4);
+            // This is section assigns a list of Nodes to a list that defines the path.
+            if (current == targetNode)
+            {
+                var currentPathTile = targetNode;
+                var path = new List<Node>();
+                while (currentPathTile != startNode)
+                {
+                    path.Add(currentPathTile);
+                    currentPathTile = currentPathTile.Connection;
+                }
 
-        var node5 = CheckDirectionForNode(node, -1, 0);
-        if (node5 != null) neighbours.Add(node4);
+                // Calculation doesn't add start node to list, so it is manually added here.
+                path.Add(startNode);
 
-        var node6 = CheckDirectionForNode(node, 1, -1);
-        if (node6 != null) neighbours.Add(node6);
+                // Reverse path so it starts with startNode
+                path.Reverse();
 
-        var node7 = CheckDirectionForNode(node, 0, -1);
-        if (node7 != null) neighbours.Add(node7);
+                // Add target node so list ends with targetNode.
+                // path.Add(targetNode);
 
-        var node8 = CheckDirectionForNode(node, -1, -1);
-        if (node8 != null) neighbours.Add(node8);
+                return path;
+            }
 
-        return neighbours;
+            if (doEnemiesBlock)
+            {
+                foreach (var neighbor in current.Neighbors
+                                        .Where(t => t.IsWalkableForEnemyAtLocation(startNode.position) &&
+                                        !processed.Contains(t)))
+                {
+                    bool inSearch = toSearch.Contains(neighbor);
+
+                    var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
+
+                    if (!inSearch || costToNeighbor < neighbor.G)
+                    {
+                        neighbor.SetG(costToNeighbor);
+                        neighbor.SetConnection(current);
+
+                        if (!inSearch)
+                        {
+                            neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
+                            toSearch.Add(neighbor);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (var neighbor in current.Neighbors
+                                        .Where(t => t.IsWalkableIgnoringEnemies() &&
+                                        !processed.Contains(t)))
+                {
+                    bool inSearch = toSearch.Contains(neighbor);
+
+                    var costToNeighbor = current.G + current.GetDistanceToOtherNode(neighbor);
+
+                    if (!inSearch || costToNeighbor < neighbor.G)
+                    {
+                        neighbor.SetG(costToNeighbor);
+                        neighbor.SetConnection(current);
+
+                        if (!inSearch)
+                        {
+                            neighbor.SetH(neighbor.GetDistanceToOtherNode(targetNode));
+                            toSearch.Add(neighbor);
+                        }
+                    }
+                }
+            }
+
+
+        }
+        return null;
     }
 
-# nullable enable
-
-    private Node? CheckDirectionForNode(Node node, int xDir, int yDir)
+    public void TestPathfinding()
     {
-        try
-        {
-            var nodeNeighbour = grid.nodes[node.position.x + xDir, node.position.y + yDir];
+        var worldPosStartObj = new Vector2Int(
+                    Mathf.FloorToInt(startObjectToCalculatePath.transform.position.x),
+                    Mathf.FloorToInt(startObjectToCalculatePath.transform.position.y)
+                );
 
-            if (nodeNeighbour.IsWalkable())
-            {
-                return nodeNeighbour;
-            }
-            else return null;
-        }
-        catch
+        var worldPosTargetObj = new Vector2Int(
+            Mathf.FloorToInt(TargetObjectToCalculatePathTo.transform.position.x),
+            Mathf.FloorToInt(TargetObjectToCalculatePathTo.transform.position.y)
+        );
+
+        var node2 = GetNodeByWorldPosition(worldPosTargetObj);
+        var node1 = GetNodeByWorldPosition(worldPosStartObj);
+
+        var pathToPrint = FindPath(node1, node2, true);
+
+        DrawPathIndicators(pathToPrint);
+    }
+
+    private List<GameObject> pathMarkers = new List<GameObject>();
+
+    public void DrawPathIndicators(List<Node> pathToPrint)
+    {
+        foreach (var obj in pathMarkers)
         {
-            Debug.Log("Direction couldn't be found. Maybe it's outside of grid limit.");
-            return null;
+            Destroy(obj);
+        }
+
+        if (pathToPrint == null)
+        {
+            Debug.Log("Can't draw path because path doesn't exist.");
+            return;
+        }
+
+        foreach (var node in pathToPrint)
+        {
+            var worldPos = GetWorldPositionByNode(node);
+
+            // Debug.Log($"Path node: {worldPos}");
+
+            pathMarkers.Add(Instantiate(marker, new Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation));
         }
     }
 }
