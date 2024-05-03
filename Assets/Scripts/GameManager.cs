@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     SceneManager.LoadScene(gameOverSceneName);
   }
 
-  public void AdvanceLevel()
+  public void AdvanceLevelProcGen()
   {
     if (procGenLevelIndex < proceduralGenerationPresets.Count)
     {

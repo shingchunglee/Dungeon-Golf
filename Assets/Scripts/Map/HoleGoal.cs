@@ -1,13 +1,24 @@
+//using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HoleGoal : MonoBehaviour
 {
+    public string nextSceneName;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "ball")
+        if (other.tag != "ball") return;
+
+        try
         {
-            GameManager.Instance.AdvanceLevel();
+            SceneManager.LoadScene(nextSceneName);
         }
+        catch
+        {
+            GameManager.Instance.AdvanceLevelProcGen();
+        }
+
     }
 
     public void GoalSpawnInit()

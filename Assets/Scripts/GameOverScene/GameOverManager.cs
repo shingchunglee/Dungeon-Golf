@@ -11,16 +11,10 @@ public class GameOverManager : MonoBehaviour
     private void Start()
     {
         var GameManagerGO = GameObject.Find("GameManager");
-        var PlayerManagerGO = GameObject.Find("PlayerManager");
 
         if (GameManagerGO != null)
         {
             SceneManager.MoveGameObjectToScene(GameManagerGO, SceneManager.GetActiveScene());
-        }
-
-        if (PlayerManagerGO != null)
-        {
-            SceneManager.MoveGameObjectToScene(PlayerManagerGO, SceneManager.GetActiveScene());
         }
     }
 

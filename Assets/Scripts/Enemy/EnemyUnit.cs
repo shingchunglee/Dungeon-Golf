@@ -88,6 +88,8 @@ public class EnemyUnit : MonoBehaviour
 
     protected virtual void Start()
     {
+
+
         CurrentHP = MaxHP;
         // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
@@ -110,8 +112,20 @@ public class EnemyUnit : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         SpriteObj = this.transform.Find("Sprite").gameObject;
 
+        SnapToGrid();
+
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
+    }
+
+    private void SnapToGrid()
+    {
+        Vector2 pos;
+
+        pos.x = Mathf.FloorToInt(transform.position.x);
+        pos.y = Mathf.FloorToInt(transform.position.y);
+
+        transform.position = pos;
     }
 
     // This is called by Enemy Manager for each enemy on the scene.
