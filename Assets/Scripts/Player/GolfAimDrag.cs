@@ -66,8 +66,9 @@ public class GolfAimDrag : MonoBehaviour
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         float dragAmount = Mathf.Clamp(Mathf.Abs(Vector3.Distance(mousePos, dragStartPos)), 0, maxDistance * 0.5f);
+        float normalizedDragAmount = dragAmount / (maxDistance * 0.5f);
 
-        float value = Mathf.Lerp(-dragAmount, dragAmount, t);
+        float value = Mathf.Lerp(normalizedDragAmount * PlayerManager.Instance.inventoryController.GetSelectedClub().minVariance, normalizedDragAmount * PlayerManager.Instance.inventoryController.GetSelectedClub().maxVariance, t);
         PlayerManager.Instance.varianceLevelController.SetVariance(value);
 
         if (delta >= 0.99f)

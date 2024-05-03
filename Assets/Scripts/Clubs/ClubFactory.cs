@@ -4,7 +4,7 @@ using UnityEngine;
 // [Serializable]
 public enum ClubType
 {
-  Iron7,
+  Iron7, Iron8,
   LegendaryClub
 }
 
@@ -16,6 +16,8 @@ public class ClubFactory
     {
       case ClubType.Iron7:
         return Resources.Load<Club>("Clubs/7-Iron");
+      case ClubType.Iron8:
+        return Resources.Load<Club>("Clubs/8-Iron");
       case ClubType.LegendaryClub:
         return Resources.Load<Club>("Clubs/LegendaryClub");
       default:
