@@ -39,7 +39,7 @@ public class EnemyUnit : MonoBehaviour
     private float attackMoveTime = 0.07f;
 
     protected List<Vector2Int> pathDirections;
-    [HideInInspector]
+    // [HideInInspector]
     public bool isTakingTurn = false;
 
     public Vector2Int PositionOnWorldGrid
@@ -441,9 +441,10 @@ public class EnemyUnit : MonoBehaviour
     {
         enemyDie.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        enemyDie.gameObject.SetActive(false);
-
         enemyManager.RemoveEnemyFromList(this);
+        EndTurn();
+        // enemyDie.gameObject.SetActive(false);
+
         Destroy(gameObject);
     }
 }

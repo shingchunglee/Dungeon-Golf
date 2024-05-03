@@ -17,6 +17,10 @@ public class Club : ScriptableObject
     public float minVariance;
     public float varianceLevelDuration;
     public EasingFunction varianceEasingFunction;
+    public float damage;
 
     public int weight;
+    public int appearsAfter = 0;
+
+    public Sprite sprite;
 }

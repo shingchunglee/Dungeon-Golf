@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85f0681dd7d440cfbe9deb522277a83, type: 3}
-  m_Name: LegendaryClub
+  m_Name: 8-iron
   m_EditorClassIdentifier: 
-  clubName: LEGENDARY CLUB
-  maxPower: 5000
-  minPower: 1000
-  powerLevelDuration: 0.5
-  powerEasingFunction: 23
-  maxVariance: -3
-  minVariance: 3
-  varianceLevelDuration: 0.5
+  clubName: 8-Iron
+  maxPower: 1400
+  minPower: 150
+  powerLevelDuration: 1
+  powerEasingFunction: 6
+  maxVariance: -2
+  minVariance: 2
+  varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 3
-  weight: 1
-  appearsAfter: 3
+  damage: 1
+  weight: 5
+  appearsAfter: 0

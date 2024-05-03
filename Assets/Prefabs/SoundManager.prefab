@@ -175,13 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc88750484af4a4e9bfc9eee9df6a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background1: {fileID: 0}
-  background2: {fileID: 0}
-  stroke: {fileID: 0}
+  background: {fileID: 8300000, guid: 42582cbb1a488054a8ee031d794c02b6, type: 3}
+  stroke: {fileID: 8300000, guid: 51052bb767f68d3489850f8cb698d886, type: 3}
   clubCollect: {fileID: 8300000, guid: aaa7effe1eb7d684abe21cf7aea9a16d, type: 3}
-  enemyDamage: {fileID: 0}
-  musicSource1: {fileID: 2320713489506154467}
-  musicSource2: {fileID: 9090856329447719300}
+  enemyDamage: {fileID: 8300000, guid: 51052bb767f68d3489850f8cb698d886, type: 3}
+  playerDamage: {fileID: 8300000, guid: 51052bb767f68d3489850f8cb698d886, type: 3}
+  musicSource: {fileID: 2320713489506154467}
   SFXSource: {fileID: 3809914825301671186}
 --- !u!1 &5545858213246080158
 GameObject:

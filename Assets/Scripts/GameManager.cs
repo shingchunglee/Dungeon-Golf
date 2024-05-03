@@ -41,9 +41,11 @@ public class GameManager : MonoBehaviour
   public ItemRandomiser itemRandomiser;
   public GolfAimType golfAimType = GolfAimType.Click;
   public GameObject settingsCanvas;
+  public GameObject inventoryCanvas;
 
   public TextMeshProUGUI HPText;
   private bool isSettingsOpen = false;
+  private bool isInventoryOpen = false;
 
   private void Awake()
   {
@@ -86,6 +88,8 @@ public class GameManager : MonoBehaviour
     {
       proceduralGenerationPresets[procGenLevelIndex].Main();
 
+      proceduralGenerationPresets[procGenLevelIndex].UpdateGridManager();
+
       PlayerManager.Instance.PlayerSpawnInit();
 
       HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
@@ -109,6 +113,20 @@ public class GameManager : MonoBehaviour
     settingsCanvas.SetActive(false);
     isSettingsOpen = false;
     isCursorOverHUDElement = false;
+  }
+
+  public void OpenInventory()
+  {
+    isInventoryOpen = true;
+    isCursorOverHUDElement = true;
+    inventoryCanvas.SetActive(true);
+  }
+
+  public void CloseInventory()
+  {
+    isInventoryOpen = false;
+    isCursorOverHUDElement = false;
+    inventoryCanvas.SetActive(false);
   }
 
   /// <summary>
