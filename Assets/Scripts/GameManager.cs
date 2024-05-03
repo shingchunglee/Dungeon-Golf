@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
       proceduralGenerationPresets[procGenLevelIndex].Main();
 
+      proceduralGenerationPresets[procGenLevelIndex].UpdateGridManager();
+
       PlayerManager.Instance.PlayerSpawnInit();
 
       HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
