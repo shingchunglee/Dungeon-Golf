@@ -400,6 +400,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
+        GameManager.Instance.statsController.IncrementEnemiesKilled();
         StartCoroutine(enemyDeathAnim());
     }
 

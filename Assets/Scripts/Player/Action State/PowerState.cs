@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PowerState : IPlayerActionState
@@ -33,6 +34,19 @@ public class PowerState : IPlayerActionState
         OnMouseClick();
       }
     }
+    if (Input.GetMouseButtonDown(1))
+    {
+      OnMouseRightClick();
+    }
+  }
+
+  private void OnMouseRightClick()
+  {
+    PlayerManager.Instance.varianceLevelController.
+    DisableVarianceBar();
+    PlayerManager.Instance.golfAim.enabled = false;
+    PlayerManager.Instance.powerLevelController.DisablePowerBar();
+    controller.SetState(controller.aimState);
   }
 
   private void OnMouseClick()

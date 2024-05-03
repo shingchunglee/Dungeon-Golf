@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
   public TextMeshProUGUI HPText;
   private bool isSettingsOpen = false;
 
+  public StatsController statsController;
+
   private void Awake()
   {
     if (_instance != null && _instance != this)
@@ -127,8 +129,21 @@ public class GameManager : MonoBehaviour
       procGenLevelIndex++;
     }
 
-    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    SceneManager.LoadScene("LoadingScene");
+  }
 
+  private void LoadStats()
+  {
+    GameObject statsText = GameObject.Find("StatsText");
+    TextMeshProUGUI text = statsText.GetComponentInChildren<TextMeshProUGUI>();
+
+    text.text = statsController.GetStatsToString();
+  }
+
+  public void LoadGameScene()
+  {
+    SceneManager.LoadScene("GameScene");
   }
 
   private void OnEnable()
@@ -143,9 +158,15 @@ public class GameManager : MonoBehaviour
 
   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
   {
-
-    PlayerManager.Instance.Init();
-    this.Init();
+    if (scene.name == "GameScene")
+    {
+      PlayerManager.Instance.Init();
+      this.Init();
+    }
+    else if (scene.name == "LoadingScene")
+    {
+      LoadStats();
+    }
   }
 }
 
