@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Golf Goblin
+  enemyName: Enemy Template
   MaxHP: 1
   CurrentHP: 0
   moveAttacksPerTurn: 4
@@ -55,7 +55,9 @@ MonoBehaviour:
   attackDamage: 3
   willBallCollide: 1
   healthBar: {fileID: 5779216310584151824}
-  particleEffect: {fileID: 4824957621943938396}
+  enemyHurt: {fileID: 0}
+  enemyDie: {fileID: 0}
+  isTakingTurn: 0
 --- !u!50 &3303228166342421934
 Rigidbody2D:
   serializedVersion: 4
@@ -459,10 +461,5 @@ PrefabInstance:
 --- !u!4 &2225344339082724226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7045709789423803544, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
-  m_PrefabInstance: {fileID: 9161836062923480858}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4824957621943938396 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
   m_PrefabInstance: {fileID: 9161836062923480858}
   m_PrefabAsset: {fileID: 0}

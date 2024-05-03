@@ -92,7 +92,8 @@ public class GridManager : MonoBehaviour
                     gridSize.y = gridBounds.size.y;
                 }
 
-                if (gridBounds.x < gridOrigin.x)
+                //Set the grid origin
+                if (gridBounds.x < gridOrigin.x) //BoundsInt.x is X value of the minimal point of the box.
                 {
                     gridOrigin.x = gridBounds.x;
                 }
