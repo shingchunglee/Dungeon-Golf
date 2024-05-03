@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2510133164425231802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5381410462455899294}
+  - component: {fileID: 3593565387060969666}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5381410462455899294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510133164425231802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8060149, y: -0.1600582, z: -0.05836755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3593565387060969666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510133164425231802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d250746b228e14f40bd841519719755f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReadFromTilemap: 1
+  map_wall: {fileID: 0}
+  map_floor: {fileID: 0}
+  map_obstacles: {fileID: 0}
+  map_trap_damamge: {fileID: 0}
+  map_trap_void: {fileID: 0}
+  map_trap_floor: {fileID: 0}
+  map_trap_chest: {fileID: 0}
+  map_chest: {fileID: 0}
+  map_enemy_spawn: {fileID: 0}
+  gridSize: {x: 0, y: 0}
+  gridOrigin: {x: 0, y: 0}
+  marker: {fileID: 9015483581238977995, guid: 951c38cacf9fa42358daf2d2a936fc84, type: 3}
+  startObjectToCalculatePath: {fileID: 0}
+  TargetObjectToCalculatePathTo: {fileID: 0}

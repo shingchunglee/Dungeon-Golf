@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: cb4faa2c0e54581438f7f3b6cb666f4a
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/StandardLevels/Mitch_Standard_1.unity
+    guid: c980952f3cddc4d04a4ce17e1167bbb1
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/StandardLevels/Mitch_Standard_2.unity
+    guid: d0db3a8adcd4740ef8a3d9b0bbb5e57a
   m_configObjects: {}
