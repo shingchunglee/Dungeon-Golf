@@ -31,9 +31,9 @@ public class EnemyUnit : MonoBehaviour
     private float closeEnough = 0.1f;
 
     [SerializeField] HealthBar healthBar;
-   // [SerializeField] ParticleSystem particleEffect;
-   [SerializeField] Animator enemyHurt;
-   [SerializeField] Animator enemyDie;
+    // [SerializeField] ParticleSystem particleEffect;
+    [SerializeField] Animator enemyHurt;
+    [SerializeField] Animator enemyDie;
 
     private float attackMoveDistance = 0.4f;
     private float attackMoveTime = 0.07f;
@@ -62,7 +62,7 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         ID = gameObject.GetInstanceID();
 
@@ -80,16 +80,13 @@ public class EnemyUnit : MonoBehaviour
         //     Debug.LogError("No Particle System found on " + gameObject.name);
         // }
 
-         if (enemyHurt == null)
-    {
-        enemyHurt = GetComponentInChildren<Animator>(); 
+        if (enemyHurt == null)
+        {
+            enemyHurt = GetComponentInChildren<Animator>();
+        }
     }
 
-
-
-    }
-
-    protected void Start()
+    protected virtual void Start()
     {
         CurrentHP = MaxHP;
         // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
@@ -118,14 +115,106 @@ public class EnemyUnit : MonoBehaviour
     }
 
     // This is called by Enemy Manager for each enemy on the scene.
-    public void TakeTurn()
+    public virtual void TakeTurn()
     {
         isTakingTurn = true;
         // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
     }
 
-    protected bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    //PreMove is called by TakeTurn. This sets up the variables for a move/attack.
+    protected void PreMove()
+    {
+        pathDirections = CalculatePathAStar();
+
+        if (pathDirections == null) return;
+
+        moveAttacksPerTurnLeft = moveAttacksPerTurn;
+        attacksLeft = maxAttacksPerTurn;
+
+        MoveLoop();
+    }
+
+    protected List<Vector2Int> CalculatePathAStar()
+    {
+        var thisEnemyNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PositionOnWorldGrid);
+        var playerNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PlayerManager.Instance.WizardWorldPositionOnGrid);
+
+        List<Node> nodePath = GridManager.FindPath(thisEnemyNode, playerNode, true);
+
+        if (nodePath == null)
+        {
+            nodePath = GridManager.FindPath(thisEnemyNode, playerNode, false);
+
+            if (nodePath == null)
+            {
+                return null;
+            }
+        }
+
+        // Show the node path with markers
+        // GameManager.Instance.gridManager.DrawPathIndicators(nodePath);
+
+        List<Vector2Int> pathDirs = GetPathDirections(nodePath);
+
+        return pathDirs;
+    }
+
+    protected void MoveLoop()
+    {
+        if (moveAttacksPerTurnLeft <= 0 ||
+            attacksLeft <= 0)
+        {
+            PostMove();
+            EndTurn();
+            return;
+        }
+        else
+        {
+            moveAttacksPerTurnLeft--;
+        }
+
+        if (pathDirections.Count <= 0) return;
+
+        var direction = pathDirections[0];
+
+        MoveOrAttack(direction.x, direction.y);
+
+        if (pathDirections.Count > 1)
+            pathDirections.RemoveAt(0);
+    }
+
+    //AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
+    protected void MoveOrAttack(int xDir, int yDir)
+    {
+        //Hit will store whatever our linecast hits when Move is called.
+        RaycastHit2D hit;
+
+        //Set canMove to true if Move was successful, false if failed.
+        bool canMove = AttemptMove(xDir, yDir, out hit);
+
+        //Check if nothing was hit by linecast
+        if (hit.transform == null)
+            //If nothing was hit, return and don't execute further code.
+            return;
+
+        if (hit.collider.tag == "Wizard" &&
+            !canMove)
+        {
+
+            if (attacksLeft > 0)
+            {
+
+                PreAttack();
+                AttackPlayer(xDir, yDir);
+                PostAttack();
+
+                attacksLeft--;
+            }
+        }
+    }
+
+    protected bool AttemptMove(int xDir, int yDir, out RaycastHit2D hit)
     {
 
         Vector2 start = transform.position; //+0.5f to make it start in the middle of the square.
@@ -160,74 +249,6 @@ public class EnemyUnit : MonoBehaviour
         return false;
     }
 
-    //PreMove is called by TakeTurn. This sets up the variables for a move/attack.
-    protected void PreMove()
-    {
-        pathDirections = CalculatePathAStar();
-
-        if (pathDirections == null) return;
-
-        moveAttacksPerTurnLeft = moveAttacksPerTurn;
-        attacksLeft = maxAttacksPerTurn;
-
-        MoveEnemyAStar();
-    }
-
-    // #nullable enable
-
-    protected List<Vector2Int> CalculatePathAStar()
-    {
-        var thisEnemyNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PositionOnWorldGrid);
-        var playerNode = GameManager.Instance.gridManager.GetNodeByWorldPosition(PlayerManager.Instance.WizardWorldPositionOnGrid);
-
-        List<Node> nodePath = GridManager.FindPath(thisEnemyNode, playerNode, true);
-
-        if (nodePath == null)
-        {
-            nodePath = GridManager.FindPath(thisEnemyNode, playerNode, false);
-
-            if (nodePath == null)
-            {
-                return null;
-            }
-        }
-
-        // Show the node path with markers
-        GameManager.Instance.gridManager.DrawPathIndicators(nodePath);
-
-        List<Vector2Int> pathDirs = GetPathDirections(nodePath);
-
-        return pathDirs;
-    }
-
-    // #nullable disable
-
-    protected void MoveEnemyAStar()
-    {
-
-        if (moveAttacksPerTurnLeft <= 0 ||
-            attacksLeft <= 0)
-        {
-            PostMove();
-            EndTurn();
-            return;
-        }
-        else
-        {
-            moveAttacksPerTurnLeft--;
-        }
-
-        if (pathDirections.Count <= 0) return;
-
-        var direction = pathDirections[0];
-
-        AttemptMove(direction.x, direction.y);
-
-        if (pathDirections.Count > 1)
-            pathDirections.RemoveAt(0);
-
-    }
-
     protected List<Vector2Int> GetPathDirections(List<Node> nodes)
     {
         var directions = new List<Vector2Int>();
@@ -249,78 +270,6 @@ public class EnemyUnit : MonoBehaviour
         }
 
         return directions;
-    }
-
-
-    protected void MoveEnemy()
-    {
-        if (moveAttacksPerTurnLeft <= 0)
-        {
-            return;
-        }
-        else
-        {
-            moveAttacksPerTurnLeft--;
-        }
-
-        int xDir = 0;
-        int yDir = 0;
-
-        // This makes the enemy choose randomly wether to travel in a X direction or a y direction first.
-        if (UnityEngine.Random.value < 0.5f)
-        {
-            //If the difference in positions is approximately zero
-            if (Mathf.Abs(targetRB.position.x - transform.position.x) < closeEnough)
-
-                //If the y coordinate of the target's (player) position is greater than the y coordinate of this enemy's position set y direction 1 (to move up). If not, set it to -1 (to move down).
-                yDir = targetRB.position.y > transform.position.y ? 1 : -1;
-
-            //If the difference in positions is not approximately zero
-            else
-                //Check if target x position is greater than enemy's x position, if so set x direction to 1 (move right), if not set to -1 (move left).
-                xDir = targetRB.position.x > transform.position.x ? 1 : -1;
-        }
-        else
-        {
-            if (Mathf.Abs(targetRB.position.y - transform.position.y) < closeEnough)
-                xDir = targetRB.position.x > transform.position.x ? 1 : -1;
-            else
-                yDir = targetRB.position.y > transform.position.y ? 1 : -1;
-        }
-
-        //Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
-        AttemptMove(xDir, yDir);
-
-    }
-
-    //AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
-    protected void AttemptMove(int xDir, int yDir)
-    {
-        //Hit will store whatever our linecast hits when Move is called.
-        RaycastHit2D hit;
-
-        //Set canMove to true if Move was successful, false if failed.
-        bool canMove = Move(xDir, yDir, out hit);
-
-        //Check if nothing was hit by linecast
-        if (hit.transform == null)
-            //If nothing was hit, return and don't execute further code.
-            return;
-
-        if (hit.collider.tag == "Wizard" &&
-            !canMove)
-        {
-
-            if (attacksLeft > 0)
-            {
-
-                PreAttack();
-                AttackPlayer(xDir, yDir);
-                PostAttack();
-
-                attacksLeft--;
-            }
-        }
     }
 
     /// <summary>
@@ -358,7 +307,7 @@ public class EnemyUnit : MonoBehaviour
         nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
     }
 
-    protected IEnumerator AttackAnimation(int xDir, int yDir)
+    protected virtual IEnumerator AttackAnimation(int xDir, int yDir)
     {
         var initialPos = SpriteObj.transform.position;
         var targetPos = new Vector3(
@@ -385,44 +334,44 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //Loops movement so that for enemies with multiple move/attack turns.
-        MoveEnemyAStar();
+        MoveLoop();
     }
 
-    private void EndTurn()
+    protected void EndTurn()
     {
         isTakingTurn = false;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
     }
 
-    protected void TakeDamageFromPlayer()
+    protected virtual void TakeDamageFromPlayer()
     {
         CurrentHP -= PlayerManager.Instance.attackDamage;
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
-    //     if (particleEffect != null)
-    //     {
-    //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
-    //         particleEffect.Play();
-    //     }
+        //     if (particleEffect != null)
+        //     {
+        //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
+        //         particleEffect.Play();
+        //     }
 
-    if (enemyHurt != null)
-    {
-        StopCoroutine(ShowEnemyHurt()); 
-        StartCoroutine(ShowEnemyHurt()); 
-    }
+        if (enemyHurt != null)
+        {
+            StopCoroutine(ShowEnemyHurt());
+            StartCoroutine(ShowEnemyHurt());
+        }
 
         CheckIfDead();
     }
@@ -437,7 +386,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
-         StartCoroutine(enemyDeathAnim());
+        StartCoroutine(enemyDeathAnim());
     }
 
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
@@ -464,26 +413,23 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //Loops movement so that for enemies with multiple move/attack turns.
-        MoveEnemyAStar();
+        MoveLoop();
     }
 
     private IEnumerator ShowEnemyHurt()
-{
-    enemyHurt.gameObject.SetActive(true); 
-    yield return new WaitForSeconds(0.4f);  
-    enemyHurt.gameObject.SetActive(false); 
-}
+    {
+        enemyHurt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        enemyHurt.gameObject.SetActive(false);
+    }
 
- private IEnumerator enemyDeathAnim()
-{
-    enemyDie.gameObject.SetActive(true); 
-    yield return new WaitForSeconds(0.5f);  
-    enemyDie.gameObject.SetActive(false); 
+    private IEnumerator enemyDeathAnim()
+    {
+        enemyDie.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        enemyDie.gameObject.SetActive(false);
 
-    enemyManager.RemoveEnemyFromList(this);
-    Destroy(gameObject);
-}
-
-
-
+        enemyManager.RemoveEnemyFromList(this);
+        Destroy(gameObject);
+    }
 }
