@@ -64,10 +64,8 @@ public class AimState : IPlayerActionState
   {
     if (GameManager.Instance.golfAimType == GolfAimType.Drag)
     {
-      if (PlayerManager.Instance.golfAimDrag.OnMouseUp())
-      {
-        controller.SetState(controller.moveState);
-      }
+      PlayerManager.Instance.golfAimDrag.OnMouseUp();
+      controller.SetState(controller.moveState);
     }
   }
 
@@ -83,6 +81,4 @@ public class AimState : IPlayerActionState
       controller.SetState(controller.powerState);
     }
   }
-
-
 }

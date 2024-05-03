@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
   {
     // DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
-
+    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
   }
 
   public void PlayerSpawnInit()
@@ -109,11 +109,7 @@ public class PlayerManager : MonoBehaviour
 
   public void Init()
   {
-    var hudCanvas = GameObject.Find("HUDCanvas");
 
-    healthBar = hudCanvas.GetComponentInChildren<HealthBar>();
-
-    healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
     UpdateHPText();
 
     if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
