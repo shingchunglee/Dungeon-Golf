@@ -14,6 +14,7 @@ public class ChestController : MonoBehaviour
     public void OpenChest()
     {
         Debug.Log("open chest");
+        GameManager.Instance.statsController.IncrementChestsOpened();
         ClubType? clubType = ItemRandomiser.Instance.GetRandomisedClub();
 
         Dictionary<Consumables, int> randomConsumables = ItemRandomiser.Instance.GetRandomConsumables();
