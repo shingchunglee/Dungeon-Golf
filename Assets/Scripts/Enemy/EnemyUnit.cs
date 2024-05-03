@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 public class EnemyUnit : MonoBehaviour
 {
-    private float moveTime = 0.01f;           //Time it will take object to move, in seconds.
+    private float moveTime = 0.005f;           //Time it will take object to move, in seconds.
 
     private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
     private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
@@ -414,7 +414,7 @@ public class EnemyUnit : MonoBehaviour
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
     protected IEnumerator SmoothMovement(Vector3 end)
     {
-        bool isAnimationPlaying = true;
+        // bool isAnimationPlaying = true;
 
         // StartCoroutine(AnimationTimeout());
 
@@ -423,8 +423,7 @@ public class EnemyUnit : MonoBehaviour
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
         //While that distance is greater than a very small amount (Epsilon, almost zero):
-        while (sqrRemainingDistance > float.Epsilon ||
-                isAnimationPlaying)
+        while (sqrRemainingDistance > float.Epsilon)
         {
             //Find a new position proportionally closer to the end, based on the moveTime
             Vector3 newPostion = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
