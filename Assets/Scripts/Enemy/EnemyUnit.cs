@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 public class EnemyUnit : MonoBehaviour
 {
-    private float moveTime = 0.005f;           //Time it will take object to move, in seconds.
+    private float moveTime = 0.001f;           //Time it will take object to move, in seconds.
 
     private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
     private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
