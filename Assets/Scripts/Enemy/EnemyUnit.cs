@@ -3,6 +3,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -141,6 +142,8 @@ public class EnemyUnit : MonoBehaviour
     {
         pathDirections = CalculatePathAStar();
 
+        nodeAtLocation.entitiesOnTile.Remove(EntityType.ENEMY);
+
         if (pathDirections == null) return;
 
         moveAttacksPerTurnLeft = moveAttacksPerTurn;
@@ -225,7 +228,10 @@ public class EnemyUnit : MonoBehaviour
 
                 attacksLeft--;
             }
+            return;
         }
+
+        ForceEndTurn();
     }
 
     protected bool AttemptMove(int xDir, int yDir, out RaycastHit2D hit)
@@ -403,15 +409,22 @@ public class EnemyUnit : MonoBehaviour
         StartCoroutine(enemyDeathAnim());
     }
 
+
+
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
     protected IEnumerator SmoothMovement(Vector3 end)
     {
+        bool isAnimationPlaying = true;
+
+        // StartCoroutine(AnimationTimeout());
+
         //Calculate the remaining distance to move based on the square magnitude of the difference between current position and end parameter. 
         //Square magnitude is used instead of magnitude because it's computationally cheaper.
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
         //While that distance is greater than a very small amount (Epsilon, almost zero):
-        while (sqrRemainingDistance > float.Epsilon)
+        while (sqrRemainingDistance > float.Epsilon ||
+                isAnimationPlaying)
         {
             //Find a new position proportionally closer to the end, based on the moveTime
             Vector3 newPostion = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
@@ -429,6 +442,19 @@ public class EnemyUnit : MonoBehaviour
         //Loops movement so that for enemies with multiple move/attack turns.
         MoveLoop();
     }
+
+    protected void ForceEndTurn()
+    {
+        Debug.Log("Force End turn.");
+        PostMove();
+        isTakingTurn = false;
+    }
+
+    // protected IEnumerator AnimationTimeout()
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+    //     isAnimationPlaying = false;
+    // }
 
     private IEnumerator ShowEnemyHurt()
     {
