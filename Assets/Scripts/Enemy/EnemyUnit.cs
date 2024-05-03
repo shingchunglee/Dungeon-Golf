@@ -29,9 +29,9 @@ public class EnemyUnit : MonoBehaviour
     private float closeEnough = 0.1f;
 
     [SerializeField] HealthBar healthBar;
-   // [SerializeField] ParticleSystem particleEffect;
-   [SerializeField] Animator enemyHurt;
-   [SerializeField] Animator enemyDie;
+    // [SerializeField] ParticleSystem particleEffect;
+    [SerializeField] Animator enemyHurt;
+    [SerializeField] Animator enemyDie;
 
     protected void Awake()
     {
@@ -39,10 +39,10 @@ public class EnemyUnit : MonoBehaviour
 
         //healthbar
         healthBar = GetComponentInChildren<HealthBar>();
-         if (healthBar == null)
-    {
-        Debug.LogError("HealthBar component not found on " + gameObject.name);
-    }
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar component not found on " + gameObject.name);
+        }
 
         //particle system
         //  particleEffect = GetComponentInChildren<ParticleSystem>();
@@ -51,10 +51,10 @@ public class EnemyUnit : MonoBehaviour
         //     Debug.LogError("No Particle System found on " + gameObject.name);
         // }
 
-         if (enemyHurt == null)
-    {
-        enemyHurt = GetComponentInChildren<Animator>(); 
-    }
+        if (enemyHurt == null)
+        {
+            enemyHurt = GetComponentInChildren<Animator>();
+        }
 
 
 
@@ -260,17 +260,17 @@ public class EnemyUnit : MonoBehaviour
         CurrentHP -= PlayerManager.Instance.attackDamage;
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
-    //     if (particleEffect != null)
-    //     {
-    //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
-    //         particleEffect.Play();
-    //     }
+        //     if (particleEffect != null)
+        //     {
+        //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
+        //         particleEffect.Play();
+        //     }
 
-    if (enemyHurt != null)
-    {
-        StopCoroutine(ShowEnemyHurt()); 
-        StartCoroutine(ShowEnemyHurt()); 
-    }
+        if (enemyHurt != null)
+        {
+            StopCoroutine(ShowEnemyHurt());
+            StartCoroutine(ShowEnemyHurt());
+        }
 
         CheckIfDead();
     }
@@ -285,7 +285,8 @@ public class EnemyUnit : MonoBehaviour
 
     void EnemyDies()
     {
-         StartCoroutine(enemyDeathAnim());
+        GameManager.Instance.statsController.IncrementEnemiesKilled();
+        StartCoroutine(enemyDeathAnim());
     }
 
     //Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
@@ -316,21 +317,21 @@ public class EnemyUnit : MonoBehaviour
     }
 
     private IEnumerator ShowEnemyHurt()
-{
-    enemyHurt.gameObject.SetActive(true); 
-    yield return new WaitForSeconds(0.4f);  
-    enemyHurt.gameObject.SetActive(false); 
-}
+    {
+        enemyHurt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        enemyHurt.gameObject.SetActive(false);
+    }
 
- private IEnumerator enemyDeathAnim()
-{
-    enemyDie.gameObject.SetActive(true); 
-    yield return new WaitForSeconds(0.5f);  
-    enemyDie.gameObject.SetActive(false); 
+    private IEnumerator enemyDeathAnim()
+    {
+        enemyDie.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        enemyDie.gameObject.SetActive(false);
 
-    enemyManager.RemoveEnemyFromList(this);
-    Destroy(gameObject);
-}
+        enemyManager.RemoveEnemyFromList(this);
+        Destroy(gameObject);
+    }
 
 
 
