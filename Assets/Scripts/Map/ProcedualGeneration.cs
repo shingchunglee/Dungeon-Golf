@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -667,5 +668,64 @@ public class ProcedualGeneration : MonoBehaviour
             }
         }
         return true;
+    }
+
+    internal void UpdateGridManager()
+    {
+        int width = Grid.GetLength(1);
+        int height = Grid.GetLength(0);
+
+        int offsetX = 0;
+        int offsetY = 0;
+
+        GameManager.Instance.gridManager.grid = new global::Grid(new Vector2Int(width, height), new Vector2Int(offsetX, offsetY));
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                GameManager.Instance.gridManager.grid.nodes[x + offsetX, y + offsetY].floorType = getNodeType(Grid[y, x]);
+                EntityType? entityType = getEntityType(Grid[y, x]);
+                if (entityType != null) GameManager.Instance.gridManager.grid.nodes[x + offsetX, y + offsetY].entitiesOnTile.Add((EntityType)entityType);
+            }
+        }
+
+        GameManager.Instance.gridManager.grid.nodes[(int)PlayerSpawn.x, (int)PlayerSpawn.y].entitiesOnTile.Add(EntityType.PLAYER);
+    }
+
+    private FloorType getNodeType(TileType tileType)
+    {
+        switch (tileType)
+        {
+            case TileType.FLOOR:
+                return FloorType.FLOOR;
+            case TileType.WALL:
+                return FloorType.WALL;
+            case TileType.OBSTACLE:
+                return FloorType.OBSTACLE;
+            case TileType.TRAP_VOID:
+                return FloorType.VOID;
+            case TileType.TRAP_FLOOR:
+                return FloorType.TRAP_FLOOR;
+            default:
+                return FloorType.EMPTY;
+        }
+    }
+
+    private EntityType? getEntityType(TileType tileType)
+    {
+        switch (tileType)
+        {
+            case TileType.TRAP_DAMAGE:
+                return EntityType.TRAP_DAMAGE;
+            case TileType.TRAP_CHEST:
+                return EntityType.TRAP_CHEST;
+            case TileType.CHEST:
+                return EntityType.CHEST;
+            case TileType.ENEMY_SPAWN:
+                return EntityType.ENEMY_SPAWN;
+            default:
+                return null;
+        }
     }
 }
