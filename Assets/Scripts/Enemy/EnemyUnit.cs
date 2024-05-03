@@ -39,7 +39,7 @@ public class EnemyUnit : MonoBehaviour
     private float attackMoveTime = 0.07f;
 
     protected List<Vector2Int> pathDirections;
-    [HideInInspector]
+    // [HideInInspector]
     public bool isTakingTurn = false;
 
     public Vector2Int PositionOnWorldGrid
