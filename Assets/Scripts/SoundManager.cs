@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-
+  public bool PlayMusic = true;
   public AudioClip background;
   public AudioClip stroke;
   public AudioClip clubCollect;
   public AudioClip enemyDamage;
   public AudioClip playerDamage;
-
 
   [SerializeField] AudioSource musicSource;
   [SerializeField] AudioSource SFXSource;
@@ -33,6 +32,8 @@ public class SoundManager : MonoBehaviour
   public void PlayBackgroundMusic()
   {
     if (musicSource == null) return;
+
+    if (!PlayMusic) return;
 
     if (musicSource.clip != background)
     {

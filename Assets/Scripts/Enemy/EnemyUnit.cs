@@ -472,4 +472,11 @@ public class EnemyUnit : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    protected void ForceEndTurn()
+    {
+        Debug.Log("Force End Trun");
+        PostMove();
+        isTakingTurn = false;
+    }
 }

@@ -63,6 +63,16 @@ public class EnemyManager : MonoBehaviour
 
     public System.Collections.IEnumerator EnemyTurnRoutine()
     {
+        StartCoroutine(EnemyTurnRoutine());
+
+        // foreach (EnemyUnit enemy in enemyUnitsOnLevel)
+        // {
+        //     enemy.TakeTurn();
+        // }
+    }
+
+    public System.Collections.IEnumerator EnemyTurnRoutine()
+    {
         foreach (EnemyUnit enemy in enemyUnitsOnLevel)
         {
             enemy.TakeTurn();
