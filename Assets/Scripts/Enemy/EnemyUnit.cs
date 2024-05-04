@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class EnemyUnit : MonoBehaviour
 {
-    private float moveTime = 0.01f;           //Time it will take object to move, in seconds.
+    private float moveTime = 0.001f;           //Time it will take object to move, in seconds.
 
     private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
     private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
@@ -127,6 +127,8 @@ public class EnemyUnit : MonoBehaviour
     {
         pathDirections = CalculatePathAStar();
 
+        nodeAtLocation.entitiesOnTile.Remove(EntityType.ENEMY);
+
         if (pathDirections == null) return;
 
         moveAttacksPerTurnLeft = moveAttacksPerTurn;
@@ -211,7 +213,10 @@ public class EnemyUnit : MonoBehaviour
 
                 attacksLeft--;
             }
+            return;
         }
+
+        ForceEndTurn();
     }
 
     protected bool AttemptMove(int xDir, int yDir, out RaycastHit2D hit)
@@ -433,5 +438,12 @@ public class EnemyUnit : MonoBehaviour
         // enemyDie.gameObject.SetActive(false);
 
         Destroy(gameObject);
+    }
+
+    protected void ForceEndTurn()
+    {
+        Debug.Log("Force End Trun");
+        PostMove();
+        isTakingTurn = false;
     }
 }
