@@ -5,6 +5,7 @@ using TMPro;
 public class ClubUI : MonoBehaviour
 {
     public TextMeshProUGUI ClubNameText;
+    public TextMeshProUGUI ConsumableText;
     public GameObject ClubClaimPanel;
     SoundManager soundManager;
 
@@ -18,6 +19,7 @@ public class ClubUI : MonoBehaviour
     private void Start()
     {
         ChestController.OnClubAdded += ClubCollectUI;
+        ChestController.OnConsumableAdded += ConsumableCollectUI;
     }
 
 
@@ -35,11 +37,21 @@ public class ClubUI : MonoBehaviour
         }
     }
 
+    private void ConsumableCollectUI(Consumables consumable)
+    {
+        if (ConsumableText != null && ClubClaimPanel != null)
+        {
+           ConsumableText.text = $"{consumable}"; 
+            ClubClaimPanel.SetActive(true); 
+            Debug.Log("Updated ConsumableText to: " + consumable);
+        }
+    }
+
 
 
     private IEnumerator HidePanel()
     {
-        yield return new WaitForSeconds(1.15f);
+        yield return new WaitForSeconds(1.50f);
         ClubClaimPanel.SetActive(false);
     }
 }
