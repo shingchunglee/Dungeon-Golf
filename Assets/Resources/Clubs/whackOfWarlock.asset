@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85f0681dd7d440cfbe9deb522277a83, type: 3}
-  m_Name: Baron's Balance
+  m_Name: whackOfWarlock
   m_EditorClassIdentifier: 
-  clubName: Merlin's Whisper
-  maxPower: 1000
+  clubName: Whack of Warlock
+  maxPower: 1600
   minPower: 200
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
+  maxVariance: 3
+  minVariance: -3
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 2
+  damage: 3
   weight: 5
-  appearsAfter: 0
+  appearsAfter: 1
   sprite: {fileID: 0}
