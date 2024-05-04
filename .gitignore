@@ -73,5 +73,4 @@ crashlytics-build.properties
 
 # Auto-saved Game Scenes
 /Assets/Scenes/Autosave
-/Assets/Scenes/CustomLevels_Final/StandardLevels/AutoSave
-/Assets/Scenes/CustomLevels_Final/ChallengeLevels/AutoSave
+/Assets/Scenes/CustomLevels_Final/CustomLevels/AutoSave

@@ -198,14 +198,22 @@ public class GameManager : MonoBehaviour
 
   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
   {
-    if (scene.name == "GameScene")
-    {
-      PlayerManager.Instance.Init();
-      this.Init();
-    }
-    else if (scene.name == "LoadingScene")
+    if (scene.name == "LoadingScene")
     {
       LoadStats();
+    }
+    else
+    {
+      //This trys to run Init if GameManager and PlayerManager Exist.
+      try
+      {
+        PlayerManager.Instance.Init();
+        this.Init();
+      }
+      catch
+      {
+        Debug.Log("Init unsuccessful");
+      }
     }
   }
 }

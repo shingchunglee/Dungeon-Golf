@@ -93,7 +93,7 @@ public class PlayerManager : MonoBehaviour
 
   private void GameStartProcessing()
   {
-    DontDestroyOnLoad(gameObject);
+    // DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
 
   }
