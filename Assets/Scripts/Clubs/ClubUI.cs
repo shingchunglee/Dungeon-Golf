@@ -51,7 +51,7 @@ public class ClubUI : MonoBehaviour
 
     private IEnumerator HidePanel()
     {
-        yield return new WaitForSeconds(1.50f);
+        yield return new WaitForSeconds(1.8f);
         ClubClaimPanel.SetActive(false);
     }
 }
