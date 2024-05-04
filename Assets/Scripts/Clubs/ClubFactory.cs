@@ -5,7 +5,7 @@ using UnityEngine;
 public enum ClubType
 {
   Iron7, Iron8, baronsBalance, excaliberSEdge, ironOfStarfall, merlinsWhisper, mysticsMallet, whackOfWarlock, royalRumble, oraclesOddballPutter, arcaneStrike, wizardsWind,
-  phantomSwing, LegendaryClub, wedgeOfSarcophagus, anubisDive, ironOfNile
+  phantomSwing, LegendaryClub, wedgeOfSarcophagus, anubisDive, ironOfNile, boltOfZeus, aetheriusIron, zephyrSwing, ironOfTitan
 }
 
 public class ClubFactory
@@ -50,8 +50,17 @@ public class ClubFactory
         return Resources.Load<Club>("Clubs/anubisDive");
       case ClubType.ironOfNile:
         return Resources.Load<Club>("Clubs/ironOfNile");
+      //level5
+      case ClubType.ironOfTitan:
+        return Resources.Load<Club>("Clubs/ironOfTitan");
+      case ClubType.zephyrSwing:
+        return Resources.Load<Club>("Clubs/zephyrSwing");
+      case ClubType.aetheriusIron:
+        return Resources.Load<Club>("Clubs/AetheriusIron");
+      case ClubType.boltOfZeus:
+        return Resources.Load<Club>("Clubs/boltOfZeus");
 
-        
+
       default:
         return Resources.Load<Club>("Clubs/7-Iron");
     }
