@@ -42,6 +42,8 @@ public class EnemyUnit : MonoBehaviour
     // [HideInInspector]
     public bool isTakingTurn = false;
 
+    private int disengageDistance = 20;
+
     public Vector2Int PositionOnWorldGrid
     {
         get
@@ -99,11 +101,11 @@ public class EnemyUnit : MonoBehaviour
 
         if (willBallCollide)
         {
-            GetComponentInChildren<Collider2D>().isTrigger = true;
+            GetComponentInChildren<Collider2D>().isTrigger = false;
         }
         else
         {
-            GetComponentInChildren<Collider2D>().isTrigger = false;
+            GetComponentInChildren<Collider2D>().isTrigger = true;
         }
 
         //Set the variables
@@ -141,7 +143,13 @@ public class EnemyUnit : MonoBehaviour
 
         nodeAtLocation.entitiesOnTile.Remove(EntityType.ENEMY);
 
-        if (pathDirections == null) return;
+        if (pathDirections == null ||
+            pathDirections.Count > disengageDistance)
+        {
+            PostMove();
+            EndTurn();
+            return;
+        }
 
         moveAttacksPerTurnLeft = moveAttacksPerTurn;
         attacksLeft = maxAttacksPerTurn;

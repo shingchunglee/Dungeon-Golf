@@ -56,6 +56,8 @@ public class PlayerManager : MonoBehaviour
     }
   }
 
+  public bool manualControlTestMode = false;
+
   public bool IsBallMoving
   {
     get
@@ -90,6 +92,37 @@ public class PlayerManager : MonoBehaviour
   private void Start()
   {
     HealthPotion.OnConsume += RestoreHealth;
+  }
+
+  private void FixedUpdate()
+  {
+    if (manualControlTestMode)
+    {
+      BallManualControl();
+    }
+
+  }
+
+  private void BallManualControl()
+  {
+    float horizontalInput = Input.GetAxis("Horizontal");
+    float verticalInput = Input.GetAxis("Vertical");
+
+    Vector2 movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
+
+    if (movementDirection != Vector2.zero)
+    {
+      // Calculate movement amount based on move speed and time
+      Vector2 movement = movementDirection * 15f;
+
+      // Apply movement to the Rigidbody
+      ballRB.AddForce(movement);
+    }
+
+    if (Input.GetKeyDown(KeyCode.Backslash))
+    {
+      TeleportPlayerToBall();
+    }
   }
 
   private void GameStartProcessing()
