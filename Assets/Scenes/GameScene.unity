@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa08fd729c44c3249bd395ad95516aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryMenu: {fileID: 1113078966}
+  InventoryMenu: {fileID: 0}
   PauseMenu: {fileID: 634730570}
 --- !u!1 &342239381
 GameObject:
@@ -2226,6 +2226,10 @@ PrefabInstance:
     - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: PlayMusic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3966,11 +3970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1113078966 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5679063698479132709, guid: cf6053067650742469d9465310ce23b8, type: 3}
-  m_PrefabInstance: {fileID: 1113078964}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1175999718 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1615442038972375194, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -4037,7 +4036,7 @@ MonoBehaviour:
   itemRandomiser: {fileID: 0}
   golfAimType: 0
   settingsCanvas: {fileID: 2093445073}
-  inventoryCanvas: {fileID: 1113078966}
+  inventoryCanvas: {fileID: 0}
   HPText: {fileID: 0}
 --- !u!114 &1265529957
 MonoBehaviour:
@@ -4051,7 +4050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa08fd729c44c3249bd395ad95516aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryMenu: {fileID: 1113078966}
+  InventoryMenu: {fileID: 0}
   PauseMenu: {fileID: 634730570}
 --- !u!1839735485 &1331316009 stripped
 Tilemap:
