@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
+  public GameObject PlayerParent;
   public GameObject playerWizard;
   public Rigidbody2D wizardRB;
   public GameObject playerBall;
@@ -92,7 +93,7 @@ public class PlayerManager : MonoBehaviour
 
   private void GameStartProcessing()
   {
-    // DontDestroyOnLoad(gameObject);
+    DontDestroyOnLoad(gameObject);
     currentHP = maxHP;
 
   }
@@ -112,6 +113,15 @@ public class PlayerManager : MonoBehaviour
     var hudCanvas = GameObject.Find("HUDCanvas");
 
     healthBar = hudCanvas.GetComponentInChildren<HealthBar>();
+    PlayerParent = GameObject.Find("Player");
+
+    var snapToGridLocation = new Vector3();
+
+    snapToGridLocation.x = Mathf.Floor(PlayerParent.transform.position.x);
+    snapToGridLocation.y = Mathf.Floor(PlayerParent.transform.position.y);
+    snapToGridLocation.z = PlayerParent.transform.position.z;
+
+    PlayerParent.transform.position = snapToGridLocation;
 
     healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
     UpdateHPText();

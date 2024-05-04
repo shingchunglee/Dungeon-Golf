@@ -492,25 +492,6 @@ Transform:
   - {fileID: 54810664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &108425436 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
-  m_PrefabInstance: {fileID: 1113078964}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &108425437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108425436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa08fd729c44c3249bd395ad95516aa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryMenu: {fileID: 0}
-  PauseMenu: {fileID: 634730570}
 --- !u!1 &342239381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,6 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357dc2565588844c1afc82c7b5595f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerParent: {fileID: 0}
   playerWizard: {fileID: 1806639729}
   wizardRB: {fileID: 0}
   playerBall: {fileID: 58924179}
@@ -2229,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: PlayMusic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3915,6 +3897,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5055373768226928417, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 634730570}
     - target: {fileID: 5679063698479132709, guid: cf6053067650742469d9465310ce23b8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3954,10 +3940,7 @@ PrefabInstance:
     - {fileID: 9142783607105622785, guid: cf6053067650742469d9465310ce23b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 108425437}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf6053067650742469d9465310ce23b8, type: 3}
 --- !u!114 &1113078965 stripped
 MonoBehaviour:
