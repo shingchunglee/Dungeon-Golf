@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: whackOfWarlock
   m_EditorClassIdentifier: 
   clubName: Whack of Warlock
-  maxPower: 2000
+  maxPower: 4000
   minPower: 200
   powerLevelDuration: 1
   powerEasingFunction: 6

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: baronsBalance
   m_EditorClassIdentifier: 
   clubName: Baron's Balance
-  maxPower: 2000
+  maxPower: 2200
   minPower: 200
   powerLevelDuration: 1
   powerEasingFunction: 6
