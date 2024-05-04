@@ -21,7 +21,7 @@ MonoBehaviour:
   minVariance: -1
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 4
+  damage: 8
   weight: 5
   appearsAfter: 2
   sprite: {fileID: 0}

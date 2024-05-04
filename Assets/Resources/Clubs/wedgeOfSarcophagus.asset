@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85f0681dd7d440cfbe9deb522277a83, type: 3}
-  m_Name: whackOfWarlock
+  m_Name: wedgeOfSarcophagus
   m_EditorClassIdentifier: 
-  clubName: Whack of Warlock
-  maxPower: 1500
-  minPower: 200
+  clubName: Phantom Swing
+  maxPower: 3000
+  minPower: 500
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: 3
-  minVariance: -3
+  maxVariance: 2
+  minVariance: -2
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 10
+  damage: 9
   weight: 5
-  appearsAfter: 1
+  appearsAfter: 3
   sprite: {fileID: 0}

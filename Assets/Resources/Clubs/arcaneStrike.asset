@@ -17,11 +17,11 @@ MonoBehaviour:
   minPower: 500
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
+  maxVariance: 3
+  minVariance: -3
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 3
+  damage: 9
   weight: 5
   appearsAfter: 2
   sprite: {fileID: 0}
