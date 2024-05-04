@@ -442,13 +442,6 @@ public class EnemyUnit : MonoBehaviour
         MoveLoop();
     }
 
-    protected void ForceEndTurn()
-    {
-        Debug.Log("Force End turn.");
-        PostMove();
-        isTakingTurn = false;
-    }
-
     // protected IEnumerator AnimationTimeout()
     // {
     //     yield return new WaitForSeconds(0.5f);
