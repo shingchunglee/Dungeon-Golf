@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: merlinsWhisper
   m_EditorClassIdentifier: 
   clubName: Merlin's Whisper
-  maxPower: 1000
+  maxPower: 2000
   minPower: 200
   powerLevelDuration: 1
   powerEasingFunction: 6
@@ -21,7 +21,7 @@ MonoBehaviour:
   minVariance: -1
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 2
+  damage: 14
   weight: 5
   appearsAfter: 0
   sprite: {fileID: 0}

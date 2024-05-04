@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: excalibersEdge
   m_EditorClassIdentifier: 
   clubName: Excaliber's Edge
-  maxPower: 1400
+  maxPower: 1600
   minPower: 150
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
+  maxVariance: 1
+  minVariance: -1
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 2
+  damage: 9
   weight: 5
-  appearsAfter: 0
+  appearsAfter: 1
   sprite: {fileID: 0}

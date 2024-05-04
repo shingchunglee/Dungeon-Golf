@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mysticsMallet
   m_EditorClassIdentifier: 
   clubName: Mystic's Mallet
-  maxPower: 1450
+  maxPower: 1900
   minPower: 150
   powerLevelDuration: 1
   powerEasingFunction: 6
@@ -21,7 +21,7 @@ MonoBehaviour:
   minVariance: -2
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 6
+  damage: 17
   weight: 5
   appearsAfter: 1
   sprite: {fileID: 0}

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85f0681dd7d440cfbe9deb522277a83, type: 3}
-  m_Name: arcaneStrike
+  m_Name: GoldWedge
   m_EditorClassIdentifier: 
-  clubName: Arcane Strike
-  maxPower: 3000
-  minPower: 500
+  clubName: Gold Wedge
+  maxPower: 2200
+  minPower: 250
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: 3
-  minVariance: -3
+  maxVariance: 2
+  minVariance: -2
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 23
+  damage: 20
   weight: 5
   appearsAfter: 7
   sprite: {fileID: 0}
