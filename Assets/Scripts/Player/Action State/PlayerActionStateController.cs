@@ -45,7 +45,7 @@ public class PlayerActionStateController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
+        // Debug.Log(other.name);
         currentState?.OnTriggerEnter2D(other);
     }
 

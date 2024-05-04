@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
   public Rigidbody2D wizardRB;
   public GameObject playerBall;
   public Rigidbody2D ballRB;
+
   private static PlayerManager _instance;
   public int maxHP;
   public int currentHP;
@@ -197,6 +198,28 @@ public class PlayerManager : MonoBehaviour
 
     // playerRB.MovePosition(new Vector2(x, y));
     playerRB.position = new Vector2(x, y);
+
+  }
+
+  private bool isBallInSand = false;
+  public float sandDrag = 4f;
+
+  public void ApplySandDrag()
+  {
+    if (!isBallInSand)
+    {
+      ballRB.drag += sandDrag;
+      isBallInSand = true;
+    }
+  }
+
+  public void RemoveSandDrag()
+  {
+    if (isBallInSand)
+    {
+      ballRB.drag -= sandDrag;
+      isBallInSand = false;
+    }
 
   }
 

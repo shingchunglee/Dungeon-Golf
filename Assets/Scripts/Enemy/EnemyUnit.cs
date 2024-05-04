@@ -454,7 +454,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void ForceEndTurn()
     {
-        Debug.Log("Force End Trun");
+        // Debug.Log("Force End Trun");
         PostMove();
         isTakingTurn = false;
     }
