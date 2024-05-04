@@ -4,8 +4,8 @@ using UnityEngine;
 // [Serializable]
 public enum ClubType
 {
-  Iron7, Iron8, baronsBalance, excaliberSEdge, ironOfStarfall, merlinsWhisper, mysticsMallet, whackOfWarlock, royalRumble,
-  LegendaryClub
+  Iron7, Iron8, baronsBalance, excaliberSEdge, ironOfStarfall, merlinsWhisper, mysticsMallet, whackOfWarlock, royalRumble, oraclesOddballPutter, arcaneStrike, wizardsWind,
+  phantomSwing, LegendaryClub
 }
 
 public class ClubFactory
@@ -30,6 +30,14 @@ public class ClubFactory
         return Resources.Load<Club>("Clubs/whackOfWarlock");
       case ClubType.royalRumble:
         return Resources.Load<Club>("Clubs/royalRumble");
+      case ClubType.oraclesOddballPutter:
+        return Resources.Load<Club>("Clubs/oraclesOddballPutter");
+      case ClubType.arcaneStrike:
+        return Resources.Load<Club>("Clubs/arcaneStrike");
+      case ClubType.wizardsWind:
+        return Resources.Load<Club>("Clubs/wizardsWind");
+      case ClubType.phantomSwing:
+        return Resources.Load<Club>("Clubs/phantomSwing");
       case ClubType.LegendaryClub:
         return Resources.Load<Club>("Clubs/LegendaryClub");
       default:

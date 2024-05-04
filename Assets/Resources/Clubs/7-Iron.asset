@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clubName: 7-Iron of Ravenhold
   maxPower: 1400
-  minPower: 150
+  minPower: 200
   powerLevelDuration: 1
   powerEasingFunction: 6
   maxVariance: 3

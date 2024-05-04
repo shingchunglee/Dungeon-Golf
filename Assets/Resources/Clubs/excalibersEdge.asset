@@ -17,8 +17,8 @@ MonoBehaviour:
   minPower: 150
   powerLevelDuration: 1
   powerEasingFunction: 6
-  maxVariance: -2
-  minVariance: 2
+  maxVariance: 2
+  minVariance: -2
   varianceLevelDuration: 1
   varianceEasingFunction: 1
   damage: 2
