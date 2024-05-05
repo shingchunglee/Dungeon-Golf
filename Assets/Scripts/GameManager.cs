@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
   private bool isInventoryOpen = false;
 
   public StatsController statsController;
+  public string nextSceneName = "";
 
   private void Awake()
   {
@@ -178,7 +179,8 @@ public class GameManager : MonoBehaviour
     dungeonLevel++;
 
     isInitialized = false;
-    SceneManager.LoadScene(levelName);
+    nextSceneName = levelName;
+    SceneManager.LoadScene("LoadingScene");
   }
 
   private void LoadStats()
@@ -192,6 +194,18 @@ public class GameManager : MonoBehaviour
   public void LoadGameScene()
   {
     SceneManager.LoadScene("GameScene");
+  }
+
+  public void LoadNextLevel()
+  {
+    if (nextSceneName == "")
+    {
+      LoadGameScene();
+    }
+    else
+    {
+      SceneManager.LoadScene(nextSceneName);
+    }
   }
 
   private void OnEnable()

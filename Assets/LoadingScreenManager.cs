@@ -15,7 +15,7 @@ public class LoadingScreenManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.Instance.LoadGameScene();
+            GameManager.Instance.LoadNextLevel();
         }
     }
 }
