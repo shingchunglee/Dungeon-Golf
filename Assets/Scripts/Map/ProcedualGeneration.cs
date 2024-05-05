@@ -22,6 +22,8 @@ public class ProcedualGeneration : MonoBehaviour
     Tilemap floor;
     [SerializeField]
     Tilemap enemies;
+    [SerializeField]
+    Tilemap chests;
     // [SerializeField]
     // TileBase floorTile;
     [SerializeField]
@@ -40,6 +42,8 @@ public class ProcedualGeneration : MonoBehaviour
     public int Width = 50;
     [SerializeField]
     public int Height = 50;
+    [SerializeField]
+    private GameObject chestPrefab;
 
     public void Main()
     {
@@ -54,7 +58,48 @@ public class ProcedualGeneration : MonoBehaviour
 
         RenderTiles(grid);
 
+        PlaceChest(Grid);
+
         GetPlayerGoalPositions(Grid);
+    }
+
+    private void PlaceChest(TileType[,] structures)
+    {
+        List<Vector2Int> positionsToCheck = new();
+
+        int height = structures.GetLength(0);
+        int width = structures.GetLength(1);
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                positionsToCheck.Add(new Vector2Int(x, y));
+            }
+        }
+
+        bool isNotFound = true;
+
+        while (isNotFound)
+        {
+            if (positionsToCheck.Count == 0)
+            {
+                isNotFound = false;
+                break;
+            }
+
+            int randomIndex = SeededRandom.Range(SeededRandom.Instance.MapRandom, 0, positionsToCheck.Count);
+            if (structures[positionsToCheck[randomIndex].y, positionsToCheck[randomIndex].x] == TileType.FLOOR && chestPrefab != null)
+            {
+                // placechest
+                var obj = Instantiate(chestPrefab, new Vector3(positionsToCheck[randomIndex].x, positionsToCheck[randomIndex].y, 0), UnityEngine.Quaternion.identity);
+
+                obj.transform.parent = obstacles.transform;
+                Grid[positionsToCheck[randomIndex].y, positionsToCheck[randomIndex].x] = TileType.CHEST;
+                isNotFound = false;
+            }
+            positionsToCheck.RemoveAt(randomIndex);
+        }
     }
 
     private void ClearGrids()
@@ -476,7 +521,7 @@ public class ProcedualGeneration : MonoBehaviour
             return;
         }
         PlayerSpawn = new Vector2(PlayerSpawn.x + 0.5f, PlayerSpawn.y + 0.5f);
-        GoalSpawn = new Vector2(GoalSpawn.x + 0.5f, GoalSpawn.y + 0.5f);
+        GoalSpawn = new Vector2(GoalSpawn.x, GoalSpawn.y);
     }
 
     private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
