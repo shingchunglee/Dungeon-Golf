@@ -1467,9 +1467,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2638282323085338184, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4754175169170128828, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
       propertyPath: m_Name
       value: ToxicHound (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6369289061553118655, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7112500515962715089, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1480,7 +1488,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6369289061553118655, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
+    - {fileID: 2638282323085338184, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
