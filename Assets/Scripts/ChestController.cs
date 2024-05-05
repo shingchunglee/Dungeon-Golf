@@ -43,7 +43,6 @@ public class ChestController : MonoBehaviour
 
         Dictionary<Consumables, int> randomConsumables = ItemRandomiser.Instance.GetRandomConsumables();
 
-
         foreach (KeyValuePair<Consumables, int> consumable in randomConsumables)
         {
             PlayerManager.Instance.inventoryController.consumables.AddConsumable(consumable.Key, consumable.Value);
