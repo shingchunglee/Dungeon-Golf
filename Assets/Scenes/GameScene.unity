@@ -172,6 +172,7 @@ MonoBehaviour:
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
   enemies: {fileID: 459314849}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -184,7 +185,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 45
   Height: 45
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
 --- !u!1 &58924179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7600680289112393638, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -6870,6 +6871,7 @@ MonoBehaviour:
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
   enemies: {fileID: 459314849}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -6881,7 +6883,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
   Width: 35
   Height: 35
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
 --- !u!1 &1438048597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7016,6 +7018,7 @@ MonoBehaviour:
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
   enemies: {fileID: 459314849}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -7154,6 +7157,7 @@ MonoBehaviour:
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
   enemies: {fileID: 459314849}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -7166,7 +7170,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 40
   Height: 40
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
 --- !u!1 &1806639729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8601834166412958021, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -18212,6 +18216,7 @@ MonoBehaviour:
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
   enemies: {fileID: 459314849}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -18223,7 +18228,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: beede2a2cc8cd4a3187eb60c1db838f8, type: 2}
   Width: 30
   Height: 30
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
 --- !u!1001 &4178338547437784878
 PrefabInstance:
   m_ObjectHideFlags: 0
