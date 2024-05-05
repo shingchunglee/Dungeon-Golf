@@ -23,5 +23,5 @@ MonoBehaviour:
   varianceEasingFunction: 1
   damage: 24
   weight: 5
-  appearsAfter: 1
+  appearsAfter: 7
   sprite: {fileID: 0}
