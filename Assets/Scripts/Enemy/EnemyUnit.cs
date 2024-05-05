@@ -179,7 +179,8 @@ public class EnemyUnit : MonoBehaviour
 
         List<Vector2Int> pathDirs = GetPathDirections(nodePath);
 
-        if (pathDirs == null)
+        if (pathDirs == null ||
+            pathDirs.Count <= 0)
         {
             ForceEndTurn();
         }
