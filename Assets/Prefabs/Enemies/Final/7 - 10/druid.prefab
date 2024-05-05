@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1787664548005556509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.11, y: 1.35, z: -0.0046248464}
+  m_LocalPosition: {x: -0.006, y: 0.004, z: -0.0046248464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3229378350952607328}
   - component: {fileID: 8933010768464859948}
   - component: {fileID: 4321472038026993983}
+  - component: {fileID: 5242121930052730192}
   m_Layer: 0
   m_Name: druid
   m_TagString: Untagged
@@ -210,6 +211,33 @@ MonoBehaviour:
   enemyHurt: {fileID: 4758695493700560578, guid: 3219e372efc379a4b9b24b9ee19c38cc, type: 3}
   enemyDie: {fileID: 7018311986599031151, guid: 7bafa0ea8df78e14d9d3a85929ff10ce, type: 3}
   isTakingTurn: 0
+--- !u!50 &5242121930052730192
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100674652702001186}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &902589095626876681
 PrefabInstance:
   m_ObjectHideFlags: 0

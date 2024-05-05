@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
   public InventoryController inventoryController;
   public Transform playerTransform;
 
+
+
   public Vector2Int WizardWorldPositionOnGrid
   {
     get

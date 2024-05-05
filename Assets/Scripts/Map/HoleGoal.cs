@@ -14,9 +14,9 @@ public class HoleGoal : MonoBehaviour
             GameManager.Instance.AdvanceLevel();
         }
         else
-        {   
-            
-            SceneManager.LoadScene(nextSceneName);
+        {
+
+            GameManager.Instance.AdvanceLevelSpecific(nextSceneName);
         }
     }
 

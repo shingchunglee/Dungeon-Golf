@@ -39,7 +39,10 @@ public class GameManager : MonoBehaviour
 
   private GameObject ProcGenLevelsParent;
   public List<ProcedualGeneration> proceduralGenerationPresets;
+  [HideInInspector]
   public int procGenLevelIndex = 0;
+  [HideInInspector]
+  public int dungeonLevel = 0;
 
   public ItemRandomiser itemRandomiser;
   // public GolfAimType golfAimType = GolfAimType.Click;
@@ -157,6 +160,8 @@ public class GameManager : MonoBehaviour
 
   public void AdvanceLevel()
   {
+    dungeonLevel++;
+
     isInitialized = false;
 
     if (procGenLevelIndex < proceduralGenerationPresets.Count)
@@ -170,6 +175,8 @@ public class GameManager : MonoBehaviour
 
   public void AdvanceLevelSpecific(string levelName)
   {
+    dungeonLevel++;
+
     isInitialized = false;
     SceneManager.LoadScene(levelName);
   }

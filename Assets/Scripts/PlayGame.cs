@@ -6,6 +6,6 @@ public class PlayGame : MonoBehaviour
     // Start is called before the first frame update
     public void PlayGameB()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Custom_1_Mitch");
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 574582518703701404}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7700001, y: 1.28, z: -0.0046248464}
+  m_LocalPosition: {x: 0.02, y: -0.01, z: -0.0046248464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 914462109397494858}
   - component: {fileID: 3813212880878152421}
   - component: {fileID: 431239075337165543}
+  - component: {fileID: 8167738370490197954}
   m_Layer: 0
   m_Name: two_head
   m_TagString: Untagged
@@ -210,6 +211,33 @@ MonoBehaviour:
   enemyHurt: {fileID: 4758695493700560578, guid: 3219e372efc379a4b9b24b9ee19c38cc, type: 3}
   enemyDie: {fileID: 7018311986599031151, guid: 7bafa0ea8df78e14d9d3a85929ff10ce, type: 3}
   isTakingTurn: 0
+--- !u!50 &8167738370490197954
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815821303643125080}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5766573208671789533
 PrefabInstance:
   m_ObjectHideFlags: 0
