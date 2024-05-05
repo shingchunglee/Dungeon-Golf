@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4791862501962128907}
   - component: {fileID: 4684710527776833448}
   - component: {fileID: 4721371369380476867}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite&Coillider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6075302718396804173}
   - component: {fileID: 37108282410471533}
   - component: {fileID: 7914502372954099658}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoostPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
