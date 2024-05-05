@@ -98,10 +98,10 @@ public class PlayerManager : MonoBehaviour
 
   private void FixedUpdate()
   {
-    if (manualControlTestMode)
-    {
-      BallManualControl();
-    }
+    // if (manualControlTestMode)
+    // {
+    //   BallManualControl();
+    // }
 
   }
 
