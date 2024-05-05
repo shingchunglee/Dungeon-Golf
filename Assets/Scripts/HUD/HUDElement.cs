@@ -9,6 +9,9 @@ public class HUDElement : MonoBehaviour
 
   public void OnCursorExit()
   {
-    GameManager.Instance.isCursorOverHUDElement = false;
+    if (!GameManager.Instance.isSettingsOpen && !GameManager.Instance.isInventoryOpen)
+    {
+      GameManager.Instance.isCursorOverHUDElement = false;
+    }
   }
 }

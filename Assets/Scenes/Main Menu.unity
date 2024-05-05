@@ -672,18 +672,24 @@ MonoBehaviour:
     1. Move your
     cursor to aim your shot.
 
-    2. Click to choose power level
+    2. Click to choose power level.
 
-    3. Click again
-    to choose ball angle.
+    2.5. Right
+    Click to cancel your shot.
 
-
-    Press ''P''  to open a menu in game to change aiming
-    style.
+    3. Click again to choose ball angle.
 
 
-    You teleport to your golfball after the shot. Make your way to the
-    hole.
+    Press
+    ''P''  to open a menu in game to change aiming style.
+
+
+    Press ''H'' to use
+    consumable.
+
+
+    You teleport to your golfball after the shot. Make your way
+    to the hole.
 
 
     Watch out for enemies that attack if you get too close.
@@ -693,10 +699,7 @@ MonoBehaviour:
     WASD to view the map. Space Bar to snap camera back to ball.
 
 
-    Happy golfing.
-
-
-'
+    Happy golfing.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a8eadb08dfc8c0342841332065f0ca81, type: 2}
   m_sharedMaterial: {fileID: 359997790273870037, guid: a8eadb08dfc8c0342841332065f0ca81, type: 2}
@@ -2378,6 +2381,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
