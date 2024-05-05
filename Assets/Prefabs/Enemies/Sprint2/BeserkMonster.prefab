@@ -81,7 +81,7 @@ MonoBehaviour:
   moveAttacksPerTurn: 4
   maxAttacksPerTurn: 3
   attackDamage: 1
-  willBallCollide: 1
+  willBallCollide: 0
   healthBar: {fileID: 0}
   enemyHurt: {fileID: 0}
   enemyDie: {fileID: 0}

@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 5f30d2108749b4fe9904f5d2e35bb584
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_1_Mitch.unity
+    guid: 0ef78b1a5d1e944bcb53cf86edd5628a
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_2_Mitch.unity
+    guid: b83b05a2fa6244a5ebbc7ceb74076461
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_3_Mitch.unity
+    guid: 53ecbe7358c884f5bab069377753dd58
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_4_Mitch.unity
+    guid: e23fc4ecb46bf4a978ceb8c4befe0c08
   m_configObjects: {}

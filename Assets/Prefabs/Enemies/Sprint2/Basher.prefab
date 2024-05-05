@@ -51,10 +51,10 @@ MonoBehaviour:
   enemyName: Basher
   MaxHP: 5
   CurrentHP: 0
-  moveAttacksPerTurn: 1
+  moveAttacksPerTurn: 4
   maxAttacksPerTurn: 1
   attackDamage: 5
-  willBallCollide: 1
+  willBallCollide: 0
   healthBar: {fileID: 3123977256732312163}
   enemyHurt: {fileID: 0}
   enemyDie: {fileID: 0}

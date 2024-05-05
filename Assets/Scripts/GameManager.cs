@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
       return _instance;
     }
   }
+  [HideInInspector]
+  public bool isInitialized = false;
 
   public GridManager gridManager;
 
@@ -66,8 +68,18 @@ public class GameManager : MonoBehaviour
 
   }
 
+  public void InitializeThisFromOtherScript()
+  {
+    if (!isInitialized)
+    {
+      Init();
+    }
+  }
+
   private void Init()
   {
+    isInitialized = true;
+
     enemyManager = gameObject.AddComponent<EnemyManager>();
 
     HPText = GameObject.Find("HP Text")?.GetComponent<TextMeshProUGUI>();
@@ -75,6 +87,8 @@ public class GameManager : MonoBehaviour
     gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
+
+    PlayerManager.Instance.Init();
 
     ProcGenLevelsParent = GameObject.Find("Procedural Generation Levels");
     foreach (Transform child in ProcGenLevelsParent.transform)
@@ -142,6 +156,8 @@ public class GameManager : MonoBehaviour
 
   public void AdvanceLevel()
   {
+    isInitialized = false;
+
     if (procGenLevelIndex < proceduralGenerationPresets.Count)
     {
       procGenLevelIndex++;
@@ -149,6 +165,12 @@ public class GameManager : MonoBehaviour
 
     // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     SceneManager.LoadScene("LoadingScene");
+  }
+
+  public void AdvanceLevelSpecific(string levelName)
+  {
+    isInitialized = false;
+    SceneManager.LoadScene(levelName);
   }
 
   private void LoadStats()
@@ -176,14 +198,22 @@ public class GameManager : MonoBehaviour
 
   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
   {
-    if (scene.name == "GameScene")
-    {
-      PlayerManager.Instance.Init();
-      this.Init();
-    }
-    else if (scene.name == "LoadingScene")
+    if (scene.name == "LoadingScene")
     {
       LoadStats();
+    }
+    else
+    {
+      //This trys to run Init if GameManager and PlayerManager Exist.
+      try
+      {
+        PlayerManager.Instance.Init();
+        this.Init();
+      }
+      catch
+      {
+        Debug.Log("Init unsuccessful");
+      }
     }
   }
 }

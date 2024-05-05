@@ -6,6 +6,7 @@ public class MoveState : IPlayerActionState
   PlayerActionStateController controller;
 
   private bool isMoving = false;
+  private bool checkForMovementStop = false;
 
   public void OnEnter(PlayerActionStateController controller)
   {
@@ -14,7 +15,7 @@ public class MoveState : IPlayerActionState
     // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
     if (GameManager.Instance.golfAimType == GolfAimType.Drag)
     {
-      Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
+      // Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
     }
     else
@@ -37,7 +38,7 @@ public class MoveState : IPlayerActionState
   public void OnExit()
   {
     PlayerManager.Instance.TeleportPlayerToBall();
-    // Debug.Log("Player Exited Moving State");
+    Debug.Log("Player Exited Moving State");
   }
 
   public void OnFixedUpdate()
@@ -51,10 +52,9 @@ public class MoveState : IPlayerActionState
       // }
       // else
       // {
-      Debug.Log("Variance: " + (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+      // Debug.Log("Variance: " + (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
       controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
       // }
-      isMoving = true;
     }
     if (isMoving && !PlayerManager.Instance.IsBallMoving)
     {

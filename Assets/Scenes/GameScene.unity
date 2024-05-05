@@ -1296,6 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357dc2565588844c1afc82c7b5595f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerParent: {fileID: 0}
   playerWizard: {fileID: 1806639729}
   wizardRB: {fileID: 0}
   playerBall: {fileID: 58924179}
@@ -1829,7 +1830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: PlayMusic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: enemyDamage
@@ -4119,10 +4120,7 @@ PrefabInstance:
     - {fileID: 9142783607105622785, guid: cf6053067650742469d9465310ce23b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 108425437}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf6053067650742469d9465310ce23b8, type: 3}
 --- !u!114 &1113078965 stripped
 MonoBehaviour:

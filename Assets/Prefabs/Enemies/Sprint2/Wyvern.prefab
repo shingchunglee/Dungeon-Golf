@@ -50,22 +50,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.01
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 257
   enemyName: 
-  MaxHP: 8
+  MaxHP: 5
   CurrentHP: 0
   moveAttacksPerTurn: 8
+  maxAttacksPerTurn: 1
   attackDamage: 1
-  isNonSolid: 1
-  SpriteObj: {fileID: 6269775176681695175}
+  willBallCollide: 0
   healthBar: {fileID: 7593669821821363361}
   enemyHurt: {fileID: 2911877750361171022}
   enemyDie: {fileID: 9087431016847240875}
-  attackMoveDistance: 0.4
-  attackMoveTime: 0.1
+  isTakingTurn: 0
 --- !u!50 &6685963591427696749
 Rigidbody2D:
   serializedVersion: 4

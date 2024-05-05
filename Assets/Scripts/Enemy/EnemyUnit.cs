@@ -42,6 +42,8 @@ public class EnemyUnit : MonoBehaviour
     // [HideInInspector]
     public bool isTakingTurn = false;
 
+    private int disengageDistance = 20;
+
     public Vector2Int PositionOnWorldGrid
     {
         get
@@ -88,6 +90,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected virtual void Start()
     {
+        SnapToGrid();
         CurrentHP = MaxHP;
         // GetComponentInChildren<Collider2D>().isTrigger = (CurrentHP == 1);
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
@@ -98,11 +101,11 @@ public class EnemyUnit : MonoBehaviour
 
         if (willBallCollide)
         {
-            GetComponentInChildren<Collider2D>().isTrigger = true;
+            GetComponentInChildren<Collider2D>().isTrigger = false;
         }
         else
         {
-            GetComponentInChildren<Collider2D>().isTrigger = false;
+            GetComponentInChildren<Collider2D>().isTrigger = true;
         }
 
         //Set the variables
@@ -112,6 +115,17 @@ public class EnemyUnit : MonoBehaviour
 
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
+    }
+
+    private void SnapToGrid()
+    {
+        var snapToGridLocation = new Vector3();
+
+        snapToGridLocation.x = Mathf.Floor(transform.position.x);
+        snapToGridLocation.y = Mathf.Floor(transform.position.y);
+        snapToGridLocation.z = transform.position.z;
+
+        transform.position = snapToGridLocation;
     }
 
     // This is called by Enemy Manager for each enemy on the scene.
@@ -129,7 +143,13 @@ public class EnemyUnit : MonoBehaviour
 
         nodeAtLocation.entitiesOnTile.Remove(EntityType.ENEMY);
 
-        if (pathDirections == null) return;
+        if (pathDirections == null ||
+            pathDirections.Count > disengageDistance)
+        {
+            PostMove();
+            EndTurn();
+            return;
+        }
 
         moveAttacksPerTurnLeft = moveAttacksPerTurn;
         attacksLeft = maxAttacksPerTurn;
@@ -442,7 +462,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void ForceEndTurn()
     {
-        Debug.Log("Force End Trun");
+        // Debug.Log("Force End Trun");
         PostMove();
         isTakingTurn = false;
     }

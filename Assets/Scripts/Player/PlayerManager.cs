@@ -3,10 +3,12 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
+  public GameObject PlayerParent;
   public GameObject playerWizard;
   public Rigidbody2D wizardRB;
   public GameObject playerBall;
   public Rigidbody2D ballRB;
+
   private static PlayerManager _instance;
   public int maxHP;
   public int currentHP;
@@ -54,6 +56,8 @@ public class PlayerManager : MonoBehaviour
     }
   }
 
+  public bool manualControlTestMode = false;
+
   public bool IsBallMoving
   {
     get
@@ -90,6 +94,37 @@ public class PlayerManager : MonoBehaviour
     HealthPotion.OnConsume += RestoreHealth;
   }
 
+  private void FixedUpdate()
+  {
+    if (manualControlTestMode)
+    {
+      BallManualControl();
+    }
+
+  }
+
+  private void BallManualControl()
+  {
+    float horizontalInput = Input.GetAxis("Horizontal");
+    float verticalInput = Input.GetAxis("Vertical");
+
+    Vector2 movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
+
+    if (movementDirection != Vector2.zero)
+    {
+      // Calculate movement amount based on move speed and time
+      Vector2 movement = movementDirection * 15f;
+
+      // Apply movement to the Rigidbody
+      ballRB.AddForce(movement);
+    }
+
+    if (Input.GetKeyDown(KeyCode.Backslash))
+    {
+      TeleportPlayerToBall();
+    }
+  }
+
   private void GameStartProcessing()
   {
     // DontDestroyOnLoad(gameObject);
@@ -112,6 +147,15 @@ public class PlayerManager : MonoBehaviour
     var hudCanvas = GameObject.Find("HUDCanvas");
 
     healthBar = hudCanvas.GetComponentInChildren<HealthBar>();
+    PlayerParent = GameObject.Find("Player");
+
+    var snapToGridLocation = new Vector3();
+
+    snapToGridLocation.x = Mathf.Floor(PlayerParent.transform.position.x);
+    snapToGridLocation.y = Mathf.Floor(PlayerParent.transform.position.y);
+    snapToGridLocation.z = PlayerParent.transform.position.z;
+
+    PlayerParent.transform.position = snapToGridLocation;
 
     healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
     UpdateHPText();
@@ -187,6 +231,28 @@ public class PlayerManager : MonoBehaviour
 
     // playerRB.MovePosition(new Vector2(x, y));
     playerRB.position = new Vector2(x, y);
+
+  }
+
+  private bool isBallInSand = false;
+  public float sandDrag = 4f;
+
+  public void ApplySandDrag()
+  {
+    if (!isBallInSand)
+    {
+      ballRB.drag += sandDrag;
+      isBallInSand = true;
+    }
+  }
+
+  public void RemoveSandDrag()
+  {
+    if (isBallInSand)
+    {
+      ballRB.drag -= sandDrag;
+      isBallInSand = false;
+    }
 
   }
 
