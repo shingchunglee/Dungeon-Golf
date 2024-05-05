@@ -75,7 +75,7 @@ public class ItemRandomiser : MonoBehaviour
         int random = SeededRandom.Range(SeededRandom.Instance.ItemRandom, 0, Enum.GetValues(typeof(Consumables)).Length); // get 0 to 2 potions
         var randomConsumables = new Dictionary<Consumables, int>
         {
-            { (Consumables)random, SeededRandom.Range(SeededRandom.Instance.ItemRandom, 0, 3) }
+            { (Consumables)random, SeededRandom.Range(SeededRandom.Instance.ItemRandom, 1, 3) }
         };
         return randomConsumables;
     }
