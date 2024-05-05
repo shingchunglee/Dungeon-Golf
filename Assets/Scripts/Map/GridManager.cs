@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
@@ -60,10 +61,26 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
-        ScanMap();
+        if (!isCurrentLevelProcGen())
+        {
+            ScanMap();
+        }
 
         // TestLogGrid();
         // TestPathfinding();
+    }
+
+    private bool isCurrentLevelProcGen()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.name == "GameScene")
+        {
+            return true;
+        }
+        else return false;
+
+
     }
 
 

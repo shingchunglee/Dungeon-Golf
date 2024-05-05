@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -207,12 +208,12 @@ public class GameManager : MonoBehaviour
       //This trys to run Init if GameManager and PlayerManager Exist.
       try
       {
-        PlayerManager.Instance.Init();
+        // PlayerManager.Instance.Init();   //This is called in GameManager.Init()
         this.Init();
       }
-      catch
+      catch (Exception ex)
       {
-        Debug.Log("Init unsuccessful");
+        Debug.LogError("Init unsuccessful. Error: " + ex.Message);
       }
     }
   }

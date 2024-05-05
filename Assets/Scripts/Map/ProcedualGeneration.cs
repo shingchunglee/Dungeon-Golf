@@ -47,6 +47,8 @@ public class ProcedualGeneration : MonoBehaviour
 
     public void Main()
     {
+        FindTilemaps();
+
         ClearGrids();
 
         bool[,] grid = Automata(Width, Height, 0.45f, 5, 4, 10);
@@ -61,6 +63,19 @@ public class ProcedualGeneration : MonoBehaviour
         PlaceChest(Grid);
 
         GetPlayerGoalPositions(Grid);
+    }
+
+    private void FindTilemaps()
+    {
+        var grids = GameObject.Find("Grids").transform;
+
+        traps = grids.Find("trap_damage").gameObject.GetComponent<Tilemap>();
+        obstacles = grids.Find("obstacles").gameObject.GetComponent<Tilemap>();
+        walls = grids.Find("wall").gameObject.GetComponent<Tilemap>();
+        floor = grids.Find("floor").gameObject.GetComponent<Tilemap>();
+        enemies = grids.Find("enemies").gameObject.GetComponent<Tilemap>();
+        chests = grids.Find("chest").gameObject.GetComponent<Tilemap>();
+
     }
 
     private void PlaceChest(TileType[,] structures)
