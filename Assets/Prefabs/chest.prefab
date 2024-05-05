@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClubNameText: {fileID: 0}
+  ClubClaimPanel: {fileID: 0}
 --- !u!222 &6063181845905426316
 CanvasRenderer:
   m_ObjectHideFlags: 0
