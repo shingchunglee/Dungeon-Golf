@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
 
     proceduralGenerationPresets = new List<ProcedualGeneration>();
+    nextSceneName = "";
 
     PlayerManager.Instance.Init();
 
@@ -171,6 +172,7 @@ public class GameManager : MonoBehaviour
     }
 
     // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    nextSceneName = "";
     SceneManager.LoadScene("LoadingScene");
   }
 
