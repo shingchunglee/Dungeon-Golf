@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a3930811a85f12459099873f79d7e41, type: 3}
-  m_Name: WyvernRuleHigh
+  m_Name: ToxicHoundRule 1
   m_EditorClassIdentifier: 
   Matrix:
   - row: 020000000200000002000000
@@ -22,7 +22,7 @@ MonoBehaviour:
   - row:
     - gameObject: {fileID: 0}
       Type: 0
-    - gameObject: {fileID: 3865599911051643304, guid: 7ac53761e56710048859caddaf566332, type: 3}
+    - gameObject: {fileID: 4754175169170128828, guid: 28119d0499d9a42bebb81e74fbaea930, type: 3}
       Type: 9
   - row: []
   chance: 0.02
