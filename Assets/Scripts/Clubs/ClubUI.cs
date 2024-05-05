@@ -43,6 +43,8 @@ public class ClubUI : MonoBehaviour
         {
            ConsumableText.text = $"{consumable}"; 
             ClubClaimPanel.SetActive(true); 
+            soundManager?.PlaySFX(soundManager.clubCollect);
+            StartCoroutine(HidePanel());
             Debug.Log("Updated ConsumableText to: " + consumable);
         }
     }
