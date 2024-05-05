@@ -388,7 +388,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected virtual void TakeDamageFromPlayer()
     {
-        CurrentHP -= PlayerManager.Instance.attackDamage;
+        CurrentHP -= Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
         //     if (particleEffect != null)
