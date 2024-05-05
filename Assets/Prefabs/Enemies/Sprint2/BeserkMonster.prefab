@@ -84,8 +84,8 @@ MonoBehaviour:
   attackDamage: 1
   willBallCollide: 1
   healthBar: {fileID: 0}
-  enemyHurt: {fileID: 0}
-  enemyDie: {fileID: 0}
+  enemyHurt: {fileID: 4758695493700560578, guid: 3219e372efc379a4b9b24b9ee19c38cc, type: 3}
+  enemyDie: {fileID: 7018311986599031151, guid: 7bafa0ea8df78e14d9d3a85929ff10ce, type: 3}
   isTakingTurn: 0
 --- !u!212 &3523937968417760328
 SpriteRenderer:
@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288969133451909433}
   - component: {fileID: 3962710460485761964}
+  - component: {fileID: 3414907106391071241}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -301,6 +302,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3414907106391071241
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269775176681695175}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdf547cfe8ccb43c784f933b823425d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5270913870180122306
 PrefabInstance:
   m_ObjectHideFlags: 0
