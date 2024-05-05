@@ -167,12 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps: {fileID: 1358263013}
-  obstacles: {fileID: 649227125}
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
-  enemies: {fileID: 459314849}
+  obstacles: {fileID: 649227125}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
   chests: {fileID: 0}
+  enemies: {fileID: 459314849}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -251,6 +254,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryMenu: {fileID: 0}
   PauseMenu: {fileID: 634730570}
+--- !u!114 &108425443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108425436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d96e6528425b2547b93a32fee68942e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClubNameText: {fileID: 843310879}
+  ConsumableText: {fileID: 2071206943}
+  ClubClaimPanel: {fileID: 1070681077}
 --- !u!1 &431683939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,6 +2104,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 108425437}
+    - targetCorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 108425443}
   m_SourcePrefab: {fileID: 100100000, guid: cf6053067650742469d9465310ce23b8, type: 3}
 --- !u!114 &1113078965 stripped
 MonoBehaviour:
@@ -2119,7 +2140,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1265529955}
   - component: {fileID: 1265529956}
-  - component: {fileID: 1265529957}
   m_Layer: 0
   m_Name: GameManager +
   m_TagString: Untagged
@@ -2169,21 +2189,6 @@ MonoBehaviour:
   settingsCanvas: {fileID: 2093445073}
   inventoryCanvas: {fileID: 1847790459}
   HPText: {fileID: 0}
---- !u!114 &1265529957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265529954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d96e6528425b2547b93a32fee68942e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClubNameText: {fileID: 843310879}
-  ConsumableText: {fileID: 2071206943}
-  ClubClaimPanel: {fileID: 1070681077}
 --- !u!1839735485 &1331316009 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 7407321780074623044, guid: 8e92679b9977d409b98604a44648961e, type: 3}
@@ -2260,12 +2265,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps: {fileID: 1358263013}
-  obstacles: {fileID: 649227125}
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
-  enemies: {fileID: 459314849}
+  obstacles: {fileID: 649227125}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
   chests: {fileID: 0}
+  enemies: {fileID: 459314849}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -2358,12 +2366,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps: {fileID: 1358263013}
-  obstacles: {fileID: 649227125}
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
+  obstacles: {fileID: 900672863}
+  trap_damage: {fileID: 1358263013}
+  trap_void: {fileID: 1720664197}
+  trap_floor: {fileID: 1561106361}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 1331316009}
   enemies: {fileID: 459314849}
-  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -2497,12 +2508,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps: {fileID: 1358263013}
-  obstacles: {fileID: 649227125}
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
-  enemies: {fileID: 459314849}
+  obstacles: {fileID: 649227125}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
   chests: {fileID: 0}
+  enemies: {fileID: 459314849}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
@@ -2760,12 +2774,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps: {fileID: 1358263013}
-  obstacles: {fileID: 649227125}
   walls: {fileID: 2132288616}
   floor: {fileID: 1624406196}
-  enemies: {fileID: 459314849}
+  obstacles: {fileID: 649227125}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
   chests: {fileID: 0}
+  enemies: {fileID: 459314849}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 0, y: 0}
