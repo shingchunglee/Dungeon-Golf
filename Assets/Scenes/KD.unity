@@ -153,14 +153,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: slinger
       objectReference: {fileID: 0}
-    - target: {fileID: 7432007875905807736, guid: be417e79421270849879697c9e6fdee5, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7432007875905807736, guid: be417e79421270849879697c9e6fdee5, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7744159314150840672, guid: be417e79421270849879697c9e6fdee5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.88
@@ -201,6 +193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8551330238910368310, guid: be417e79421270849879697c9e6fdee5, type: 3}
+      propertyPath: attackDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8819396661414177114, guid: be417e79421270849879697c9e6fdee5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -222,26 +218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3268209199989259682, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
-      propertyPath: m_Size.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268209199989259682, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.8125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268209199989259682, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 117485305, guid: a27b39239b1164fe8a288ef9aae35b19, type: 3}
-    - target: {fileID: 3268209199989259682, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3962710460485761964, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 117485305, guid: a27b39239b1164fe8a288ef9aae35b19, type: 3}
     - target: {fileID: 4109176297280435648, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
       propertyPath: m_Name
       value: Basher (1)
@@ -294,8 +270,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3268209199989259682, guid: 89a9d41d4eea0420180fd13eec6f7eb2, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -319,14 +294,6 @@ PrefabInstance:
     - target: {fileID: 4145155726770098659, guid: b9e753a6fc2a9c446ad41bddfc1ec490, type: 3}
       propertyPath: m_Name
       value: flying_eye
-      objectReference: {fileID: 0}
-    - target: {fileID: 5310880614783969367, guid: b9e753a6fc2a9c446ad41bddfc1ec490, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5310880614783969367, guid: b9e753a6fc2a9c446ad41bddfc1ec490, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6019496890423262630, guid: b9e753a6fc2a9c446ad41bddfc1ec490, type: 3}
       propertyPath: m_LocalPosition.x
@@ -914,18 +881,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3163455132506315540, guid: 751fade5a136540439e8c3b4271814be, type: 3}
-      propertyPath: MaxHP
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334646336800183851, guid: 751fade5a136540439e8c3b4271814be, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334646336800183851, guid: 751fade5a136540439e8c3b4271814be, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -979,14 +934,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6769041134038778938, guid: f7b3a8b002197a140aee8c8e6cdf65d3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769041134038778938, guid: f7b3a8b002197a140aee8c8e6cdf65d3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7100674652702001186, guid: f7b3a8b002197a140aee8c8e6cdf65d3, type: 3}
       propertyPath: m_Name
       value: druid
@@ -1012,22 +959,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3523937968417760328, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9375
-      objectReference: {fileID: 0}
-    - target: {fileID: 3523937968417760328, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1142211135, guid: 295441ed182c345bf925b2a7e4f34452, type: 3}
-    - target: {fileID: 3523937968417760328, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3962710460485761964, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1142211135, guid: 295441ed182c345bf925b2a7e4f34452, type: 3}
     - target: {fileID: 4109176297280435648, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
       propertyPath: m_Name
       value: BeserkMonster (1)
@@ -1080,8 +1011,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3523937968417760328, guid: bf9c1b472443f47e187d308236884e3f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1354,14 +1284,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1707437815434579523, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1707437815434579523, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4010483977594372420, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
       propertyPath: m_Name
       value: Vampire
@@ -1405,6 +1327,10 @@ PrefabInstance:
     - target: {fileID: 8091598936426405082, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099762149003651553, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
+      propertyPath: moveAttacksPerTurn
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9135430260240353207, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2186,6 +2112,7 @@ MonoBehaviour:
   walls: {fileID: 0}
   floor: {fileID: 0}
   enemies: {fileID: 0}
+  chests: {fileID: 0}
   voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
   tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
   PlayerSpawn: {x: 1, y: 0}
@@ -2197,6 +2124,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0dfc43142c1fe8e4bb76fb5773f228f7, type: 2}
   Width: 50
   Height: 50
+  chestPrefab: {fileID: 0}
 --- !u!114 &1459231823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,12 +2141,13 @@ MonoBehaviour:
   enemyParentObj: {fileID: 0}
   isCursorOverHUDElement: 0
   enemyManager: {fileID: 0}
+  isInitialized: 0
   gridManager: {fileID: 0}
   proceduralGenerationPresets: []
   procGenLevelIndex: 0
   itemRandomiser: {fileID: 1459231821}
-  golfAimType: 1
   settingsCanvas: {fileID: 0}
+  inventoryCanvas: {fileID: 0}
   HPText: {fileID: 0}
 --- !u!4 &1459231824
 Transform:
@@ -2314,25 +2243,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2503426744749802881, guid: 81bb8ca7df2bd9141848acd5bcc1fd26, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2503426744749802881, guid: 81bb8ca7df2bd9141848acd5bcc1fd26, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2815821303643125080, guid: 81bb8ca7df2bd9141848acd5bcc1fd26, type: 3}
       propertyPath: m_Name
       value: two_head
-      objectReference: {fileID: 0}
-    - target: {fileID: 2975486682320516257, guid: 81bb8ca7df2bd9141848acd5bcc1fd26, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2975486682320516257, guid: 81bb8ca7df2bd9141848acd5bcc1fd26, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3325,14 +3238,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7117197643072500929, guid: a6dcc52c91d8b2749b794e353282f8be, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117197643072500929, guid: a6dcc52c91d8b2749b794e353282f8be, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3451,26 +3356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3212092009705666933, guid: 7ac53761e56710048859caddaf566332, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3212092009705666933, guid: 7ac53761e56710048859caddaf566332, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3865599911051643304, guid: 7ac53761e56710048859caddaf566332, type: 3}
       propertyPath: m_Name
       value: dragon
       objectReference: {fileID: 0}
-    - target: {fileID: 4427259100647623605, guid: 7ac53761e56710048859caddaf566332, type: 3}
-      propertyPath: enemyName
-      value: Dragon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4427259100647623605, guid: 7ac53761e56710048859caddaf566332, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 2087183631}
     - target: {fileID: 7125180955188322592, guid: 7ac53761e56710048859caddaf566332, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3484,17 +3373,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac53761e56710048859caddaf566332, type: 3}
---- !u!114 &2087183631 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8225297185779104221, guid: 7ac53761e56710048859caddaf566332, type: 3}
-  m_PrefabInstance: {fileID: 2087183630}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

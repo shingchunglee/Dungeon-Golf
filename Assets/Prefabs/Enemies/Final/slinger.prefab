@@ -125,9 +125,9 @@ MonoBehaviour:
   enemyName: Slinger
   MaxHP: 15
   CurrentHP: 0
-  moveAttacksPerTurn: 3
-  maxAttacksPerTurn: 2
-  attackDamage: 4
+  moveAttacksPerTurn: 6
+  maxAttacksPerTurn: 4
+  attackDamage: 2
   willBallCollide: 0
   healthBar: {fileID: 7684074366465307047}
   enemyHurt: {fileID: 4758695493700560578, guid: 3219e372efc379a4b9b24b9ee19c38cc, type: 3}
