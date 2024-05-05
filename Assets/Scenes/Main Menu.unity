@@ -397,7 +397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: 'PLAY: 10 Holes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 693d52fb04bdb4a888cec5b444db4431, type: 2}
   m_sharedMaterial: {fileID: 5065270110804542610, guid: 693d52fb04bdb4a888cec5b444db4431, type: 2}
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.9
-  m_fontSizeBase: 17.9
+  m_fontSize: 12.52
+  m_fontSizeBase: 12.52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -677,18 +677,19 @@ MonoBehaviour:
     to choose ball angle.
 
 
-    Press ESC to open a menu to change aiming style.
+    Press ''P''  to open a menu in game to change aiming
+    style.
 
 
-    You
-    teleport to your golfball after the shot. Make your way to the hole.
+    You teleport to your golfball after the shot. Make your way to the
+    hole.
 
 
-    Watch
-    out for enemies that attack if you get too close.
+    Watch out for enemies that attack if you get too close.
 
 
-    Happy golfing.
+    Happy
+    golfing.
 
 
 '
@@ -718,8 +719,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
-  m_fontSizeBase: 38
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1007,6 +1008,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2096100127}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1854995755}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1029258882
 MonoBehaviour:
@@ -1407,7 +1432,7 @@ GameObject:
   - component: {fileID: 1478327357}
   - component: {fileID: 1478327356}
   m_Layer: 5
-  m_Name: 'HTP '
+  m_Name: TutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,6 +1513,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2096100127}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1854995755}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1478327357
 MonoBehaviour:
@@ -2113,7 +2162,7 @@ GameObject:
   - component: {fileID: 1854995758}
   - component: {fileID: 1854995757}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Tagline Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2583,7 +2632,7 @@ GameObject:
   - component: {fileID: 2096100130}
   - component: {fileID: 2096100129}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DungeonGolfTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
