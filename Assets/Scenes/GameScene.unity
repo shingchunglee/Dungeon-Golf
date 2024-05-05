@@ -1805,10 +1805,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Width
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: floor
       value: 
       objectReference: {fileID: 1624406196}
@@ -1817,10 +1813,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2132288616}
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Height
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: enemies
       value: 
       objectReference: {fileID: 459314849}
@@ -1828,18 +1820,6 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 649227125}
-    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3edff62a2f724479b940a1013a71bf5d, type: 2}
-    - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Width
-      value: 42
-      objectReference: {fileID: 0}
     - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: floor
       value: 
@@ -1849,10 +1829,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2132288616}
     - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Height
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: enemies
       value: 
       objectReference: {fileID: 459314849}
@@ -1860,14 +1836,6 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 649227125}
-    - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Width
-      value: 36
-      objectReference: {fileID: 0}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: floor
       value: 
@@ -1877,10 +1845,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2132288616}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Height
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: enemies
       value: 
       objectReference: {fileID: 459314849}
@@ -1888,22 +1852,6 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 649227125}
-    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c9db4a706e1b4c048748ecc57b35573, type: 2}
-    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c9db4a706e1b4c048748ecc57b35573, type: 2}
-    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Width
-      value: 44
-      objectReference: {fileID: 0}
     - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: floor
       value: 
@@ -1913,10 +1861,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2132288616}
     - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Height
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: enemies
       value: 
       objectReference: {fileID: 459314849}
@@ -1924,14 +1868,6 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 649227125}
-    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 712b0b75eceeb4311bc6355d6dd9a7ec, type: 2}
-    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: c2f84bfc78c5a41bb96b2437eab6c2d5, type: 2}
     - target: {fileID: 4174345805019227652, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 333.87708
@@ -2009,20 +1945,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1175999718}
     - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: manualControlTestMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: varianceLevelController
       value: 
       objectReference: {fileID: 1939483592}
     - target: {fileID: 7108641508375740774, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: m_Name
       value: GameManager +
-      objectReference: {fileID: 0}
-    - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Width
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: floor
@@ -2032,10 +1960,6 @@ PrefabInstance:
       propertyPath: walls
       value: 
       objectReference: {fileID: 2132288616}
-    - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: Height
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: chests
       value: 
@@ -2060,18 +1984,6 @@ PrefabInstance:
       propertyPath: trap_damage
       value: 
       objectReference: {fileID: 1358263013}
-    - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
-    - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
