@@ -116,7 +116,7 @@ public class ProcedualGeneration : MonoBehaviour
             if (structures[positionsToCheck[randomIndex].y, positionsToCheck[randomIndex].x] == TileType.FLOOR && chestPrefab != null)
             {
                 // placechest
-                var obj = Instantiate(chestPrefab, new Vector3(positionsToCheck[randomIndex].x, positionsToCheck[randomIndex].y, 0), UnityEngine.Quaternion.identity);
+                var obj = Instantiate(chestPrefab, new Vector3(positionsToCheck[randomIndex].x + 0.5f, positionsToCheck[randomIndex].y + 0.5f, 0), UnityEngine.Quaternion.identity);
 
                 obj.transform.parent = obstacles.transform;
                 Grid[positionsToCheck[randomIndex].y, positionsToCheck[randomIndex].x] = TileType.CHEST;
