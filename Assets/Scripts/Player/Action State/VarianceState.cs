@@ -33,10 +33,10 @@ public class VarianceState : IPlayerActionState
         OnMouseClick();
       }
     }
-    if (Input.GetMouseButtonDown(1))
-    {
-      OnMouseRightClick();
-    }
+    // if (Input.GetMouseButtonDown(1))
+    // {
+    //   OnMouseRightClick();
+    // }
   }
 
   private void OnMouseRightClick()

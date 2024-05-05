@@ -8,7 +8,7 @@ public class AimState : IPlayerActionState
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
-    if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+    if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
     {
       PlayerManager.Instance.golfAimDrag.enabled = true;
       PlayerManager.Instance.golfAim.enabled = false;
@@ -62,7 +62,7 @@ public class AimState : IPlayerActionState
 
   private void OnMouseUp()
   {
-    if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+    if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
     {
       if (PlayerManager.Instance.golfAimDrag.OnMouseUp())
       {
@@ -73,7 +73,7 @@ public class AimState : IPlayerActionState
 
   private void OnMouseClick()
   {
-    if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+    if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
     {
       PlayerManager.Instance.golfAimDrag.OnMouseDown();
     }

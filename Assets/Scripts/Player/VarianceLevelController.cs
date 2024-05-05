@@ -78,7 +78,7 @@ public class VarianceLevelController : MonoBehaviour
 
   internal void SelectVarianceLevel()
   {
-    SetVariance(varianceBarSlider.value * (maxVariance - minVariance) + minVariance);
+    SetVariance(-(varianceBarSlider.value * (maxVariance - minVariance) + minVariance));
     DisableVarianceBar();
   }
 

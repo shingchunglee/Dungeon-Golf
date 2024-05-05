@@ -13,7 +13,7 @@ public class MoveState : IPlayerActionState
     this.controller = controller;
     Debug.Log("Player Entered Moving State");
     // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
-    if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+    if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
     {
       // Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
       controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
@@ -46,7 +46,7 @@ public class MoveState : IPlayerActionState
     // This uses the player manager to check that the ball is moving.
     if (PlayerManager.Instance.IsBallMoving)
     {
-      // if (GameManager.Instance.golfAimType == GolfAimType.Drag)
+      // if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
       // {
       //   controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, -PlayerManager.Instance.golfAimDrag.variance);
       // }

@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
   public int procGenLevelIndex = 0;
 
   public ItemRandomiser itemRandomiser;
-  public GolfAimType golfAimType = GolfAimType.Click;
+  // public GolfAimType golfAimType = GolfAimType.Click;
   public GameObject settingsCanvas;
   public GameObject inventoryCanvas;
 

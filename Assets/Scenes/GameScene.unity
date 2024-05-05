@@ -189,6 +189,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7600680289112393638, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
   m_PrefabInstance: {fileID: 945962818}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &58924180 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4121792326125396573, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
+  m_PrefabInstance: {fileID: 945962818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &91607097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,6 +1318,8 @@ MonoBehaviour:
   golfAim: {fileID: 1405599543}
   golfAimDrag: {fileID: 1405599541}
   healthBar: {fileID: 1113078965}
+  manualControlTestMode: 0
+  sandDrag: 4
 --- !u!4 &431683941
 Transform:
   m_ObjectHideFlags: 0
@@ -1682,7 +1689,8 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1764,7 +1772,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
+--- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1773,9 +1781,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce3770da8e243047a440fdb1a8b19df, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AssetsPPU: 64
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af11bea5aa47545b38e5674f3904a8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  golfBall: {fileID: 58924180}
 --- !u!1001 &605326787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1853,6 +1883,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1141304058926300968, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
+      propertyPath: pressP
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1141304058926300968, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
       propertyPath: settingsPage
       value: 
@@ -4120,7 +4154,10 @@ PrefabInstance:
     - {fileID: 9142783607105622785, guid: cf6053067650742469d9465310ce23b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 884926089933964284, guid: cf6053067650742469d9465310ce23b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 108425437}
   m_SourcePrefab: {fileID: 100100000, guid: cf6053067650742469d9465310ce23b8, type: 3}
 --- !u!114 &1113078965 stripped
 MonoBehaviour:
@@ -4193,11 +4230,11 @@ MonoBehaviour:
   enemyParentObj: {fileID: 0}
   isCursorOverHUDElement: 0
   enemyManager: {fileID: 0}
+  isInitialized: 0
   gridManager: {fileID: 0}
   proceduralGenerationPresets: []
   procGenLevelIndex: 0
   itemRandomiser: {fileID: 0}
-  golfAimType: 0
   settingsCanvas: {fileID: 2093445073}
   inventoryCanvas: {fileID: 1847790459}
   HPText: {fileID: 0}
