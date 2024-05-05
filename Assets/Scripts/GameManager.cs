@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour
       }
       catch (Exception ex)
       {
-        Debug.LogError("Init unsuccessful. Error: " + ex.Message);
+        Debug.LogWarning("Init unsuccessful. Error: " + ex.Message);
       }
     }
   }
