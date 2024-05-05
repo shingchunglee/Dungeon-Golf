@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6547848980124582070}
   - component: {fileID: 6143366565199149580}
   - component: {fileID: 6685963591427696749}
+  - component: {fileID: 4532153630473314305}
   m_Layer: 0
   m_Name: Mock_Enemy
   m_TagString: Untagged
@@ -47,19 +48,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.01
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 257
   enemyName: 
   MaxHP: 1
   CurrentHP: 0
   moveAttacksPerTurn: 3
+  maxAttacksPerTurn: 1
   attackDamage: 5
-  isNonSolid: 1
-  SpriteObj: {fileID: 6269775176681695175}
-  attackMoveDistance: 0.4
-  attackMoveTime: 0.1
+  willBallCollide: 1
+  healthBar: {fileID: 0}
+  enemyHurt: {fileID: 0}
+  enemyDie: {fileID: 0}
+  isTakingTurn: 0
 --- !u!50 &6685963591427696749
 Rigidbody2D:
   serializedVersion: 4
@@ -87,6 +86,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4532153630473314305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109176297280435648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: 
+  MaxHP: 5
+  CurrentHP: 0
+  moveAttacksPerTurn: 1
+  maxAttacksPerTurn: 1
+  attackDamage: 5
+  willBallCollide: 1
+  healthBar: {fileID: 0}
+  enemyHurt: {fileID: 0}
+  enemyDie: {fileID: 0}
+  isTakingTurn: 0
 --- !u!1 &4805226250129201447
 GameObject:
   m_ObjectHideFlags: 0
