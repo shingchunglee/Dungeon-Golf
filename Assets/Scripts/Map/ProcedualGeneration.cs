@@ -11,19 +11,25 @@ public class ProcedualGeneration : MonoBehaviour
     // GameObject wallPrefab;
     // [SerializeField]
     // GameObject floorPrefab;
-    [SerializeField]
-    Tilemap traps;
-    [SerializeField]
-    Tilemap obstacles;
 
     [SerializeField]
     Tilemap walls;
     [SerializeField]
     Tilemap floor;
     [SerializeField]
-    Tilemap enemies;
+    Tilemap obstacles;
+    [SerializeField]
+    Tilemap trap_damage;
+    [SerializeField]
+    Tilemap trap_void;
+    [SerializeField]
+    Tilemap trap_floor;
+    [SerializeField]
+    Tilemap trap_chest;
     [SerializeField]
     Tilemap chests;
+    [SerializeField]
+    Tilemap enemies;
     // [SerializeField]
     // TileBase floorTile;
     [SerializeField]
@@ -69,12 +75,15 @@ public class ProcedualGeneration : MonoBehaviour
     {
         var grids = GameObject.Find("Grids").transform;
 
-        traps = grids.Find("trap_damage").gameObject.GetComponent<Tilemap>();
-        obstacles = grids.Find("obstacles").gameObject.GetComponent<Tilemap>();
         walls = grids.Find("wall").gameObject.GetComponent<Tilemap>();
         floor = grids.Find("floor").gameObject.GetComponent<Tilemap>();
-        enemies = grids.Find("enemies").gameObject.GetComponent<Tilemap>();
+        obstacles = grids.Find("obstacles").gameObject.GetComponent<Tilemap>();
+        trap_damage = grids.Find("trap_damage").gameObject.GetComponent<Tilemap>();
+        trap_void = grids.Find("trap_void").gameObject.GetComponent<Tilemap>();
+        trap_floor = grids.Find("trap_floor").gameObject.GetComponent<Tilemap>();
+        trap_chest = grids.Find("trap_chest").gameObject.GetComponent<Tilemap>();
         chests = grids.Find("chest").gameObject.GetComponent<Tilemap>();
+        enemies = grids.Find("enemies").gameObject.GetComponent<Tilemap>();
 
     }
 
@@ -119,19 +128,16 @@ public class ProcedualGeneration : MonoBehaviour
 
     private void ClearGrids()
     {
-        traps.ClearAllTiles();
-        obstacles.ClearAllTiles();
         walls.ClearAllTiles();
         floor.ClearAllTiles();
+        obstacles.ClearAllTiles();
+        trap_damage.ClearAllTiles();
+        trap_void.ClearAllTiles();
+        trap_floor.ClearAllTiles();
+        trap_chest.ClearAllTiles();
+        chests.ClearAllTiles();
         enemies.ClearAllTiles();
-        foreach (Transform child in traps.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (Transform child in obstacles.transform)
-        {
-            Destroy(child.gameObject);
-        }
+
         foreach (Transform child in walls.transform)
         {
             Destroy(child.gameObject);
@@ -140,7 +146,27 @@ public class ProcedualGeneration : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (Transform child in enemies.transform)
+        foreach (Transform child in obstacles.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in trap_damage.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in trap_void.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in trap_floor.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in trap_chest.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in chests.transform)
         {
             Destroy(child.gameObject);
         }
@@ -664,13 +690,13 @@ public class ProcedualGeneration : MonoBehaviour
                     TileType.FLOOR => floor,
                     TileType.WALL => walls,
                     TileType.OBSTACLE => obstacles,
-                    TileType.TRAP_VOID => traps,
-                    TileType.TRAP_DAMAGE => traps,
-                    TileType.TRAP_FLOOR => traps,
-                    TileType.TRAP_CHEST => traps,
-                    TileType.CHEST => traps,
+                    TileType.TRAP_VOID => trap_void,
+                    TileType.TRAP_DAMAGE => trap_damage,
+                    TileType.TRAP_FLOOR => trap_floor,
+                    TileType.TRAP_CHEST => trap_chest,
+                    TileType.CHEST => chests,
                     TileType.ENEMY_SPAWN => enemies,
-                    _ => traps
+                    _ => obstacles
                 };
 
                 tilemap.SetTile(new Vector3Int(x + x1, y + y1, 0), rule.TileOutput[y1].row[x1].Tile);
@@ -689,13 +715,13 @@ public class ProcedualGeneration : MonoBehaviour
                         TileType.FLOOR => floor,
                         TileType.WALL => walls,
                         TileType.OBSTACLE => obstacles,
-                        TileType.TRAP_VOID => traps,
-                        TileType.TRAP_DAMAGE => traps,
-                        TileType.TRAP_FLOOR => traps,
-                        TileType.TRAP_CHEST => traps,
-                        TileType.CHEST => traps,
+                        TileType.TRAP_VOID => trap_void,
+                        TileType.TRAP_DAMAGE => trap_damage,
+                        TileType.TRAP_FLOOR => trap_floor,
+                        TileType.TRAP_CHEST => trap_chest,
+                        TileType.CHEST => chests,
                         TileType.ENEMY_SPAWN => enemies,
-                        _ => traps
+                        _ => obstacles
                     };
                     // var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1 + 0.5f, y + y1 + 0.5f, 0), UnityEngine.Quaternion.identity);
                     var obj = Instantiate(rule.GameObjectOutput[y1].row[x1].gameObject, new Vector3(x + x1, y + y1, 0), UnityEngine.Quaternion.identity);
