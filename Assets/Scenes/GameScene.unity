@@ -2504,6 +2504,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1175999718}
     - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: manualControlTestMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: varianceLevelController
       value: 
       objectReference: {fileID: 1939483592}

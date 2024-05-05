@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public float moveSpeed = 5.0f; 
+    public float moveSpeed = 5.0f;
     public Transform golfBall;
     private bool isFreeCamera = false;
 
     void Update()
     {
         Vector3 move = new Vector3();
-        
+
         if (Input.GetKey(KeyCode.W))
         {
             isFreeCamera = true;
@@ -32,7 +32,7 @@ public class CameraMove : MonoBehaviour
         }
 
         transform.Translate(move * moveSpeed * Time.deltaTime);
-        
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isFreeCamera = false;
@@ -50,6 +50,7 @@ public class CameraMove : MonoBehaviour
     {
         if (golfBall != null)
         {
+            isFreeCamera = false;
             transform.position = new Vector3(golfBall.position.x, golfBall.position.y, transform.position.z);
         }
     }
