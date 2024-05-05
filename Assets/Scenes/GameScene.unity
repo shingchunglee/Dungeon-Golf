@@ -184,6 +184,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 45
   Height: 45
+  chestPrefab: {fileID: 0}
 --- !u!1 &58924179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7600680289112393638, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -6880,6 +6881,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32586d0b02092430f81e290c0a6f2b69, type: 2}
   Width: 35
   Height: 35
+  chestPrefab: {fileID: 0}
 --- !u!1 &1438048597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7021,9 +7023,9 @@ MonoBehaviour:
   convolutionRules:
   - {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
   - {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
-  - {fileID: 11400000, guid: 0dfc43142c1fe8e4bb76fb5773f228f7, type: 2}
   Width: 25
   Height: 25
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
 --- !u!1001 &1590591167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7164,6 +7166,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   Width: 40
   Height: 40
+  chestPrefab: {fileID: 0}
 --- !u!1 &1806639729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8601834166412958021, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
@@ -18220,6 +18223,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: beede2a2cc8cd4a3187eb60c1db838f8, type: 2}
   Width: 30
   Height: 30
+  chestPrefab: {fileID: 0}
 --- !u!1001 &4178338547437784878
 PrefabInstance:
   m_ObjectHideFlags: 0
