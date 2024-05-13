@@ -385,6 +385,10 @@ public class EnemyUnit : MonoBehaviour
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
+        foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+        {
+            ClubEffectsFactory.Create(effect).OnDamageEnemy(this);
+        }
     }
 
     protected virtual void TakeDamageFromPlayer()

@@ -39,6 +39,10 @@ public class MoveState : IPlayerActionState
   {
     PlayerManager.Instance.TeleportPlayerToBall();
     Debug.Log("Player Exited Moving State");
+    foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+    {
+      ClubEffectsFactory.Create(effect).AfterPlayerMove();
+    }
   }
 
   public void OnFixedUpdate()

@@ -93,7 +93,7 @@ public class PlayerManager : MonoBehaviour
 
   private void Start()
   {
-    HealthPotion.OnConsume += RestoreHealth;
+    HealthPotion.OnConsume += () => { RestoreHealth(5); };
   }
 
   private void FixedUpdate()
@@ -195,9 +195,10 @@ public class PlayerManager : MonoBehaviour
     }
   }
 
-  public void RestoreHealth()
+  public void RestoreHealth(int restore)
   {
-    currentHP += 5;
+    currentHP += restore;
+    if (currentHP > maxHP) currentHP = maxHP;
     UpdateHPText();
   }
 
