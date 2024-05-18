@@ -224,7 +224,7 @@ public class EnemyUnit : MonoBehaviour
         if (moveAttacksPerTurnLeft <= 0 ||
             attacksLeft <= 0)
         {
-            PostMove();
+            PostMovePrivate();
             EndTurn();
             return;
         }
@@ -364,9 +364,15 @@ public class EnemyUnit : MonoBehaviour
 
     }
 
-    protected virtual void PostMove()
+    private void PostMovePrivate()
     {
         nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
+        PostMove();
+    }
+
+    protected virtual void PostMove()
+    {
+
     }
 
     protected virtual IEnumerator AttackAnimation(int xDir, int yDir)
@@ -437,8 +443,6 @@ public class EnemyUnit : MonoBehaviour
         //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
         //         particleEffect.Play();
         //     }
-
-
     }
 
     internal virtual void TakeDamage(int damage)
@@ -516,7 +520,7 @@ public class EnemyUnit : MonoBehaviour
     protected void ForceEndTurn()
     {
         // Debug.Log("Force End Trun");
-        PostMove();
+        PostMovePrivate();
         isTakingTurn = false;
     }
 

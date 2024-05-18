@@ -179,8 +179,9 @@ MonoBehaviour:
   wizardRB: {fileID: 0}
   playerBall: {fileID: 0}
   ballRB: {fileID: 0}
-  maxHP: 100
+  maxHP: 20
   currentHP: 0
+  endLevelRegenPercent: 0.4
   attackDamage: 5
   powerLevelController: {fileID: 0}
   varianceLevelController: {fileID: 0}
