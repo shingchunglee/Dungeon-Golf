@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayClubInfo : MonoBehaviour
 {
     public GameObject clubSlotPrefab;
     public Transform contentPanel;
+
+    public Sprite defaultSprite;
 
     void Start()
     {
@@ -34,7 +37,7 @@ public class DisplayClubInfo : MonoBehaviour
                 continue;
             }
 
-               TextMeshProUGUI text = newSlot.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI text = newSlot.GetComponentInChildren<TextMeshProUGUI>();
             if (text == null)
             {
                 Debug.LogError("TMP not there on prefab");
@@ -42,6 +45,23 @@ public class DisplayClubInfo : MonoBehaviour
             }
 
             text.text = $"{club.Club.clubName}\nDamage: {club.Club.damage}\nMax Power: {club.Club.maxPower}";
+
+            Transform sprite = newSlot.transform.Find("sprite");
+            Image image = sprite.GetComponent<Image>();
+            if (image == null)
+            {
+                Debug.LogError("image not there on prefab");
+                continue;
+            }
+
+            if (club.Club.sprite != null)
+            {
+                image.sprite = club.Club.sprite;
+            }
+            else
+            {
+                image.sprite = defaultSprite;
+            }
         }
     }
 }

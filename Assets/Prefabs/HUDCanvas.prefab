@@ -14195,6 +14195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clubSlotPrefab: {fileID: 1047287793797889672}
   contentPanel: {fileID: 856502361034926313}
+  defaultSprite: {fileID: 0}
 --- !u!1 &7777223082732723004
 GameObject:
   m_ObjectHideFlags: 0
@@ -17336,6 +17337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumableSlotPrefab: {fileID: 4340194934741694237, guid: de7d0dbbac43f6048a720b430077e3c3, type: 3}
   contentPanel: {fileID: 3259104474988963548}
+  defaultSprite: {fileID: 21300000, guid: a68607b159ff57a4896c259ffa8497dd, type: 3}
 --- !u!1 &8703487401266925145
 GameObject:
   m_ObjectHideFlags: 0
@@ -18474,6 +18476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clubSlotPrefab: {fileID: 4340194934741694237, guid: de7d0dbbac43f6048a720b430077e3c3, type: 3}
   contentPanel: {fileID: 8337939861516222989}
+  defaultSprite: {fileID: 21300000, guid: e00281e08eb7942618c37cbe52acb567, type: 3}
 --- !u!1 &9091228261930601756
 GameObject:
   m_ObjectHideFlags: 0
