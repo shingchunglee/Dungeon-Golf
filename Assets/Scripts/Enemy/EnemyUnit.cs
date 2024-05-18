@@ -3,6 +3,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
 using System.Collections.Generic;
+using System;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class EnemyUnit : MonoBehaviour
     public bool isTakingTurn = false;
 
     private int disengageDistance = 20;
+
+    // STATUS EFFECTS
+    public EnemyStatusEffectList enemyStatusEffects = new();
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -131,6 +135,11 @@ public class EnemyUnit : MonoBehaviour
     // This is called by Enemy Manager for each enemy on the scene.
     public virtual void TakeTurn()
     {
+        if (enemyStatusEffects.Contains(EnemyStatusEffectType.Frozen))
+        {
+            EndTurn();
+            return;
+        }
         isTakingTurn = true;
         // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
@@ -370,6 +379,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EndTurn()
     {
+        enemyStatusEffects.TurnPassed();
         isTakingTurn = false;
     }
 
@@ -385,16 +395,19 @@ public class EnemyUnit : MonoBehaviour
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
-        foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
-        {
-            ClubEffectsFactory.Create(effect).OnDamageEnemy(this);
-        }
+
     }
 
     protected virtual void TakeDamageFromPlayer()
     {
         CurrentHP -= Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
         healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
+
+        foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+        {
+            ClubEffectsFactory.Create(effect).OnDamageEnemy(this, Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage));
+        }
+
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
         //     if (particleEffect != null)
         //     {
@@ -475,5 +488,17 @@ public class EnemyUnit : MonoBehaviour
         // Debug.Log("Force End Trun");
         PostMove();
         isTakingTurn = false;
+    }
+
+    internal void applyStatusEffect(EnemyStatusEffectType statusEffect, int turns)
+    {
+        switch (statusEffect)
+        {
+            case EnemyStatusEffectType.Frozen:
+                enemyStatusEffects.Add(new EnemyStatusEffect() { type = statusEffect, turns = turns });
+                break;
+            default:
+                break;
+        }
     }
 }
