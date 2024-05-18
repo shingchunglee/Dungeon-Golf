@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.iOS;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayPotionInfo : MonoBehaviour
 {
-    public GameObject consumableSlotPrefab; 
+    public GameObject consumableSlotPrefab;
     public Transform contentPanel;
+    public Sprite defaultSprite;
 
     void Start()
     {
@@ -15,11 +18,11 @@ public class DisplayPotionInfo : MonoBehaviour
 
     void PopulatePotionList()
     {
-        
+
         InventoryConsumables consumables = PlayerManager.Instance.inventoryController.consumables;
         var consumableTypes = System.Enum.GetValues(typeof(Consumables));
 
-        
+
         Debug.Log("Loaded " + consumableTypes.Length + " consumables.");
 
         if (consumableTypes.Length == 0)
@@ -46,6 +49,25 @@ public class DisplayPotionInfo : MonoBehaviour
             }
 
             text.text = $"{consumableType}\nAmount: {amount}";
+
+
+            Transform sprite = newSlot.transform.Find("sprite");
+            Image image = sprite.GetComponent<Image>();
+            if (image == null)
+            {
+                Debug.LogError("image not there on prefab");
+                continue;
+            }
+
+            Sprite potionSprite = Resources.Load<Sprite>("Potions/" + consumableType.ToString());
+            if (sprite != null)
+            {
+                image.sprite = potionSprite;
+            }
+            else
+            {
+                image.sprite = defaultSprite;
+            }
         }
     }
 }
