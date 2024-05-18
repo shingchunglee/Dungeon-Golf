@@ -34,7 +34,7 @@ public class DisplayClubInfo : MonoBehaviour
                 continue;
             }
 
-            TextMeshProUGUI text = newSlot.GetComponent<TextMeshProUGUI>();
+               TextMeshProUGUI text = newSlot.GetComponentInChildren<TextMeshProUGUI>();
             if (text == null)
             {
                 Debug.LogError("TMP not there on prefab");
