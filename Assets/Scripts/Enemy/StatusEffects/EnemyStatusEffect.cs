@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public enum EnemyStatusEffectType
 {
     Frozen,
+    Fire,
 }
 
 [System.Serializable]
@@ -17,23 +20,38 @@ public class EnemyStatusEffectList
 {
     public List<EnemyStatusEffect> statusEffects = new();
 
-    public void Add(EnemyStatusEffect effect)
+    private GameObject statusEffectUI;
+
+    public EnemyStatusEffectList(GameObject statusEffectUI)
     {
-        if (!statusEffects.Contains(effect))
+        this.statusEffectUI = statusEffectUI;
+    }
+
+    public void Add(EnemyStatusEffectType effect, int turns)
+    {
+        var effectToAdd = statusEffects.Find(x => x.type == effect);
+        if (effectToAdd == null)
         {
-            statusEffects.Add(effect);
+            statusEffects.Add(new EnemyStatusEffect() { type = effect, turns = turns });
+            AddIcon(effect, turns, statusEffectUI);
         }
-        else if (statusEffects[statusEffects.IndexOf(effect)].turns < effect.turns)
+        else if (effectToAdd.turns < turns)
         {
-            statusEffects[statusEffects.IndexOf(effect)].turns = effect.turns;
+            effectToAdd.turns = turns;
         }
     }
 
-    public void Remove(EnemyStatusEffect effect)
+    public void Remove(EnemyStatusEffectType effect)
     {
-        if (statusEffects.Contains(effect))
+        var effectToRemove = statusEffects.Find(x => x.type == effect);
+        if (effectToRemove != null)
         {
-            statusEffects.Remove(effect);
+            statusEffects.Remove(effectToRemove);
+            RemoveIcon(effectToRemove.type, statusEffectUI);
+        }
+        else
+        {
+            Debug.LogWarning($"EnemyStatusEffectList: Could not remove {effect} because it was not found in the list.");
         }
     }
 
@@ -49,8 +67,46 @@ public class EnemyStatusEffectList
             statusEffects[i].turns--;
             if (statusEffects[i].turns <= 0)
             {
-                statusEffects.RemoveAt(i);
+                Remove(statusEffects[i].type);
+            }
+            else
+            {
+                UpdateTurnsText(statusEffects[i].type, statusEffects[i].turns, statusEffectUI);
             }
         }
+    }
+
+    public void AddIcon(EnemyStatusEffectType effect, int effectTurns, GameObject parent)
+    {
+        if (parent == null) return;
+        GameObject icon = Resources.Load<GameObject>("StatusEffects/" + effect.ToString());
+
+        Transform oldIcon = parent.transform.Find(effect.ToString());
+        if (oldIcon != null) return;
+
+        if (icon != null)
+        {
+            GameObject newIcon = GameObject.Instantiate(icon, parent.transform);
+            newIcon.name = effect.ToString();
+            Transform turns = newIcon.transform.Find("Turns");
+            turns.gameObject.GetComponent<TextMeshProUGUI>().text = effectTurns.ToString();
+        }
+    }
+
+    public void UpdateTurnsText(EnemyStatusEffectType effect, int effectTurns, GameObject parent)
+    {
+        if (parent == null) return;
+        Transform icon = parent.transform.Find(effect.ToString());
+        if (icon == null) return;
+        Transform turns = icon.transform.Find("Turns");
+        turns.gameObject.GetComponent<TextMeshProUGUI>().text = effectTurns.ToString();
+    }
+
+    public void RemoveIcon(EnemyStatusEffectType effect, GameObject parent)
+    {
+        if (parent == null) return;
+        Transform icon = parent.transform.Find(effect.ToString());
+        if (icon == null) return;
+        GameObject.Destroy(icon.gameObject);
     }
 }

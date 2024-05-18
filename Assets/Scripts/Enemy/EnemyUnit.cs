@@ -46,7 +46,8 @@ public class EnemyUnit : MonoBehaviour
     private int disengageDistance = 20;
 
     // STATUS EFFECTS
-    public EnemyStatusEffectList enemyStatusEffects = new();
+    public EnemyStatusEffectList enemyStatusEffects;
+    [SerializeField] private GameObject statusEffectUI;
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -117,6 +118,10 @@ public class EnemyUnit : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         SpriteObj = this.transform.Find("Sprite").gameObject;
 
+        var statusEffectTransform = SpriteObj.transform.Find("statusEffects");
+        statusEffectUI = statusEffectTransform != null ? statusEffectTransform.gameObject : null;
+        enemyStatusEffects = new EnemyStatusEffectList(statusEffectUI);
+
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
     }
@@ -135,6 +140,11 @@ public class EnemyUnit : MonoBehaviour
     // This is called by Enemy Manager for each enemy on the scene.
     public virtual void TakeTurn()
     {
+
+        if (enemyStatusEffects.Contains(EnemyStatusEffectType.Fire))
+        {
+            TakeDamage(2);
+        }
         if (enemyStatusEffects.Contains(EnemyStatusEffectType.Frozen))
         {
             EndTurn();
@@ -400,8 +410,8 @@ public class EnemyUnit : MonoBehaviour
 
     protected virtual void TakeDamageFromPlayer()
     {
-        CurrentHP -= Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
-        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
+        int damage = Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
+        TakeDamage(damage);
 
         foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
         {
@@ -422,6 +432,12 @@ public class EnemyUnit : MonoBehaviour
         }
 
         CheckIfDead();
+    }
+
+    protected virtual void TakeDamage(int damage)
+    {
+        CurrentHP -= damage;
+        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
     }
 
     protected void CheckIfDead()
@@ -490,15 +506,18 @@ public class EnemyUnit : MonoBehaviour
         isTakingTurn = false;
     }
 
-    internal void applyStatusEffect(EnemyStatusEffectType statusEffect, int turns)
-    {
-        switch (statusEffect)
-        {
-            case EnemyStatusEffectType.Frozen:
-                enemyStatusEffects.Add(new EnemyStatusEffect() { type = statusEffect, turns = turns });
-                break;
-            default:
-                break;
-        }
-    }
+    // internal void applyStatusEffect(EnemyStatusEffectType statusEffect, int turns)
+    // {
+    //     switch (statusEffect)
+    //     {
+    //         case EnemyStatusEffectType.Frozen:
+    //             enemyStatusEffects.Add(statusEffect, turns);
+    //             break;
+    //         case EnemyStatusEffectType.Fire:
+    //             enemyStatusEffects.Add(statusEffect, turns);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
 }
