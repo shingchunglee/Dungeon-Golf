@@ -3,6 +3,8 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
 using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -43,6 +45,11 @@ public class EnemyUnit : MonoBehaviour
     public bool isTakingTurn = false;
 
     private int disengageDistance = 20;
+
+    // STATUS EFFECTS
+    public EnemyStatusEffectList enemyStatusEffects;
+    [SerializeField] private GameObject statusEffectUI;
+    public bool skipTurn = false;
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -113,6 +120,10 @@ public class EnemyUnit : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         SpriteObj = this.transform.Find("Sprite").gameObject;
 
+        var statusEffectTransform = SpriteObj.transform.Find("statusEffects");
+        statusEffectUI = statusEffectTransform != null ? statusEffectTransform.gameObject : null;
+        enemyStatusEffects = new EnemyStatusEffectList(statusEffectUI);
+
         //By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
         inverseMoveTime = 1f / moveTime;
     }
@@ -131,6 +142,26 @@ public class EnemyUnit : MonoBehaviour
     // This is called by Enemy Manager for each enemy on the scene.
     public virtual void TakeTurn()
     {
+        List<EnemyStatusEffect> sorted = new List<EnemyStatusEffect>(enemyStatusEffects.statusEffects);
+        sorted.Sort(delegate (EnemyStatusEffect x, EnemyStatusEffect y)
+        {
+            if (x.priority.onTakeTurn > y.priority.onTakeTurn) return 1;
+            if (x.priority.onTakeTurn < y.priority.onTakeTurn) return -1;
+            return 0;
+        });
+
+        foreach (var effect in sorted)
+        {
+            if (effect.OnTakeTurn == null) continue;
+            effect.OnTakeTurn(this);
+        }
+
+        if (skipTurn)
+        {
+            EndTurn();
+            return;
+        }
+
         isTakingTurn = true;
         // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
@@ -370,7 +401,9 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EndTurn()
     {
+        enemyStatusEffects.TurnPassed();
         isTakingTurn = false;
+        skipTurn = false;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -385,12 +418,19 @@ public class EnemyUnit : MonoBehaviour
         if (collision.gameObject.tag == "ball" &&
         PlayerManager.Instance.actionStateController.CanBallCauseDamage())
             TakeDamageFromPlayer();
+
     }
 
     protected virtual void TakeDamageFromPlayer()
     {
-        CurrentHP -= Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
-        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
+        int damage = Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
+        TakeDamage(damage);
+
+        foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+        {
+            ClubEffectsFactory.Create(effect).OnDamageEnemy(this, Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage));
+        }
+
         SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
         //     if (particleEffect != null)
         //     {
@@ -398,6 +438,13 @@ public class EnemyUnit : MonoBehaviour
         //         particleEffect.Play();
         //     }
 
+
+    }
+
+    internal virtual void TakeDamage(int damage)
+    {
+        CurrentHP -= damage;
+        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         if (enemyHurt != null)
         {
             StopCoroutine(ShowEnemyHurt());
@@ -472,4 +519,6 @@ public class EnemyUnit : MonoBehaviour
         PostMove();
         isTakingTurn = false;
     }
+
+
 }
