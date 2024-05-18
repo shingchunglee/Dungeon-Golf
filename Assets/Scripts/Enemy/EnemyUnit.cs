@@ -4,6 +4,7 @@ using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class EnemyUnit : MonoBehaviour
     // STATUS EFFECTS
     public EnemyStatusEffectList enemyStatusEffects;
     [SerializeField] private GameObject statusEffectUI;
+    public bool skipTurn = false;
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -140,16 +142,26 @@ public class EnemyUnit : MonoBehaviour
     // This is called by Enemy Manager for each enemy on the scene.
     public virtual void TakeTurn()
     {
-
-        if (enemyStatusEffects.Contains(EnemyStatusEffectType.Fire))
+        List<EnemyStatusEffect> sorted = new List<EnemyStatusEffect>(enemyStatusEffects.statusEffects);
+        sorted.Sort(delegate (EnemyStatusEffect x, EnemyStatusEffect y)
         {
-            TakeDamage(2);
+            if (x.priority.onTakeTurn > y.priority.onTakeTurn) return 1;
+            if (x.priority.onTakeTurn < y.priority.onTakeTurn) return -1;
+            return 0;
+        });
+
+        foreach (var effect in sorted)
+        {
+            if (effect.OnTakeTurn == null) continue;
+            effect.OnTakeTurn(this);
         }
-        if (enemyStatusEffects.Contains(EnemyStatusEffectType.Frozen))
+
+        if (skipTurn)
         {
             EndTurn();
             return;
         }
+
         isTakingTurn = true;
         // Debug.Log($"Enemy '{name}', ID: {ID}, has taken its turn.");
         PreMove();
@@ -391,6 +403,7 @@ public class EnemyUnit : MonoBehaviour
     {
         enemyStatusEffects.TurnPassed();
         isTakingTurn = false;
+        skipTurn = false;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -425,6 +438,13 @@ public class EnemyUnit : MonoBehaviour
         //         particleEffect.Play();
         //     }
 
+
+    }
+
+    internal virtual void TakeDamage(int damage)
+    {
+        CurrentHP -= damage;
+        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
         if (enemyHurt != null)
         {
             StopCoroutine(ShowEnemyHurt());
@@ -432,12 +452,6 @@ public class EnemyUnit : MonoBehaviour
         }
 
         CheckIfDead();
-    }
-
-    protected virtual void TakeDamage(int damage)
-    {
-        CurrentHP -= damage;
-        healthBar.UpdateHealthBar(CurrentHP, MaxHP);//healthbar
     }
 
     protected void CheckIfDead()
@@ -506,18 +520,5 @@ public class EnemyUnit : MonoBehaviour
         isTakingTurn = false;
     }
 
-    // internal void applyStatusEffect(EnemyStatusEffectType statusEffect, int turns)
-    // {
-    //     switch (statusEffect)
-    //     {
-    //         case EnemyStatusEffectType.Frozen:
-    //             enemyStatusEffects.Add(statusEffect, turns);
-    //             break;
-    //         case EnemyStatusEffectType.Fire:
-    //             enemyStatusEffects.Add(statusEffect, turns);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+
 }

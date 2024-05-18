@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,16 @@ public class EnemyStatusEffect
 {
     public EnemyStatusEffectType type;
     public int turns;
+
+    public EnemyStatusEffectPriority priority = new();
+
+    public Action<EnemyUnit> OnTakeTurn;
+}
+
+[System.Serializable]
+public class EnemyStatusEffectPriority
+{
+    public int onTakeTurn = 0;
 }
 
 [System.Serializable]
@@ -27,18 +38,21 @@ public class EnemyStatusEffectList
         this.statusEffectUI = statusEffectUI;
     }
 
-    public void Add(EnemyStatusEffectType effect, int turns)
+    public EnemyStatusEffect Add(EnemyStatusEffectType effect, int turns)
     {
         var effectToAdd = statusEffects.Find(x => x.type == effect);
         if (effectToAdd == null)
         {
-            statusEffects.Add(new EnemyStatusEffect() { type = effect, turns = turns });
+            effectToAdd = new EnemyStatusEffect() { type = effect, turns = turns };
+            statusEffects.Add(effectToAdd);
             AddIcon(effect, turns, statusEffectUI);
         }
         else if (effectToAdd.turns < turns)
         {
             effectToAdd.turns = turns;
         }
+
+        return effectToAdd;
     }
 
     public void Remove(EnemyStatusEffectType effect)

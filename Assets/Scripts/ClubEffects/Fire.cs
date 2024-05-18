@@ -5,7 +5,8 @@ public class Fire : ClubEffects
 {
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
-        // enemy.applyStatusEffect(EnemyStatusEffectType.Fire, 3);
-        enemy.enemyStatusEffects.Add(EnemyStatusEffectType.Fire, 3);
+        var fire = enemy.enemyStatusEffects.Add(EnemyStatusEffectType.Fire, 3);
+        fire.OnTakeTurn = (enemy) => { enemy.TakeDamage(5); };
+        fire.priority.onTakeTurn = -1;
     }
 }

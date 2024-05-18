@@ -5,7 +5,7 @@ public enum ClubEffectsType
     HealPlayer, // heal player for 5 hp after move
     Vampirism, // restore 50% of damage dealt
     Freezing, // freeze enemy for 1 turn
-    Fire, // Deal 2 ticking damage per turn before enemies move
+    Fire, // Deal 5 ticking damage per turn before enemies move
 }
 
 public class ClubEffectsFactory
