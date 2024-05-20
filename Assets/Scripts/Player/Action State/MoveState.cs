@@ -3,97 +3,96 @@ using UnityEngine;
 
 public class MoveState : IPlayerActionState
 {
-  PlayerActionStateController controller;
+    PlayerActionStateController controller;
 
-  private bool isMoving = false;
-  private bool checkForMovementStop = false;
+    private bool isMoving = false;
 
-  public void OnEnter(PlayerActionStateController controller)
-  {
-    this.controller = controller;
-    Debug.Log("Player Entered Moving State");
-    // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
-    if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
+    public void OnEnter(PlayerActionStateController controller)
     {
-      // Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
-      controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+        this.controller = controller;
+        Debug.Log("Player Entered Moving State");
+        // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
+        if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
+        {
+            // Debug.Log("aimdirection: " + PlayerManager.Instance.golfAimDrag.aimDirection);
+            controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAimDrag.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+        }
+        else
+        {
+            Debug.Log("aimdirection: " + PlayerManager.Instance.golfAim.aimDirection);
+            // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+            controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+        }
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.stroke);
+        // ! HACK SOLUTION: ME BRAIN NO WORK NO KNOW BETTER SOLUTION PLZ HELP
+        controller.StartCoroutine(SetMoving(1f));
     }
-    else
+
+    IEnumerator SetMoving(float delay)
     {
-      Debug.Log("aimdirection: " + PlayerManager.Instance.golfAim.aimDirection);
-      // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
-      controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
+        yield return new WaitForSeconds(delay);
+        isMoving = true;
     }
-    SoundManager.Instance.PlaySFX(SoundManager.Instance.stroke);
-    // ! HACK SOLUTION: ME BRAIN NO WORK NO KNOW BETTER SOLUTION PLZ HELP
-    controller.StartCoroutine(SetMoving(1f));
-  }
 
-  IEnumerator SetMoving(float delay)
-  {
-    yield return new WaitForSeconds(delay);
-    isMoving = true;
-  }
-
-  public void OnExit()
-  {
-    PlayerManager.Instance.TeleportPlayerToBall();
-    Debug.Log("Player Exited Moving State");
-    foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+    public void OnExit()
     {
-      ClubEffectsFactory.Create(effect).AfterPlayerMove();
+        PlayerManager.Instance.TeleportPlayerToBall();
+        Debug.Log("Player Exited Moving State");
+        foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
+        {
+            ClubEffectsFactory.Create(effect).AfterPlayerMove();
+        }
     }
-  }
 
-  public void OnFixedUpdate()
-  {
-    // This uses the player manager to check that the ball is moving.
-    if (PlayerManager.Instance.IsBallMoving)
+    public void OnFixedUpdate()
     {
-      // if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
-      // {
-      //   controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, -PlayerManager.Instance.golfAimDrag.variance);
-      // }
-      // else
-      // {
-      // Debug.Log("Variance: " + (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
-      controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
-      // }
+        // This uses the player manager to check that the ball is moving.
+        if (PlayerManager.Instance.IsBallMoving)
+        {
+            // if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
+            // {
+            //   controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, -PlayerManager.Instance.golfAimDrag.variance);
+            // }
+            // else
+            // {
+            // Debug.Log("Variance: " + (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+            controller.ballRB.velocity = RotateVector2(controller.ballRB.velocity, (float)PlayerManager.Instance.varianceLevelController.selectedVariance);
+            // }
+        }
+        if (isMoving && !PlayerManager.Instance.IsBallMoving)
+        {
+            controller.ballRB.velocity = new Vector2(0f, 0f);
+            isMoving = false;
+            controller.SetState(controller.enemyTurnState);
+        }
     }
-    if (isMoving && !PlayerManager.Instance.IsBallMoving)
+
+    Vector2 RotateVector2(Vector2 v, float degrees)
     {
-      controller.ballRB.velocity = new Vector2(0f, 0f);
-      isMoving = false;
-      controller.SetState(controller.enemyTurnState);
+        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+        float tx = v.x;
+        float ty = v.y;
+        v.x = (cos * tx) - (sin * ty);
+        v.y = (sin * tx) + (cos * ty);
+        return v;
     }
-  }
 
-  Vector2 RotateVector2(Vector2 v, float degrees)
-  {
-    float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-    float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-
-    float tx = v.x;
-    float ty = v.y;
-    v.x = (cos * tx) - (sin * ty);
-    v.y = (sin * tx) + (cos * ty);
-    return v;
-  }
-
-  public void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.TryGetComponent(out PlayerMovingOnTrigger playerMovingOnTrigger))
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-      playerMovingOnTrigger.OnTrigger();
+        if (collision.TryGetComponent(out PlayerMovingOnTrigger playerMovingOnTrigger))
+        {
+            playerMovingOnTrigger.OnTrigger();
+        }
     }
-  }
 
-  public void OnUpdate()
-  {
-    if (Input.GetKeyDown(KeyCode.Period))
+    public void OnUpdate()
     {
-      // Debug.Log("Force End Move State.");
-      controller.SetState(controller.enemyTurnState);
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            // Debug.Log("Force End Move State.");
+            controller.SetState(controller.enemyTurnState);
+        }
     }
-  }
 }

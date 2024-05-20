@@ -25,14 +25,13 @@ public class EnemyUnit : MonoBehaviour
     private int attacksLeft;
     public int attackDamage = 5;
     public bool willBallCollide = true;
+    public int EXPReward = 15;
 
     private EnemyManager enemyManager;
     private Rigidbody2D targetRB;
     private GameObject SpriteObj;
 
-    private float closeEnough = 0.1f;
-
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] EnemyHealthBar healthBar;
     // [SerializeField] ParticleSystem particleEffect;
     [SerializeField] Animator enemyHurt;
     [SerializeField] Animator enemyDie;
@@ -50,6 +49,7 @@ public class EnemyUnit : MonoBehaviour
     public EnemyStatusEffectList enemyStatusEffects;
     [SerializeField] private GameObject statusEffectUI;
     public bool skipTurn = false;
+
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -76,7 +76,7 @@ public class EnemyUnit : MonoBehaviour
         ID = gameObject.GetInstanceID();
 
         //healthbar
-        healthBar = GetComponentInChildren<HealthBar>();
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
         if (healthBar == null)
         {
             Debug.LogError("HealthBar component not found on " + gameObject.name);
@@ -468,6 +468,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
+        PlayerManager.Instance.EXPGain(EXPReward);
         GameManager.Instance.statsController.IncrementEnemiesKilled();
         StartCoroutine(enemyDeathAnim());
     }

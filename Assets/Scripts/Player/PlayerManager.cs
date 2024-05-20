@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     public GolfAim golfAim;
     public GolfAimDrag golfAimDrag;
 
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] PlayerUIBars UIBars;
 
     public static PlayerManager Instance
     {
@@ -180,7 +180,7 @@ public class PlayerManager : MonoBehaviour
     {
         var hudCanvas = GameObject.Find("HUDCanvas");
 
-        healthBar = hudCanvas.GetComponentInChildren<HealthBar>();
+        UIBars = hudCanvas.GetComponentInChildren<PlayerUIBars>();
         PlayerParent = GameObject.Find("Player");
 
         var snapToGridLocation = new Vector3();
@@ -191,10 +191,10 @@ public class PlayerManager : MonoBehaviour
 
         PlayerParent.transform.position = snapToGridLocation;
 
-        healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
         UpdateHPText();
 
-        if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
+        UIBars.UpdateHealthBar(currentHP, maxHP);
 
         playerWizard = GameObject.Find("Wizard Parent");
         playerBall = GameObject.Find("Ball Parent");
@@ -237,14 +237,14 @@ public class PlayerManager : MonoBehaviour
     public void UpdateHPText()
     {
         if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
-        healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
     }
 
     public void TeleportPlayerToBall()
     {
         //TODO this shouldn't be here but it works.
         UpdateHPText();
-        healthBar.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
 
         var playerRB = playerWizard.GetComponent<Rigidbody2D>();
         var ballRB = playerBall.GetComponent<Rigidbody2D>();
@@ -328,21 +328,21 @@ public class PlayerManager : MonoBehaviour
         {
             int expNeeded = 0;
 
-            for (int i = 0; i < EXPLevel; i++)
+            for (int i = 0; i < PlayerLevel; i++)
             {
-                expNeeded += (int)(level1EXP * Mathf.Pow(EXPLevel, 0.4f));
+                expNeeded += (int)(level1EXP * Mathf.Pow(PlayerLevel, 0.4f));
             }
 
             return expNeeded;
         }
     }
     private int level1EXP = 100;
-    public int EXPLevel { get; private set; }
+    public int PlayerLevel { get; private set; }
     public int EXPInCurrentLevel
     {
         get
         {
-            return (int)(level1EXP * Mathf.Pow(EXPLevel, 0.4f));
+            return (int)(level1EXP * Mathf.Pow(PlayerLevel, 0.4f));
         }
     }
 
@@ -355,9 +355,9 @@ public class PlayerManager : MonoBehaviour
         if (EXPCurrent >= EXPNeededToLevelUp)
         {
             LevelUp();
-
-
         }
+
+        UIBars.UpdateEXPBar(EXPCurrent, EXPNeededToLevelUp);
     }
 
 
@@ -366,7 +366,7 @@ public class PlayerManager : MonoBehaviour
         IncreaseBaseDamage(1);
         IncreaseMaxHP(5);
 
-        EXPLevel++;
+        PlayerLevel++;
 
 
     }
@@ -375,6 +375,8 @@ public class PlayerManager : MonoBehaviour
     {
         maxHP += increaseBy;
         currentHP += increaseBy;
+
+        UpdateHPText();
     }
 
     public void IncreaseBaseDamage(int increaseBy)
