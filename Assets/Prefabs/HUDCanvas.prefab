@@ -2485,7 +2485,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 2261344364904715479}
+  HealthSlider: {fileID: 2261344364904715479}
+  EXPSlider: {fileID: 2401745335439467297}
+  HPText: {fileID: 1931309813178123497}
+  EXPText: {fileID: 8174876145562871946}
 --- !u!1 &967048740928867953
 GameObject:
   m_ObjectHideFlags: 0
