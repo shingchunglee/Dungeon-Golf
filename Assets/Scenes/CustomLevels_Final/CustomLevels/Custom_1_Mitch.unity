@@ -937,14 +937,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfGoblin
       objectReference: {fileID: 0}
-    - target: {fileID: 6143366565199149580, guid: 23cecb72bba4249babb85097a1dd01b9, type: 3}
-      propertyPath: EXPReward
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143366565199149580, guid: 23cecb72bba4249babb85097a1dd01b9, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6547848980124582070, guid: 23cecb72bba4249babb85097a1dd01b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.09
@@ -20855,6 +20847,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1275573559}
+    - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: manualControlTestMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7108641508375740774, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: m_Name
       value: GameManager +
