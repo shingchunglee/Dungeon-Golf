@@ -25,14 +25,13 @@ public class EnemyUnit : MonoBehaviour
     private int attacksLeft;
     public int attackDamage = 5;
     public bool willBallCollide = true;
+    public int EXPReward = 15;
 
     private EnemyManager enemyManager;
     private Rigidbody2D targetRB;
     private GameObject SpriteObj;
 
-    private float closeEnough = 0.1f;
-
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] EnemyHealthBar healthBar;
     // [SerializeField] ParticleSystem particleEffect;
     [SerializeField] Animator enemyHurt;
     [SerializeField] Animator enemyDie;
@@ -50,6 +49,7 @@ public class EnemyUnit : MonoBehaviour
     public EnemyStatusEffectList enemyStatusEffects;
     [SerializeField] private GameObject statusEffectUI;
     public bool skipTurn = false;
+
 
     public Vector2Int PositionOnWorldGrid
     {
@@ -76,7 +76,7 @@ public class EnemyUnit : MonoBehaviour
         ID = gameObject.GetInstanceID();
 
         //healthbar
-        healthBar = GetComponentInChildren<HealthBar>();
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
         if (healthBar == null)
         {
             Debug.LogError("HealthBar component not found on " + gameObject.name);
@@ -224,7 +224,7 @@ public class EnemyUnit : MonoBehaviour
         if (moveAttacksPerTurnLeft <= 0 ||
             attacksLeft <= 0)
         {
-            PostMove();
+            PostMovePrivate();
             EndTurn();
             return;
         }
@@ -364,9 +364,15 @@ public class EnemyUnit : MonoBehaviour
 
     }
 
-    protected virtual void PostMove()
+    private void PostMovePrivate()
     {
         nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
+        PostMove();
+    }
+
+    protected virtual void PostMove()
+    {
+
     }
 
     protected virtual IEnumerator AttackAnimation(int xDir, int yDir)
@@ -437,8 +443,6 @@ public class EnemyUnit : MonoBehaviour
         //    //  particleEffect.Stop(); // Stop to clear any ongoing effects
         //         particleEffect.Play();
         //     }
-
-
     }
 
     internal virtual void TakeDamage(int damage)
@@ -464,6 +468,7 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
+        PlayerManager.Instance.EXPGain(EXPReward);
         GameManager.Instance.statsController.IncrementEnemiesKilled();
         StartCoroutine(enemyDeathAnim());
     }
@@ -516,7 +521,7 @@ public class EnemyUnit : MonoBehaviour
     protected void ForceEndTurn()
     {
         // Debug.Log("Force End Trun");
-        PostMove();
+        PostMovePrivate();
         isTakingTurn = false;
     }
 

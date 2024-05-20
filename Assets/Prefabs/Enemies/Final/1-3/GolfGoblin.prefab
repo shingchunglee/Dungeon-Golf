@@ -57,7 +57,8 @@ MonoBehaviour:
   maxAttacksPerTurn: 1
   attackDamage: 3
   willBallCollide: 0
-  healthBar: {fileID: 1925348236519197686}
+  EXPReward: 20
+  healthBar: {fileID: 0}
   enemyHurt: {fileID: 5050475009537855519}
   enemyDie: {fileID: 1731015186207826018}
   isTakingTurn: 0
@@ -723,22 +724,44 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7096710933487959201, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8375052462511358200, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3103788215107841122}
   m_SourcePrefab: {fileID: 100100000, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
---- !u!114 &1925348236519197686 stripped
+--- !u!114 &570811272801693016 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7096710933487959201, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9164630831609338383, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
   m_PrefabInstance: {fileID: 8702259580291839831}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 936338794335500207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &936338794335500207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8375052462511358200, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+  m_PrefabInstance: {fileID: 8702259580291839831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3103788215107841122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936338794335500207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88bc3538f4b940bf8926cbb3d6fd2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthSlider: {fileID: 570811272801693016}
 --- !u!224 &4678479103750536645 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4047021988096215698, guid: cc95d2e903d55044cae399c5f9088906, type: 3}

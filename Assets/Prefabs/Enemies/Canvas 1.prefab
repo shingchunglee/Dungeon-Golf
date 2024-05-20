@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7750571519682427943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3352136174383541529}
   - component: {fileID: 9164630831609338383}
-  - component: {fileID: 7096710933487959201}
+  - component: {fileID: 3382750792995293058}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 8267217602136040540}
   m_HandleRect: {fileID: 0}
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7096710933487959201
+--- !u!114 &3382750792995293058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,10 +351,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8375052462511358200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
+  m_Script: {fileID: 11500000, guid: e88bc3538f4b940bf8926cbb3d6fd2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 9164630831609338383}
+  HealthSlider: {fileID: 9164630831609338383}
 --- !u!1 &9108064818301552299
 GameObject:
   m_ObjectHideFlags: 0
