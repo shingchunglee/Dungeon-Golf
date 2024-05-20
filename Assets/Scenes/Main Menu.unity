@@ -1906,7 +1906,7 @@ PrefabInstance:
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: stroke
       value: 
-      objectReference: {fileID: 8300000, guid: 51052bb767f68d3489850f8cb698d886, type: 3}
+      objectReference: {fileID: 8300000, guid: 5501bcacb676048fe9b62131a3ccad0e, type: 3}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: background
       value: 
@@ -1920,9 +1920,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: b05e417d317ed3749ab8562598e775eb, type: 3}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: clubCollect
+      value: 
+      objectReference: {fileID: 8300000, guid: 49d5a1e674bbf41cd9e9ce2089a75ef9, type: 3}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: enemyDamage
       value: 
-      objectReference: {fileID: 8300000, guid: dd7ed96b3a104cf4f93ac95551e343a2, type: 3}
+      objectReference: {fileID: 8300000, guid: ee56ee95e03744be18eda074bf93fdc6, type: 3}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: musicSource
       value: 
@@ -1930,7 +1934,7 @@ PrefabInstance:
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: playerDamage
       value: 
-      objectReference: {fileID: 8300000, guid: e005679c953ab1b458fd32a00d079f7c, type: 3}
+      objectReference: {fileID: 8300000, guid: 925e92325f05f47759a06f1b82279959, type: 3}
     - target: {fileID: 3809914825301671186, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: m_Pitch
       value: 1.21
