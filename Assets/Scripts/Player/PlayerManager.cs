@@ -320,4 +320,71 @@ public class PlayerManager : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
+    // Level up stats
+    public int EXPCurrent { get; private set; }
+    public int EXPNeededToLevelUp
+    {
+        get
+        {
+            int expNeeded = 0;
+
+            for (int i = 0; i < EXPLevel; i++)
+            {
+                expNeeded += (int)(level1EXP * Mathf.Pow(EXPLevel, 0.4f));
+            }
+
+            return expNeeded;
+        }
+    }
+    private int level1EXP = 100;
+    public int EXPLevel { get; private set; }
+    public int EXPInCurrentLevel
+    {
+        get
+        {
+            return (int)(level1EXP * Mathf.Pow(EXPLevel, 0.4f));
+        }
+    }
+
+    public int baseDamage = 0;
+
+    public void EXPGain(int increase)
+    {
+        EXPCurrent += increase;
+
+        if (EXPCurrent >= EXPNeededToLevelUp)
+        {
+            LevelUp();
+
+
+        }
+    }
+
+
+    private void LevelUp()
+    {
+        IncreaseBaseDamage(1);
+        IncreaseMaxHP(5);
+
+        EXPLevel++;
+
+
+    }
+
+    public void IncreaseMaxHP(int increaseBy)
+    {
+        maxHP += increaseBy;
+        currentHP += increaseBy;
+    }
+
+    public void IncreaseBaseDamage(int increaseBy)
+    {
+        baseDamage += increaseBy;
+    }
+
+    private void UpdateUIforEXP()
+    {
+
+    }
+
 }
