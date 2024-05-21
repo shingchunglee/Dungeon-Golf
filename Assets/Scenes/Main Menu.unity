@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &68878944 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2320713489506154467, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-  m_PrefabInstance: {fileID: 1599901703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &110956042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,53 +1894,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2320713489506154467, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_Volume
-      value: 0.422
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: stroke
-      value: 
-      objectReference: {fileID: 8300000, guid: 5501bcacb676048fe9b62131a3ccad0e, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: background
-      value: 
-      objectReference: {fileID: 8300000, guid: 42582cbb1a488054a8ee031d794c02b6, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: background1
-      value: 
-      objectReference: {fileID: 8300000, guid: 42582cbb1a488054a8ee031d794c02b6, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: background2
-      value: 
-      objectReference: {fileID: 8300000, guid: b05e417d317ed3749ab8562598e775eb, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: clubCollect
-      value: 
-      objectReference: {fileID: 8300000, guid: 49d5a1e674bbf41cd9e9ce2089a75ef9, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: enemyDamage
-      value: 
-      objectReference: {fileID: 8300000, guid: ee56ee95e03744be18eda074bf93fdc6, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: musicSource
-      value: 
-      objectReference: {fileID: 68878944}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: playerDamage
-      value: 
-      objectReference: {fileID: 8300000, guid: 925e92325f05f47759a06f1b82279959, type: 3}
-    - target: {fileID: 3809914825301671186, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_Pitch
-      value: 1.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809914825301671186, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_Volume
-      value: 0.294
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 685308771022925961, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab4065a99a96c304393173f37aa51272, type: 3}
