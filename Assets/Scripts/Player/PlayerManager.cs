@@ -101,6 +101,10 @@ public class PlayerManager : MonoBehaviour
         {
             statusEffect.Add(PlayerStatusEffect.StatusEffectType.STRENGTH, 3);
         };
+        ExplosionPotion.OnConsume += () =>
+        {
+            Explode();
+        };
     }
 
     private void FixedUpdate()
@@ -108,6 +112,20 @@ public class PlayerManager : MonoBehaviour
         if (manualControlTestMode)
         {
             BallManualControl();
+        }
+    }
+
+    private void Explode()
+    {
+        // check for enemies in a circle of radius 3, damage them if found
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ballRB.position, 3f, Physics.AllLayers);
+        foreach (var hitCollider in hitColliders)
+        {
+            var enemy = hitCollider.GetComponentInParent<EnemyUnit>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(5);
+            }
         }
     }
 

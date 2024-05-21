@@ -20,6 +20,7 @@ public class InventoryController : MonoBehaviour
   private void Awake()
   {
     Init();
+    consumables.AddConsumable(Consumables.EXPLOSION_POTION, 5);
     // AddClub(ClubType.LegendaryClub);
   }
 
@@ -45,10 +46,15 @@ public class InventoryController : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.H))
     {
-      Consumable item = ConsumableFactory.Factory(selectedConsumable.Type);
-      item.Consume();
-      UpdateConsumable();
+      ConsumeConsumable();
     }
+  }
+
+  public void ConsumeConsumable()
+  {
+    Consumable item = ConsumableFactory.Factory(selectedConsumable.Type);
+    item.Consume();
+    UpdateConsumable();
   }
 
   public InventoryClub[] GetInventoryClubs()
