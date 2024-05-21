@@ -50,6 +50,8 @@ public class ProcedualGeneration : MonoBehaviour
     public int Height = 50;
     [SerializeField]
     private GameObject chestPrefab;
+    [SerializeField]
+    private bool isVoidWalls = false;
 
     public void Main()
     {
@@ -196,16 +198,32 @@ public class ProcedualGeneration : MonoBehaviour
 
         int height = grid.GetLength(0);
         int width = grid.GetLength(1);
-
-        for (int y = 0; y < height; y++)
+        if (isVoidWalls)
         {
-            for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
             {
-                if (grid[y, x] == true)
+                for (int x = 0; x < width; x++)
                 {
-                    walls.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    if (grid[y, x] == true)
+                    {
+                        trap_void.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    }
                 }
             }
+        }
+        else
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (grid[y, x] == true)
+                    {
+                        walls.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    }
+                }
+            }
+
         }
     }
 
