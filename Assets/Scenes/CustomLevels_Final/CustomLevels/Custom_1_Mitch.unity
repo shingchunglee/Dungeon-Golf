@@ -367,6 +367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 928157447566303185, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: m_Volume
+      value: 0.089
+      objectReference: {fileID: 0}
     - target: {fileID: 1028956705012765948, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: m_Name
       value: SoundManager
