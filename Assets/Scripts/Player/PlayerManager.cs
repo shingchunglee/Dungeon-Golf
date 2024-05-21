@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     public GolfAim golfAim;
     public GolfAimDrag golfAimDrag;
 
-    [SerializeField] PlayerUIBars UIBars;
+    [SerializeField] PlayerUIElements UIElements;
 
     public static PlayerManager Instance
     {
@@ -180,7 +180,7 @@ public class PlayerManager : MonoBehaviour
     {
         var hudCanvas = GameObject.Find("HUDCanvas");
 
-        UIBars = hudCanvas.GetComponentInChildren<PlayerUIBars>();
+        UIElements = hudCanvas.GetComponentInChildren<PlayerUIElements>();
         PlayerParent = GameObject.Find("Player");
 
         var snapToGridLocation = new Vector3();
@@ -191,10 +191,10 @@ public class PlayerManager : MonoBehaviour
 
         PlayerParent.transform.position = snapToGridLocation;
 
-        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIElements.UpdateHealthBar(currentHP, maxHP);//healthbar
         UpdateHPText();
 
-        UIBars.UpdateHealthBar(currentHP, maxHP);
+        UIElements.UpdateHealthBar(currentHP, maxHP);
 
         playerWizard = GameObject.Find("Wizard Parent");
         playerBall = GameObject.Find("Ball Parent");
@@ -210,6 +210,8 @@ public class PlayerManager : MonoBehaviour
         golfAim = playerBall.GetComponentInChildren<GolfAim>();
         golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
         powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
+
+        UIElements.UpdateLevelText(PlayerLevel);
 
         inventoryController.Init();
         inventoryController.UpdateUI();
@@ -237,14 +239,14 @@ public class PlayerManager : MonoBehaviour
     public void UpdateHPText()
     {
         if (GameManager.Instance.HPText != null) GameManager.Instance.HPText.text = $"HP: {currentHP}/{maxHP}";
-        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIElements.UpdateHealthBar(currentHP, maxHP);//healthbar
     }
 
     public void TeleportPlayerToBall()
     {
         //TODO this shouldn't be here but it works.
         UpdateHPText();
-        UIBars.UpdateHealthBar(currentHP, maxHP);//healthbar
+        UIElements.UpdateHealthBar(currentHP, maxHP);//healthbar
 
         var playerRB = playerWizard.GetComponent<Rigidbody2D>();
         var ballRB = playerBall.GetComponent<Rigidbody2D>();
@@ -337,7 +339,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     private int level1EXP = 100;
-    public int PlayerLevel { get; private set; }
+    public int PlayerLevel { get; private set; } = 1;
     public int EXPInCurrentLevel
     {
         get
@@ -357,16 +359,21 @@ public class PlayerManager : MonoBehaviour
             LevelUp();
         }
 
-        UIBars.UpdateEXPBar(EXPCurrent, EXPNeededToLevelUp);
+        UIElements.UpdateEXPBar(EXPCurrent, EXPNeededToLevelUp);
     }
-
 
     private void LevelUp()
     {
+        SoundManager.Instance?.PlayLevelUpSFX();
+
+        UIElements.PlayLevelUpAnimation();
+
         IncreaseBaseDamage(1);
         IncreaseMaxHP(5);
 
         PlayerLevel++;
+
+        UIElements.UpdateLevelText(PlayerLevel);
 
 
     }

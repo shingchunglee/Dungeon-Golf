@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip clubCollect;
     public AudioClip enemyDamage;
     public AudioClip playerDamage;
+    public AudioClip levelUp;
 
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource musicSource2;
@@ -66,5 +67,16 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void PlayLevelUpSFX()
+    {
+        StartCoroutine(LevelUpSFXDelay());
+    }
+
+    private IEnumerator LevelUpSFXDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        PlaySFX(levelUp);
     }
 }

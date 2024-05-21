@@ -54,6 +54,7 @@ MonoBehaviour:
   clubCollect: {fileID: 8300000, guid: 49d5a1e674bbf41cd9e9ce2089a75ef9, type: 3}
   enemyDamage: {fileID: 8300000, guid: ee56ee95e03744be18eda074bf93fdc6, type: 3}
   playerDamage: {fileID: 8300000, guid: 925e92325f05f47759a06f1b82279959, type: 3}
+  levelUp: {fileID: 8300000, guid: 782838d159d504acaa5cf3c693188345, type: 3}
   musicSource: {fileID: 2320713489506154467}
   musicSource2: {fileID: 928157447566303185}
   SFXSource: {fileID: 3809914825301671186}
@@ -358,7 +359,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.294
-  m_Pitch: 1.21
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
