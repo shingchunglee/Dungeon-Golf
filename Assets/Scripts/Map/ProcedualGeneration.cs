@@ -52,6 +52,8 @@ public class ProcedualGeneration : MonoBehaviour
     private GameObject chestPrefab;
     [SerializeField]
     private bool isVoidWalls = false;
+    [SerializeField]
+    private int padding = 0;
 
     public void Main()
     {
@@ -68,9 +70,44 @@ public class ProcedualGeneration : MonoBehaviour
 
         RenderTiles(grid);
 
+        AddPadding(grid, padding);
+
         PlaceChest(Grid);
 
         GetPlayerGoalPositions(Grid);
+    }
+
+    private void AddPadding(bool[,] grid, int padding)
+    {
+        int height = grid.GetLength(0);
+        int width = grid.GetLength(1);
+        if (isVoidWalls)
+        {
+            for (int y = -padding; y < height + padding; y++)
+            {
+                for (int x = -padding; x < width + padding; x++)
+                {
+                    if (y < 0 || y >= height || x < 0 || x >= width)
+                    {
+                        trap_void.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int y = -padding; y < height + padding; y++)
+            {
+                for (int x = -padding; x < width + padding; x++)
+                {
+                    if (y < 0 || y >= height || x < 0 || x >= width)
+                    {
+                        walls.SetTile(new Vector3Int(x, y, 0), voidTile);
+                    }
+                }
+            }
+
+        }
     }
 
     private void FindTilemaps()
