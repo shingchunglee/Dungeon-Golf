@@ -1,8 +1,10 @@
+using UnityEngine;
+
 class PlayerStrength : PlayerStatusEffect.StatusEffect
 {
-    public new PlayerStatusEffect.StatusEffectType type = PlayerStatusEffect.StatusEffectType.STRENGTH;
-
-    public new int turns;
+    public new PlayerStatusEffect.StatusEffectType type = PlayerStatusEffect
+        .StatusEffectType
+        .STRENGTH;
 
     public PlayerStrength(int turns)
     {
@@ -10,5 +12,8 @@ class PlayerStrength : PlayerStatusEffect.StatusEffect
         this.turns = turns;
     }
 
-
+    public override void OnDamageEnemy(EnemyUnit enemy, ref int damage)
+    {
+        damage = Mathf.FloorToInt(damage * 1.2f);
+    }
 }

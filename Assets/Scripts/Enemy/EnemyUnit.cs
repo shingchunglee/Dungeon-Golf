@@ -430,6 +430,9 @@ public class EnemyUnit : MonoBehaviour
     protected virtual void TakeDamageFromPlayer()
     {
         int damage = Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
+
+        PlayerManager.Instance.statusEffect.activeStatusEffects.ForEach(x => x.OnDamageEnemy(this, ref damage));
+
         TakeDamage(damage);
 
         foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)

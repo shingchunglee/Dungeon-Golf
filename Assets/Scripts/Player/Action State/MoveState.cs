@@ -42,6 +42,7 @@ public class MoveState : IPlayerActionState
         {
             ClubEffectsFactory.Create(effect).AfterPlayerMove();
         }
+        PlayerManager.Instance.statusEffect.TurnPassed();
     }
 
     public void OnFixedUpdate()

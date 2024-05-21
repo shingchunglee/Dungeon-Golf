@@ -40,6 +40,10 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] PlayerUIBars UIBars;
 
+    // STATUS EFFECTS
+    public PlayerStatusEffect statusEffect;
+    [SerializeField] GameObject statusEffectUI;
+
     public static PlayerManager Instance
     {
         get
@@ -93,6 +97,10 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         HealthPotion.OnConsume += () => { RestoreHealth(5); };
+        StrengthPotion.OnConsume += () =>
+        {
+            statusEffect.Add(PlayerStatusEffect.StatusEffectType.STRENGTH, 3);
+        };
     }
 
     private void FixedUpdate()
@@ -213,6 +221,17 @@ public class PlayerManager : MonoBehaviour
 
         inventoryController.Init();
         inventoryController.UpdateUI();
+
+        statusEffectUI = GameObject.Find("PlayerStatusEffect");
+        if (statusEffectUI == null)
+        {
+            statusEffect = new PlayerStatusEffect(statusEffectUI);
+        }
+        else
+        {
+            statusEffect.statusEffectUI = statusEffectUI;
+            statusEffect.UpdateIcons();
+        }
     }
 
     public void TakeDamage(int damage)
