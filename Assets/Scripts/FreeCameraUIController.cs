@@ -3,20 +3,40 @@ using TMPro;
 
 public class FreeCameraUIController : MonoBehaviour
 {
-    public CameraMove cameraController; 
-    public TextMeshProUGUI spectatorModeText; 
+    public TextMeshProUGUI spectatorModeText;
+    private bool textDisplayed = false;
 
-    void Update()
+    void Start()
     {
-        
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        spectatorModeText.gameObject.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        CameraMove.OnFreeCameraModeChanged += HandleFreeCameraModeChanged;
+    }
+
+    void OnDisable()
+    {
+        CameraMove.OnFreeCameraModeChanged -= HandleFreeCameraModeChanged;
+    }
+
+    void HandleFreeCameraModeChanged(bool isFreeCamera)
+    {
+        if (isFreeCamera)
         {
             spectatorModeText.gameObject.SetActive(true);
+            textDisplayed = true;
         }
         else
         {
             spectatorModeText.gameObject.SetActive(false);
+            textDisplayed = false;
         }
     }
 }
+
+
+
+
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 332901ad3038e469ca5594d71b5956ac
+guid: f9090461904774410ab5c5048a4a6cdc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,12 +149,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DecrepitBones_0
+      name: DecrepitBones(N)_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 11
+        x: 1
+        y: 16
+        width: 15
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,19 +163,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407b00a06e52a4fb786ad5613b4f3473
-      internalID: -748979078
+      spriteID: 5f90e909a9d1c43ee88c8121d27fe5a7
+      internalID: -2038287552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DecrepitBones_1
+      name: DecrepitBones(N)_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 11
+        x: 17
+        y: 16
+        width: 15
         height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,19 +184,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cce033c5550a04408a232e5d929fa597
-      internalID: 540059664
+      spriteID: a95bfaf395ffe427fae714dfaa44abc5
+      internalID: 206021130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DecrepitBones_2
+      name: DecrepitBones(N)_2
       rect:
         serializedVersion: 2
-        x: 35
+        x: 1
         y: 0
-        width: 11
+        width: 15
         height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b89321118b7834fcc8389f19aea2c7fc
-      internalID: -443435663
+      spriteID: 8f0ad20fe1de04dea969b28f4dd7c9b5
+      internalID: 770647440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DecrepitBones_3
+      name: DecrepitBones(N)_3
       rect:
         serializedVersion: 2
-        x: 51
+        x: 17
         y: 0
-        width: 11
-        height: 15
+        width: 15
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c18889874b24dc58d384f5cfc730d4
-      internalID: 1414216857
+      spriteID: 7d674a92d456e4a1e9f3cb42c6bb064c
+      internalID: 1114221532
       vertices: []
       indices: 
       edges: []
@@ -243,10 +243,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DecrepitBones_0: -748979078
-      DecrepitBones_1: 540059664
-      DecrepitBones_2: -443435663
-      DecrepitBones_3: 1414216857
+      DecrepitBones(N)_0: -2038287552
+      DecrepitBones(N)_1: 206021130
+      DecrepitBones(N)_2: 770647440
+      DecrepitBones(N)_3: 1114221532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
