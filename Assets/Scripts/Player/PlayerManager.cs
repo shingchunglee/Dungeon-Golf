@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -63,11 +64,15 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
+            if (isMovingOveride) return true;
+
             if (ballRB.velocity.magnitude > 0.5f)
                 return true;
             else return false;
         }
     }
+
+    public bool isMovingOveride = false;
 
     private void Awake()
     {
@@ -394,6 +399,18 @@ public class PlayerManager : MonoBehaviour
     private void UpdateUIforEXP()
     {
 
+    }
+
+    public void KeepMovementTurnGoing(float time)
+    {
+        StartCoroutine(MovementTurnCounter(time));
+    }
+
+    private IEnumerator MovementTurnCounter(float time)
+    {
+        isMovingOveride = true;
+        yield return new WaitForSeconds(time);
+        isMovingOveride = false;
     }
 
 }
