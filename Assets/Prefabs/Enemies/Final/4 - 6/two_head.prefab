@@ -138,6 +138,7 @@ MonoBehaviour:
   enemyStatusEffects:
     statusEffects: []
   statusEffectUI: {fileID: 0}
+  skipTurn: 0
 --- !u!50 &8167738370490197954
 Rigidbody2D:
   serializedVersion: 4
@@ -242,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1949973066, guid: 3d750cca46061fc448793d7b50251f8d, type: 3}
+  m_Sprite: {fileID: -1667820469, guid: a739f526029734e4caaa5f234e724b61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -263,7 +264,7 @@ Animator:
   m_GameObject: {fileID: 4804325312536075026}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33e8f2d1555bd2a40b3385f3423c5394, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5399ff1ffe0464138a1566e4d92f4b1e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -469,6 +470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8665825441818234845}
     m_Modifications:
+    - target: {fileID: 4264063015351203354, guid: 9c82eacd071779f4485cb7903cf20fcd, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6244950896784836017, guid: 9c82eacd071779f4485cb7903cf20fcd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
