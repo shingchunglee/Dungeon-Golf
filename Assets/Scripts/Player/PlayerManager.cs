@@ -30,6 +30,26 @@ public class PlayerManager : MonoBehaviour
             return position;
         }
     }
+
+    public Vector2Int BallPositionOnWorldGrid
+    {
+        get
+        {
+            var position = new Vector2Int(
+                Mathf.FloorToInt(ballRB.position.x),
+                Mathf.FloorToInt(ballRB.position.y)
+            );
+            return position;
+        }
+    }
+
+    public Node NodeAtBallLocation
+    {
+        get
+        {
+            return GameManager.Instance.gridManager.GetNodeByWorldPosition(BallPositionOnWorldGrid);
+        }
+    }
     private Vector3 lastShotPosition;
 
     public int voidDamage = 15;
@@ -204,6 +224,9 @@ public class PlayerManager : MonoBehaviour
 
         var ballRB = playerBall.GetComponent<Rigidbody2D>();
         ballRB.position = new Vector3(playerSpawn.x, playerSpawn.y, playerBall.transform.position.z);
+
+        SetLastShotPosition(ballRB.position);
+
         TeleportPlayerToBall();
     }
 
@@ -246,6 +269,8 @@ public class PlayerManager : MonoBehaviour
 
         inventoryController.Init();
         inventoryController.UpdateUI();
+
+        SetLastShotPosition(ballRB.position);
 
         statusEffectUI = GameObject.Find("PlayerStatusEffect");
         if (statusEffectUI == null)
@@ -343,6 +368,11 @@ public class PlayerManager : MonoBehaviour
     public void SetLastShotPosition(Vector3 position)
     {
         lastShotPosition = position;
+    }
+
+    public void ResetToLastShotPosition()
+    {
+        ballRB.position = lastShotPosition;
     }
 
     public void Respawn()

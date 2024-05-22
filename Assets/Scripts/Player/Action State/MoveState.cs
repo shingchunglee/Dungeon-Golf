@@ -36,6 +36,7 @@ public class MoveState : IPlayerActionState
 
     public void OnExit()
     {
+
         PlayerManager.Instance.TeleportPlayerToBall();
         Debug.Log("Player Exited Moving State");
         foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
@@ -64,6 +65,13 @@ public class MoveState : IPlayerActionState
         {
             controller.ballRB.velocity = new Vector2(0f, 0f);
             isMoving = false;
+            if (PlayerManager.Instance.NodeAtBallLocation.floorType == FloorType.VOID)
+            {
+                PlayerManager.Instance.ResetToLastShotPosition();
+                PlayerManager.Instance.TakeDamage(5);
+                controller.SetState(controller.aimState);
+                return;
+            }
             controller.SetState(controller.enemyTurnState);
         }
     }
