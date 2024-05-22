@@ -39,6 +39,7 @@ public class MoveState : IPlayerActionState
         if (PlayerManager.Instance.NodeAtBallLocation.floorType == FloorType.VOID)
         {
             PlayerManager.Instance.ResetToLastShotPosition();
+            PlayerManager.Instance.TakeDamage(5);
         }
         PlayerManager.Instance.TeleportPlayerToBall();
         Debug.Log("Player Exited Moving State");
