@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     // STATUS EFFECTS
     public PlayerStatusEffect statusEffect;
     [SerializeField] GameObject statusEffectUI;
+    public ParticleSystem explosionParticles;
 
     public static PlayerManager Instance
     {
@@ -101,6 +102,14 @@ public class PlayerManager : MonoBehaviour
         {
             statusEffect.Add(PlayerStatusEffect.StatusEffectType.STRENGTH, 3);
         };
+        ExplosionPotion.OnConsume += () =>
+        {
+            Explode();
+            if (explosionParticles != null)
+            {
+                explosionParticles.Play();
+            }
+        };
     }
 
     private void FixedUpdate()
@@ -108,6 +117,20 @@ public class PlayerManager : MonoBehaviour
         if (manualControlTestMode)
         {
             BallManualControl();
+        }
+    }
+
+    private void Explode()
+    {
+        // check for enemies in a circle of radius 3, damage them if found
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ballRB.position, 3f, Physics.AllLayers);
+        foreach (var hitCollider in hitColliders)
+        {
+            var enemy = hitCollider.GetComponentInParent<EnemyUnit>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(5);
+            }
         }
     }
 
@@ -233,6 +256,11 @@ public class PlayerManager : MonoBehaviour
         {
             statusEffect.statusEffectUI = statusEffectUI;
             statusEffect.UpdateIcons();
+        }
+        var explosionParticlesTransform = playerBall.transform.Find("ExplosionParticles");
+        if (explosionParticlesTransform != null)
+        {
+            explosionParticles = explosionParticlesTransform.GetComponent<ParticleSystem>();
         }
     }
 
