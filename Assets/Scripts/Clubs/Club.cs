@@ -27,6 +27,6 @@ public class Club : ScriptableObject
     public Sprite sprite;
 
     public ClubEffectsType[] clubEffectsTypes;
-    
-    
+
+
 }

@@ -6,7 +6,7 @@ public enum ClubEffectsType
     Vampirism, // restore 50% of damage dealt
     Freezing, // freeze enemy for 1 turn
     Fire, // Deal 5 ticking damage per turn before enemies move
-    Stun, 
+    Stun,
     InstantKill,
     Curse,
 }
@@ -31,7 +31,7 @@ public class ClubEffectsFactory
                 return new InstantKill();
             case ClubEffectsType.Curse: // Add this line
                 return new Curse();
-            
+
             default:
                 return new ClubEffects();
         }

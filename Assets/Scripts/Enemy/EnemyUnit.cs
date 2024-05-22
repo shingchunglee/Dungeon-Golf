@@ -463,7 +463,7 @@ public class EnemyUnit : MonoBehaviour
 
     private bool isDead = false;
 
-    protected void CheckIfDead()
+    internal void CheckIfDead()
     {
         if (CurrentHP <= 0 && !isDead)
         {
