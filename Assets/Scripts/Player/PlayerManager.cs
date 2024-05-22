@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     // STATUS EFFECTS
     public PlayerStatusEffect statusEffect;
     [SerializeField] GameObject statusEffectUI;
+    public ParticleSystem explosionParticles;
 
     public static PlayerManager Instance
     {
@@ -104,6 +105,10 @@ public class PlayerManager : MonoBehaviour
         ExplosionPotion.OnConsume += () =>
         {
             Explode();
+            if (explosionParticles != null)
+            {
+                explosionParticles.Play();
+            }
         };
     }
 
@@ -249,6 +254,11 @@ public class PlayerManager : MonoBehaviour
         {
             statusEffect.statusEffectUI = statusEffectUI;
             statusEffect.UpdateIcons();
+        }
+        var explosionParticlesTransform = playerBall.transform.Find("ExplosionParticles");
+        if (explosionParticlesTransform != null)
+        {
+            explosionParticles = explosionParticlesTransform.GetComponent<ParticleSystem>();
         }
     }
 
