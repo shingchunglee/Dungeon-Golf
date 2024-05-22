@@ -581,7 +581,14 @@ public class ProcedualGeneration : MonoBehaviour
                 }
                 else
                 {
-                    structures[y, x] = TileType.WALL;
+                    if (isVoidWalls)
+                    {
+                        structures[y, x] = TileType.TRAP_VOID;
+                    }
+                    else
+                    {
+                        structures[y, x] = TileType.WALL;
+                    }
                 }
             }
 
@@ -816,22 +823,48 @@ public class ProcedualGeneration : MonoBehaviour
         int width = Grid.GetLength(1);
         int height = Grid.GetLength(0);
 
-        int offsetX = 0;
-        int offsetY = 0;
+        int offsetX = -padding;
+        int offsetY = -padding;
 
-        GameManager.Instance.gridManager.grid = new global::Grid(new Vector2Int(width, height), new Vector2Int(offsetX, offsetY));
+        GameManager.Instance.gridManager.gridOrigin = new Vector2Int(offsetX, offsetY);
+
+        GameManager.Instance.gridManager.grid = new global::Grid(new Vector2Int(width + (2 * padding), height + (2 * padding)), new Vector2Int(offsetX, offsetY));
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                GameManager.Instance.gridManager.grid.nodes[x + offsetX, y + offsetY].floorType = getNodeType(Grid[y, x]);
+                GameManager.Instance.gridManager.grid.nodes[x + padding, y + padding].floorType = getNodeType(Grid[y, x]);
                 EntityType? entityType = getEntityType(Grid[y, x]);
-                if (entityType != null) GameManager.Instance.gridManager.grid.nodes[x + offsetX, y + offsetY].entitiesOnTile.Add((EntityType)entityType);
+                if (entityType != null) GameManager.Instance.gridManager.grid.nodes[x + padding, y + padding].entitiesOnTile.Add((EntityType)entityType);
+            }
+        }
+
+        for (int y = 0; y < height + (2 * padding); y++)
+        {
+            for (int x = 0; x < width + (2 * padding); x++)
+            {
+                if (x < padding || x >= width + padding || y < padding || y >= height + padding)
+                {
+                    if (isVoidWalls) GameManager.Instance.gridManager.grid.nodes[x, y].floorType = FloorType.VOID;
+                    else GameManager.Instance.gridManager.grid.nodes[x, y].floorType = FloorType.WALL;
+                }
             }
         }
 
         GameManager.Instance.gridManager.grid.nodes[(int)PlayerSpawn.x, (int)PlayerSpawn.y].entitiesOnTile.Add(EntityType.PLAYER);
+
+        // var str = "";
+        // for (int x = 0; x < GameManager.Instance.gridManager.grid.nodes.GetLength(0); x++)
+        // {
+        //     for (int y = 0; y < GameManager.Instance.gridManager.grid.nodes.GetLength(1); y++)
+        //     {
+        //         str += (int)GameManager.Instance.gridManager.grid.nodes[x, y].floorType + " ";
+        //     }
+        //     str += "\n";
+        // }
+        // Debug.Log(str);
+
     }
 
     private FloorType getNodeType(TileType tileType)
