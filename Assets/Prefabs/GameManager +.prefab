@@ -191,9 +191,10 @@ MonoBehaviour:
   actionStateController: {fileID: 0}
   golfAim: {fileID: 0}
   golfAimDrag: {fileID: 0}
-  healthBar: {fileID: 0}
+  UIBars: {fileID: 0}
   manualControlTestMode: 0
   sandDrag: 4
+  baseDamage: 0
 --- !u!114 &1634197314303143687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +306,6 @@ Transform:
   m_Children:
   - {fileID: 8607096729657044921}
   - {fileID: 2768710811412953997}
-  - {fileID: 4531323631796214276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5196470932814673116
@@ -504,81 +504,3 @@ Transform:
   - {fileID: 8085494870759194357}
   m_Father: {fileID: 4174345805019227652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3564758024501183874
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4174345805019227652}
-    m_Modifications:
-    - target: {fileID: 1028956705012765948, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_Name
-      value: SoundManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1028956705012765948, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -326.68304
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -47.649174
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.7276478
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: PlayMusic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: enemyDamage
-      value: 
-      objectReference: {fileID: 8300000, guid: dd7ed96b3a104cf4f93ac95551e343a2, type: 3}
-    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-      propertyPath: playerDamage
-      value: 
-      objectReference: {fileID: 8300000, guid: e005679c953ab1b458fd32a00d079f7c, type: 3}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ab4065a99a96c304393173f37aa51272, type: 3}
---- !u!4 &4531323631796214276 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
-  m_PrefabInstance: {fileID: 3564758024501183874}
-  m_PrefabAsset: {fileID: 0}
