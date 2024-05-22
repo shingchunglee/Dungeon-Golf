@@ -19,4 +19,9 @@ public class ConsumableSelectManager : MonoBehaviour
   {
     PlayerManager.Instance.inventoryController.GetNextConsumable();
   }
+
+  public void UseConsumable()
+  {
+    PlayerManager.Instance.inventoryController.ConsumeConsumable();
+  }
 }
