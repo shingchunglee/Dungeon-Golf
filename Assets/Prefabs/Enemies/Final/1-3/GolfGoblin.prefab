@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: GolfGoblin
-  MaxHP: 20
+  MaxHP: 5
   CurrentHP: 0
   moveAttacksPerTurn: 4
   maxAttacksPerTurn: 1

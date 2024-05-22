@@ -3,7 +3,7 @@ using UnityEngine;
 public class InstantKill : ClubEffects
 {
     private const float instantKillChance = 0.3f;
-    private const int highDamageAmount = 50; // Define the high damage amount
+    private const int highDamageAmount = 10; // Define the high damage amount
 
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
