@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,9 +12,18 @@ public class DisplayClubInfo : MonoBehaviour
 
     public Sprite defaultSprite;
 
-    void Start()
+    void OnEnable()
     {
+        ClearClubList();
         PopulateClubList();
+    }
+
+    private void ClearClubList()
+    {
+        foreach (Transform child in contentPanel)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     void PopulateClubList()
@@ -28,7 +38,7 @@ public class DisplayClubInfo : MonoBehaviour
             return;
         }
 
-        foreach (var club in clubs)
+        foreach (InventoryClub club in clubs)
         {
             GameObject newSlot = Instantiate(clubSlotPrefab, contentPanel);
             if (newSlot == null)
@@ -62,6 +72,16 @@ public class DisplayClubInfo : MonoBehaviour
             {
                 image.sprite = defaultSprite;
             }
+
+            Transform equipButtonTransform = newSlot.transform.Find("EquipButton");
+            Button equipButton = equipButtonTransform.GetComponent<Button>();
+            if (equipButton == null)
+            {
+                Debug.LogError("equip button not there on prefab");
+                continue;
+            }
+
+            equipButton.onClick.AddListener(() => PlayerManager.Instance.inventoryController.EquipClub(club));
         }
     }
 }

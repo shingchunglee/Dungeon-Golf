@@ -102,6 +102,13 @@ public class InventoryController : MonoBehaviour
     selectedConsumable = new((Consumables)selected, consumables.GetConsumable((Consumables)selected));
     OnConsumableChanged?.Invoke(selectedConsumable);
   }
+
+  internal void EquipClub(InventoryClub club)
+  {
+    var index = clubs.FindIndex(x => x.Type == club.Type);
+    selectedClubIndex = index;
+    OnClubChanged?.Invoke(GetSelectedClub());
+  }
 }
 
 [Serializable]
