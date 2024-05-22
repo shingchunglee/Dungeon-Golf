@@ -7,7 +7,8 @@ public class PlayerStatusEffect
 
     public enum StatusEffectType
     {
-        STRENGTH
+        STRENGTH,
+        SPEEDBOOST,
     }
 
     [System.Serializable]
@@ -142,6 +143,7 @@ public class PlayerStatusEffect
             case StatusEffectType.STRENGTH:
                 return new PlayerStrength(turns);
             default:
+            
                 return null;
         }
     }

@@ -7,6 +7,8 @@ public enum EnemyStatusEffectType
 {
     Frozen,
     Fire,
+    Stun,
+    Curse,
 }
 
 [System.Serializable]
