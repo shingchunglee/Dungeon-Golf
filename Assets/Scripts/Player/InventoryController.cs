@@ -77,6 +77,7 @@ public class InventoryController : MonoBehaviour
 
   public void GetNextClub()
   {
+    if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
     selectedClubIndex = (selectedClubIndex + 1) % clubs.Count();
     OnClubChanged?.Invoke(GetSelectedClub());
   }
@@ -105,6 +106,7 @@ public class InventoryController : MonoBehaviour
 
   internal void EquipClub(InventoryClub club)
   {
+    if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
     var index = clubs.FindIndex(x => x.Type == club.Type);
     selectedClubIndex = index;
     OnClubChanged?.Invoke(GetSelectedClub());
