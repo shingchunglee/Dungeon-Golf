@@ -36,6 +36,10 @@ public class MoveState : IPlayerActionState
 
     public void OnExit()
     {
+        if (PlayerManager.Instance.NodeAtBallLocation.floorType == FloorType.VOID)
+        {
+            PlayerManager.Instance.ResetToLastShotPosition();
+        }
         PlayerManager.Instance.TeleportPlayerToBall();
         Debug.Log("Player Exited Moving State");
         foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)

@@ -19,6 +19,7 @@ public class AimState : IPlayerActionState
       PlayerManager.Instance.golfAimDrag.enabled = false;
     }
     validClick = false;
+    PlayerManager.Instance.SetLastShotPosition(PlayerManager.Instance.ballRB.position);
     // Debug.Log("Player Entered Action State");
 
   }
