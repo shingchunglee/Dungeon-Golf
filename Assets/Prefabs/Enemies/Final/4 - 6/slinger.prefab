@@ -163,13 +163,15 @@ MonoBehaviour:
   maxAttacksPerTurn: 4
   attackDamage: 2
   willBallCollide: 0
-  healthBar: {fileID: 7684074366465307047}
+  EXPReward: 27
+  healthBar: {fileID: 0}
   enemyHurt: {fileID: 4758695493700560578, guid: 3219e372efc379a4b9b24b9ee19c38cc, type: 3}
   enemyDie: {fileID: 7018311986599031151, guid: 7bafa0ea8df78e14d9d3a85929ff10ce, type: 3}
   isTakingTurn: 0
   enemyStatusEffects:
     statusEffects: []
   statusEffectUI: {fileID: 0}
+  skipTurn: 0
 --- !u!50 &7870392634937502297
 Rigidbody2D:
   serializedVersion: 4
@@ -392,17 +394,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4047021988096215698, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
   m_PrefabInstance: {fileID: 639445257338440966}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7684074366465307047 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7096710933487959201, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
-  m_PrefabInstance: {fileID: 639445257338440966}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e084ea3d32f694643b96eb4afb93cbbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2021598814698955556
 PrefabInstance:
   m_ObjectHideFlags: 0

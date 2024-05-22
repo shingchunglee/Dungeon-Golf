@@ -23,6 +23,8 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+
+            this.transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             PlayThemeMusic();
         }

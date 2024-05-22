@@ -458,9 +458,11 @@ public class EnemyUnit : MonoBehaviour
         CheckIfDead();
     }
 
+    private bool isDead = false;
+
     protected void CheckIfDead()
     {
-        if (CurrentHP <= 0)
+        if (CurrentHP <= 0 && !isDead)
         {
             EnemyDies();
         }
@@ -468,6 +470,8 @@ public class EnemyUnit : MonoBehaviour
 
     protected void EnemyDies()
     {
+        isDead = true;
+
         PlayerManager.Instance.EXPGain(EXPReward);
         GameManager.Instance.statsController.IncrementEnemiesKilled();
         StartCoroutine(enemyDeathAnim());

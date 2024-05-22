@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+
+            // This takes the GameManager + out of the ManagerManager so that it can persist (only objects with no parent can be DontDestroyOnLoad-ed)
+            this.transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             // Init();
         }
