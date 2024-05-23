@@ -11,4 +11,13 @@ public class Curse : ClubEffects
         };
         curse.priority.onTakeTurn = -1;
     }
+
+    public override void OnClubChanged(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.CURSE, 0);
+    }
+    public override void OnClubRemoved(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.CURSE);
+    }
 }

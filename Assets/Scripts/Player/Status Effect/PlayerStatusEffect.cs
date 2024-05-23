@@ -11,6 +11,10 @@ public class PlayerStatusEffect
         VAMPIRISM,
         INSTAKILL,
         FREEZING,
+        FLAME,
+        STUN,
+        CURSE,
+        HEALING
     }
 
     [System.Serializable]
@@ -161,6 +165,14 @@ public class PlayerStatusEffect
                 return new PlayerInstakill(turns);
             case StatusEffectType.FREEZING:
                 return new PlayerFreezing(turns);
+            case StatusEffectType.FLAME:
+                return new PlayerFlame(turns);
+            case StatusEffectType.CURSE:
+                return new PlayerCurse(turns);
+            case StatusEffectType.STUN:
+                return new PlayerStun(turns);
+            case StatusEffectType.HEALING:
+                return new PlayerHealing(turns);
             default:
 
                 return null;

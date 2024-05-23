@@ -17,8 +17,8 @@ public class ClubEffectsFactory
     {
         switch (type)
         {
-            // case ClubEffectsType.HealPlayer:
-            //     return new HealPlayer();
+            case ClubEffectsType.HealPlayer:
+                return new HealPlayer();
             case ClubEffectsType.Vampirism:
                 return new Vampirism();
             case ClubEffectsType.Freezing:
