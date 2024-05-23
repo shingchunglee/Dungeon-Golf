@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8057747142079646259}
   - component: {fileID: 3653260085395489944}
   m_Layer: 0
-  m_Name: InstantKill
+  m_Name: INSTANT_KILL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
