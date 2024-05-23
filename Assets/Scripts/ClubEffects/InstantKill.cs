@@ -17,4 +17,13 @@ public class InstantKill : ClubEffects
         }
         enemy.CheckIfDead(); // Check if the enemy should be killed
     }
+
+    public override void OnClubChanged(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.INSTAKILL, 0);
+    }
+    public override void OnClubRemoved(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.INSTAKILL);
+    }
 }

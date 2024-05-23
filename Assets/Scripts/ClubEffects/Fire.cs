@@ -7,6 +7,15 @@ public class Fire : ClubEffects
     {
         var fire = enemy.enemyStatusEffects.Add(EnemyStatusEffectType.Fire, 3);
         fire.OnTakeTurn = (enemy) => { enemy.TakeDamage(5); };
-        fire.priority.onTakeTurn = -1;
+        fire.priority.onTakeTurn = 1;
+    }
+
+    public override void OnClubChanged(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.FLAME, 0);
+    }
+    public override void OnClubRemoved(Club club)
+    {
+        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.FLAME);
     }
 }

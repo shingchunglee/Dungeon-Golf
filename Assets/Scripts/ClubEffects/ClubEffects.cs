@@ -3,7 +3,7 @@ using System;
 public enum ClubEffectsType
 {
     HealPlayer, // heal player for 5 hp after move
-    Vampirism, // restore 50% of damage dealt
+    Vampirism, // restore 20% of damage dealt
     Freezing, // freeze enemy for 1 turn
     Fire, // Deal 5 ticking damage per turn before enemies move
     Stun,
@@ -31,7 +31,6 @@ public class ClubEffectsFactory
                 return new InstantKill();
             case ClubEffectsType.Curse: // Add this line
                 return new Curse();
-
             default:
                 return new ClubEffects();
         }
@@ -41,5 +40,9 @@ public class ClubEffectsFactory
 public class ClubEffects
 {
     public virtual void OnDamageEnemy(EnemyUnit enemy, int damage) { }
+
+    public virtual void OnClubChanged(Club club) { }
+
+    public virtual void OnClubRemoved(Club club) { }
     public virtual void AfterPlayerMove() { }
 }

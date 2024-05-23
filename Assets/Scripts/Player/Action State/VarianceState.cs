@@ -37,6 +37,10 @@ public class VarianceState : IPlayerActionState
     // {
     //   OnMouseRightClick();
     // }
+    if (Input.GetKeyDown(KeyCode.H))
+    {
+      PlayerManager.Instance.inventoryController.ConsumeConsumable();
+    }
   }
 
   private void OnMouseRightClick()
