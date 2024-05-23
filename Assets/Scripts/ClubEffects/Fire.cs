@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Fire : ClubEffects
 {
+    public Fire()
+    {
+        statusEffectType = PlayerStatusEffect.StatusEffectType.FLAME;
+    }
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
         var fire = enemy.enemyStatusEffects.Add(EnemyStatusEffectType.Fire, 3);
@@ -12,10 +16,10 @@ public class Fire : ClubEffects
 
     public override void OnClubChanged(Club club)
     {
-        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.FLAME, 0);
+        PlayerManager.Instance.statusEffect.Add(statusEffectType, 0);
     }
     public override void OnClubRemoved(Club club)
     {
-        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.FLAME);
+        PlayerManager.Instance.statusEffect.Remove(statusEffectType);
     }
 }

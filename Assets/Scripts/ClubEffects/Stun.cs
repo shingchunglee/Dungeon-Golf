@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Stun : ClubEffects
 {
+    public Stun()
+    {
+        statusEffectType = PlayerStatusEffect.StatusEffectType.STUN;
+    }
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
         // enemy.applyStatusEffect(EnemyStatusEffectType.Frozen, 1);
@@ -13,11 +17,11 @@ public class Stun : ClubEffects
 
     public override void OnClubChanged(Club club)
     {
-        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.STUN, 0);
+        PlayerManager.Instance.statusEffect.Add(statusEffectType, 0);
     }
     public override void OnClubRemoved(Club club)
     {
-        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.STUN);
+        PlayerManager.Instance.statusEffect.Remove(statusEffectType);
     }
 }
 

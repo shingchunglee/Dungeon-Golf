@@ -1,6 +1,10 @@
 
 public class HealPlayer : ClubEffects
 {
+    public HealPlayer()
+    {
+        statusEffectType = PlayerStatusEffect.StatusEffectType.HEALING;
+    }
     public override void AfterPlayerMove()
     {
         PlayerManager.Instance.RestoreHealth(5);
@@ -8,10 +12,10 @@ public class HealPlayer : ClubEffects
 
     public override void OnClubChanged(Club club)
     {
-        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.HEALING, 0);
+        PlayerManager.Instance.statusEffect.Add(statusEffectType, 0);
     }
     public override void OnClubRemoved(Club club)
     {
-        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.HEALING);
+        PlayerManager.Instance.statusEffect.Remove(statusEffectType);
     }
 }

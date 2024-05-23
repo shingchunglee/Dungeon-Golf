@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Curse : ClubEffects
 {
+    public Curse()
+    {
+        statusEffectType = PlayerStatusEffect.StatusEffectType.CURSE;
+    }
+
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
         var curse = enemy.enemyStatusEffects.Add(EnemyStatusEffectType.Curse, 1);
@@ -14,10 +19,10 @@ public class Curse : ClubEffects
 
     public override void OnClubChanged(Club club)
     {
-        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.CURSE, 0);
+        PlayerManager.Instance.statusEffect.Add(statusEffectType, 0);
     }
     public override void OnClubRemoved(Club club)
     {
-        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.CURSE);
+        PlayerManager.Instance.statusEffect.Remove(statusEffectType);
     }
 }
