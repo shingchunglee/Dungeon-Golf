@@ -6598,7 +6598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db874bebe203cf41bbb665dc0b0e78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentFolderPath: Final
+  parentFolderPath: FinalEnemies
   slotEnemy: {fileID: 3775434230667620769, guid: 950ec1bf44373ec4ca25d9ec54ffa996, type: 3}
   EnemyGrid: {fileID: 8486522962754865223}
 --- !u!114 &5203324881757809541
