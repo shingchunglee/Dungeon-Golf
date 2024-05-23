@@ -463,7 +463,7 @@ public class EnemyUnit : MonoBehaviour
 
     private bool isDead = false;
 
-    protected void CheckIfDead()
+    internal void CheckIfDead()
     {
         if (CurrentHP <= 0 && !isDead)
         {
@@ -531,6 +531,11 @@ public class EnemyUnit : MonoBehaviour
         PostMovePrivate();
         isTakingTurn = false;
     }
-
+    public void ForceKill()
+    {
+        CurrentHP = 0;
+        CheckIfDead();
+    }
 
 }
+
