@@ -15,6 +15,19 @@ public class PlayerManager : MonoBehaviour
     public int currentHP;
     public float endLevelRegenPercent = 0.4f;
     public int attackDamage = 5;
+
+    public int currentDamage
+    {
+        get
+        {
+            int damage = baseDamage;
+
+            damage += Mathf.FloorToInt(Instance.inventoryController.GetSelectedClub().damage);
+
+            return damage;
+        }
+    }
+
     public PowerLevelController powerLevelController;
     public VarianceLevelController varianceLevelController;
     public InventoryController inventoryController;
@@ -477,8 +490,8 @@ public class PlayerManager : MonoBehaviour
     {
 
     }
-    
-    
+
+
 
     public void KeepMovementTurnGoing(float time)
     {
