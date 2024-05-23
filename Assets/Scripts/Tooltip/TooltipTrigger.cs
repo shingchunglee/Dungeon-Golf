@@ -16,7 +16,8 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartCoroutine(ShowTooltip());
+        // StartCoroutine(ShowTooltip());
+        TooltipSystem.Show(body, header);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -26,7 +27,8 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void OnMouseEnter()
     {
-        StartCoroutine(ShowTooltip());
+        // StartCoroutine(ShowTooltip());
+        TooltipSystem.Show(body, header);
     }
 
     private void OnMouseExit()
