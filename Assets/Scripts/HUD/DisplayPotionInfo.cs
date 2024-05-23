@@ -58,7 +58,9 @@ public class DisplayPotionInfo : MonoBehaviour
                 continue;
             }
 
-            Sprite potionSprite = Resources.Load<Sprite>("Potions/" + consumableType.ToString());
+            // Sprite potionSprite = Resources.Load<Sprite>("Potions/" + consumableType.ToString());
+            Sprite potionSprite = ResourcesCache.Instance.GetSprite("Potions/" + consumableType.ToString());
+
             if (sprite != null)
             {
                 image.sprite = potionSprite;

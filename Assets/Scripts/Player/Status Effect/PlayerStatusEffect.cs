@@ -108,7 +108,8 @@ public class PlayerStatusEffect
     public void AddIcon(StatusEffectType effect, int effectTurns, GameObject parent, bool isInfinite = false)
     {
         if (parent == null) return;
-        GameObject icon = Resources.Load<GameObject>("StatusEffects/Player/" + effect.ToString());
+        // GameObject icon = Resources.Load<GameObject>("StatusEffects/Player/" + effect.ToString());
+        GameObject icon = ResourcesCache.Instance.GetPrefab("StatusEffects/Player/" + effect.ToString());
 
         Transform oldIcon = parent.transform.Find(effect.ToString());
         if (oldIcon != null) return;

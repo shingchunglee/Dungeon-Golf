@@ -95,7 +95,8 @@ public class EnemyStatusEffectList
     public void AddIcon(EnemyStatusEffectType effect, int effectTurns, GameObject parent)
     {
         if (parent == null) return;
-        GameObject icon = Resources.Load<GameObject>("StatusEffects/" + effect.ToString());
+        // GameObject icon = Resources.Load<GameObject>("StatusEffects/" + effect.ToString());
+        GameObject icon = ResourcesCache.Instance.GetPrefab("StatusEffects/" + effect.ToString());
 
         Transform oldIcon = parent.transform.Find(effect.ToString());
         if (oldIcon != null) return;
