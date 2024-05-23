@@ -64,14 +64,14 @@ public class AimState : IPlayerActionState
       PlayerManager.Instance.inventoryController.ConsumeConsumable();
     }
     // SCROLL UP DOWN CHANGE CLUBS
-    if (Input.mouseScrollDelta.y > 0)
-    {
-      PlayerManager.Instance.inventoryController.GetNextClub();
-    }
-    else if (Input.mouseScrollDelta.y < 0)
-    {
-      PlayerManager.Instance.inventoryController.GetPreviousClub();
-    }
+    // if (Input.mouseScrollDelta.y > 0)
+    // {
+    //   PlayerManager.Instance.inventoryController.GetNextClub();
+    // }
+    // else if (Input.mouseScrollDelta.y < 0)
+    // {
+    //   PlayerManager.Instance.inventoryController.GetPreviousClub();
+    // }
     // LEFT RIGHT ARROWS CHANGE CLUBS
     if (Input.GetKeyDown(KeyCode.RightArrow))
     {
