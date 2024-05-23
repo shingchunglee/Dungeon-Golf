@@ -2,10 +2,6 @@ using UnityEngine;
 
 class PlayerStrength : PlayerStatusEffect.StatusEffect
 {
-    public new PlayerStatusEffect.StatusEffectType type = PlayerStatusEffect
-        .StatusEffectType
-        .STRENGTH;
-
     public PlayerStrength(int turns)
     {
         type = PlayerStatusEffect.StatusEffectType.STRENGTH;

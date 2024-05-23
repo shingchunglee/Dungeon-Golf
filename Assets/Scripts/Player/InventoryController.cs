@@ -21,7 +21,26 @@ public class InventoryController : MonoBehaviour
   {
     Init();
     consumables.AddConsumable(Consumables.EXPLOSION_POTION, 5);
+    OnClubChanged += (Club club) =>
+    {
+      foreach (var effects in Enum.GetValues(typeof(ClubEffectsType)).Cast<ClubEffectsType>())
+      {
+        if (Array.Exists(club.clubEffectsTypes, effect => effect == effects))
+        {
+          ClubEffectsFactory.Create(effects).OnClubChanged(club);
+        }
+        else
+        {
+          ClubEffectsFactory.Create(effects).OnClubRemoved(club);
+        }
+      }
+    };
     // AddClub(ClubType.LegendaryClub);
+  }
+
+  private void Start()
+  {
+
   }
 
   public void Init()
@@ -29,6 +48,11 @@ public class InventoryController : MonoBehaviour
     if (clubs.Count == 0)
     {
       AddClub(ClubType.Iron7);
+      AddClub(ClubType.stonePutter);
+      AddClub(ClubType.ironPutter);
+      AddClub(ClubType.ironWedge);
+      AddClub(ClubType.ironDriver);
+      AddClub(ClubType.stoneWedge);
     }
     UpdateUI();
   }
@@ -44,10 +68,7 @@ public class InventoryController : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown(KeyCode.H))
-    {
-      ConsumeConsumable();
-    }
+
   }
 
   public void ConsumeConsumable()
@@ -82,6 +103,13 @@ public class InventoryController : MonoBehaviour
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 
+  public void GetPreviousClub()
+  {
+    if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
+    selectedClubIndex = (selectedClubIndex + clubs.Count() - 1) % clubs.Count();
+    OnClubChanged?.Invoke(GetSelectedClub());
+  }
+
   public void GetNextConsumable()
   {
     var consumableTypes = Enum.GetValues(typeof(Consumables));
@@ -89,6 +117,17 @@ public class InventoryController : MonoBehaviour
     int selected = selectedConsumable?.Type == null ? 0 : (int)selectedConsumable.Type;
 
     selected = (selected + 1) % consumableTypes.Length;
+    selectedConsumable = new((Consumables)selected, consumables.GetConsumable((Consumables)selected));
+    OnConsumableChanged?.Invoke(selectedConsumable);
+  }
+
+  public void GetPreviousConsumable()
+  {
+    var consumableTypes = Enum.GetValues(typeof(Consumables));
+
+    int selected = selectedConsumable?.Type == null ? 0 : (int)selectedConsumable.Type;
+
+    selected = (selected + consumableTypes.Length - 1) % consumableTypes.Length;
     selectedConsumable = new((Consumables)selected, consumables.GetConsumable((Consumables)selected));
     OnConsumableChanged?.Invoke(selectedConsumable);
   }

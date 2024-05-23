@@ -31,7 +31,6 @@ public class ClubEffectsFactory
                 return new InstantKill();
             case ClubEffectsType.Curse: // Add this line
                 return new Curse();
-
             default:
                 return new ClubEffects();
         }
@@ -41,5 +40,9 @@ public class ClubEffectsFactory
 public class ClubEffects
 {
     public virtual void OnDamageEnemy(EnemyUnit enemy, int damage) { }
+
+    public virtual void OnClubChanged(Club club) { }
+
+    public virtual void OnClubRemoved(Club club) { }
     public virtual void AfterPlayerMove() { }
 }

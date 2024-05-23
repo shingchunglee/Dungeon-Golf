@@ -4,11 +4,12 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusEffect
 {
-
     public enum StatusEffectType
     {
         STRENGTH,
         SPEEDBOOST,
+        VAMPIRISM,
+        INSTAKILL,
     }
 
     [System.Serializable]
@@ -16,6 +17,7 @@ public class PlayerStatusEffect
     {
         public StatusEffectType type;
         public int turns;
+        public bool isInfinite = false;
 
         public virtual void OnAimEnter() { }
 
@@ -47,10 +49,11 @@ public class PlayerStatusEffect
             // effectToAdd = new StatusEffect() { type = effect, turns = turns };
             effectToAdd = Factory(effect, turns);
             activeStatusEffects.Add(effectToAdd);
-            AddIcon(effect, turns, statusEffectUI);
+            AddIcon(effect, turns, statusEffectUI, effectToAdd.isInfinite);
         }
         else if (effectToAdd.turns < turns)
         {
+            if (effectToAdd.isInfinite) effectToAdd.isInfinite = true;
             effectToAdd.turns = turns;
         }
 
@@ -62,13 +65,13 @@ public class PlayerStatusEffect
         for (int i = activeStatusEffects.Count - 1; i >= 0; i--)
         {
             activeStatusEffects[i].turns--;
-            if (activeStatusEffects[i].turns <= 0)
+            if (activeStatusEffects[i].turns <= 0 && !activeStatusEffects[i].isInfinite)
             {
                 Remove(activeStatusEffects[i].type);
             }
             else
             {
-                UpdateTurnsText(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI);
+                UpdateTurnsText(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI, activeStatusEffects[i].isInfinite);
             }
         }
     }
@@ -91,12 +94,12 @@ public class PlayerStatusEffect
     {
         for (int i = 0; i < activeStatusEffects.Count; i++)
         {
-            AddIcon(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI);
-            UpdateTurnsText(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI);
+            AddIcon(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI, isInfinite: activeStatusEffects[i].isInfinite);
+            UpdateTurnsText(activeStatusEffects[i].type, activeStatusEffects[i].turns, statusEffectUI, activeStatusEffects[i].isInfinite);
         }
     }
 
-    public void AddIcon(StatusEffectType effect, int effectTurns, GameObject parent)
+    public void AddIcon(StatusEffectType effect, int effectTurns, GameObject parent, bool isInfinite = false)
     {
         if (parent == null) return;
         GameObject icon = Resources.Load<GameObject>("StatusEffects/Player/" + effect.ToString());
@@ -108,18 +111,26 @@ public class PlayerStatusEffect
         {
             GameObject newIcon = GameObject.Instantiate(icon, parent.transform);
             newIcon.name = effect.ToString();
-            Transform turns = newIcon.transform.Find("Turns");
-            turns.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = effectTurns.ToString();
+            UpdateTurnsText(effect, effectTurns, parent, isInfinite);
+            // Transform turns = newIcon.transform.Find("Turns");
+            // turns.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = effectTurns.ToString();
         }
     }
 
-    public void UpdateTurnsText(StatusEffectType effect, int effectTurns, GameObject parent)
+    public void UpdateTurnsText(StatusEffectType effect, int effectTurns, GameObject parent, bool isInfinite = false)
     {
         if (parent == null) return;
         Transform icon = parent.transform.Find(effect.ToString());
         if (icon == null) return;
         Transform turns = icon.transform.Find("Turns");
-        turns.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = effectTurns.ToString();
+        if (isInfinite)
+        {
+            turns.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "∞";
+        }
+        else
+        {
+            turns.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = effectTurns.ToString();
+        }
     }
 
     public void RemoveIcon(StatusEffectType effect, GameObject parent)
@@ -142,8 +153,12 @@ public class PlayerStatusEffect
         {
             case StatusEffectType.STRENGTH:
                 return new PlayerStrength(turns);
+            case StatusEffectType.VAMPIRISM:
+                return new PlayerVampirism(turns);
+            case StatusEffectType.INSTAKILL:
+                return new PlayerInstakill(turns);
             default:
-            
+
                 return null;
         }
     }

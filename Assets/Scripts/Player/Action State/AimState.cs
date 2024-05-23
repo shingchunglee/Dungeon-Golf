@@ -59,6 +59,39 @@ public class AimState : IPlayerActionState
       Debug.Log("Turn skipped.");
       controller.SetState(controller.enemyTurnState);
     }
+    if (Input.GetKeyDown(KeyCode.H))
+    {
+      PlayerManager.Instance.inventoryController.ConsumeConsumable();
+    }
+    // SCROLL UP DOWN CHANGE CLUBS
+    if (Input.mouseScrollDelta.y > 0)
+    {
+      PlayerManager.Instance.inventoryController.GetNextClub();
+    }
+    else if (Input.mouseScrollDelta.y < 0)
+    {
+      PlayerManager.Instance.inventoryController.GetPreviousClub();
+    }
+    // LEFT RIGHT ARROWS CHANGE CLUBS
+    if (Input.GetKeyDown(KeyCode.RightArrow))
+    {
+      PlayerManager.Instance.inventoryController.GetNextClub();
+    }
+
+    if (Input.GetKeyDown(KeyCode.LeftArrow))
+    {
+      PlayerManager.Instance.inventoryController.GetPreviousClub();
+    }
+    // UP DOWN ARROWS CHANGE CONSUMABLES
+    if (Input.GetKeyDown(KeyCode.UpArrow))
+    {
+      PlayerManager.Instance.inventoryController.GetNextConsumable();
+    }
+
+    if (Input.GetKeyDown(KeyCode.DownArrow))
+    {
+      PlayerManager.Instance.inventoryController.GetPreviousConsumable();
+    }
   }
 
   private void OnMouseUp()
