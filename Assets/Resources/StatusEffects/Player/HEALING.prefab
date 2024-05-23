@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 7248912050705303577}
   - component: {fileID: 8057747142079646259}
   - component: {fileID: 3653260085395489944}
+  - component: {fileID: 3189198813671952369}
   m_Layer: 0
   m_Name: HEALING
   m_TagString: Untagged
@@ -210,3 +211,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3189198813671952369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303599225904285340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9dd646e7c804d48858bf931db6ed8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Healing
+  body: Heal after your shot
