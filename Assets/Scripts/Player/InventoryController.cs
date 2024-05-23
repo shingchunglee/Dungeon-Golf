@@ -80,33 +80,64 @@ public class InventoryController : MonoBehaviour
 
   public InventoryClub[] GetInventoryClubs()
   {
-    return clubs.ToArray();
+    var clubArray = clubs.ToArray();
+    Array.Sort(clubArray, (InventoryClub a, InventoryClub b) =>
+    {
+      return a.Club.clubName.CompareTo(b.Club.clubName);
+    });
+    Array.Sort(clubArray, (InventoryClub a, InventoryClub b) =>
+    {
+      if (a.Favourite && !b.Favourite) return -1;
+      if (!a.Favourite && b.Favourite) return 1;
+      return 0;
+    });
+    return clubArray;
   }
 
   public InventoryClub AddClub(ClubType type)
   {
+    InventoryClub currentClub = GetSelectedInventoryClub();
+
     InventoryClub inventoryClub = new(type, ClubFactory.Factory(type));
     clubs.Add(inventoryClub);
+
+    if (currentClub != null)
+    {
+      InventoryClub[] inventoryClubs = GetInventoryClubs();
+      var index = Array.FindIndex(inventoryClubs, c => c.Type == currentClub.Type);
+      selectedClubIndex = index >= 0 ? index : 0;
+    }
     OnClubChanged?.Invoke(GetSelectedClub());
+
     return inventoryClub;
   }
 
   public Club GetSelectedClub()
   {
-    return clubs[selectedClubIndex].Club;
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    return inventoryClubs[selectedClubIndex].Club;
+  }
+
+  public InventoryClub GetSelectedInventoryClub()
+  {
+    if (clubs.Count == 0) return null;
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    return inventoryClubs[selectedClubIndex];
   }
 
   public void GetNextClub()
   {
     if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
-    selectedClubIndex = (selectedClubIndex + 1) % clubs.Count();
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    selectedClubIndex = (selectedClubIndex + 1) % inventoryClubs.Count();
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 
   public void GetPreviousClub()
   {
     if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
-    selectedClubIndex = (selectedClubIndex + clubs.Count() - 1) % clubs.Count();
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    selectedClubIndex = (selectedClubIndex + clubs.Count() - 1) % inventoryClubs.Count();
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 
@@ -146,22 +177,56 @@ public class InventoryController : MonoBehaviour
   internal void EquipClub(InventoryClub club)
   {
     if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState) return;
-    var index = clubs.FindIndex(x => x.Type == club.Type);
+
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    var index = Array.FindIndex(inventoryClubs, c => c.Type == club.Type);
+
     selectedClubIndex = index;
+    OnClubChanged?.Invoke(GetSelectedClub());
+  }
+
+  internal void UpdateFavourite(InventoryClub club, bool favourite)
+  {
+    InventoryClub currentClub = GetSelectedInventoryClub();
+
+    var inventoryClub = clubs.FirstOrDefault(x => x.Type == club.Type);
+    inventoryClub.UpdateFavourite(favourite);
+
+    // if (PlayerManager.Instance.actionStateController.currentState != PlayerManager.Instance.actionStateController.aimState)
+    // {
+    if (currentClub == null) return;
+    InventoryClub[] inventoryClubs = GetInventoryClubs();
+    var index = Array.FindIndex(inventoryClubs, c => c.Type == currentClub.Type);
+    selectedClubIndex = index;
+    // }
+    // else
+    // {
+    //   InventoryClub[] inventoryClubs = GetInventoryClubs();
+    //   var index = Array.FindIndex(inventoryClubs, c => c.Type == club.Type);
+    //   selectedClubIndex = index;
+    // }
+
     OnClubChanged?.Invoke(GetSelectedClub());
   }
 }
 
 [Serializable]
-public struct InventoryClub
+public class InventoryClub
 {
   public ClubType Type;
   public Club Club;
+  public bool Favourite;
 
-  public InventoryClub(ClubType type, Club club)
+  public InventoryClub(ClubType type, Club club, bool favourite = false)
   {
     Type = type;
     Club = club;
+    Favourite = favourite;
+  }
+
+  public void UpdateFavourite(bool favourite)
+  {
+    Favourite = favourite;
   }
 }
 

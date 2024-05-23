@@ -82,6 +82,55 @@ public class DisplayClubInfo : MonoBehaviour
             }
 
             equipButton.onClick.AddListener(() => PlayerManager.Instance.inventoryController.EquipClub(club));
+
+            // Favourite Toggle
+            Transform favouriteToggleTransform = newSlot.transform.Find("Favourite");
+            Toggle favouriteToggle = favouriteToggleTransform.GetComponent<Toggle>();
+            if (favouriteToggle == null)
+            {
+                Debug.LogError("favourite toggle not there on prefab");
+                continue;
+            }
+
+            favouriteToggle.isOn = club.Favourite;
+
+            favouriteToggle.onValueChanged.AddListener((bool value) =>
+            {
+                PlayerManager.Instance.inventoryController.UpdateFavourite(club, value);
+                ClearClubList();
+                PopulateClubList();
+            });
+
+            Transform statusEffects = newSlot.transform.Find("statusEffects");
+            if (statusEffects == null)
+            {
+                Debug.LogError("status effects not there on prefab");
+                continue;
+            }
+
+            foreach (ClubEffectsType effectType in club.Club.clubEffectsTypes)
+            {
+                ClubEffects effect = ClubEffectsFactory.Create(effectType);
+                AddIcon(effect.statusEffectType, statusEffects.gameObject);
+            }
+        }
+    }
+
+    public void AddIcon(PlayerStatusEffect.StatusEffectType effect, GameObject parent)
+    {
+        if (parent == null) return;
+        // GameObject icon = Resources.Load<GameObject>("StatusEffects/" + effect.ToString());
+        GameObject icon = ResourcesCache.Instance.GetPrefab("StatusEffects/Player/" + effect.ToString());
+
+        Transform oldIcon = parent.transform.Find(effect.ToString());
+        if (oldIcon != null) return;
+
+        if (icon != null)
+        {
+            GameObject newIcon = GameObject.Instantiate(icon, parent.transform);
+            newIcon.name = effect.ToString();
+            Transform turns = newIcon.transform.Find("Turns");
+            turns.gameObject.GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 }

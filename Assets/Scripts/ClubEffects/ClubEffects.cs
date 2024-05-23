@@ -39,6 +39,7 @@ public class ClubEffectsFactory
 
 public class ClubEffects
 {
+    public PlayerStatusEffect.StatusEffectType statusEffectType;
     public virtual void OnDamageEnemy(EnemyUnit enemy, int damage) { }
 
     public virtual void OnClubChanged(Club club) { }

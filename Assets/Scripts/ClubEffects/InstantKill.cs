@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class InstantKill : ClubEffects
 {
+    public InstantKill()
+    {
+        statusEffectType = PlayerStatusEffect.StatusEffectType.INSTAKILL;
+    }
     private const float instantKillChance = 0.3f;
     private const int highDamageAmount = 10; // Define the high damage amount
 
@@ -20,10 +24,10 @@ public class InstantKill : ClubEffects
 
     public override void OnClubChanged(Club club)
     {
-        PlayerManager.Instance.statusEffect.Add(PlayerStatusEffect.StatusEffectType.INSTAKILL, 0);
+        PlayerManager.Instance.statusEffect.Add(statusEffectType, 0);
     }
     public override void OnClubRemoved(Club club)
     {
-        PlayerManager.Instance.statusEffect.Remove(PlayerStatusEffect.StatusEffectType.INSTAKILL);
+        PlayerManager.Instance.statusEffect.Remove(statusEffectType);
     }
 }

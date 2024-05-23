@@ -92,7 +92,7 @@ public class PlayerStatusEffect
         }
         else
         {
-            Debug.LogWarning($"PlayerStatusEffectList: Could not remove {effect} because it was not found in the list.");
+            // Debug.LogWarning($"PlayerStatusEffectList: Could not remove {effect} because it was not found in the list.");
         }
     }
 
