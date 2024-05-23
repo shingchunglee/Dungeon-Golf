@@ -5,7 +5,7 @@ public class Vampirism : ClubEffects
 {
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
     {
-        PlayerManager.Instance.RestoreHealth(Mathf.FloorToInt(damage / 2));
+        PlayerManager.Instance.RestoreHealth(Mathf.CeilToInt(damage * 0.2f));
     }
 
     public override void OnClubChanged(Club club)

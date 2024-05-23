@@ -3,7 +3,7 @@ using System;
 public enum ClubEffectsType
 {
     HealPlayer, // heal player for 5 hp after move
-    Vampirism, // restore 50% of damage dealt
+    Vampirism, // restore 20% of damage dealt
     Freezing, // freeze enemy for 1 turn
     Fire, // Deal 5 ticking damage per turn before enemies move
     Stun,
@@ -17,8 +17,8 @@ public class ClubEffectsFactory
     {
         switch (type)
         {
-            case ClubEffectsType.HealPlayer:
-                return new HealPlayer();
+            // case ClubEffectsType.HealPlayer:
+            //     return new HealPlayer();
             case ClubEffectsType.Vampirism:
                 return new Vampirism();
             case ClubEffectsType.Freezing:

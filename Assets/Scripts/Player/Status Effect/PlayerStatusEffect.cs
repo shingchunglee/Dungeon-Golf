@@ -10,6 +10,7 @@ public class PlayerStatusEffect
         SPEEDBOOST,
         VAMPIRISM,
         INSTAKILL,
+        FREEZING,
     }
 
     [System.Serializable]
@@ -64,8 +65,9 @@ public class PlayerStatusEffect
     {
         for (int i = activeStatusEffects.Count - 1; i >= 0; i--)
         {
+            if (activeStatusEffects[i].isInfinite) continue;
             activeStatusEffects[i].turns--;
-            if (activeStatusEffects[i].turns <= 0 && !activeStatusEffects[i].isInfinite)
+            if (activeStatusEffects[i].turns <= 0)
             {
                 Remove(activeStatusEffects[i].type);
             }
@@ -157,6 +159,8 @@ public class PlayerStatusEffect
                 return new PlayerVampirism(turns);
             case StatusEffectType.INSTAKILL:
                 return new PlayerInstakill(turns);
+            case StatusEffectType.FREEZING:
+                return new PlayerFreezing(turns);
             default:
 
                 return null;
