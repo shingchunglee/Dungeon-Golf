@@ -611,13 +611,64 @@ public class ProcedualGeneration : MonoBehaviour
         Vector2 corner = GetRandomCorner(width, height);
         Vector2 opposite = GetOppositeCorner(corner, width, height);
 
-        PlayerSpawn = FindNearestEmpty(structures, corner);
+        // PlayerSpawn = FindNearestEmpty(structures, corner, (structures, current) =>
+        // {
+        //     return structures[(int)current.y, (int)current.x] == TileType.FLOOR;
+        // });
+        PlayerSpawn = FindNearestEmpty(structures, corner, (structures, current) =>
+        {
+            int height = structures.GetLength(0);
+            int width = structures.GetLength(1);
+
+            if (current.x <= 0 || current.x >= width - 1 || current.y <= 0 || current.y >= height - 1) return false;
+
+            if (structures[(int)current.y, (int)current.x] != TileType.FLOOR) return false;
+
+            Func<TileType[,], Vector2, bool> CheckNeighboursDelegate;
+            CheckNeighboursDelegate = (structures, current) =>
+            {
+                return structures[(int)current.y - 1, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y - 1, (int)current.x] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x] == TileType.FLOOR
+                && structures[(int)current.y - 1, (int)current.x + 1] == TileType.FLOOR
+                && structures[(int)current.y, (int)current.x + 1] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x + 1] == TileType.FLOOR;
+            };
+
+            return CheckNeighboursDelegate(structures, current);
+        });
         if (PlayerSpawn == Vector2.zero)
         {
             Main();
             return;
         }
-        GoalSpawn = FindNearestEmpty(structures, opposite);
+
+        GoalSpawn = FindNearestEmpty(structures, opposite, (structures, current) =>
+        {
+            int height = structures.GetLength(0);
+            int width = structures.GetLength(1);
+
+            if (current.x <= 0 || current.x >= width - 1 || current.y <= 0 || current.y >= height - 1) return false;
+
+            if (structures[(int)current.y, (int)current.x] != TileType.FLOOR) return false;
+
+            Func<TileType[,], Vector2, bool> CheckNeighboursDelegate;
+            CheckNeighboursDelegate = (structures, current) =>
+            {
+                return structures[(int)current.y - 1, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x - 1] == TileType.FLOOR
+                && structures[(int)current.y - 1, (int)current.x] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x] == TileType.FLOOR
+                && structures[(int)current.y - 1, (int)current.x + 1] == TileType.FLOOR
+                && structures[(int)current.y, (int)current.x + 1] == TileType.FLOOR
+                && structures[(int)current.y + 1, (int)current.x + 1] == TileType.FLOOR;
+            };
+
+            return CheckNeighboursDelegate(structures, current);
+        });
         if (GoalSpawn == Vector2.zero)
         {
             Main();
@@ -627,7 +678,11 @@ public class ProcedualGeneration : MonoBehaviour
         GoalSpawn = new Vector2(GoalSpawn.x, GoalSpawn.y);
     }
 
-    private Vector2 FindNearestEmpty(TileType[,] structures, Vector2 corner)
+    private Vector2 FindNearestEmpty(
+        TileType[,] structures,
+        Vector2 corner,
+        Func<TileType[,], Vector2, bool> isValid
+    )
     {
         int height = structures.GetLength(0);
         int width = structures.GetLength(1);
@@ -663,7 +718,7 @@ public class ProcedualGeneration : MonoBehaviour
                 return Vector2.zero;
             }
 
-            if (structures[(int)current.y, (int)current.x] != TileType.FLOOR)
+            if (!isValid(structures, current))
             {
                 checkedTiles[(int)current.y, (int)current.x] = true;
                 if ((int)current.y > 0 && !checkedTiles[(int)current.y - 1, (int)current.x])
