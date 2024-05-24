@@ -29,11 +29,12 @@ public class Club : ScriptableObject
     public ClubEffectsType[] clubEffectsTypes = new ClubEffectsType[0];
 
     public ClubType clubType = ClubType.Wedge;
+
+    public enum ClubType
+    {
+        Putter,
+        Wedge,
+        Driver
+    }
 }
 
-public enum ClubType
-{
-    Putter,
-    Wedge,
-    Driver
-}
