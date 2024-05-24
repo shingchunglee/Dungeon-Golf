@@ -52,7 +52,7 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator WaitForThemeMusicToEnd()
     {
-        yield return new WaitForSecondsRealtime(105);
+        yield return new WaitForSeconds(98);
 
         PlayDungeonMusic();
     }

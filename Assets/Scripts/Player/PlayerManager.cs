@@ -270,6 +270,7 @@ public class PlayerManager : MonoBehaviour
         UIElements.UpdateEXPUI(EXPCurrent, EXPLimitCurrentLevel);
         UIElements.UpdateLevelTextEverywhere(PlayerLevel);
         UIElements.UpdateBasePowerLevelTextInMenu(baseDamage.ToString());
+        UIElements.UpdateDamageTotalEverywhere(currentDamage.ToString());
 
         playerWizard = GameObject.Find("Wizard Parent");
         playerBall = GameObject.Find("Ball Parent");
@@ -428,7 +429,7 @@ public class PlayerManager : MonoBehaviour
         {
             int expNeeded = 0;
 
-            for (int i = 0; i < PlayerLevel; i++)
+            for (int i = 1; i < PlayerLevel + 1; i++)   //Loop needs to start at 1 to because player starts on level 1 not level 0
             {
                 expNeeded += EXPCalculateLimit(i);
             }
@@ -443,7 +444,7 @@ public class PlayerManager : MonoBehaviour
         {
             int expNeeded = 0;
 
-            for (int i = 0; i < (PlayerLevel - 1); i++)
+            for (int i = 1; i < PlayerLevel; i++)   //Loop needs to start at 1 to because player starts on level 1 not level 0
             {
                 expNeeded += EXPCalculateLimit(i);
             }
@@ -506,6 +507,7 @@ public class PlayerManager : MonoBehaviour
 
         UIElements.UpdateLevelTextEverywhere(PlayerLevel);
         UIElements.UpdateBasePowerLevelTextInMenu(baseDamage.ToString());
+        UIElements.UpdateDamageTotalEverywhere(currentDamage.ToString());
     }
 
     public void IncreaseMaxHP(int increaseBy)
