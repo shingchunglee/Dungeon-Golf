@@ -19,6 +19,7 @@ public class PlayerUIElements : MonoBehaviour
     [SerializeField] private TextMeshProUGUI basePowerLevelTextMenu;
     [SerializeField] private TextMeshProUGUI clubPowerLevelTextMenu;
     [SerializeField] private TextMeshProUGUI damageTotalTextMenu;
+    [SerializeField] private TextMeshProUGUI damageTotalTextHUD;
     [SerializeField] private TextMeshProUGUI clubEffectTextMenu;
     [SerializeField] private Slider EXPSliderMenu;
 
@@ -63,6 +64,11 @@ public class PlayerUIElements : MonoBehaviour
         if (damageTotalTextMenu != null)
         {
             damageTotalTextMenu.text = text;
+        }
+
+        if (damageTotalTextHUD != null)
+        {
+            damageTotalTextHUD.text = text;
         }
     }
 

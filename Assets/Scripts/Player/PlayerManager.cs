@@ -182,32 +182,32 @@ public class PlayerManager : MonoBehaviour
 
         Vector2 moveDirection = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.U) &&
-            Input.GetKey(KeyCode.J)
+        if (Input.GetKey(KeyCode.I) &&
+            Input.GetKey(KeyCode.K)
         )
         {
             moveDirection.y = 0;
         }
-        else if (Input.GetKey(KeyCode.U))
+        else if (Input.GetKey(KeyCode.I))
         {
             moveDirection.y = 1;
         }
-        else if (Input.GetKey(KeyCode.J))
+        else if (Input.GetKey(KeyCode.K))
         {
             moveDirection.y = -1;
         }
 
-        if (Input.GetKey(KeyCode.K) &&
-            Input.GetKey(KeyCode.H)
+        if (Input.GetKey(KeyCode.L) &&
+            Input.GetKey(KeyCode.J)
         )
         {
             moveDirection.x = 0;
         }
-        else if (Input.GetKey(KeyCode.K))
+        else if (Input.GetKey(KeyCode.L))
         {
             moveDirection.x = 1;
         }
-        else if (Input.GetKey(KeyCode.H))
+        else if (Input.GetKey(KeyCode.J))
         {
             moveDirection.x = -1;
         }
