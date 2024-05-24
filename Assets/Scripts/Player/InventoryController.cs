@@ -48,11 +48,7 @@ public class InventoryController : MonoBehaviour
     if (clubs.Count == 0)
     {
       AddClub(ClubType.Iron7);
-      AddClub(ClubType.stonePutter);
-      AddClub(ClubType.ironPutter);
-      AddClub(ClubType.ironWedge);
-      AddClub(ClubType.ironDriver);
-      AddClub(ClubType.stoneWedge);
+      AddClub(ClubType.whackOfWarlock);
     }
     UpdateUI();
   }

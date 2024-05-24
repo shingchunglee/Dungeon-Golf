@@ -16,6 +16,7 @@ public class ClubSelectManager : MonoBehaviour
     {
         clubNameText.text = club.clubName;
 
+        if (PlayerManager.Instance.UIElements == null) return;
         PlayerManager.Instance.UIElements.UpdateClubUI(club);
     }
 
