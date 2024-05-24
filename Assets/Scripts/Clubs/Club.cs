@@ -27,4 +27,13 @@ public class Club : ScriptableObject
     public Sprite sprite;
 
     public ClubEffectsType[] clubEffectsTypes = new ClubEffectsType[0];
+
+    public ClubType clubType = ClubType.Wedge;
+}
+
+public enum ClubType
+{
+    Putter,
+    Wedge,
+    Driver
 }

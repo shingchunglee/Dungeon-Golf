@@ -15,6 +15,19 @@ public class PlayerManager : MonoBehaviour
     public int currentHP;
     public float endLevelRegenPercent = 0.4f;
     public int attackDamage = 5;
+
+    public int currentDamage
+    {
+        get
+        {
+            int damage = baseDamage;
+
+            damage += Mathf.FloorToInt(Instance.inventoryController.GetSelectedClub().damage);
+
+            return damage;
+        }
+    }
+
     public PowerLevelController powerLevelController;
     public VarianceLevelController varianceLevelController;
     public InventoryController inventoryController;
@@ -270,7 +283,7 @@ public class PlayerManager : MonoBehaviour
         golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
         powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
 
-        UIElements.UpdateLevelText(PlayerLevel);
+        UIElements.UpdateLevelTextEverywhere(PlayerLevel);
 
         inventoryController.Init();
         inventoryController.UpdateUI();
@@ -441,7 +454,7 @@ public class PlayerManager : MonoBehaviour
             LevelUp();
         }
 
-        UIElements.UpdateEXPBar(EXPCurrent, EXPNeededToLevelUp);
+        UIElements.UpdateEXPBarEverywhere(EXPCurrent, EXPNeededToLevelUp);
     }
 
     private void LevelUp()
@@ -455,7 +468,7 @@ public class PlayerManager : MonoBehaviour
 
         PlayerLevel++;
 
-        UIElements.UpdateLevelText(PlayerLevel);
+        UIElements.UpdateLevelTextEverywhere(PlayerLevel);
 
 
     }
@@ -477,8 +490,8 @@ public class PlayerManager : MonoBehaviour
     {
 
     }
-    
-    
+
+
 
     public void KeepMovementTurnGoing(float time)
     {

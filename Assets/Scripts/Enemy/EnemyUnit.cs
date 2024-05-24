@@ -429,7 +429,8 @@ public class EnemyUnit : MonoBehaviour
 
     protected virtual void TakeDamageFromPlayer()
     {
-        int damage = Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage);
+        // Current Damage is a property that returns base damage + club damage.
+        int damage = PlayerManager.Instance.currentDamage;
 
         PlayerManager.Instance.statusEffect.activeStatusEffects.ForEach(x => x.OnDamageEnemy(this, ref damage));
 
