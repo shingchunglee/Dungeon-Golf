@@ -179,7 +179,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4288969133451909433}
   - component: {fileID: 3962710460485761964}
-  - component: {fileID: 2902708029754908816}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -246,8 +245,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: eead54fb8b31e484685c32d33c5a7fab, type: 3}
-  m_Color: {r: 0.23584908, g: 0.0077874744, b: 0.21466993, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d53ce51e6e18b415f88e1bcd9d92d8f0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -257,27 +256,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2902708029754908816
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269775176681695175}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fb7aa2837536f4c2397f1e3279338950, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5270913870180122306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,6 +398,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4288969133451909433}
     m_Modifications:
+    - target: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
+      propertyPath: SizeModule.curve.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.20983674
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454289001219813958, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.254717
+      objectReference: {fileID: 0}
     - target: {fileID: 6820431122206251534, guid: 3da6bbbce47285d4e993004c12ec275e, type: 3}
       propertyPath: m_Name
       value: Particle System

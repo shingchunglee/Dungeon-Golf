@@ -1815,9 +1815,10 @@ MonoBehaviour:
   LevelTextHUD: {fileID: 8862976259360007884}
   EXPTextMenu: {fileID: 7484107767537417564}
   LevelTextMenu: {fileID: 4978112749640846563}
-  basePowerLevelTextMenu: {fileID: 6957910997218859904}
-  clubPowerLevelTextMenu: {fileID: 8433547575644035274}
-  damageTotalTextMenu: {fileID: 1033969588091162180}
+  basePowerLevelTextMenu: {fileID: 8012091540098841573}
+  clubPowerLevelTextMenu: {fileID: 1807680110150744915}
+  damageTotalTextMenu: {fileID: 4982418733074200129}
+  damageTotalTextHUD: {fileID: 91910019962340915}
   clubEffectTextMenu: {fileID: 0}
   EXPSliderMenu: {fileID: 8899768222250721857}
   textColourBase: {r: 0, g: 0, b: 0, a: 1}
