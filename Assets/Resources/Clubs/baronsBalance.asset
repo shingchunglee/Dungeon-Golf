@@ -24,4 +24,7 @@ MonoBehaviour:
   damage: 12
   weight: 5
   appearsAfter: 2
-  sprite: {fileID: 0}
+  appearsAfterAppearsAfter: 0
+  sprite: {fileID: 21300000, guid: 46545d70de6bd0644a57ed7bea63134e, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 1
