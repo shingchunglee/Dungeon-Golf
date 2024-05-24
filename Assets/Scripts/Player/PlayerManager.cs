@@ -283,7 +283,7 @@ public class PlayerManager : MonoBehaviour
         golfAimDrag = playerBall.GetComponentInChildren<GolfAimDrag>();
         powerLevelController = playerBall.GetComponentInChildren<PowerLevelController>();
 
-        UIElements.UpdateLevelText(PlayerLevel);
+        UIElements.UpdateLevelTextEverywhere(PlayerLevel);
 
         inventoryController.Init();
         inventoryController.UpdateUI();
@@ -454,7 +454,7 @@ public class PlayerManager : MonoBehaviour
             LevelUp();
         }
 
-        UIElements.UpdateEXPBar(EXPCurrent, EXPNeededToLevelUp);
+        UIElements.UpdateEXPBarEverywhere(EXPCurrent, EXPNeededToLevelUp);
     }
 
     private void LevelUp()
@@ -468,7 +468,7 @@ public class PlayerManager : MonoBehaviour
 
         PlayerLevel++;
 
-        UIElements.UpdateLevelText(PlayerLevel);
+        UIElements.UpdateLevelTextEverywhere(PlayerLevel);
 
 
     }
