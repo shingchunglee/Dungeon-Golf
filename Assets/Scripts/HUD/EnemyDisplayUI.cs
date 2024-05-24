@@ -10,6 +10,8 @@ public class EnemyDisplayUI : MonoBehaviour
     public GameObject slotEnemy; 
     public Transform EnemyGrid; 
 
+    private HashSet<string> processedPrefabs = new HashSet<string>();
+
     private void Start()
     {
         LoadAllEnemies();
@@ -22,15 +24,18 @@ public class EnemyDisplayUI : MonoBehaviour
 
     void AccessSubFolder(string folderPath)
     {
-       
         Object[] prefabs = Resources.LoadAll(folderPath, typeof(GameObject));
         foreach (Object prefab in prefabs)
         {
             GameObject prefabObject = (GameObject)prefab;
-            CreateSlot(prefabObject);
+
+            if (!processedPrefabs.Contains(prefabObject.name))
+            {
+                processedPrefabs.Add(prefabObject.name);
+                CreateSlot(prefabObject);
+            }
         }
 
-        
         string fullPath = Path.Combine(Application.dataPath, "Resources", folderPath);
         string[] subfolders = Directory.GetDirectories(fullPath);
         foreach (string subfolder in subfolders)
@@ -44,22 +49,16 @@ public class EnemyDisplayUI : MonoBehaviour
     {
         GameObject slot = Instantiate(slotEnemy, EnemyGrid);
 
-        
         EnemyUnit enemyUnit = prefab.GetComponent<EnemyUnit>();
 
-       
         string enemyInfo = $"Damage: {enemyUnit.attackDamage}\n" +
                            $"Max HP: {enemyUnit.MaxHP}\n" +
                            $"Max Attacks/Turn: {enemyUnit.maxAttacksPerTurn}\n" +
                            $"Move Attacks/Turn: {enemyUnit.moveAttacksPerTurn}";
 
-       
         slot.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = enemyUnit.enemyName;
-
-        
         slot.transform.Find("Info").GetComponent<TextMeshProUGUI>().text = enemyInfo;
 
-        
         Image enemyImage = slot.transform.Find("Image").GetComponent<Image>();
         SpriteRenderer spriteRenderer = prefab.GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)

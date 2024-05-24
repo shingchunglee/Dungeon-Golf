@@ -23,6 +23,7 @@ public class Club : ScriptableObject
 
     public int weight;
     public int appearsAfter = 0;
+    public bool appearsAfterAppearsAfter = false;
 
     public Sprite sprite;
 

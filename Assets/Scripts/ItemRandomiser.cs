@@ -49,7 +49,7 @@ public class ItemRandomiser : MonoBehaviour
         foreach (ClubType clubType in clubTypes)
         {
             Club club = ClubFactory.Factory(clubType);
-            if (club.appearsAfter == GameManager.Instance.dungeonLevel)
+            if (club.appearsAfter == GameManager.Instance.dungeonLevel || (club.appearsAfterAppearsAfter && club.appearsAfter <= GameManager.Instance.dungeonLevel))
             {
                 clubs.Add(new InventoryClub(clubType, club));
                 weights += club.weight;
