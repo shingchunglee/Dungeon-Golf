@@ -25,3 +25,5 @@ MonoBehaviour:
   weight: 5
   appearsAfter: 8
   sprite: {fileID: 0}
+  clubEffectsTypes: 
+  clubStyle: 1
