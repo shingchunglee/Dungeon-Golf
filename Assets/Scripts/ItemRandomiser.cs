@@ -49,7 +49,8 @@ public class ItemRandomiser : MonoBehaviour
         foreach (ClubType clubType in clubTypes)
         {
             Club club = ClubFactory.Factory(clubType);
-            if (club.appearsAfter == GameManager.Instance.dungeonLevel || (club.appearsAfterAppearsAfter && club.appearsAfter <= GameManager.Instance.dungeonLevel))
+            // Each club can appear for 2 levels, cause we dont want to make more clubs. lord help us
+            if (club.appearsAfter == Mathf.FloorToInt(GameManager.Instance.dungeonLevel / 2) || (club.appearsAfterAppearsAfter && club.appearsAfter <= Mathf.FloorToInt(GameManager.Instance.dungeonLevel / 2)))
             {
                 clubs.Add(new InventoryClub(clubType, club));
                 weights += club.weight;
