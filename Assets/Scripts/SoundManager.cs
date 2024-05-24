@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public VolumeController volumeController;
     public bool PlayMusic = true;
     public AudioClip ThemeMusic;
     public AudioClip DungeonMusic;
