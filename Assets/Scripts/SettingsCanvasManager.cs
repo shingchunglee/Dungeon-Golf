@@ -7,6 +7,8 @@ public class SettingsCanvasManager : MonoBehaviour
     // public ToggleGroup aimGroup;
     public Toggle Drag;
     public Toggle Click;
+    public Slider Music;
+    public Slider SFX;
     public GameObject settingsPage;
 
     private bool isSettingsOpen = false;
@@ -44,6 +46,20 @@ public class SettingsCanvasManager : MonoBehaviour
         }
         Drag.onValueChanged.AddListener(OnDrag);
         Click.onValueChanged.AddListener(OnClick);
+
+        float playerPrefMusicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat("MusicVolume", 1));
+        Music.value = playerPrefMusicVolume;
+        Music.onValueChanged.AddListener((float value) =>
+        {
+            SoundManager.Instance.volumeController.SetMusicVolume(value);
+        });
+
+        float playerPrefSfxVolume = Mathf.Clamp01(PlayerPrefs.GetFloat("SfxVolume", 1));
+        SFX.value = playerPrefSfxVolume;
+        SFX.onValueChanged.AddListener((float value) =>
+        {
+            SoundManager.Instance.volumeController.SetSFXVolume(value);
+        });
     }
 
     private void OnDrag(bool isOn)
