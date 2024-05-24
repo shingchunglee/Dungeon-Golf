@@ -2517,7 +2517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5518733050600744119, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: isVoidWalls
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8876602356317060470, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
