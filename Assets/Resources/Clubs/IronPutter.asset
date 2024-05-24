@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: IronPutter
   m_EditorClassIdentifier: 
   clubName: Iron Putter
-  maxPower: 1200
+  maxPower: 1100
   minPower: 100
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
+  powerEasingFunction: 5
+  maxVariance: 1.5
+  minVariance: -1.5
   varianceLevelDuration: 1
   varianceEasingFunction: 1
   damage: 4
   weight: 5
   appearsAfter: 1
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 38a85ff2dee2146cc8f640dc3381583e, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 0

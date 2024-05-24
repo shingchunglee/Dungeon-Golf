@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: LegendaryClub
   m_EditorClassIdentifier: 
   clubName: LEGENDARY CLUB
-  maxPower: 5000
-  minPower: 1000
+  maxPower: 7000
+  minPower: 2000
   powerLevelDuration: 0.5
-  powerEasingFunction: 23
-  maxVariance: -3
-  minVariance: 3
+  powerEasingFunction: 25
+  maxVariance: 3
+  minVariance: -3
   varianceLevelDuration: 0.5
   varianceEasingFunction: 1
-  damage: 12
+  damage: 26
   weight: 1
-  appearsAfter: 3
-  appearsAfterAppearsAfter: 0
+  appearsAfter: 8
+  appearsAfterAppearsAfter: 1
   sprite: {fileID: 21300000, guid: cfcd42fd78e65be4197c0a07e11a62c0, type: 3}
-  clubEffectsTypes: 
-  clubStyle: 1
+  clubEffectsTypes: 0400000005000000
+  clubStyle: 2

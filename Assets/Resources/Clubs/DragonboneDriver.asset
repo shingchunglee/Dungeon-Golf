@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: DragonboneDriver
   m_EditorClassIdentifier: 
   clubName: Dragonbone Driver
-  maxPower: 2000
-  minPower: 300
-  powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
-  varianceLevelDuration: 1
+  maxPower: 3600
+  minPower: 1300
+  powerLevelDuration: 0.6
+  powerEasingFunction: 23
+  maxVariance: 3
+  minVariance: -3
+  varianceLevelDuration: 0.6
   varianceEasingFunction: 1
-  damage: 16
+  damage: 24
   weight: 5
   appearsAfter: 6
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 8757aa73be669408bb021083342dd433, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

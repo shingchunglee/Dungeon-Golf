@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: DragonbonePutter
   m_EditorClassIdentifier: 
   clubName: Dragonbone Putter
-  maxPower: 1900
-  minPower: 300
+  maxPower: 1200
+  minPower: 150
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
-  varianceLevelDuration: 1
+  powerEasingFunction: 13
+  maxVariance: 1.25
+  minVariance: -1.25
+  varianceLevelDuration: 1.25
   varianceEasingFunction: 1
-  damage: 15
+  damage: 17
   weight: 5
   appearsAfter: 6
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 042cef1bc1e364908808eabaad84886f, type: 3}
   clubEffectsTypes: 
-  clubStyle: 1
+  clubStyle: 0

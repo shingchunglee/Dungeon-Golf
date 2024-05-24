@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: AuroriteWedge
   m_EditorClassIdentifier: 
   clubName: Aurorite Wedge
-  maxPower: 2200
-  minPower: 300
+  maxPower: 2000
+  minPower: 600
   powerLevelDuration: 1
-  powerEasingFunction: 6
+  powerEasingFunction: 21
   maxVariance: 2
   minVariance: -2
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.9
   varianceEasingFunction: 1
-  damage: 21
+  damage: 30
   weight: 5
   appearsAfter: 8
   appearsAfterAppearsAfter: 0

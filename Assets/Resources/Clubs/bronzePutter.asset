@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: bronzePutter
   m_EditorClassIdentifier: 
   clubName: Bronze Putter
-  maxPower: 1300
+  maxPower: 1100
   minPower: 100
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
+  powerEasingFunction: 7
+  maxVariance: 1.5
+  minVariance: -1.5
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 5
+  damage: 8
   weight: 5
   appearsAfter: 2
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 17b9f27d6e1cc4143a0a2e973229008e, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 0

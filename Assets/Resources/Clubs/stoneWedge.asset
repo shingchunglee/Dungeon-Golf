@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: stoneWedge
   m_EditorClassIdentifier: 
   clubName: Stone Wedge
-  maxPower: 1300
-  minPower: 100
-  powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
-  varianceLevelDuration: 1
+  maxPower: 4500
+  minPower: 1450
+  powerLevelDuration: 0.6
+  powerEasingFunction: 25
+  maxVariance: 2.5
+  minVariance: -2.5
+  varianceLevelDuration: 0.6
   varianceEasingFunction: 1
-  damage: 3
-  weight: 5
-  appearsAfter: 0
+  damage: 18
+  weight: 4
+  appearsAfter: 7
+  appearsAfterAppearsAfter: 1
   sprite: {fileID: 21300000, guid: 69d1cbab1f13d41178a34d05a3378f3d, type: 3}
+  clubEffectsTypes: 05000000
+  clubStyle: 2

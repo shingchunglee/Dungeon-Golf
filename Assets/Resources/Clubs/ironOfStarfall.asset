@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: ironOfStarfall
   m_EditorClassIdentifier: 
   clubName: Iron of Starfall
-  maxPower: 1900
-  minPower: 150
+  maxPower: 1850
+  minPower: 500
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: -2
-  minVariance: 2
+  powerEasingFunction: 3
+  maxVariance: 1.25
+  minVariance: -1.25
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 16
-  weight: 5
-  appearsAfter: 3
-  appearsAfterAppearsAfter: 0
+  damage: 11
+  weight: 4
+  appearsAfter: 4
+  appearsAfterAppearsAfter: 1
   sprite: {fileID: 21300000, guid: 53fd21cc66881a04aab212a02a1912b9, type: 3}
-  clubEffectsTypes: 
+  clubEffectsTypes: 0200000003000000
   clubStyle: 1

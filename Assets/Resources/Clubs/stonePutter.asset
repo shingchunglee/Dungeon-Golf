@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: stonePutter
   m_EditorClassIdentifier: 
   clubName: Stone Putter
-  maxPower: 1200
+  maxPower: 1100
   minPower: 100
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
+  powerEasingFunction: 2
+  maxVariance: 1.5
+  minVariance: -1.5
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 3
+  damage: 2
   weight: 5
   appearsAfter: 0
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 598269463a7ee4fd885b2fcae83ca9f9, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 0

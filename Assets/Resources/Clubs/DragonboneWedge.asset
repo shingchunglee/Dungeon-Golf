@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: DragonboneWedge
   m_EditorClassIdentifier: 
   clubName: Dragonbone Wedge
-  maxPower: 2200
-  minPower: 300
+  maxPower: 1850
+  minPower: 600
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 3
-  minVariance: -3
-  varianceLevelDuration: 1
+  powerEasingFunction: 12
+  maxVariance: 2
+  minVariance: -2
+  varianceLevelDuration: 0.9
   varianceEasingFunction: 1
-  damage: 17
+  damage: 20
   weight: 5
-  appearsAfter: 5
+  appearsAfter: 6
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: e831a32728bc64aa0b1cd0c8f75800e1, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 1

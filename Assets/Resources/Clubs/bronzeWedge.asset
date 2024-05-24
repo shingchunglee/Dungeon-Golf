@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: bronzeWedge
   m_EditorClassIdentifier: 
   clubName: Bronze Wedge
-  maxPower: 1600
-  minPower: 200
+  maxPower: 1650
+  minPower: 400
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
-  varianceLevelDuration: 1
+  powerEasingFunction: 18
+  maxVariance: 1.5
+  minVariance: -1.5
+  varianceLevelDuration: 1.1
   varianceEasingFunction: 1
-  damage: 10
+  damage: 9
   weight: 5
   appearsAfter: 2
   appearsAfterAppearsAfter: 0

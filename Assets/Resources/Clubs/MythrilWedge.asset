@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: MythrilWedge
   m_EditorClassIdentifier: 
   clubName: Mythril Wedge
-  maxPower: 2500
-  minPower: 500
+  maxPower: 2000
+  minPower: 600
   powerLevelDuration: 1
-  powerEasingFunction: 6
+  powerEasingFunction: 3
   maxVariance: 2
   minVariance: -2
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.9
   varianceEasingFunction: 1
   damage: 24
   weight: 5
   appearsAfter: 9
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 2799898b3b7394beaa1a7890f0462f3c, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 1

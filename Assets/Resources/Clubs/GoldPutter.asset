@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: GoldPutter
   m_EditorClassIdentifier: 
   clubName: Gold Putter
-  maxPower: 2000
-  minPower: 300
+  maxPower: 1300
+  minPower: 200
   powerLevelDuration: 1
-  powerEasingFunction: 6
+  powerEasingFunction: 14
   maxVariance: 1
   minVariance: -1
-  varianceLevelDuration: 1
+  varianceLevelDuration: 1.5
   varianceEasingFunction: 1
-  damage: 19
+  damage: 22
   weight: 5
   appearsAfter: 7
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 0e841a545265849ea9b237df4cbd753c, type: 3}
   clubEffectsTypes: 
   clubStyle: 1

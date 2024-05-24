@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: royalRumble
   m_EditorClassIdentifier: 
   clubName: Royal Rumble
-  maxPower: 1600
-  minPower: 150
+  maxPower: 1950
+  minPower: 600
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
+  powerEasingFunction: 15
+  maxVariance: 1.75
+  minVariance: -1.75
   varianceLevelDuration: 1
   varianceEasingFunction: 1
-  damage: 19
-  weight: 5
-  appearsAfter: 5
-  appearsAfterAppearsAfter: 0
+  damage: 20
+  weight: 4
+  appearsAfter: 6
+  appearsAfterAppearsAfter: 1
   sprite: {fileID: 21300000, guid: 0fc3dc04f2052f74fa3c2439eba05439, type: 3}
-  clubEffectsTypes: 
+  clubEffectsTypes: 01000000
   clubStyle: 1

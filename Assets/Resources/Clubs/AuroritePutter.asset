@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: AuroritePutter
   m_EditorClassIdentifier: 
   clubName: Aurorite Putter
-  maxPower: 2100
-  minPower: 300
+  maxPower: 1300
+  minPower: 200
   powerLevelDuration: 1
-  powerEasingFunction: 6
+  powerEasingFunction: 16
   maxVariance: 1
   minVariance: -1
-  varianceLevelDuration: 1
+  varianceLevelDuration: 1.5
   varianceEasingFunction: 1
-  damage: 20
+  damage: 24
   weight: 5
   appearsAfter: 8
   appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: a2839cfd8a045934c8f0b0e3d3cd5a16, type: 3}
   clubEffectsTypes: 
-  clubStyle: 1
+  clubStyle: 0

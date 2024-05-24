@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: GoldDriver
   m_EditorClassIdentifier: 
   clubName: Gold Driver
-  maxPower: 2300
-  minPower: 300
-  powerLevelDuration: 1
-  powerEasingFunction: 6
+  maxPower: 4000
+  minPower: 1350
+  powerLevelDuration: 0.6
+  powerEasingFunction: 24
   maxVariance: 3
   minVariance: -3
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.6
   varianceEasingFunction: 1
-  damage: 21
+  damage: 27
   weight: 5
   appearsAfter: 7
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: dbcdc99bfefdc4facb4d7f8d7d724587, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

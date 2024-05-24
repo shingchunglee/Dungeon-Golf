@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: SilverPutter
   m_EditorClassIdentifier: 
   clubName: Silver Putter
-  maxPower: 1400
-  minPower: 200
+  maxPower: 1200
+  minPower: 150
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
-  varianceLevelDuration: 1
+  powerEasingFunction: 8
+  maxVariance: 1.25
+  minVariance: -1.25
+  varianceLevelDuration: 1.25
   varianceEasingFunction: 1
   damage: 9
   weight: 5
   appearsAfter: 3
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 0391065bd919e4efb9b45d8b153a3c90, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 0

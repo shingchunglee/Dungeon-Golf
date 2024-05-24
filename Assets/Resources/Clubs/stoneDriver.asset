@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: stoneDriver
   m_EditorClassIdentifier: 
   clubName: Stone Driver
-  maxPower: 1400
-  minPower: 200
-  powerLevelDuration: 1
-  powerEasingFunction: 6
+  maxPower: 3000
+  minPower: 1000
+  powerLevelDuration: 0.8
+  powerEasingFunction: 23
   maxVariance: 3
   minVariance: -3
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.8
   varianceEasingFunction: 1
   damage: 4
   weight: 5
   appearsAfter: 0
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 8a30f66c835364be9bf7d358c670144e, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

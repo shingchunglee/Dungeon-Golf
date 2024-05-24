@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: arcaneStrike
   m_EditorClassIdentifier: 
   clubName: Arcane Strike
-  maxPower: 3000
-  minPower: 500
+  maxPower: 1300
+  minPower: 200
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 3
-  minVariance: -3
-  varianceLevelDuration: 1
+  powerEasingFunction: 4
+  maxVariance: 1
+  minVariance: -1
+  varianceLevelDuration: 1.5
   varianceEasingFunction: 1
-  damage: 23
-  weight: 5
-  appearsAfter: 7
-  sprite: {fileID: 0}
-  clubEffectsTypes: 
+  damage: 18
+  weight: 4
+  appearsAfter: 8
+  appearsAfterAppearsAfter: 1
+  sprite: {fileID: 21300000, guid: 7f4c54c26dc4dff449b1065fe961647c, type: 3}
+  clubEffectsTypes: 03000000
+  clubStyle: 0

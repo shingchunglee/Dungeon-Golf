@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: bronzeDriver
   m_EditorClassIdentifier: 
   clubName: Bronze Driver
-  maxPower: 1700
-  minPower: 300
-  powerLevelDuration: 1
-  powerEasingFunction: 6
+  maxPower: 3200
+  minPower: 1100
+  powerLevelDuration: 0.8
+  powerEasingFunction: 23
   maxVariance: 3
   minVariance: -3
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.8
   varianceEasingFunction: 1
-  damage: 7
+  damage: 10
   weight: 5
   appearsAfter: 2
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 6eef4348b12a24616944913a5c452e7a, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

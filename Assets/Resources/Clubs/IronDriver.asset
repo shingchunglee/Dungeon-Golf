@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: IronDriver
   m_EditorClassIdentifier: 
   clubName: Iron Driver
-  maxPower: 1400
-  minPower: 200
-  powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 1
-  minVariance: -1
-  varianceLevelDuration: 1
+  maxPower: 3100
+  minPower: 1050
+  powerLevelDuration: 0.8
+  powerEasingFunction: 24
+  maxVariance: 3
+  minVariance: -3
+  varianceLevelDuration: 0.8
   varianceEasingFunction: 1
   damage: 7
   weight: 5
   appearsAfter: 1
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: e35727768c6a04dd3b7502df2391d8a3, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: baronsBalance
   m_EditorClassIdentifier: 
   clubName: Baron's Balance
-  maxPower: 2200
-  minPower: 200
+  maxPower: 1700
+  minPower: 400
   powerLevelDuration: 1
-  powerEasingFunction: 6
-  maxVariance: 2
-  minVariance: -2
-  varianceLevelDuration: 1
+  powerEasingFunction: 15
+  maxVariance: 1.25
+  minVariance: -1.25
+  varianceLevelDuration: 1.1
   varianceEasingFunction: 1
-  damage: 12
-  weight: 5
+  damage: 10
+  weight: 4
   appearsAfter: 2
-  appearsAfterAppearsAfter: 0
+  appearsAfterAppearsAfter: 1
   sprite: {fileID: 21300000, guid: 46545d70de6bd0644a57ed7bea63134e, type: 3}
-  clubEffectsTypes: 
+  clubEffectsTypes: 06000000
   clubStyle: 1

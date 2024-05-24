@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: GoldWedge
   m_EditorClassIdentifier: 
   clubName: Gold Wedge
-  maxPower: 2200
-  minPower: 250
+  maxPower: 1900
+  minPower: 600
   powerLevelDuration: 1
-  powerEasingFunction: 6
+  powerEasingFunction: 18
   maxVariance: 2
   minVariance: -2
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.9
   varianceEasingFunction: 1
-  damage: 20
+  damage: 25
   weight: 5
   appearsAfter: 7
   appearsAfterAppearsAfter: 0

@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: MythrilDriver
   m_EditorClassIdentifier: 
   clubName: Mythril Driver
-  maxPower: 2600
-  minPower: 300
-  powerLevelDuration: 1
-  powerEasingFunction: 6
+  maxPower: 5000
+  minPower: 1500
+  powerLevelDuration: 0.5
+  powerEasingFunction: 24
   maxVariance: 3
   minVariance: -3
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.5
   varianceEasingFunction: 1
   damage: 25
   weight: 5
   appearsAfter: 9
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: 8e70d3cedb6524b5c84fc488c30ec5d1, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2

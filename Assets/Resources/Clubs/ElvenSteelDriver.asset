@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: ElvenSteelDriver
   m_EditorClassIdentifier: 
   clubName: Elvensteel Driver
-  maxPower: 2100
-  minPower: 500
-  powerLevelDuration: 1
-  powerEasingFunction: 6
+  maxPower: 3500
+  minPower: 1250
+  powerLevelDuration: 0.7
+  powerEasingFunction: 24
   maxVariance: 3
   minVariance: -3
-  varianceLevelDuration: 1
+  varianceLevelDuration: 0.7
   varianceEasingFunction: 1
   damage: 15
   weight: 5
   appearsAfter: 5
+  appearsAfterAppearsAfter: 0
   sprite: {fileID: 21300000, guid: c78b7051bd4094c30a63340fd8dbfd6d, type: 3}
+  clubEffectsTypes: 
+  clubStyle: 2
