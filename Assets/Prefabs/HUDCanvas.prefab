@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 2575917880455589884}
   - component: {fileID: 6879306968740185642}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: EXPTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1812,12 +1812,12 @@ MonoBehaviour:
   HealthSlider: {fileID: 2261344364904715479}
   EXPSliderHUD: {fileID: 2401745335439467297}
   HPTextHUD: {fileID: 1931309813178123497}
-  LevelTextHUD: {fileID: 3790718517633089561}
+  LevelTextHUD: {fileID: 8862976259360007884}
   EXPTextMenu: {fileID: 7484107767537417564}
-  LevelTextMenu: {fileID: 4978112749640846563}
-  basePowerLevelTextMenu: {fileID: 6957910997218859904}
-  clubPowerLevelTextMenu: {fileID: 8433547575644035274}
-  damageTotalTextMenu: {fileID: 1033969588091162180}
+  LevelTextMenu: {fileID: 157342350291013460}
+  basePowerLevelTextMenu: {fileID: 8012091540098841573}
+  clubPowerLevelTextMenu: {fileID: 1807680110150744915}
+  damageTotalTextMenu: {fileID: 4982418733074200129}
   clubEffectTextMenu: {fileID: 4986769682492273117}
   EXPSliderMenu: {fileID: 8899768222250721857}
   textColourBase: {r: 0, g: 0, b: 0, a: 1}
@@ -5056,7 +5056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.0003770747}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.000010650883}
   m_SizeDelta: {x: 0.0001, y: 1309.0603}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2707091956323685638
@@ -9179,7 +9179,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1367203830043293971}
   m_HandleRect: {fileID: 146870145865310590}
   m_Direction: 2
-  m_Value: 1.0000004
+  m_Value: 1
   m_Size: 0.14606662
   m_NumberOfSteps: 0
   m_OnValueChanged:

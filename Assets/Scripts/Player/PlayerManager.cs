@@ -71,8 +71,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerActionStateController actionStateController;
     public GolfAim golfAim;
     public GolfAimDrag golfAimDrag;
-
-    [SerializeField] PlayerUIElements UIElements;
+    public PlayerUIElements UIElements;
 
     // STATUS EFFECTS
     public PlayerStatusEffect statusEffect;
@@ -268,6 +267,10 @@ public class PlayerManager : MonoBehaviour
 
         UIElements.UpdateHealthBar(currentHP, maxHP);
 
+        UIElements.UpdateEXPUI(EXPCurrent, EXPLimitCurrentLevel);
+        UIElements.UpdateLevelTextEverywhere(PlayerLevel);
+        UIElements.UpdateBasePowerLevelTextInMenu(baseDamage.ToString());
+
         playerWizard = GameObject.Find("Wizard Parent");
         playerBall = GameObject.Find("Ball Parent");
         var player = GameObject.Find("Player");
@@ -418,8 +421,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Level up stats
-    public int EXPCurrent { get; private set; }
-    public int EXPNeededToLevelUp
+    public int EXPTotalCurrent { get; private set; }
+    public int EXPTotalLimit
     {
         get
         {
@@ -427,7 +430,22 @@ public class PlayerManager : MonoBehaviour
 
             for (int i = 0; i < PlayerLevel; i++)
             {
-                expNeeded += (int)(level1EXP * Mathf.Pow(PlayerLevel, 0.4f));
+                expNeeded += EXPCalculateLimit(i);
+            }
+
+            return expNeeded;
+        }
+    }
+
+    public int EXPTotalLimitPreviousLevel
+    {
+        get
+        {
+            int expNeeded = 0;
+
+            for (int i = 0; i < (PlayerLevel - 1); i++)
+            {
+                expNeeded += EXPCalculateLimit(i);
             }
 
             return expNeeded;
@@ -435,26 +453,44 @@ public class PlayerManager : MonoBehaviour
     }
     private int level1EXP = 100;
     public int PlayerLevel { get; private set; } = 1;
-    public int EXPInCurrentLevel
+    public int EXPLimitCurrentLevel
     {
         get
         {
-            return (int)(level1EXP * Mathf.Pow(PlayerLevel, 0.4f));
+            return EXPCalculateLimit(PlayerLevel);
         }
+    }
+
+    public int EXPCurrent
+    {
+        get
+        {
+            return EXPTotalCurrent - EXPTotalLimitPreviousLevel;
+        }
+    }
+
+    /// <summary>
+    /// This determines how much EXP the players needs to earn to level up, depending on the level number.
+    /// </summary>
+    /// <param name="playerLevel"></param>
+    /// <returns></returns>
+    public int EXPCalculateLimit(int playerLevel)
+    {
+        return (int)(level1EXP * Mathf.Pow(playerLevel, 0.4f));
     }
 
     public int baseDamage = 0;
 
     public void EXPGain(int increase)
     {
-        EXPCurrent += increase;
+        EXPTotalCurrent += increase;
 
-        if (EXPCurrent >= EXPNeededToLevelUp)
+        if (EXPTotalCurrent >= EXPTotalLimit)
         {
             LevelUp();
         }
 
-        UIElements.UpdateEXPBarEverywhere(EXPCurrent, EXPNeededToLevelUp);
+        UIElements.UpdateEXPUI(EXPCurrent, EXPLimitCurrentLevel);
     }
 
     private void LevelUp()
@@ -469,8 +505,7 @@ public class PlayerManager : MonoBehaviour
         PlayerLevel++;
 
         UIElements.UpdateLevelTextEverywhere(PlayerLevel);
-
-
+        UIElements.UpdateBasePowerLevelTextInMenu(baseDamage.ToString());
     }
 
     public void IncreaseMaxHP(int increaseBy)
@@ -485,13 +520,6 @@ public class PlayerManager : MonoBehaviour
     {
         baseDamage += increaseBy;
     }
-
-    private void UpdateUIforEXP()
-    {
-
-    }
-
-
 
     public void KeepMovementTurnGoing(float time)
     {

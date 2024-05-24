@@ -43,7 +43,14 @@ public class PlayerUIElements : MonoBehaviour
         levelUpUI.LevelUpAnimation();
     }
 
-    public void UpdateClubEffectTextInMenu(string text)
+    public void UpdateClubUI(Club club)
+    {
+        UpdateClubEffectTextInMenu("Text here.");
+        UpdateDamageTotalEverywhere(PlayerManager.Instance.currentDamage.ToString());
+        UpdateClubPowerLevelTextInMenu(club.damage.ToString());
+    }
+
+    private void UpdateClubEffectTextInMenu(string text)
     {
         if (clubEffectTextMenu != null)
         {
@@ -59,7 +66,7 @@ public class PlayerUIElements : MonoBehaviour
         }
     }
 
-    public void UpdateClubPowerLeveTextInMenu(string text)
+    private void UpdateClubPowerLevelTextInMenu(string text)
     {
         if (clubPowerLevelTextMenu != null)
         {
@@ -75,7 +82,7 @@ public class PlayerUIElements : MonoBehaviour
         }
     }
 
-    public void UpdateEXPInMenu(string text)
+    private void UpdateEXPInMenu(string text)
     {
         if (EXPTextMenu != null)
         {
@@ -92,9 +99,12 @@ public class PlayerUIElements : MonoBehaviour
         }
     }
 
-    public void UpdateEXPBarEverywhere(float currentValue, float maxValue)
+    public void UpdateEXPUI(float currentValue, float nextLevelValue)
     {
-        EXPSliderHUD.value = currentValue / maxValue;
+        EXPSliderHUD.value = currentValue / nextLevelValue;
+        EXPSliderMenu.value = currentValue / nextLevelValue;
+
+        UpdateEXPInMenu($"{currentValue}/{nextLevelValue}");
     }
 
     private int previousLevelNumber = 1;
