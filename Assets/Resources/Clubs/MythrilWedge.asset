@@ -24,4 +24,4 @@ MonoBehaviour:
   damage: 24
   weight: 5
   appearsAfter: 9
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2799898b3b7394beaa1a7890f0462f3c, type: 3}
