@@ -1244,7 +1244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.81481934, y: -0.36569214}
+  m_AnchoredPosition: {x: 0.81481934, y: -0.36566162}
   m_SizeDelta: {x: 13.4605, y: 15.3282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3207571370068771153
@@ -1810,10 +1810,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthSlider: {fileID: 2261344364904715479}
-  EXPSlider: {fileID: 2401745335439467297}
-  HPText: {fileID: 1931309813178123497}
-  EXPText: {fileID: 8174876145562871946}
-  LevelText: {fileID: 8862976259360007884}
+  EXPSliderHUD: {fileID: 2401745335439467297}
+  HPTextHUD: {fileID: 1931309813178123497}
+  LevelTextHUD: {fileID: 3790718517633089561}
+  EXPTextMenu: {fileID: 7484107767537417564}
+  LevelTextMenu: {fileID: 4978112749640846563}
+  basePowerLevelTextMenu: {fileID: 6957910997218859904}
+  clubPowerLevelTextMenu: {fileID: 8433547575644035274}
+  damageTotalTextMenu: {fileID: 1033969588091162180}
+  clubEffectTextMenu: {fileID: 4986769682492273117}
+  EXPSliderMenu: {fileID: 8899768222250721857}
   textColourBase: {r: 0, g: 0, b: 0, a: 1}
   textColourFlash: {r: 0.59607846, g: 0, b: 0.5764706, a: 0.74509805}
 --- !u!1 &979519294781896673
@@ -3486,7 +3492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.6400146, y: 0.98000336}
+  m_AnchoredPosition: {x: -1.640007, y: 0.9800029}
   m_SizeDelta: {x: -1.7386, y: -1.7099}
   m_Pivot: {x: 1.4686987, y: -0.122894615}
 --- !u!222 &6726198229696848694
@@ -4024,7 +4030,7 @@ GameObject:
   - component: {fileID: 2342314959473798882}
   - component: {fileID: 1033969588091162180}
   m_Layer: 5
-  m_Name: 'BaseDamage: Text'
+  m_Name: 'TotalDamage: Text'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4046,7 +4052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.9, y: 13.8}
+  m_AnchoredPosition: {x: -2.9, y: 18.6}
   m_SizeDelta: {x: 20.9604, y: 4.6929}
   m_Pivot: {x: 0.46040794, y: 0.6773568}
 --- !u!222 &2342314959473798882
@@ -5050,7 +5056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0.000022888184}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.0003770747}
   m_SizeDelta: {x: 0.0001, y: 1309.0603}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2707091956323685638
@@ -6166,7 +6172,7 @@ GameObject:
   - component: {fileID: 8253335554960140552}
   - component: {fileID: 4986769682492273117}
   m_Layer: 5
-  m_Name: EXP text (1)
+  m_Name: ClubEffectDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8610,7 +8616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.015014648, y: 11.847992}
+  m_AnchoredPosition: {x: -0.015014648, y: 11.847961}
   m_SizeDelta: {x: 20.9604, y: 4.6929}
   m_Pivot: {x: 0.46040794, y: 0.6773568}
 --- !u!222 &8817803096861606036
@@ -9173,7 +9179,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1367203830043293971}
   m_HandleRect: {fileID: 146870145865310590}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000004
   m_Size: 0.14606662
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9536,8 +9542,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -554.6, y: 159}
-  m_SizeDelta: {x: -424.60806, y: -325.0822}
+  m_AnchoredPosition: {x: -545.02, y: 155.8527}
+  m_SizeDelta: {x: -414.64, y: -313.6404}
   m_Pivot: {x: 1.4686987, y: -0.122894615}
 --- !u!222 &7293524558235372937
 CanvasRenderer:
@@ -9611,7 +9617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.6400146, y: 0.98000336}
+  m_AnchoredPosition: {x: -1.6401367, y: 0.98000336}
   m_SizeDelta: {x: -1.7386, y: -1.7099}
   m_Pivot: {x: 1.4686987, y: -0.122894615}
 --- !u!222 &998936699691721080
@@ -10294,8 +10300,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.81481934, y: -0.36569214}
-  m_SizeDelta: {x: 13.4605, y: 15.3282}
+  m_AnchoredPosition: {x: 0.044086456, y: -0.085092545}
+  m_SizeDelta: {x: 24.97, y: 28.951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &568206717682120068
 CanvasRenderer:
@@ -10352,7 +10358,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.1
+  m_fontSize: 15
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13896,6 +13902,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845411574536047749, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089990768545437844, guid: 085ebaa0f3d3aaa4aab18449bdc97ab7, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
