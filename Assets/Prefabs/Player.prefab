@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3513257446230046930}
   m_Layer: 8
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3806406294640441681}
   - component: {fileID: 7050830207333245356}
   - component: {fileID: 6583317949645299392}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 2081663551133979830}
   m_Layer: 8
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 1421393577638389766}
   - component: {fileID: 3033839485721927619}
   - component: {fileID: 836267950371979772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4886332804389851394}
   - component: {fileID: 6826384915806484328}
   - component: {fileID: 8657373762562724694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 1084693053201151622}
   m_Layer: 8
   m_Name: Collider/Sprite
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -740,7 +740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5801161195826501451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Aiming Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 4336436814823847216}
   - component: {fileID: 5894610311706898931}
   - component: {fileID: 4230108238871037588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 409041127079324379}
   - component: {fileID: 7144954552656393799}
   - component: {fileID: 3711003218123359514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 5958961332143528798}
   - component: {fileID: 5230508726672793198}
   - component: {fileID: 3946445452847748183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 4995065192738753471}
   - component: {fileID: 1855130903569326641}
   - component: {fileID: 168006545175139222}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8514282297416728233}
   - component: {fileID: 7045923362068306620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174146848363077274}
   - component: {fileID: 2238950016160872086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1338,7 +1338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2697147289492422715}
   - component: {fileID: 4603740082265831226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PowerLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1389,7 +1389,7 @@ GameObject:
   - component: {fileID: 2416897794108495814}
   - component: {fileID: 742721920726115635}
   - component: {fileID: 3342808461612008888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 981130774759159297}
   m_Layer: 8
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1548,7 +1548,7 @@ GameObject:
   - component: {fileID: 1481556490761989806}
   - component: {fileID: 1051620841831278587}
   - component: {fileID: 4920374161692619816}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,9 +1618,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5391893430448884386}
   - component: {fileID: 7578542506422011020}
+  - component: {fileID: 430841367636963813}
   m_Layer: 8
   m_Name: SpriteBody
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,8 +1686,8 @@ SpriteRenderer:
   m_SortingLayerID: -712945779
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9811321, g: 0.7476133, b: 0.34709862, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6dcc7339650c44e27810e379ff68fb7d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1696,6 +1697,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &430841367636963813
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289920126414774657}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27024ad211d9745cd86b71a3a41c944e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7040813832589082637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,7 +1727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6401922773660585014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,7 +1766,7 @@ GameObject:
   - component: {fileID: 3072991734876138511}
   m_Layer: 8
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1895,9 +1917,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4121792326125396573}
   - component: {fileID: 7239944410429913207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball Parent
-  m_TagString: Untagged
+  m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1934,7 +1956,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 1.8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f7b1efd350b19ed4bb70d7ad062c3d1f, type: 2}
@@ -1960,11 +1982,11 @@ GameObject:
   - component: {fileID: 6855299210866783752}
   m_Layer: 8
   m_Name: Triangle
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2378434472569394834
 Transform:
   m_ObjectHideFlags: 0
@@ -2077,7 +2099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7694373394266311497}
   - component: {fileID: 655742649511417682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2163,7 +2185,7 @@ GameObject:
   - component: {fileID: 3399302930766832208}
   m_Layer: 8
   m_Name: Wizard Parent
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
