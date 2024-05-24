@@ -434,14 +434,14 @@ public class EnemyUnit : MonoBehaviour
 
         PlayerManager.Instance.statusEffect.activeStatusEffects.ForEach(x => x.OnDamageEnemy(this, ref damage));
 
+        if (!isDead) SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
+
         TakeDamage(damage);
 
         foreach (var effect in PlayerManager.Instance.inventoryController.GetSelectedClub().clubEffectsTypes)
         {
             ClubEffectsFactory.Create(effect).OnDamageEnemy(this, Mathf.FloorToInt(PlayerManager.Instance.inventoryController.GetSelectedClub().damage));
         }
-
-        SoundManager.Instance.PlaySFX(SoundManager.Instance.enemyDamage);
         //     if (particleEffect != null)
         //     {
         //    //  particleEffect.Stop(); // Stop to clear any ongoing effects

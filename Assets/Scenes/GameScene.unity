@@ -2128,8 +2128,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd58d83f090fe4ea7bbba838a6283aaf, type: 2}
   - {fileID: 11400000, guid: ed05ad249f73c42d7bce22b9ee7f0ac6, type: 2}
   - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  Width: 100
-  Height: 10
+  Width: 30
+  Height: 30
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
   isVoidWalls: 1
   padding: 25
@@ -2367,7 +2367,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 1516347772}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918b09b097751470987db958a6e60306, type: 3}

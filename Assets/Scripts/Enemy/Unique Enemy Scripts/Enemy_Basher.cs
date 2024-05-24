@@ -7,6 +7,7 @@ public class Enemy_Basher : EnemyUnit
 {
     public float bashForce = 5;
     private bool isPlayerBallHit = false;
+    public bool doesDamage = false;
 
     protected override void AttackPlayer(int xDir, int yDir)
     {
@@ -15,6 +16,7 @@ public class Enemy_Basher : EnemyUnit
 
         var direction = new Vector2(xDir + modifierX, yDir + modifierY);
 
+        if (doesDamage) PlayerManager.Instance.TakeDamage(attackDamage);
 
         PlayerManager.Instance.ballRB.AddForce(direction * bashForce, ForceMode2D.Impulse);
         StartCoroutine(SetIsPlayerBallHitTrue());

@@ -1159,7 +1159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543278aebbf3c467ba241474bb01e619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 0}
   spectatorModeText: {fileID: 137230035}
 --- !u!114 &1453079413
 MonoBehaviour:
