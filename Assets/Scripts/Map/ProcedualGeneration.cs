@@ -12,6 +12,9 @@ public class ProcedualGeneration : MonoBehaviour
     // [SerializeField]
     // GameObject floorPrefab;
 
+    public string nextSceneName = "";
+    public bool hasLoadingScene = true;
+
     [SerializeField]
     Tilemap walls;
     [SerializeField]

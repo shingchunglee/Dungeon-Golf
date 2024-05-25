@@ -156,14 +156,24 @@ public class GameManager : MonoBehaviour
 
         isInitialized = false;
 
+        nextSceneName = proceduralGenerationPresets[procGenLevelIndex].nextSceneName;
+        var hasLoadingScene = proceduralGenerationPresets[procGenLevelIndex].hasLoadingScene;
+
         if (procGenLevelIndex < proceduralGenerationPresets.Count)
         {
             procGenLevelIndex++;
         }
 
         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        nextSceneName = "";
-        SceneManager.LoadScene("LoadingScene");
+        // nextSceneName = "";
+        if (nextSceneName == "" || hasLoadingScene)
+        {
+            SceneManager.LoadScene("LoadingScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     public void AdvanceLevelSpecific(string levelName)
@@ -219,7 +229,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "LoadingScene")
+        if (scene.name == "LoadingScene" || scene.name == "END")
         {
             LoadStats();
         }
