@@ -685,6 +685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManagerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8252740902548479007, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: isProceduralGen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8876602356317060470, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1175.9006
@@ -12582,7 +12586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8070073912548293235, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_Name
-      value: Grid
+      value: Grids
       objectReference: {fileID: 0}
     - target: {fileID: 8251082328323609304, guid: 8e92679b9977d409b98604a44648961e, type: 3}
       propertyPath: m_Size.x

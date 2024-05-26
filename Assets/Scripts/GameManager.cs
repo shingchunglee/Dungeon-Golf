@@ -120,6 +120,12 @@ public class GameManager : MonoBehaviour
             HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
             holeGoal.GoalSpawnInit();
         }
+
+        if (SceneManager.GetActiveScene().name == "Custom_12_LavaTransition_Mitch" ||
+            SceneManager.GetActiveScene().name == "Custom_18_FinalLevel_Mitch")
+        {
+            SoundManager.Instance.FadeInLavaMusic();
+        }
     }
 
     private void Update()

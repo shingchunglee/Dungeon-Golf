@@ -193,6 +193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5196470932814673116, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: isProceduralGen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: manualControlTestMode
       value: 0
@@ -282,6 +286,14 @@ PrefabInstance:
     - target: {fileID: 1124473138488680326, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: LavaLevelMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a0c26050ce2d4ef1a804e961bd18389, type: 3}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: LavaVolumeLevel
+      value: 0.072
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -48,13 +48,16 @@ public class SettingsCanvasManager : MonoBehaviour
         Drag.onValueChanged.AddListener(OnDrag);
         Click.onValueChanged.AddListener(OnClick);
 
-        if (PlayerManager.Instance != null && PlayerManager.Instance.isInvincible)
+        if (PlayerManager.Instance != null)
         {
-            Invincibility.isOn = true;
-        }
-        else
-        {
-            Invincibility.isOn = false;
+            if (PlayerManager.Instance != null && PlayerManager.Instance.isInvincible)
+            {
+                Invincibility.isOn = true;
+            }
+            else
+            {
+                Invincibility.isOn = false;
+            }
         }
 
         Invincibility.onValueChanged.AddListener(IsInvincible);
