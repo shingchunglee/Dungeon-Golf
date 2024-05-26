@@ -33,6 +33,7 @@ public class SettingsCanvasManager : MonoBehaviour
     {
         settingsPage.SetActive(true);
         isSettingsOpen = true;
+        OnEnable();
     }
 
     private void OnEnable()
@@ -142,7 +143,6 @@ public class SettingsCanvasManager : MonoBehaviour
         {
             SceneManager.MoveGameObjectToScene(GameManagerGOPlus, SceneManager.GetActiveScene());
         }
-
 
         SceneManager.LoadScene("Main Menu");
     }
