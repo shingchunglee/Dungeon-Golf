@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &275920958838263656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451148126177235197}
+  - component: {fileID: 4048742747296188146}
+  m_Layer: 0
+  m_Name: Level 13_Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451148126177235197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275920958838263656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768710811412953997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4048742747296188146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275920958838263656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
+  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
+  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
+  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
+  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
+  Width: 40
+  Height: 25
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 1
+  padding: 40
 --- !u!1 &908038902025417152
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +81,7 @@ GameObject:
   - component: {fileID: 1272672848394657179}
   - component: {fileID: 3394339602889839152}
   m_Layer: 0
-  m_Name: Level 2
+  m_Name: Level 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -65,6 +137,78 @@ MonoBehaviour:
   Width: 36
   Height: 36
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
+--- !u!1 &3174772573609693415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4416726397530642467}
+  - component: {fileID: 3371604080381512346}
+  m_Layer: 0
+  m_Name: Level 15_Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4416726397530642467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3174772573609693415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768710811412953997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3371604080381512346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3174772573609693415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
+  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
+  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
+  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
+  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
+  Width: 25
+  Height: 70
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 1
+  padding: 40
 --- !u!1 &3660601815326103900
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +220,7 @@ GameObject:
   - component: {fileID: 1692929281079164487}
   - component: {fileID: 8506253581269159028}
   m_Layer: 0
-  m_Name: Level 1
+  m_Name: Level 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,6 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -129,6 +275,148 @@ MonoBehaviour:
   Width: 35
   Height: 35
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
+--- !u!1 &5166495988135302089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7093598280880024679}
+  - component: {fileID: 5793089258325588322}
+  m_Layer: 0
+  m_Name: Level 14_Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7093598280880024679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166495988135302089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768710811412953997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5793089258325588322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166495988135302089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
+  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
+  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
+  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
+  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
+  Width: 40
+  Height: 35
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 1
+  padding: 40
+--- !u!1 &5306149943030027477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8337771536366998271}
+  - component: {fileID: 2570938452503368570}
+  m_Layer: 0
+  m_Name: Level 16_Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8337771536366998271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306149943030027477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768710811412953997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2570938452503368570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306149943030027477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
+  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
+  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
+  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
+  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
+  Width: 55
+  Height: 55
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 1
+  padding: 40
 --- !u!1 &5737920556160638894
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,8 +479,14 @@ MonoBehaviour:
   actionStateController: {fileID: 0}
   golfAim: {fileID: 0}
   golfAimDrag: {fileID: 0}
-  UIBars: {fileID: 0}
+  UIElements: {fileID: 0}
+  statusEffect:
+    statusEffectUI: {fileID: 0}
+    activeStatusEffects: []
+  statusEffectUI: {fileID: 0}
+  explosionParticles: {fileID: 0}
   manualControlTestMode: 0
+  isMovingOveride: 0
   sandDrag: 4
   baseDamage: 0
 --- !u!114 &1634197314303143687
@@ -219,7 +513,7 @@ GameObject:
   - component: {fileID: 1386543187391395435}
   - component: {fileID: 2179907490167932278}
   m_Layer: 0
-  m_Name: Level 3
+  m_Name: Level 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,6 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -274,6 +570,8 @@ MonoBehaviour:
   Width: 40
   Height: 40
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
 --- !u!1 &7108641508375740774
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +634,76 @@ MonoBehaviour:
   isSettingsOpen: 0
   isInventoryOpen: 0
   nextSceneName: 
+--- !u!1 &7928859372859196355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8420500890027503056}
+  - component: {fileID: 3850249573421357667}
+  m_Layer: 0
+  m_Name: Level 17_Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8420500890027503056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928859372859196355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768710811412953997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3850249573421357667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928859372859196355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Custom_18_FinalLevel_Mitch
+  hasLoadingScene: 1
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
+  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
+  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
+  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
+  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
+  Width: 80
+  Height: 30
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 1
+  padding: 40
 --- !u!1 &8419557050284664389
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +715,7 @@ GameObject:
   - component: {fileID: 8085494870759194357}
   - component: {fileID: 3639661214171503820}
   m_Layer: 0
-  m_Name: Level 5
+  m_Name: Level 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,6 +748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: Custom_12_LavaTransition_Mitch
+  hasLoadingScene: 1
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -402,6 +772,8 @@ MonoBehaviour:
   Width: 44
   Height: 44
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
 --- !u!1 &8538852384193603925
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +785,7 @@ GameObject:
   - component: {fileID: 4013719612706061517}
   - component: {fileID: 3018175083593425815}
   m_Layer: 0
-  m_Name: Level 4
+  m_Name: Level 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,6 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -468,6 +842,8 @@ MonoBehaviour:
   Width: 42
   Height: 42
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
 --- !u!1 &9129801651141984875
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,5 +878,10 @@ Transform:
   - {fileID: 1386543187391395435}
   - {fileID: 4013719612706061517}
   - {fileID: 8085494870759194357}
+  - {fileID: 451148126177235197}
+  - {fileID: 7093598280880024679}
+  - {fileID: 4416726397530642467}
+  - {fileID: 8337771536366998271}
+  - {fileID: 8420500890027503056}
   m_Father: {fileID: 4174345805019227652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

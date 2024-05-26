@@ -128,81 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4121792326125396573, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
   m_PrefabInstance: {fileID: 945962818}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &61992832 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-  m_PrefabInstance: {fileID: 1828922579}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &73785399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 73785400}
-  - component: {fileID: 73785401}
-  m_Layer: 0
-  m_Name: Level 14_Lava
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &73785400
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73785399}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 61992832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &73785401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73785399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
-  hasLoadingScene: 1
-  walls: {fileID: 0}
-  floor: {fileID: 0}
-  obstacles: {fileID: 0}
-  trap_damage: {fileID: 0}
-  trap_void: {fileID: 0}
-  trap_floor: {fileID: 0}
-  trap_chest: {fileID: 0}
-  chests: {fileID: 0}
-  enemies: {fileID: 0}
-  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
-  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
-  PlayerSpawn: {x: 0, y: 0}
-  GoalSpawn: {x: 0, y: 0}
-  convolutionRules:
-  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
-  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
-  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 40
-  Height: 35
-  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
-  isVoidWalls: 1
-  padding: 40
 --- !u!1001 &140931341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300,76 +225,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 820b24e835163dc42aba5523438ad431, type: 3}
---- !u!1 &407053595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 407053596}
-  - component: {fileID: 407053597}
-  m_Layer: 0
-  m_Name: Level 16_Lava
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &407053596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407053595}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 61992832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &407053597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407053595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
-  hasLoadingScene: 1
-  walls: {fileID: 0}
-  floor: {fileID: 0}
-  obstacles: {fileID: 0}
-  trap_damage: {fileID: 0}
-  trap_void: {fileID: 0}
-  trap_floor: {fileID: 0}
-  trap_chest: {fileID: 0}
-  chests: {fileID: 0}
-  enemies: {fileID: 0}
-  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
-  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
-  PlayerSpawn: {x: 0, y: 0}
-  GoalSpawn: {x: 0, y: 0}
-  convolutionRules:
-  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
-  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
-  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 55
-  Height: 55
-  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
-  isVoidWalls: 1
-  padding: 40
 --- !u!1839735485 &459314849 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 5418159027491569346, guid: 8e92679b9977d409b98604a44648961e, type: 3}
@@ -942,76 +797,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63a1dd2eae92a44c387dbc1ba7ef943e, type: 3}
---- !u!1 &960590873
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 960590874}
-  - component: {fileID: 960590875}
-  m_Layer: 0
-  m_Name: Level 13_Lava
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &960590874
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960590873}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 61992832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &960590875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960590873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
-  hasLoadingScene: 1
-  walls: {fileID: 0}
-  floor: {fileID: 0}
-  obstacles: {fileID: 0}
-  trap_damage: {fileID: 0}
-  trap_void: {fileID: 0}
-  trap_floor: {fileID: 0}
-  trap_chest: {fileID: 0}
-  chests: {fileID: 0}
-  enemies: {fileID: 0}
-  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
-  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
-  PlayerSpawn: {x: 0, y: 0}
-  GoalSpawn: {x: 0, y: 0}
-  convolutionRules:
-  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
-  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
-  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 40
-  Height: 25
-  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
-  isVoidWalls: 1
-  padding: 40
 --- !u!1 &984314339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,76 +931,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984314339}
   m_CullTransparentMesh: 1
---- !u!1 &1043359039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1043359040}
-  - component: {fileID: 1043359041}
-  m_Layer: 0
-  m_Name: Level 17_Lava
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1043359040
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043359039}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 61992832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1043359041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043359039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
-  hasLoadingScene: 1
-  walls: {fileID: 0}
-  floor: {fileID: 0}
-  obstacles: {fileID: 0}
-  trap_damage: {fileID: 0}
-  trap_void: {fileID: 0}
-  trap_floor: {fileID: 0}
-  trap_chest: {fileID: 0}
-  chests: {fileID: 0}
-  enemies: {fileID: 0}
-  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
-  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
-  PlayerSpawn: {x: 0, y: 0}
-  GoalSpawn: {x: 0, y: 0}
-  convolutionRules:
-  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
-  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
-  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 80
-  Height: 30
-  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
-  isVoidWalls: 1
-  padding: 40
 --- !u!1001 &1113078964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2529,14 +2244,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 583390420424668175, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: nextSceneName
-      value: Custom_12_LavaTransition_Mitch
-      objectReference: {fileID: 0}
-    - target: {fileID: 600987682354180511, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: m_Name
-      value: Level 7
-      objectReference: {fileID: 0}
     - target: {fileID: 1038048081148894042, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
       value: ManagerManager
@@ -2544,22 +2251,6 @@ PrefabInstance:
     - target: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
       value: -321.9115
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891165578668759299, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: m_Name
-      value: Level 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5483743774241309078, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: m_Name
-      value: Level 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5639197705523220102, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: m_Name
-      value: Level 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7289869324058931205, guid: 918b09b097751470987db958a6e60306, type: 3}
-      propertyPath: m_Name
-      value: Level 9
       objectReference: {fileID: 0}
     - target: {fileID: 8240917910095663903, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: manualControlTestMode
@@ -2607,22 +2298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 960590874}
-    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 73785400}
-    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2130877049}
-    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 407053596}
-    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1043359040}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918b09b097751470987db958a6e60306, type: 3}
 --- !u!1 &1926283877
@@ -2860,76 +2536,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 500}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2130877048
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2130877049}
-  - component: {fileID: 2130877050}
-  m_Layer: 0
-  m_Name: Level 15_Lava
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2130877049
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130877048}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 61992832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2130877050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130877048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
-  hasLoadingScene: 1
-  walls: {fileID: 0}
-  floor: {fileID: 0}
-  obstacles: {fileID: 0}
-  trap_damage: {fileID: 0}
-  trap_void: {fileID: 0}
-  trap_floor: {fileID: 0}
-  trap_chest: {fileID: 0}
-  chests: {fileID: 0}
-  enemies: {fileID: 0}
-  voidTile: {fileID: 11400000, guid: da5fd9c1cb0a35628303c0a049af66cf, type: 2}
-  tileRules: {fileID: 11400000, guid: 0e5e3c06c4a5c124a8cece25af1a492c, type: 2}
-  PlayerSpawn: {x: 0, y: 0}
-  GoalSpawn: {x: 0, y: 0}
-  convolutionRules:
-  - {fileID: 11400000, guid: 60195a9b804434bd39df92069deeaeac, type: 2}
-  - {fileID: 11400000, guid: f3c475741f46c489da0c725fac14c11d, type: 2}
-  - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
-  - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
-  - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 25
-  Height: 70
-  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
-  isVoidWalls: 1
-  padding: 40
 --- !u!1839735485 &2132288616 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 4589660823171551973, guid: 8e92679b9977d409b98604a44648961e, type: 3}
