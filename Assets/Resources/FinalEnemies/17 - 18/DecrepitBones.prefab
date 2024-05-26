@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1d640541dc48f5b9432742e7667e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: DecrepitBones
+  enemyName: Decrepit Bones
   MaxHP: 30
   CurrentHP: 0
   moveAttacksPerTurn: 4

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f050204a040b41e58fe91f44218c853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: BeserkMonster
+  enemyName: Beserk Monster
   MaxHP: 8
   CurrentHP: 0
   moveAttacksPerTurn: 4
