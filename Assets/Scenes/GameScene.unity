@@ -1007,7 +1007,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
   - {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
   - {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
-  Width: 60
+  Width: 40
   Height: 25
   chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
   isVoidWalls: 1
@@ -2531,7 +2531,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 600987682354180511, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
-      value: Level 6
+      value: Level 7
       objectReference: {fileID: 0}
     - target: {fileID: 1038048081148894042, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
@@ -2543,19 +2543,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3891165578668759299, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
-      value: Level 7
+      value: Level 8
       objectReference: {fileID: 0}
     - target: {fileID: 5483743774241309078, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
-      value: Level 9
+      value: Level 10
       objectReference: {fileID: 0}
     - target: {fileID: 5639197705523220102, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
-      value: Level 10
+      value: Level 11
       objectReference: {fileID: 0}
     - target: {fileID: 7289869324058931205, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
-      value: Level 8
+      value: Level 9
       objectReference: {fileID: 0}
     - target: {fileID: 8876602356317060470, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
