@@ -832,7 +832,11 @@ MonoBehaviour:
 
 
     Press
-    WASD to view the map. Space Bar to snap camera back to ball.
+    the arrow keys to change consumables and clubs.
+
+
+    Press WASD to view the
+    map. Space Bar to snap camera back to ball.
 
 
     Happy golfing.'
