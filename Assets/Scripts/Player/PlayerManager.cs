@@ -140,14 +140,14 @@ public class PlayerManager : MonoBehaviour
         {
             statusEffect.Add(PlayerStatusEffect.StatusEffectType.STRENGTH, 3);
         };
-        ExplosionPotion.OnConsume += () =>
-        {
-            Explode();
-            if (explosionParticles != null)
-            {
-                explosionParticles.Play();
-            }
-        };
+        // ExplosionPotion.OnConsume += () =>
+        // {
+        //     Explode();
+        //     if (explosionParticles != null)
+        //     {
+        //         explosionParticles.Play();
+        //     }
+        // };
     }
 
     private void FixedUpdate()
