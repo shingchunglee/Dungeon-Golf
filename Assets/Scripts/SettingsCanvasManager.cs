@@ -136,18 +136,13 @@ public class SettingsCanvasManager : MonoBehaviour
 
     public void ButtonMainMenu()
     {
-        var GameManagerGO = GameObject.Find("GameManager");
-        var PlayerManagerGO = GameObject.Find("PlayerManager");
+        var GameManagerGOPlus = GameObject.Find("GameManager +");
 
-        if (GameManagerGO != null)
+        if (GameManagerGOPlus != null)
         {
-            SceneManager.MoveGameObjectToScene(GameManagerGO, SceneManager.GetActiveScene());
+            SceneManager.MoveGameObjectToScene(GameManagerGOPlus, SceneManager.GetActiveScene());
         }
 
-        if (PlayerManagerGO != null)
-        {
-            SceneManager.MoveGameObjectToScene(PlayerManagerGO, SceneManager.GetActiveScene());
-        }
 
         SceneManager.LoadScene("Main Menu");
     }
