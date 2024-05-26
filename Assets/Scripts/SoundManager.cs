@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip playerDamage;
     public AudioClip levelUp;
 
-    public float LavaVolumeLevel = 0.072f;
+    public float LavaVolumeLevel = 0.089f;
     public float ThemeVolumeLevel = 0.114f;
     public float DungeonVolumeLevel = 0.089f;
 
@@ -86,7 +86,7 @@ public class SoundManager : MonoBehaviour
     private IEnumerator FadeOutAndFadeInLavaMusic()
     {
 
-        float duration = 9f;
+        float duration = 6f;
         float targetVolume = 0f;
         float currentTime = 0;
 

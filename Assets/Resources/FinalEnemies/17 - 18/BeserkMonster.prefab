@@ -79,7 +79,7 @@ MonoBehaviour:
   CurrentHP: 0
   moveAttacksPerTurn: 4
   maxAttacksPerTurn: 3
-  attackDamage: 1
+  attackDamage: 2
   willBallCollide: 0
   EXPReward: 45
   healthBar: {fileID: 0}

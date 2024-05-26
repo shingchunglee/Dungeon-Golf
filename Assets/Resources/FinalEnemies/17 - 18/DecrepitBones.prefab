@@ -128,8 +128,8 @@ MonoBehaviour:
   MaxHP: 30
   CurrentHP: 0
   moveAttacksPerTurn: 4
-  maxAttacksPerTurn: 2
-  attackDamage: 10
+  maxAttacksPerTurn: 1
+  attackDamage: 8
   willBallCollide: 1
   EXPReward: 45
   healthBar: {fileID: 0}

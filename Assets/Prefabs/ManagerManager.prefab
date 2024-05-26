@@ -73,6 +73,30 @@ PrefabInstance:
       propertyPath: convolutionRules.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Width
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Height
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 529632056d8ae47bd8abc2ee749fb4f4, type: 2}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2622133a0e61e4ddca5064320aa03775, type: 2}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c2f84bfc78c5a41bb96b2437eab6c2d5, type: 2}
     - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
       value: 6
@@ -101,9 +125,25 @@ PrefabInstance:
       propertyPath: convolutionRules.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: 8d147e15520074065b2bba00534d9410, type: 2}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Height
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a648f178c300f4a03a51bf9640dfe7f0, type: 2}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2622133a0e61e4ddca5064320aa03775, type: 2}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[0]
@@ -120,7 +160,7 @@ PrefabInstance:
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+      objectReference: {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[5]
       value: 
@@ -153,6 +193,42 @@ PrefabInstance:
       propertyPath: convolutionRules.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Width
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Height
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 57309faa8c1194a79b70d24a4f762cae, type: 2}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 24332cb0eb7904c849ef516dd869a27e, type: 2}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e335e2b2a6e5443894eab5f4b17ee24, type: 2}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: dadfa8e189da24204b054e29b7337c5a, type: 2}
+    - target: {fileID: 4048742747296188146, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048742747296188146, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a648f178c300f4a03a51bf9640dfe7f0, type: 2}
     - target: {fileID: 4174345805019227652, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -842.02356
@@ -199,15 +275,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: manualControlTestMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: Width
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a648f178c300f4a03a51bf9640dfe7f0, type: 2}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 85a030b04dcb947eea587342e661e663, type: 2}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e335e2b2a6e5443894eab5f4b17ee24, type: 2}
     - target: {fileID: 7108641508375740774, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: m_Name
       value: GameManager +
       objectReference: {fileID: 0}
     - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8506253581269159028, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[0]
@@ -288,12 +384,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: enemyDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: b5a0b2e13aa6543129eb9a3066120652, type: 3}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
+      propertyPath: playerDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: 7987ddf79058540d19b05542066cc03c, type: 3}
+    - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: LavaLevelMusic
       value: 
       objectReference: {fileID: 8300000, guid: 0a0c26050ce2d4ef1a804e961bd18389, type: 3}
     - target: {fileID: 3014650331520187507, guid: ab4065a99a96c304393173f37aa51272, type: 3}
       propertyPath: LavaVolumeLevel
-      value: 0.072
+      value: 0.087
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
