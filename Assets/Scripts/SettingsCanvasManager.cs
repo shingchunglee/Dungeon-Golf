@@ -7,6 +7,7 @@ public class SettingsCanvasManager : MonoBehaviour
     // public ToggleGroup aimGroup;
     public Toggle Drag;
     public Toggle Click;
+    public Toggle Invincibility;
     public Slider Music;
     public Slider SFX;
     public GameObject settingsPage;
@@ -46,6 +47,17 @@ public class SettingsCanvasManager : MonoBehaviour
         }
         Drag.onValueChanged.AddListener(OnDrag);
         Click.onValueChanged.AddListener(OnClick);
+
+        if (PlayerManager.Instance != null && PlayerManager.Instance.isInvincible)
+        {
+            Invincibility.isOn = true;
+        }
+        else
+        {
+            Invincibility.isOn = false;
+        }
+
+        Invincibility.onValueChanged.AddListener(IsInvincible);
 
         float playerPrefMusicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat("MusicVolume", 1));
         Music.value = playerPrefMusicVolume;
@@ -92,12 +104,26 @@ public class SettingsCanvasManager : MonoBehaviour
         }
     }
 
+    private void IsInvincible(bool isOn)
+    {
+        if (isOn)
+        {
+            PlayerManager.Instance.SetPlayerInvincibility(true);
+        }
+        else
+        {
+            PlayerManager.Instance.SetPlayerInvincibility(false);
+        }
+    }
+
     public void CloseSettings()
     {
         // SceneManager.UnloadSceneAsync("Settings");
         settingsPage.SetActive(false);
         isSettingsOpen = false;
-        GameManager.Instance.isCursorOverHUDElement = false;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.isCursorOverHUDElement = false;
     }
 
     public void ButtonQuit()

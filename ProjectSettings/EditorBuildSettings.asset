@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScene.unity
     guid: 5f30d2108749b4fe9904f5d2e35bb584
   - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_0_Tutorial_Mitch.unity
+    guid: 7bba36f15df2449f481a2df85c08ca93
+  - enabled: 1
     path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_1_Mitch.unity
     guid: 0ef78b1a5d1e944bcb53cf86edd5628a
   - enabled: 1
@@ -41,4 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_5_Mitch.unity
     guid: 1bcbf9e9374764d90b616737057142ad
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_6_LavaTransition_Mitch.unity
+    guid: 5acd8c871687541f297ee3dff48e21b8
+  - enabled: 1
+    path: Assets/Scenes/CustomLevels_Final/CustomLevels/Custom_7_FinalLevel_Mitch.unity
+    guid: 8e64f2ca0cc0a4866a7971e3be110945
   m_configObjects: {}

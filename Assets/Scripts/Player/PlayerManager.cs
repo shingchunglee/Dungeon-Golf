@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public int currentHP;
     public float endLevelRegenPercent = 0.4f;
     public int attackDamage = 5;
+    public bool isInvincible { get; private set; } = false;
 
     public int currentDamage
     {
@@ -313,7 +314,9 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHP -= damage;
+
+        if (!isInvincible) currentHP -= damage;
+
         SoundManager.Instance.PlaySFX(SoundManager.Instance.playerDamage);
 
         UpdateHPText();
@@ -533,6 +536,11 @@ public class PlayerManager : MonoBehaviour
         isMovingOveride = true;
         yield return new WaitForSeconds(time);
         isMovingOveride = false;
+    }
+
+    public void SetPlayerInvincibility(bool isPlayerInvincible)
+    {
+        isInvincible = isPlayerInvincible;
     }
 
 }

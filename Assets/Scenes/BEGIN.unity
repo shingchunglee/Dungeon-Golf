@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstImage: {fileID: 1261315614}
   secondImage: {fileID: 377356351}
-  nextSceneName: Custom_1_Mitch
+  nextSceneName: Custom_0_Tutorial_Mitch
 --- !u!4 &464807164
 Transform:
   m_ObjectHideFlags: 0

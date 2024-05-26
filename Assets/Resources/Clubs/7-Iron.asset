@@ -21,7 +21,7 @@ MonoBehaviour:
   minVariance: -1
   varianceLevelDuration: 1.1
   varianceEasingFunction: 1
-  damage: 2
+  damage: 4
   weight: 5
   appearsAfter: 0
   appearsAfterAppearsAfter: 0

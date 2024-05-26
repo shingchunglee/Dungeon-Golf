@@ -66,6 +66,9 @@ TagManager:
   - name: Water tile
     uniqueID: 3550410219
     locked: 0
+  - name: AboveWall
+    uniqueID: 4073538545
+    locked: 0
   - name: New Layer 7
     uniqueID: 3529237947
     locked: 0
