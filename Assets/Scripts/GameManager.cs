@@ -109,17 +109,33 @@ public class GameManager : MonoBehaviour
                 proceduralGenerationPresets.Add(procGen);
             }
         }
-        if (isProceduralGen)
+        var isProcGen = GameObject.Find("IsProcGen");
+        if (isProcGen != null && isProcGen.TryGetComponent(out IsProcGen isProcGenScript))
         {
-            proceduralGenerationPresets[procGenLevelIndex].Main();
+            if (isProcGenScript.isProceduralGen)
+            {
+                proceduralGenerationPresets[procGenLevelIndex].Main();
 
-            proceduralGenerationPresets[procGenLevelIndex].UpdateGridManager();
+                proceduralGenerationPresets[procGenLevelIndex].UpdateGridManager();
 
-            PlayerManager.Instance.PlayerSpawnInit();
+                PlayerManager.Instance.PlayerSpawnInit();
 
-            HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
-            holeGoal.GoalSpawnInit();
+                HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
+                holeGoal.GoalSpawnInit();
+            }
         }
+        // if (isProceduralGen)
+        // {
+        //     proceduralGenerationPresets[procGenLevelIndex].Main();
+
+        //     proceduralGenerationPresets[procGenLevelIndex].UpdateGridManager();
+
+        //     PlayerManager.Instance.PlayerSpawnInit();
+
+        //     HoleGoal holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
+        //     holeGoal.GoalSpawnInit();
+        // }
+
 
         if (SceneManager.GetActiveScene().name == "Custom_12_LavaTransition_Mitch" ||
             SceneManager.GetActiveScene().name == "Custom_18_FinalLevel_Mitch")
