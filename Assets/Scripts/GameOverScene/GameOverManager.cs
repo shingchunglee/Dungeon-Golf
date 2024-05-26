@@ -31,6 +31,13 @@ public class GameOverManager : MonoBehaviour
 
     public void RetryGame()
     {
+        var GameManagerGOPlus = GameObject.Find("GameManager +");
+
+        if (GameManagerGOPlus != null)
+        {
+            SceneManager.MoveGameObjectToScene(GameManagerGOPlus, SceneManager.GetActiveScene());
+        }
+
         SceneManager.LoadScene("Main Menu"); // Reloads the current scene
     }
 }

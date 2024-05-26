@@ -33,6 +33,16 @@ public class EndSceneManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        if (nextSceneName == "Main Menu")
+        {
+            var GameManagerGOPlus = GameObject.Find("GameManager +");
+
+            if (GameManagerGOPlus != null)
+            {
+                SceneManager.MoveGameObjectToScene(GameManagerGOPlus, SceneManager.GetActiveScene());
+            }
+        }
+
         SceneManager.LoadScene(nextSceneName);
     }
 }
