@@ -20,7 +20,7 @@ public class InventoryController : MonoBehaviour
   private void Awake()
   {
     Init();
-    consumables.AddConsumable(Consumables.EXPLOSION_POTION, 5);
+    // consumables.AddConsumable(Consumables.EXPLOSION_POTION, 5);
     OnClubChanged += (Club club) =>
     {
       foreach (var effects in Enum.GetValues(typeof(ClubEffectsType)).Cast<ClubEffectsType>())
@@ -48,7 +48,7 @@ public class InventoryController : MonoBehaviour
     if (clubs.Count == 0)
     {
       AddClub(ClubType.Iron7);
-      AddClub(ClubType.whackOfWarlock);
+      // AddClub(ClubType.whackOfWarlock);
     }
     UpdateUI();
   }
