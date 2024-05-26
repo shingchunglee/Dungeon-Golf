@@ -6,7 +6,7 @@ public class InstantKill : ClubEffects
     {
         statusEffectType = PlayerStatusEffect.StatusEffectType.INSTAKILL;
     }
-    private const float instantKillChance = 0.3f;
+    private const float instantKillChance = 0.1f;
     private const int highDamageAmount = 10; // Define the high damage amount
 
     public override void OnDamageEnemy(EnemyUnit enemy, int damage)
