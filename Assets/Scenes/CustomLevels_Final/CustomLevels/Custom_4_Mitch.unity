@@ -28519,6 +28519,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManagerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8240917910095663903, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: manualControlTestMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8876602356317060470, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1175.9006
