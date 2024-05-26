@@ -203,6 +203,13 @@ public class GameManager : MonoBehaviour
 
         isInitialized = false;
         nextSceneName = levelName;
+
+        if (nextSceneName == "END") // HARD CODE SKIP LOADING SCENE
+        {
+            SceneManager.LoadScene(nextSceneName);
+            return;
+        }
+
         SceneManager.LoadScene("LoadingScene");
     }
 
