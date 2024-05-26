@@ -50,8 +50,10 @@ public class ChestController : MonoBehaviour
 
     public void OpenChest()
     {
+        GameManager.Instance.statsController.IncrementChestsOpened();
         if (manualContent)
         {
+
             foreach (ClubType clubInChest in clubs)
             {
                 InventoryClub club = PlayerManager.Instance.inventoryController.AddClub(clubInChest);
@@ -66,7 +68,6 @@ public class ChestController : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.statsController.IncrementChestsOpened();
             ClubType? clubType = ItemRandomiser.Instance.GetRandomisedClub();
 
             Dictionary<Consumables, int> randomConsumables = ItemRandomiser.Instance.GetRandomConsumables();
