@@ -395,6 +395,22 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    // public void AdjustBallPositionAfterShot()
+    // {
+    //     float xPos = ballRB.position.x;
+    //     float yPos = ballRB.position.y;
+
+    //     float xRemain = xPos % 1;
+    //     float yRemain = yPos % 1;
+
+
+
+    //     if (xRemain < 0.16f) xPos = Mathf.Floor(xPos) + 0.16f;
+    //     if (xRemain > 0.84f) xPos = Mathf.Floor(xPos) + 0.84f; 
+
+    //     Vector2 newPos =
+    // }
+
     private bool isBallInSand = false;
     public float sandDrag = 4f;
 

@@ -24,8 +24,8 @@ TagManager:
   - Lava
   - Sand
   - Obstacle
-  - 
-  - 
+  - MovingEnemy
+  - NothingCollides
   - 
   - 
   - 

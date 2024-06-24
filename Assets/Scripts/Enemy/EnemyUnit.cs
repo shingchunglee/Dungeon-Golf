@@ -170,6 +170,8 @@ public class EnemyUnit : MonoBehaviour
     //PreMove is called by TakeTurn. This sets up the variables for a move/attack.
     protected void PreMove()
     {
+        boxCollider.gameObject.layer = LayerMask.NameToLayer("MovingEnemy");
+
         pathDirections = CalculatePathAStar();
 
         nodeAtLocation.entitiesOnTile.Remove(EntityType.ENEMY);
@@ -367,6 +369,7 @@ public class EnemyUnit : MonoBehaviour
     private void PostMovePrivate()
     {
         nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
+        boxCollider.gameObject.layer = LayerMask.NameToLayer("Default");
         PostMove();
     }
 
