@@ -9,14 +9,6 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Slider HealthSlider;
     public bool displayHPBarAtFull = false;
 
-    private void Start()
-    {
-        if (!displayHPBarAtFull)
-        {
-            HealthSlider.gameObject.SetActive(false);
-        }
-    }
-
     public void UpdateHealthBar(float currentValue, float maxValue)
     {
         float newValue = currentValue / maxValue;

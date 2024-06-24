@@ -1130,6 +1130,77 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 720b4f4c447934443839fde3f7a0e781, type: 3}
+--- !u!1 &1685124011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685124012}
+  - component: {fileID: 1685124013}
+  m_Layer: 0
+  m_Name: Level 7_NewSpawns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1685124012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685124011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1828922580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1685124013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685124011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  levelPar: 10
+  EXPRewardEndLevel: 50
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
+  tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 2fc93456a7f7b40958d9d529ba6ee1a7, type: 2}
+  - {fileID: 11400000, guid: 8896613d6433046788edad61a08b759c, type: 2}
+  - {fileID: 11400000, guid: 933e5a4c47a4b49c18a58d1246ee0b8c, type: 2}
+  - {fileID: 11400000, guid: d0515958eeaba4674824bd3e71032a04, type: 2}
+  Width: 35
+  Height: 35
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
 --- !u!1839735485 &1720664197 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 730281096832185543, guid: 8e92679b9977d409b98604a44648961e, type: 3}
@@ -1264,9 +1335,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1685124012}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918b09b097751470987db958a6e60306, type: 3}
+--- !u!4 &1828922580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
+  m_PrefabInstance: {fileID: 1828922579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1926283877
 GameObject:
   m_ObjectHideFlags: 0
