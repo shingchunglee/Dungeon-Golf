@@ -145,7 +145,6 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.FadeInLavaMusic();
         }
 
-
         shotsTakenOnLevel = 0;
         PlayerManager.Instance.UIElements.UpdateShotText(shotsTakenOnLevel);
     }
