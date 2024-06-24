@@ -171,6 +171,7 @@ public class EnemyUnit : MonoBehaviour
     protected void PreMove()
     {
         boxCollider.gameObject.layer = LayerMask.NameToLayer("MovingEnemy");
+        // if (willBallCollide) boxCollider.isTrigger = false;
 
         pathDirections = CalculatePathAStar();
 
@@ -370,6 +371,8 @@ public class EnemyUnit : MonoBehaviour
     {
         nodeAtLocation.entitiesOnTile.Add(EntityType.ENEMY);
         boxCollider.gameObject.layer = LayerMask.NameToLayer("Default");
+        // if (willBallCollide) boxCollider.isTrigger = true;
+
         PostMove();
     }
 

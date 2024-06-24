@@ -588,6 +588,12 @@ public class PlayerManager : MonoBehaviour
         UpdateHPText();
     }
 
+    public bool IsHealthAtMax()
+    {
+        if (currentHP >= maxHP) return true;
+        else return false;
+    }
+
     public void IncreaseBaseDamage(int increaseBy)
     {
         baseDamage += increaseBy;
