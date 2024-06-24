@@ -1289,6 +1289,14 @@ PrefabInstance:
       propertyPath: EXPRewardEndLevel
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 583390420424668175, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 583390420424668175, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3edff62a2f724479b940a1013a71bf5d, type: 2}
     - target: {fileID: 1038048081148894042, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
       value: ManagerManager
@@ -1309,6 +1317,10 @@ PrefabInstance:
       propertyPath: EXPRewardEndLevel
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 1403017344560122708, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1463787406746935897, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: levelPar
       value: 20
@@ -1324,6 +1336,10 @@ PrefabInstance:
     - target: {fileID: 1549571469992311539, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: EXPRewardEndLevel
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549571469992311539, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1817198114065988537, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: levelPar
@@ -1345,6 +1361,14 @@ PrefabInstance:
       propertyPath: EXPRewardEndLevel
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2655616041293376949, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655616041293376949, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: convolutionRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
     - target: {fileID: 7709913062996840865, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: levelPar
       value: 18

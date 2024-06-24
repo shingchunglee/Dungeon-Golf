@@ -25,4 +25,4 @@ MonoBehaviour:
     - gameObject: {fileID: 4010483977594372420, guid: d58a4265653e1d948b909bcf0a85a555, type: 3}
       Type: 9
   - row: []
-  chance: 0.01
+  chance: 0.007
