@@ -1970,11 +1970,11 @@ MonoBehaviour:
   HPTextHUD: {fileID: 1931309813178123497}
   LevelTextHUD: {fileID: 8862976259360007884}
   EXPTextMenu: {fileID: 7484107767537417564}
-  LevelTextMenu: {fileID: 4978112749640846563}
+  LevelTextMenu: {fileID: 157342350291013460}
   basePowerLevelTextMenu: {fileID: 8012091540098841573}
   clubPowerLevelTextMenu: {fileID: 1807680110150744915}
   damageTotalTextMenu: {fileID: 4982418733074200129}
-  damageTotalTextHUD: {fileID: 91910019962340915}
+  damageTotalTextHUD: {fileID: 3864204187847706937}
   clubEffectTextMenu: {fileID: 0}
   EXPSliderMenu: {fileID: 8899768222250721857}
   textColourBase: {r: 0, g: 0, b: 0, a: 1}
@@ -3169,9 +3169,9 @@ RectTransform:
   m_Father: {fileID: 1673869788609281610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10.454, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2697913959663556729
 CanvasRenderer:
@@ -3970,8 +3970,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1915700841418705651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8539334}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000015258789, y: 0.000061035156}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5611,7 +5611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.00054186117}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.0005842948}
   m_SizeDelta: {x: 0.0001, y: 1309.0603}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2707091956323685638
@@ -10328,8 +10328,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1367203830043293971}
   m_HandleRect: {fileID: 146870145865310590}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.14606664
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13766,7 +13766,7 @@ RectTransform:
   m_Father: {fileID: 1415397908206092816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15353,7 +15353,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 195566003020765282, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 705325631322993701, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_Pivot.x
@@ -15441,7 +15441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520037188395193084, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2671458447876714428, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_IsActive
@@ -15449,7 +15449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5051563676800696679, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675105077643350246, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_Name
@@ -15457,7 +15457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6168588927280595213, guid: eb2612bbb296d4942a78757d2ea24124, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

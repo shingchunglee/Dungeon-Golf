@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3382750792995293058, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
+      propertyPath: displayHPBarAtFull
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4047021988096215698, guid: cc95d2e903d55044cae399c5f9088906, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
