@@ -1772,7 +1772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9143385934969387236, guid: cc1ff69a632164b849734557b628c841, type: 3}
       propertyPath: par
-      value: 14
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143385934969387236, guid: cc1ff69a632164b849734557b628c841, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

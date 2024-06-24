@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 1685124012}
   - component: {fileID: 1685124013}
   m_Layer: 0
-  m_Name: Level 7_NewSpawns
+  m_Name: Level 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
-  levelPar: 10
+  levelPar: 14
   EXPRewardEndLevel: 50
   walls: {fileID: 0}
   floor: {fileID: 0}
@@ -1273,17 +1273,85 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 192024190721060401, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 192024190721060401, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 583390420424668175, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: levelPar
-      value: 12
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 583390420424668175, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1038048081148894042, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_Name
       value: ManagerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1149798334644597408, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149798334644597408, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403017344560122708, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403017344560122708, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463787406746935897, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463787406746935897, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549571469992311539, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549571469992311539, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817198114065988537, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817198114065988537, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: m_LocalPosition.x
       value: -321.9115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655616041293376949, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655616041293376949, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709913062996840865, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: levelPar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709913062996840865, guid: 918b09b097751470987db958a6e60306, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8240917910095663903, guid: 918b09b097751470987db958a6e60306, type: 3}
       propertyPath: manualControlTestMode
@@ -1334,7 +1402,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 600987682354180511, guid: 918b09b097751470987db958a6e60306, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2086957974240088910, guid: 918b09b097751470987db958a6e60306, type: 3}
       insertIndex: 0
