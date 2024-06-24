@@ -5,10 +5,23 @@ public class MoveState : IPlayerActionState
 {
     PlayerActionStateController controller;
 
+    private CameraMove cameraMove;
+
     private bool isMoving = false;
 
     public void OnEnter(PlayerActionStateController controller)
     {
+        if (cameraMove == null)
+        {
+            cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMove>();
+        }
+
+        if (cameraMove != null)
+        {
+            cameraMove.FixCameraOnBall();
+        }
+
+
         GameManager.Instance.IncrementShotsTaken();
 
         this.controller = controller;
@@ -27,7 +40,7 @@ public class MoveState : IPlayerActionState
         }
         SoundManager.Instance.PlaySFX(SoundManager.Instance.stroke);
         // ! HACK SOLUTION: ME BRAIN NO WORK NO KNOW BETTER SOLUTION PLZ HELP
-        controller.StartCoroutine(SetMoving(1f));
+        controller.StartCoroutine(SetMoving(0.2f)); //TODO: Review if change from 1f to 0.2f was successful!
     }
 
     IEnumerator SetMoving(float delay)

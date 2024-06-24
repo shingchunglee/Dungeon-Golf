@@ -4,7 +4,7 @@ public class CameraMove : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public Transform golfBall;
-    private bool isFreeCamera = false;
+    public bool isFreeCamera { get; private set; } = false;
 
     public delegate void FreeCameraModeChanged(bool isFreeCamera);
     public static event FreeCameraModeChanged OnFreeCameraModeChanged;
@@ -31,9 +31,7 @@ public class CameraMove : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isFreeCamera = false;
-            OnFreeCameraModeChanged?.Invoke(isFreeCamera);
-            ResetCameraPosition();
+            FixCameraOnBall();
         }
 
         if (!isFreeCamera && golfBall != null)
@@ -42,8 +40,11 @@ public class CameraMove : MonoBehaviour
         }
     }
 
-    void ResetCameraPosition()
+    public void FixCameraOnBall()
     {
+        isFreeCamera = false;
+        OnFreeCameraModeChanged?.Invoke(isFreeCamera);
+
         if (golfBall != null)
         {
             transform.position = new Vector3(golfBall.position.x, golfBall.position.y, transform.position.z);
