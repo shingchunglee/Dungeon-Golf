@@ -33,6 +33,77 @@ Transform:
   - {fileID: 248950927336312519}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6537984343285070684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5146927901509248468}
+  - component: {fileID: 2309234368726424490}
+  m_Layer: 0
+  m_Name: Level 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5146927901509248468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537984343285070684}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2086957974240088910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2309234368726424490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537984343285070684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c292516ed9c414e0cbee299d2bd9398c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: 
+  hasLoadingScene: 1
+  levelPar: 14
+  EXPRewardEndLevel: 50
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  obstacles: {fileID: 0}
+  trap_damage: {fileID: 0}
+  trap_void: {fileID: 0}
+  trap_floor: {fileID: 0}
+  trap_chest: {fileID: 0}
+  chests: {fileID: 0}
+  enemies: {fileID: 0}
+  voidTile: {fileID: 11400000, guid: 566d1f45edc78b88c7f13d10a7c19ef8, type: 2}
+  tileRules: {fileID: 11400000, guid: 951d8e5597f0a7848a133fd7e64c045d, type: 2}
+  PlayerSpawn: {x: 0, y: 0}
+  GoalSpawn: {x: 0, y: 0}
+  convolutionRules:
+  - {fileID: 11400000, guid: 2fc93456a7f7b40958d9d529ba6ee1a7, type: 2}
+  - {fileID: 11400000, guid: 8896613d6433046788edad61a08b759c, type: 2}
+  - {fileID: 11400000, guid: 933e5a4c47a4b49c18a58d1246ee0b8c, type: 2}
+  - {fileID: 11400000, guid: d0515958eeaba4674824bd3e71032a04, type: 2}
+  Width: 35
+  Height: 35
+  chestPrefab: {fileID: 9142398439467529157, guid: c19aa66ade604f444938ab924935b6ee, type: 3}
+  isVoidWalls: 0
+  padding: 0
 --- !u!1001 &4222743573628627139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,8 +117,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 67216ab5dd63c4249b3ef8541779e5b7, type: 3}
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[0]
@@ -60,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 4eebf76e7c31e465b9ee552ba4f9a3f2, type: 2}
+      objectReference: {fileID: 11400000, guid: b688d59cdd9af471cabaa810175afcb8, type: 2}
     - target: {fileID: 2179907490167932278, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[4]
       value: 
@@ -82,6 +161,14 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570938452503368570, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -97,9 +184,21 @@ PrefabInstance:
       propertyPath: convolutionRules.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: c2f84bfc78c5a41bb96b2437eab6c2d5, type: 2}
+    - target: {fileID: 2768710811412953997, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -321.9115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3018175083593425815, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[0]
@@ -130,6 +229,14 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371604080381512346, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -142,8 +249,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2622133a0e61e4ddca5064320aa03775, type: 2}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3394339602889839152, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[0]
@@ -170,9 +285,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4fd7481b3d0544bd9b8772d31dbc9624, type: 2}
     - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
-      propertyPath: convolutionRules.Array.size
-      value: 6
+      propertyPath: levelPar
+      value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: convolutionRules.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3edff62a2f724479b940a1013a71bf5d, type: 2}
     - target: {fileID: 3639661214171503820, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.data[2]
       value: 
@@ -202,6 +329,14 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850249573421357667, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -221,6 +356,14 @@ PrefabInstance:
       propertyPath: convolutionRules.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: dadfa8e189da24204b054e29b7337c5a, type: 2}
+    - target: {fileID: 4048742747296188146, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048742747296188146, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 4048742747296188146, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
       value: 3
@@ -271,15 +414,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5196470932814673116, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: isProceduralGen
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5244351354693663708, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: manualControlTestMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: Width
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: levelPar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      propertyPath: EXPRewardEndLevel
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5793089258325588322, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
       propertyPath: convolutionRules.Array.size
@@ -322,13 +473,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e533e261996984823a2656d117953e64, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3660601815326103900, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2768710811412953997, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 5146927901509248468}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
 --- !u!4 &248950927336312519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4174345805019227652, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
+  m_PrefabInstance: {fileID: 4222743573628627139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2086957974240088910 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2768710811412953997, guid: 5c69a48b8192b40f187498b80afcbcd1, type: 3}
   m_PrefabInstance: {fileID: 4222743573628627139}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7350841336967542675
