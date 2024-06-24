@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 14
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 10
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -185,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 18
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -255,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 10
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -323,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 15
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -393,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 16
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -548,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 11
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -624,6 +631,7 @@ MonoBehaviour:
   enemyManager: {fileID: 0}
   isInitialized: 0
   gridManager: {fileID: 0}
+  levelManager: {fileID: 0}
   proceduralGenerationPresets: []
   procGenLevelIndex: 0
   dungeonLevel: 0
@@ -680,6 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: Custom_18_FinalLevel_Mitch
   hasLoadingScene: 1
+  levelPar: 18
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -750,6 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: Custom_12_LavaTransition_Mitch
   hasLoadingScene: 1
+  levelPar: 12
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -820,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: 
   hasLoadingScene: 1
+  levelPar: 11
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}

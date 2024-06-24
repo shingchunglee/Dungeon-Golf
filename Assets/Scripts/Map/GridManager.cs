@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -59,6 +60,8 @@ public class GridManager : MonoBehaviour
     public GameObject startObjectToCalculatePath;
     public GameObject TargetObjectToCalculatePathTo;
 
+    public HoleGoal holeGoal { get; private set; }
+
     private void Start()
     {
         if (!isCurrentLevelProcGen())
@@ -66,8 +69,17 @@ public class GridManager : MonoBehaviour
             ScanMap();
         }
 
+        holeGoal = GameObject.Find("HoleGoal").GetComponent<HoleGoal>();
+
+        Invoke(nameof(LateStart), 1f);
+
         // TestLogGrid();
         // TestPathfinding();
+    }
+
+    private void LateStart()
+    {
+        CalculateParBasedOnMap();
     }
 
     private bool isCurrentLevelProcGen()
@@ -79,11 +91,7 @@ public class GridManager : MonoBehaviour
             return true;
         }
         else return false;
-
-
     }
-
-
 
     private void ScanMap()
     {
@@ -137,6 +145,10 @@ public class GridManager : MonoBehaviour
         ScanTilemapByLayer(map_enemy_spawn, entityType: EntityType.ENEMY_SPAWN);
     }
 
+    public int numberOfWalkableFloor { get; private set; }
+    public int numberOfHazards { get; private set; }
+
+
     /// <summary>
     /// Scans a tilemap and adds a FloorType or an EntityType to the Node at the corresponding location for each
     /// tile on the tilemap.
@@ -147,6 +159,9 @@ public class GridManager : MonoBehaviour
     {
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+        numberOfHazards = 0;
+        numberOfWalkableFloor = 0;
 
         // Debug.Log($"Map: {tilemap.gameObject.name} | Origin: [{bounds.x},{bounds.y}], Size: [{bounds.size.x}, {bounds.size.y}] ==================================================================");
 
@@ -176,12 +191,26 @@ public class GridManager : MonoBehaviour
 
                     if (floorType != null)
                     {
-                        grid.nodes[x + offsetX, y + offsetY].floorType = (FloorType)floorType;
+                        FloorType floor = (FloorType)floorType;
+                        grid.nodes[x + offsetX, y + offsetY].floorType = floor;
+
+                        switch (floor)
+                        {
+                            case FloorType.FLOOR:
+                                numberOfWalkableFloor++;
+                                break;
+                        }
                     }
 
                     if (entityType != null)
                     {
-                        grid.nodes[x + offsetX, y + offsetY].entitiesOnTile.Add((EntityType)entityType);
+                        EntityType entity = (EntityType)entityType;
+                        grid.nodes[x + offsetX, y + offsetY].entitiesOnTile.Add(entity);
+
+                        if (entity == EntityType.TRAP_DAMAGE)
+                        {
+                            numberOfHazards++;
+                        }
                     }
 
                 }
@@ -216,6 +245,8 @@ public class GridManager : MonoBehaviour
             AddEntityByWorldPosition(EntityType.ENEMY, enemyPos);
         }
 
+
+
     }
 
     public Node GetNodeByWorldPosition(Vector2Int position)
@@ -224,6 +255,16 @@ public class GridManager : MonoBehaviour
         int offsetY = Mathf.Abs(gridOrigin.y);
 
         return grid.nodes[position.x + offsetX, position.y + offsetY];
+    }
+
+    public Node GetNodeByWorldPosition(UnityEngine.Vector3 position)
+    {
+        int offsetX = Mathf.Abs(gridOrigin.x);
+        int offsetY = Mathf.Abs(gridOrigin.y);
+
+        Vector2Int pos = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
+
+        return grid.nodes[pos.x + offsetX, pos.y + offsetY];
     }
 
     public Node GetNodeByWorldPosition(int xPos, int yPos)
@@ -518,7 +559,25 @@ public class GridManager : MonoBehaviour
 
             // Debug.Log($"Path node: {worldPos}");
 
-            pathMarkers.Add(Instantiate(marker, new Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation));
+            pathMarkers.Add(Instantiate(marker, new UnityEngine.Vector3(worldPos.x, worldPos.y, 1), marker.transform.rotation));
         }
+    }
+
+    public int CalculateParBasedOnMap()
+    {
+        var playerNode = PlayerManager.Instance.NodeAtBallLocation;
+        var holeNode = GetNodeByWorldPosition(holeGoal.gameObject.transform.position);
+
+        int distancePlayerToHole = FindPath(playerNode, holeNode, false).Count();
+
+        int numberOfEnemies = GameManager.Instance.enemyManager.enemyUnitsOnLevel.Count();
+
+
+        Debug.Log($"Distace to hole: {distancePlayerToHole}, Walkable area: {numberOfWalkableFloor}, Enemies: {numberOfEnemies}, Hazards: {numberOfHazards}");
+
+        int par = 0;
+
+        return par;
+
     }
 }

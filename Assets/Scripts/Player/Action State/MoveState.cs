@@ -9,6 +9,8 @@ public class MoveState : IPlayerActionState
 
     public void OnEnter(PlayerActionStateController controller)
     {
+        GameManager.Instance.IncrementShotsTaken();
+
         this.controller = controller;
         Debug.Log("Player Entered Moving State");
         // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);

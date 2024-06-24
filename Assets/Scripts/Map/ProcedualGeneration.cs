@@ -14,6 +14,7 @@ public class ProcedualGeneration : MonoBehaviour
 
     public string nextSceneName = "";
     public bool hasLoadingScene = true;
+    public int levelPar = 0;
 
     [SerializeField]
     Tilemap walls;

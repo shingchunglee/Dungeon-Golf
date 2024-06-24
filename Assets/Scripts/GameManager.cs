@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public bool isInitialized = false;
 
     public GridManager gridManager;
+    public LevelManager levelManager;
 
     private string gameOverSceneName = "GameOver";
 
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     public StatsController statsController;
     public string nextSceneName = "";
+
+    public int shotsTakenOnLevel { get; private set; } = 0;
 
     private void Awake()
     {
@@ -109,10 +112,10 @@ public class GameManager : MonoBehaviour
                 proceduralGenerationPresets.Add(procGen);
             }
         }
-        var isProcGen = GameObject.Find("IsProcGen");
-        if (isProcGen != null && isProcGen.TryGetComponent(out IsProcGen isProcGenScript))
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        if (levelManager != null)
         {
-            if (isProcGenScript.isProceduralGen)
+            if (levelManager.isProceduralGen)
             {
                 proceduralGenerationPresets[procGenLevelIndex].Main();
 
@@ -141,6 +144,10 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.Instance.FadeInLavaMusic();
         }
+
+
+        shotsTakenOnLevel = 0;
+        PlayerManager.Instance.UIElements.UpdateShotText(shotsTakenOnLevel);
     }
 
     private void Update()
@@ -275,4 +282,41 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public int Par
+    {
+        get
+        {
+            if (levelManager.isProceduralGen)
+            {
+                return proceduralGenerationPresets[procGenLevelIndex].levelPar;
+            }
+            else
+            {
+                return levelManager.par;
+            }
+        }
+        private set
+        {
+            proceduralGenerationPresets[procGenLevelIndex].levelPar = value;
+        }
+    }
+
+    public void ChangePar(int value)
+    {
+        Par = value;
+    }
+
+    public void IncrementShotsTaken(int value = 1)
+    {
+        shotsTakenOnLevel += value;
+        PlayerManager.Instance.UIElements.UpdateShotText(shotsTakenOnLevel);
+    }
+
+    public bool isUnderPar()
+    {
+        if (shotsTakenOnLevel <= Par) return true;
+        else return false;
+    }
+
 }

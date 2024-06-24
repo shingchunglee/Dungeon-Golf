@@ -27,6 +27,9 @@ public class PlayerUIElements : MonoBehaviour
     public Color textColourBase;
     public Color textColourFlash;
 
+    public TextMeshProUGUI parText;
+    public TextMeshProUGUI shotText;
+
     private void Awake()
     {
         levelUpUI = transform.Find("Level Up Panel").GetComponent<LevelUpUI>();
@@ -42,6 +45,16 @@ public class PlayerUIElements : MonoBehaviour
     public void PlayLevelUpAnimation()
     {
         levelUpUI.LevelUpAnimation();
+    }
+
+    public void UpdatePar(int value)
+    {
+        parText.text = "PAR \n" + value;
+    }
+
+    public void UpdateShotText(int value)
+    {
+        shotText.text = "SHOT \n" + value;
     }
 
     public void UpdateClubUI(Club club)
