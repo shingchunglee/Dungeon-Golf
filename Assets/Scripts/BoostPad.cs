@@ -29,7 +29,7 @@ public class BoostPad : MonoBehaviour
                 //Reset the velocity before boosting
                 PlayerManager.Instance.ballRB.velocity = Vector2.zero;
                 PlayerManager.Instance.ballRB.angularVelocity = 0;
-                PlayerManager.Instance.varianceLevelController.selectedVariance = null;
+                PlayerManager.Instance.varianceLevelController.selectedVariance = 0;
 
                 // Boost ball in direction of boost pad
                 Vector2 boostDirection = Vector2.left;

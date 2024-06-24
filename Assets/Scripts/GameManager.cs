@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
 
         shotsTakenOnLevel = 0;
         PlayerManager.Instance.UIElements.UpdateShotText(shotsTakenOnLevel);
+        PlayerManager.Instance.UIElements.UpdatePar(Par);
     }
 
     private void Update()
@@ -227,6 +228,31 @@ public class GameManager : MonoBehaviour
         text.text = statsController.GetStatsToString();
     }
 
+    public void UpdateEndLevelRegenText(int value)
+    {
+        TextMeshProUGUI regenText = GameObject.Find("RegenText").GetComponent<TextMeshProUGUI>();
+
+        if (value > 0)
+        {
+            regenText.text = $"Regen: {value} HP";
+        }
+        else
+        {
+            regenText.text = $"Regen: HP Full";
+        }
+    }
+
+    public void UpdateEndLevelEXPText(int value)
+    {
+        TextMeshProUGUI EXPGainedText = GameObject.Find("EXPGainedText").GetComponent<TextMeshProUGUI>();
+        EXPGainedText.text = $"+ {value} EXP";
+
+        if (isUnderPar())
+        {
+            EXPGainedText.text = $"+ {value} EXP - Under Par Bonus!";
+        }
+    }
+
     public void LoadGameScene()
     {
         SceneManager.LoadScene("GameScene");
@@ -234,7 +260,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        CompleteLevelGM();
 
         if (nextSceneName == "")
         {
@@ -244,11 +269,6 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneName);
         }
-    }
-
-    private void CompleteLevelGM()
-    {
-        PlayerManager.Instance.CompleteLevelActions();
     }
 
     private void OnEnable()
@@ -298,6 +318,21 @@ public class GameManager : MonoBehaviour
         private set
         {
             proceduralGenerationPresets[procGenLevelIndex].levelPar = value;
+        }
+    }
+
+    public int EXPRewardEndLevel
+    {
+        get
+        {
+            if (levelManager.isProceduralGen)
+            {
+                return proceduralGenerationPresets[procGenLevelIndex].EXPRewardEndLevel;
+            }
+            else
+            {
+                return levelManager.EXPRewardEndLevel;
+            }
         }
     }
 

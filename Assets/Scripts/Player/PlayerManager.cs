@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour
     public InventoryController inventoryController;
     public Transform playerTransform;
 
+    public int EXPParMultiplier = 2;
+
     public Vector2Int WizardWorldPositionOnGrid
     {
         get
@@ -103,6 +105,11 @@ public class PlayerManager : MonoBehaviour
         get
         {
             if (isMovingOveride) return true;
+
+            if (ballRB == null)
+            {
+                return false;
+            }
 
             if (ballRB.velocity.magnitude > 0.5f)
                 return true;
@@ -255,13 +262,15 @@ public class PlayerManager : MonoBehaviour
         UIElements = hudCanvas.GetComponentInChildren<PlayerUIElements>();
         PlayerParent = GameObject.Find("Player");
 
-        var snapToGridLocation = new Vector3();
+        if (PlayerParent != null)
+        {
+            var snapToGridLocation = new Vector3();
+            snapToGridLocation.x = Mathf.Floor(PlayerParent.transform.position.x);
+            snapToGridLocation.y = Mathf.Floor(PlayerParent.transform.position.y);
+            snapToGridLocation.z = PlayerParent.transform.position.z;
 
-        snapToGridLocation.x = Mathf.Floor(PlayerParent.transform.position.x);
-        snapToGridLocation.y = Mathf.Floor(PlayerParent.transform.position.y);
-        snapToGridLocation.z = PlayerParent.transform.position.z;
-
-        PlayerParent.transform.position = snapToGridLocation;
+            PlayerParent.transform.position = snapToGridLocation;
+        }
 
         UIElements.UpdateHealthBar(currentHP, maxHP);//healthbar
         UpdateHPText();
@@ -326,11 +335,29 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void RestoreHealth(int restore)
+    /// <summary>
+    /// Returns the number of Health healed.
+    /// </summary>
+    /// <param name="potentialAmountToHeal"></param>
+    /// <returns></returns>
+    public int RestoreHealth(int potentialAmountToHeal)
     {
-        currentHP += restore;
+        int amountToHeal = 0;
+
+        int newHP = currentHP + potentialAmountToHeal;
+        int overheal = newHP - maxHP;
+
+        if (overheal <= 0) amountToHeal = potentialAmountToHeal;
+        else amountToHeal = potentialAmountToHeal - overheal;
+
+        currentHP += amountToHeal;
+
+        //Safety check incase
         if (currentHP > maxHP) currentHP = maxHP;
+
         UpdateHPText();
+
+        return amountToHeal;
     }
 
     public void UpdateHPText()
@@ -410,13 +437,37 @@ public class PlayerManager : MonoBehaviour
     public void CompleteLevelActions()
     {
         EndLevelRegen();
+        EndLevelEXPReward();
     }
 
     private void EndLevelRegen()
     {
         float amountToHealFloat = maxHP * endLevelRegenPercent;
 
-        RestoreHealth((int)amountToHealFloat);
+        int amountHealed = RestoreHealth((int)amountToHealFloat);
+        GameManager.Instance.UpdateEndLevelRegenText(amountHealed);
+    }
+
+    private void EndLevelEXPReward()
+    {
+        Debug.Log("End Level EXP Reward!");
+
+        int value = GameManager.Instance.EXPRewardEndLevel;
+
+
+        if (GameManager.Instance.isUnderPar())
+        {
+            value *= EXPParMultiplier;
+
+            GameManager.Instance.UpdateEndLevelEXPText(value);
+            EXPGain(value);
+            Debug.Log(value);
+        }
+        else
+        {
+            EXPGain(value);
+            Debug.Log(value);
+        }
     }
 
     private void PlayerDies()

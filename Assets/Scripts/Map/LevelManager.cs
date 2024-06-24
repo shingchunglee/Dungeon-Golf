@@ -8,7 +8,9 @@ public class LevelManager : MonoBehaviour
 
     public int shotsTakenOnLevel { get; private set; } = 0;
 
+    public int EXPRewardEndLevel = 50;
+
     [Header("Set Par in Procedural Generation Script if Procgen")]
-    [Tooltip("Do it!")]
+    [Tooltip("Cool par tooltip here!")]
     public int par = 99;
 }

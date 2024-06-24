@@ -120,8 +120,14 @@ public class PlayerUIElements : MonoBehaviour
 
     public void UpdateEXPUI(float currentValue, float nextLevelValue)
     {
-        EXPSliderHUD.value = currentValue / nextLevelValue;
-        EXPSliderMenu.value = currentValue / nextLevelValue;
+        if (EXPSliderHUD != null)
+        {
+            EXPSliderHUD.value = currentValue / nextLevelValue;
+        }
+        if (EXPSliderMenu != null)
+        {
+            EXPSliderMenu.value = currentValue / nextLevelValue;
+        }
 
         UpdateEXPInMenu($"{currentValue}/{nextLevelValue}");
     }

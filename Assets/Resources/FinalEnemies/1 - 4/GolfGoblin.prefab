@@ -57,7 +57,7 @@ MonoBehaviour:
   maxAttacksPerTurn: 1
   attackDamage: 3
   willBallCollide: 0
-  EXPReward: 20
+  EXPReward: 10
   healthBar: {fileID: 0}
   enemyHurt: {fileID: 5050475009537855519}
   enemyDie: {fileID: 1731015186207826018}

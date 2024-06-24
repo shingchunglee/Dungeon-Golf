@@ -47,6 +47,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 14
+  EXPRewardEndLevel: 300
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -118,6 +119,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 10
+  EXPRewardEndLevel: 75
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -188,6 +190,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 18
+  EXPRewardEndLevel: 400
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -259,6 +262,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 10
+  EXPRewardEndLevel: 50
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -328,6 +332,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 15
+  EXPRewardEndLevel: 350
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -399,6 +404,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 16
+  EXPRewardEndLevel: 450
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -481,6 +487,7 @@ MonoBehaviour:
   varianceLevelController: {fileID: 0}
   inventoryController: {fileID: 1634197314303143687}
   playerTransform: {fileID: 0}
+  EXPParMultiplier: 2
   voidDamage: 15
   actionStateController: {fileID: 0}
   golfAim: {fileID: 0}
@@ -555,6 +562,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 11
+  EXPRewardEndLevel: 100
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -689,6 +697,7 @@ MonoBehaviour:
   nextSceneName: Custom_18_FinalLevel_Mitch
   hasLoadingScene: 1
   levelPar: 18
+  EXPRewardEndLevel: 500
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -760,6 +769,7 @@ MonoBehaviour:
   nextSceneName: Custom_12_LavaTransition_Mitch
   hasLoadingScene: 1
   levelPar: 12
+  EXPRewardEndLevel: 200
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}
@@ -831,6 +841,7 @@ MonoBehaviour:
   nextSceneName: 
   hasLoadingScene: 1
   levelPar: 11
+  EXPRewardEndLevel: 150
   walls: {fileID: 0}
   floor: {fileID: 0}
   obstacles: {fileID: 0}

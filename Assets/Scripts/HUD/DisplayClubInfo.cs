@@ -30,7 +30,7 @@ public class DisplayClubInfo : MonoBehaviour
     {
         // Club[] clubs = Resources.LoadAll<Club>("Clubs");
         InventoryClub[] clubs = PlayerManager.Instance.inventoryController.GetInventoryClubs();
-        Debug.Log("Loaded " + clubs.Length + " clubs.");
+        // Debug.Log("Loaded " + clubs.Length + " clubs.");
 
         if (clubs.Length == 0)
         {

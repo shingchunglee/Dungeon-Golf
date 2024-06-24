@@ -12,7 +12,7 @@ public class MoveState : IPlayerActionState
         GameManager.Instance.IncrementShotsTaken();
 
         this.controller = controller;
-        Debug.Log("Player Entered Moving State");
+        // Debug.Log("Player Entered Moving State");
         // controller.ballRB.AddForce(controller.ballRB.transform.up * (float)PlayerManager.Instance.powerLevelController.selectedPower);
         if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
         {
@@ -21,7 +21,7 @@ public class MoveState : IPlayerActionState
         }
         else
         {
-            Debug.Log("aimdirection: " + PlayerManager.Instance.golfAim.aimDirection);
+            // Debug.Log("aimdirection: " + PlayerManager.Instance.golfAim.aimDirection);
             // controller.ballRB.AddForce((Vector2)(Quaternion.AngleAxis((float)PlayerManager.Instance.varianceLevelController.selectedVariance, Vector3.forward) * PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
             controller.ballRB.AddForce((Vector2)(PlayerManager.Instance.golfAim.aimDirection * (float)PlayerManager.Instance.powerLevelController.selectedPower));
         }

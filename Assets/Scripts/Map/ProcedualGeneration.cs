@@ -15,6 +15,7 @@ public class ProcedualGeneration : MonoBehaviour
     public string nextSceneName = "";
     public bool hasLoadingScene = true;
     public int levelPar = 0;
+    public int EXPRewardEndLevel = 50;
 
     [SerializeField]
     Tilemap walls;
