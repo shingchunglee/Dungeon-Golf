@@ -11,6 +11,9 @@ public class MoveState : IPlayerActionState
 
     public void OnEnter(PlayerActionStateController controller)
     {
+
+        controller.TurnOnCollider();
+
         if (cameraMove == null)
         {
             cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMove>();

@@ -244,9 +244,6 @@ public class GridManager : MonoBehaviour
 
             AddEntityByWorldPosition(EntityType.ENEMY, enemyPos);
         }
-
-
-
     }
 
     public Node GetNodeByWorldPosition(Vector2Int position)

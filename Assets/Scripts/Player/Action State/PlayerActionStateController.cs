@@ -13,8 +13,14 @@ public class PlayerActionStateController : MonoBehaviour
 
     void Start()
     {
-        SetState(aimState);
         ballCollider = ballRB.GetComponentInChildren<Collider2D>();
+
+        Invoke(nameof(LateStart), 0.2f);
+    }
+
+    private void LateStart()
+    {
+        SetState(aimState);
     }
 
     void Update()
