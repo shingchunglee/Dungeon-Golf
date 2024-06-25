@@ -157,12 +157,36 @@ public class PlayerManager : MonoBehaviour
         // };
     }
 
+    public bool ballInMotion { get; private set; } = false;
+    public Vector3 preMoveLocation;
+
     private void FixedUpdate()
     {
         if (manualControlTestMode)
         {
             BallManualControl();
         }
+
+        if (IsBallMoving && ballInMotion == false)
+        {
+            ballInMotion = true;
+            preMoveLocation = ballRB.transform.position;
+        }
+
+        if (ballInMotion == true && !IsBallMoving)
+        {
+            PostPlayerMovement();
+            ballInMotion = false;
+        }
+
+    }
+
+    private void PostPlayerMovement()
+    {
+        ballRB.velocity = Vector2.zero;
+
+        TeleportPlayerToBall(preMoveLocation);
+
     }
 
     private void Explode()
@@ -384,6 +408,48 @@ public class PlayerManager : MonoBehaviour
         if (ballRB == null)
         {
             Debug.LogWarning("Ball RB not found!");
+            return;
+        }
+
+        var x = Mathf.Floor(ballRB.position.x);
+        var y = Mathf.Floor(ballRB.position.y);
+
+        // playerRB.MovePosition(new Vector2(x, y));
+        playerRB.position = new Vector2(x, y);
+
+    }
+
+    public void TeleportPlayerToBall(Vector3 positionBeforeMove)
+    {
+        //TODO this shouldn't be here but it works.
+        UpdateHPText();
+        UIElements.UpdateHealthBar(currentHP, maxHP);//healthbar
+
+        var playerRB = playerWizard.GetComponent<Rigidbody2D>();
+        var ballRB = playerBall.GetComponent<Rigidbody2D>();
+
+        // Null safety checks
+        if (playerRB == null)
+        {
+            Debug.LogWarning("Player RB not found!");
+            return;
+        }
+        if (ballRB == null)
+        {
+            Debug.LogWarning("Ball RB not found!");
+            return;
+        }
+
+        //If new position is not walkable
+        if (!GameManager.Instance.gridManager.GetNodeByWorldPosition(BallPositionOnWorldGrid).IsWalkable())
+        {
+            var X = Mathf.Floor(positionBeforeMove.x);
+            var Y = Mathf.Floor(positionBeforeMove.y);
+
+            // playerRB.MovePosition(new Vector2(x, y));
+            ballRB.position = new Vector2(X, Y);
+
+            TakeDamage(5);
             return;
         }
 

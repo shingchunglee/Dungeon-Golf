@@ -79,7 +79,7 @@ public class GridManager : MonoBehaviour
 
     private void LateStart()
     {
-        CalculateParBasedOnMap();
+        // CalculateParBasedOnMap();
     }
 
     private bool isCurrentLevelProcGen()
@@ -565,7 +565,15 @@ public class GridManager : MonoBehaviour
         var playerNode = PlayerManager.Instance.NodeAtBallLocation;
         var holeNode = GetNodeByWorldPosition(holeGoal.gameObject.transform.position);
 
-        int distancePlayerToHole = FindPath(playerNode, holeNode, false).Count();
+        int distancePlayerToHole = 0;
+        try
+        {
+            distancePlayerToHole = FindPath(playerNode, holeNode, false).Count();
+        }
+        catch
+        {
+            Debug.LogWarning("Could not calculate distance to hole - is there void like lava in the way?");
+        }
 
         int numberOfEnemies = GameManager.Instance.enemyManager.enemyUnitsOnLevel.Count();
 

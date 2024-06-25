@@ -30,7 +30,7 @@ public class Enemy_Basher : EnemyUnit
         if (isPlayerBallHit &&
             !PlayerManager.Instance.IsBallMoving)
         {
-            PlayerManager.Instance.TeleportPlayerToBall();
+            // PlayerManager.Instance.TeleportPlayerToBall();
 
             isPlayerBallHit = false;
         }
