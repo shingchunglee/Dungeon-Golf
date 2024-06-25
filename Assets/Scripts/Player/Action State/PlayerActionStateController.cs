@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerActionStateController : MonoBehaviour
 {
     public Rigidbody2D ballRB;
+    public Collider2D ballCollider;
     public IPlayerActionState currentState;
     public IPlayerActionState aimState = new AimState();
     public IPlayerActionState moveState = new MoveState();
@@ -13,6 +14,7 @@ public class PlayerActionStateController : MonoBehaviour
     void Start()
     {
         SetState(aimState);
+        ballCollider = ballRB.GetComponentInChildren<Collider2D>();
     }
 
     void Update()
@@ -56,5 +58,15 @@ public class PlayerActionStateController : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    public void TurnOffCollider()
+    {
+        ballCollider.enabled = false;
+    }
+
+    public void TurnOnCollider()
+    {
+        ballCollider.enabled = true;
     }
 }

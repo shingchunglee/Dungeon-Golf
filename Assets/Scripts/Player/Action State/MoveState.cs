@@ -59,6 +59,9 @@ public class MoveState : IPlayerActionState
             ClubEffectsFactory.Create(effect).AfterPlayerMove();
         }
         PlayerManager.Instance.statusEffect.TurnPassed();
+
+        // ! is this a fix?
+        controller.TurnOffCollider();
     }
 
     public void OnFixedUpdate()

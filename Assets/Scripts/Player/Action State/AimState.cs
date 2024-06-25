@@ -8,6 +8,14 @@ public class AimState : IPlayerActionState
   public void OnEnter(PlayerActionStateController controller)
   {
     this.controller = controller;
+
+    // check if player is on a void at the start of the shot
+    if (PlayerManager.Instance.NodeAtBallLocation.floorType == FloorType.VOID)
+    {
+      PlayerManager.Instance.ResetToLastShotPosition();
+      PlayerManager.Instance.TakeDamage(5);
+    }
+
     if (SettingsManager.Instance.golfAimType == GolfAimType.Drag)
     {
       PlayerManager.Instance.golfAimDrag.enabled = true;
@@ -20,6 +28,8 @@ public class AimState : IPlayerActionState
     }
     validClick = false;
     PlayerManager.Instance.SetLastShotPosition(PlayerManager.Instance.ballRB.position);
+
+    controller.TurnOnCollider();
     // Debug.Log("Player Entered Action State");
 
   }
